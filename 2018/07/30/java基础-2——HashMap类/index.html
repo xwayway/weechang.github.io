@@ -7,20 +7,20 @@
 
     
 
-    <title>Java基础-1——String类 | 张未的技术博客</title>
+    <title>Java基础-2——HashMap类 | 张未的技术博客</title>
     <meta name="author" content="耒耒耒耒耒">
     
     <meta name="description" content="一、简介1.1 成员变量
-    public final class String implements java.io.Serializable, Comparable, CharSequence {
-
-        private final char value[];
-
-        p">
+    /**
+     * 默认初始容量 - 必须是2的幂。
+     * 个数不能太多或太少。如果太少，很容易触发扩容，如果太多，遍历哈希表会比较慢。
+     */
+    static final int DEFAULT_INITIAL_CAPACITY = 1">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:title" content="Java基础-1——String类"/>
+    <meta property="og:title" content="Java基础-2——HashMap类"/>
     <meta property="og:site_name" content="耒耒耒耒耒"/>
 
     
@@ -238,12 +238,12 @@
             <div class="article-title">
                 
     
-        <h1>Java基础-1——String类</h1>
+        <h1>Java基础-2——HashMap类</h1>
     
 
 
             </div>
-            <time class="teal-link-context" datetime="2018-06-08T05:59:02.000Z"><a href="/2018/06/08/java基础-1——String类/">2018-06-08</a></time>
+            <time class="teal-link-context" datetime="2018-07-30T09:05:03.000Z"><a href="/2018/07/30/java基础-2——HashMap类/">2018-07-30</a></time>
 
             <span id="busuanzi_container_page_pv" class="read-times-container">
     <i class="fa fa-eye"></i>
@@ -257,208 +257,246 @@
         
             <a href="/tags/Java基础/" class="chip teal lighten-1">Java基础</a>
         
-            <a href="/tags/String/" class="chip teal lighten-1">String</a>
+            <a href="/tags/HashMap/" class="chip teal lighten-1">HashMap</a>
         
     </div>
 
 
             <div class="toc teal-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#一、简介"><span class="section table-of-contents-text">一、简介</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-1-成员变量"><span class="section table-of-contents-text">1.1 成员变量</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-2-构造方法"><span class="section table-of-contents-text">1.2 构造方法</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#二、创建方式的区别"><span class="section table-of-contents-text">二、创建方式的区别</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-1-直接赋值方式"><span class="section table-of-contents-text">2.1 直接赋值方式</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-2-构造方法创建"><span class="section table-of-contents-text">2.2 构造方法创建</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-3-内存分析"><span class="section table-of-contents-text">2.3 内存分析</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-4-区别"><span class="section table-of-contents-text">2.4 区别</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#三、字符串常量池"><span class="section table-of-contents-text">三、字符串常量池</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-1-字符串常量池概述"><span class="section table-of-contents-text">3.1 字符串常量池概述</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-2-亨元模式"><span class="section table-of-contents-text">3.2 亨元模式</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-3-详细分析"><span class="section table-of-contents-text">3.3 详细分析</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#四、常用方法"><span class="section table-of-contents-text">四、常用方法</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-1-基本操作"><span class="section table-of-contents-text">4.1 基本操作</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-2-转换操作"><span class="section table-of-contents-text">4.2 转换操作</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-3-替换操作"><span class="section table-of-contents-text">4.3 替换操作</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-4-截取操作"><span class="section table-of-contents-text">4.4 截取操作</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-5判断操作"><span class="section table-of-contents-text">4.5判断操作</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#5-1-异同点"><span class="section table-of-contents-text">5.1 异同点</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#5-2-效率比较"><span class="section table-of-contents-text">5.2 效率比较</span></a></li></ol></li></ol>
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#一、简介"><span class="section table-of-contents-text">一、简介</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-1-成员变量"><span class="section table-of-contents-text">1.1 成员变量</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#二、原理实现"><span class="section table-of-contents-text">二、原理实现</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#三、常用方法"><span class="section table-of-contents-text">三、常用方法</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-1-构造方法"><span class="section table-of-contents-text">3.1 构造方法</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-2-对外方法"><span class="section table-of-contents-text">3.2 对外方法</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#四、HashMap的遍历"><span class="section table-of-contents-text">四、HashMap的遍历</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-1-遍历HashMap的键值对"><span class="section table-of-contents-text">4.1 遍历HashMap的键值对</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-2-遍历HashMap的键"><span class="section table-of-contents-text">4.2 遍历HashMap的键</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-3-遍历HashMap的值"><span class="section table-of-contents-text">4.3 遍历HashMap的值</span></a></li></ol></li></ol>
 </div>
 
 
             <div class="entry teal-link-context">
                 <h1 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h1><h2 id="1-1-成员变量"><a href="#1-1-成员变量" class="headerlink" title="1.1 成员变量"></a>1.1 成员变量</h2><pre>
-    public final class String implements java.io.Serializable, Comparable<string>, CharSequence {
-
-        private final char value[];
-
-        private int hash; // Default to 0
-
-        private static final long serialVersionUID = -6849794470754667710L;
-
-        private static final ObjectStreamField[] serialPersistentFields = new ObjectStreamField[0];
-    }
-</string></pre>
-
-
-<p>从源码可以看出，<b>String底层是通过一个不可变的字符串常量来进行维护的。所以只要一个字符改变就会生成一个新的String类型对象。</b></p>
-<h2 id="1-2-构造方法"><a href="#1-2-构造方法" class="headerlink" title="1.2 构造方法"></a>1.2 构造方法</h2><pre>
-    String()
-    String(String original)
-    String(char value[])
-    String(char value[], int offset, int count)
-    String(int[] codePoints, int offset, int count)
-    String(byte bytes[], int offset, int length, String charsetName)
-    String(byte bytes[], int offset, int length, Charset charset)
-    String(byte bytes[], String charsetName)
-    String(byte bytes[], Charset charset)
-    String(byte bytes[], int offset, int length)
-    String(byte bytes[])
-    String(StringBuffer buffer)
-    String(StringBuilder builder)
-    String(char[] value, boolean share)
-</pre>
-
-
-<h1 id="二、创建方式的区别"><a href="#二、创建方式的区别" class="headerlink" title="二、创建方式的区别"></a>二、创建方式的区别</h1><h2 id="2-1-直接赋值方式"><a href="#2-1-直接赋值方式" class="headerlink" title="2.1 直接赋值方式"></a>2.1 直接赋值方式</h2><p>String str = “str”; //<b>直接赋值方式创建对象是在方法区的常量池</b></p>
-<h2 id="2-2-构造方法创建"><a href="#2-2-构造方法创建" class="headerlink" title="2.2 构造方法创建"></a>2.2 构造方法创建</h2><p>String str = “str”;//<b>通过构造方法创建字符串对象是在堆内存</b></p>
-<pre>
-    public class JavaString {
-        /**
-         * 创建方式的比较
-         */
-        public void createMethod() {
-            String str1 = "str";
-            String str2 = new String("str");
-            String str3 = str1;
-            String str4 = str2;
-            System.out.println(str1 == str2); // false
-            System.out.println(str1 == str3); // true
-            System.out.println(str2 == str4); // true
-            System.out.println(str1 == str4); // false
-        }
-
-        public static void main(String[] args) {
-            JavaString javaString = new JavaString();
-            javaString.createMethod();
-        }
-    }
-</pre>
-
-<h2 id="2-3-内存分析"><a href="#2-3-内存分析" class="headerlink" title="2.3 内存分析"></a>2.3 内存分析</h2><img src="/2018/06/08/java基础-1——String类/memory.png" title="内存示意">
-<p><b>在字符串中，如果采用直接赋值的方式（String str=”str”）进行对象的实例化，则会将匿名对象“str”放入字符串常量池，每当下一次对不同的对象进行直接赋值的时候会直接利用池中原有的匿名对象。</b><br>这样，所有直接赋值的String对象，如果利用相同的“str”，则String对象==返回true；<br>PS：字符串还可以采用手工入池的方式</p>
-<pre>
     /**
-     * 字符串手工入池
+     * 默认初始容量 - 必须是2的幂。
+     * 个数不能太多或太少。如果太少，很容易触发扩容，如果太多，遍历哈希表会比较慢。
      */
-    public void intern(){
-        String str1 = new String("str").intern();
-        String str2 = "str";
-        System.out.println(str1 == str2); // true
-    }
-</pre>
+    static final int DEFAULT_INITIAL_CAPACITY = 1 << 4; // aka 16
 
-<h2 id="2-4-区别"><a href="#2-4-区别" class="headerlink" title="2.4 区别"></a>2.4 区别</h2><p>1）直接赋值（String str = “str”）：只开辟一块堆内存空间，并且会自动入池，不会产生垃圾。<br>2）构造方法（String str=  new String(“str”);）:会开辟两块堆内存空间（具体原因阐述见此处），其中一块堆内存会变成垃圾被系统回收，而且不能够自动入池，需要通过public  String intern();方法进行手工入池。<br><b>PS:String类对象一旦声明则不可以改变；而改变的只是地址，原来的字符串还是存在的，并且产生垃圾。</b></p>
-<h1 id="三、字符串常量池"><a href="#三、字符串常量池" class="headerlink" title="三、字符串常量池"></a>三、字符串常量池</h1><h2 id="3-1-字符串常量池概述"><a href="#3-1-字符串常量池概述" class="headerlink" title="3.1 字符串常量池概述"></a>3.1 字符串常量池概述</h2><p>1）常量池表（Constant_Pool table）</p>
-<p>Class文件中存储所有常量（包括字符串）的table。<br>这是Class文件中的内容，还不是运行时的内容，不要理解它是个池子，其实就是Class文件中的字节码指令。</p>
-<p>2）运行时常量池（Runtime Constant Pool）　</p>
-<p>JVM内存中方法区的一部分，这是运行时的内容<br>这部分内容（绝大部分）是随着JVM运行时候，从常量池转化而来，每个Class对应一个运行时常量池<br>上一句中说绝大部分是因为：除了 Class中常量池内容，还可能包括动态生成并加入这里的内容</p>
-<p>3）字符串常量池（String Pool）</p>
-<p>这部分也在方法区中，但与Runtime Constant Pool不是一个概念，String Pool是JVM实例全局共享的，全局只有一个<br>JVM规范要求进入这里的String实例叫“被驻留的interned string”，各个JVM可以有不同的实现，HotSpot是设置了一个哈希表StringTable来引用堆中的字符串实例，被引用就是被驻留。</p>
-<h2 id="3-2-亨元模式"><a href="#3-2-亨元模式" class="headerlink" title="3.2 亨元模式"></a>3.2 亨元模式</h2><p>其实字符串常量池这个问题涉及到一个设计模式，叫“享元模式”，顾名思义 - - - &gt; 共享元素模式<br>也就是说：一个系统中如果有多处用到了相同的一个元素，那么我们应该只存储一份此元素，而让所有地方都引用这一个元素<br>Java中String部分就是根据享元模式设计的，而那个存储元素的地方就叫做“字符串常量池 - String Pool”</p>
-<h2 id="3-3-详细分析"><a href="#3-3-详细分析" class="headerlink" title="3.3 详细分析"></a>3.3 详细分析</h2><p>举例：</p>
-<pre>
-    int x  = 10;
-    String y = "hello";
-</pre>
+    /**
+     *
+     * 最大容量。
+     */
+    static final int MAXIMUM_CAPACITY = 1 << 30;
 
-<p>1)首先，10和”hello”会在经过javac（或者其他编译器）编译过后变为Class文件中constant_pool table的内容<br>2)当我们的程序运行时，也就是说JVM运行时，每个Classconstant_pool table中的内容会被加载到JVM内存中的方法区中各自Class的Runtime Constant Pool。<br>3)一个没有被String Pool包含的Runtime Constant Pool中的字符串（这里是”hello”）会被加入到String Pool中（HosSpot使用hashtable引用方式），步骤如下：　　　<br>    一是：在Java Heap中根据”hello”字面量create一个字符串对象<br>    二是：将字面量”hello”与字符串对象的引用在hashtable中关联起来，键 - 值 形式是：”hello” = 对象的引用地址。<br>另外来说，当一个新的字符串出现在Runtime Constant Pool中时怎么判断需不需要在Java Heap中创建新对象呢？<br>策略是这样：会先去根据equals来比较Runtime Constant Pool中的这个字符串是否和String Pool中某一个是相等的（也就是找是否已经存在），如果有那么就不创建，直接使用其引用；反之，如上3。如此，就实现了享元模式，提高的内存利用效率。<br>举例：<br>使用String s = new String(“hello”); 会创建2个对象。<br>首先，出现了字面量”hello”，那么去String Pool中查找是否有相同字符串存在，因为程序就这一行代码所以肯定没有，那么就在Java Heap中用字面量”hello”首先创建1个String对象。<br>接着，new String(“hello”)，关键字new又在Java Heap中创建了1个对象，然后调用接收String参数的构造器进行了初始化。最终s的引用是这个String对象。</p>
-<h1 id="四、常用方法"><a href="#四、常用方法" class="headerlink" title="四、常用方法"></a>四、常用方法</h1><h2 id="4-1-基本操作"><a href="#4-1-基本操作" class="headerlink" title="4.1 基本操作"></a>4.1 基本操作</h2><pre>
-    // 获取字符串的长度
-    int length()
+    /**
+     * 默认的负载因子。因此初始情况下，当键值对的数量大于 16 * 0.75 = 12 时，就会触发扩容。
+     */
+    static final float DEFAULT_LOAD_FACTOR = 0.75f;
 
-    // 返回指定字符在该字符串中第一次出现的位置，若无则返回-1
-    int indexOf(int ch)
+    /**
+     * 使用树而不是链表的计数阈值。
+     *如果哈希函数不合理，即使扩容也无法减少箱子中链表的长度，因此 Java 的处理方案是当链表太长时，转换成红黑树。
+     * 这个值表示当某个链表长度大于 8 时，有可能会转化成树。
+     * 备注：从JDK1.8开始，HashMap容量在大于一定值后，底层将会由链表结构转为树形结构
+     */
+    static final int TREEIFY_THRESHOLD = 8;
 
-    // 返回指定字符在该字符串中最后一次出现的位置，若无则返回-1
-    int lastIndexOf(int ch)
+    /**
+     * 当容量小于该值时，将由树状结构转为链表结构
+     */
+    static final int UNTREEIFY_THRESHOLD = 6;
 
-    // 返回指定位置的字符，其中index取值范围为（0~字符长度-1）
-    char charAt(int index)
-</pre>
+    /**
+     * 在转变成树之前，还会有一次判断，只有键值对数量大于 64 才会发生转换。
+     * 这是为了避免在哈希表建立初期，多个键值对恰好被放入了同一个链表中而导致不必要的转化。
+     */
+    static final int MIN_TREEIFY_CAPACITY = 64;
 
-<h2 id="4-2-转换操作"><a href="#4-2-转换操作" class="headerlink" title="4.2 转换操作"></a>4.2 转换操作</h2><pre>
-    // 转换为字符数组
-    char[] toCharArray()
+    // 数组，该数组用于存储不同的hash值与链表的对应关系
+    transient Node<k,v>[] table;
 
-    // 将传入值转换为String （常见入参为Integer、Long、Double等）
-    String valueOf(xxx)
+    // 单向链表，该链表用于处理哈希冲突
+    Set<map.entry<k,v>> entrySet;
 
-    // 转换为小写
-    String toLowerCase()
+    // hashMap长度
+    int size;
 
-    // 转换为大写
-    String toUpperCase()
-</pre>
+    // 用来实现fail-fast机制的。 
+    int modCount; 
 
-<h2 id="4-3-替换操作"><a href="#4-3-替换操作" class="headerlink" title="4.3 替换操作"></a>4.3 替换操作</h2><pre>
-    // 使用 replacement替换原字符串中所有的target
-    String replace(CharSequence target, CharSequence replacement)
+    // HashMap的阈值，用于判断是否需要调整HashMap的容量。threshold的值="容量*加载因子"，当HashMap中存储数据的数量达到threshold时，就需要将HashMap的容量加倍。 
+    int threshold; 
 
-    // 替换字符串中的所有空格
-    String trim()
-</pre>
+    // 加载因子 
+    final float loadFactor;
+</map.entry<k,v></k,v></pre>
 
-<h2 id="4-4-截取操作"><a href="#4-4-截取操作" class="headerlink" title="4.4 截取操作"></a>4.4 截取操作</h2><pre>
-    // 根据 regex 将原字符串拆分为 数组
-    String[] split(String regex)
-
-    // 截取 beginIndex 到 endIndex之间的字符串
-    String substring(int beginIndex, int endIndex)
-</pre>
-
-<h2 id="4-5判断操作"><a href="#4-5判断操作" class="headerlink" title="4.5判断操作"></a>4.5判断操作</h2><pre>
-    // 判断值是否相等
-    boolean equals(Object anObject)
-
-    // 忽略大小写的判断
-    boolean equalsIgnoreCase(String anotherString)
-
-    // 是否以prefix 开头
-    startsWith(String prefix)
-
-    // 是否以prefix 结尾
-    endsWith(String prefix)
-
-    // 是否包含 s
-    boolean contains(CharSequence s)
-
-    // 是否是空字符串
-    boolean isEmpty()
-</pre>
-
-<p>#五、String、StringBuffer、StringBuilder</p>
-<h2 id="5-1-异同点"><a href="#5-1-异同点" class="headerlink" title="5.1 异同点"></a>5.1 异同点</h2><p>同：三者底层都是通过字符数组来进行维护的。</p>
-<p>异：</p>
+<h1 id="二、原理实现"><a href="#二、原理实现" class="headerlink" title="二、原理实现"></a>二、原理实现</h1><p>hashMap的本质是一个数组，数组中每一个元素称为一个Node，Node中存放的是hash值与链表（或红黑树）的键值对。<br>hashMap的存储过程如下:<br>根据 key 计算出它的哈希值 h。<br>假设Node的个数为 n，那么这个键值对应该放在第 (h % n) 个Node中。<br>如果该Node中已经有了键值对，就使用<a href="http://www.cnblogs.com/lizhanwu/p/4303410.html" target="_blank">拉链法</a>解决冲突。<br>hashMap还有一个重要的属性: 负载因子(load factor)，它用来衡量hashMap的 空/满 程度，一定程度上也可以体现查询的效率，计算公式为:</p>
+<p>负载因子 = 总键值对数 / Node个数</p>
+<p>负载因子越大，意味着哈希表越满，越容易导致冲突，性能也就越低。因此，一般来说，当负载因子大于某个常数(可能是 1，或者 0.75 等)时，hashMap将自动扩容。<br>hashMap在自动扩容时，一般会创建两倍于原来个数的Node，因此即使 key 的hashMap不变，对箱子个数取余的结果也会发生改变，因此所有键值对的存放位置都有可能发生改变，这个过程也称为重哈希(rehash)。<br>hashMap的扩容并不总是能够有效解决负载因子过大的问题。假设所有 key 的哈希值都一样，那么即使扩容以后他们的位置也不会变化。虽然负载因子会降低，但实际存储在每个Node中的链表长度并不发生改变，因此也就不能提高hashMap的查询性能。</p>
+<p>基于以上总结，细心的读者可能会发现hashMap的两个问题:</p>
+<p>如果hashMap中本来Node就比较多，扩容时需要重新哈希并移动数据，性能影响较大。<br>如果哈希函数设计不合理，hashMap在极端情况下会变成线性表，性能极低。<br>于是针对这种问题，java8中采用了红黑树与链表相互转换的方式来解决。当Node中的键值对大于8的时候，链表结构将变为树形结构。该方式能够在一定程度上解决链表的查询效率问题，但是最好的解决方案还是在hash函数的设计上，尽量减少hash冲突。</p>
+<p>根据概率论分析，理想状态下，hashMap中的Node满足泊松分布</p>
+<p>当负载因子为 0.75 时，上述公式中 λ 约等于 0.5，因此箱子中元素个数和概率的关系如下:</p>
 <table>
 <thead>
 <tr>
-<th></th>
-<th>String</th>
-<th>StringBuffer</th>
-<th>StringBuilder</th>
+<th>数量</th>
+<th>概率</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>是否可变</td>
-<td>×</td>
-<td>√</td>
-<td>√</td>
+<td>0</td>
+<td>0.60653066</td>
 </tr>
 <tr>
-<td>线程安全</td>
-<td>√</td>
-<td>√</td>
-<td>×</td>
+<td>1</td>
+<td>0.30326533</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0.07581633</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0.01263606</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0.00157952</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0.00015795</td>
+</tr>
+<tr>
+<td>6</td>
+<td>0.00001316</td>
+</tr>
+<tr>
+<td>7</td>
+<td>0.00000094</td>
+</tr>
+<tr>
+<td>8</td>
+<td>0.00000006</td>
 </tr>
 </tbody>
 </table>
-<h2 id="5-2-效率比较"><a href="#5-2-效率比较" class="headerlink" title="5.2 效率比较"></a>5.2 效率比较</h2><p><b>通常情况下：StringBuilder &gt; StringBuffer &gt; String</b></p>
+<h1 id="三、常用方法"><a href="#三、常用方法" class="headerlink" title="三、常用方法"></a>三、常用方法</h1><h2 id="3-1-构造方法"><a href="#3-1-构造方法" class="headerlink" title="3.1 构造方法"></a>3.1 构造方法</h2><pre>
+    /**
+    * @param initialCapacity 初始大小
+    * @param loadFactor 扩容因子
+    */
+    public HashMap(int initialCapacity, float loadFactor)
 
+    /**
+    *@param initialCapacity 初始大小
+    */
+    public HashMap(int initialCapacity)
+
+    public HashMap()
+
+    /**
+    *@param m Map子类
+    */
+    public HashMap(Map<? extends K, ? extends V> m)
+</pre>
+
+<h2 id="3-2-对外方法"><a href="#3-2-对外方法" class="headerlink" title="3.2 对外方法"></a>3.2 对外方法</h2><pre>
+    /**
+    * 清空hashMap
+    * 通过将所有Node置空实现
+    */
+    public void clear()
+
+    /**
+    * 是否存在键为key的键值对
+    */
+    public boolean containsKey(Object key)
+
+    /**
+    * 是否存在值为value的键值对
+    */
+    public boolean containsValue(Object value)
+
+    /**
+    * 获取所有的键值对
+    */
+    public Set<map.entry<k,v>> entrySet()
+
+    /**
+    * 获取所有键值对 值的集合
+    */
+    public Collection<v> values()
+
+    /**
+    * 获取所有键值对 键的集合
+    */
+    public Set<k> keySet()
+
+    /**
+    * 根据键值对的键获取值
+    */
+    public V get(Object key)
+
+    /**
+    * put 一个键值对
+    */
+    public V put(K key, V value)
+
+    /**
+    *将"m"的全部元素都添加到HashMap中
+    */
+    public void putAll(Map<? extends K, ? extends V> m)
+
+    /**
+    *移除键为key的元素
+    */
+    public V remove(Object key)
+</k></v></map.entry<k,v></pre>
+
+<h1 id="四、HashMap的遍历"><a href="#四、HashMap的遍历" class="headerlink" title="四、HashMap的遍历"></a>四、HashMap的遍历</h1><h2 id="4-1-遍历HashMap的键值对"><a href="#4-1-遍历HashMap的键值对" class="headerlink" title="4.1 遍历HashMap的键值对"></a>4.1 遍历HashMap的键值对</h2><p>第一步：根据entrySet()获取HashMap的“键值对”的Set集合。<br>第二步：通过Iterator迭代器遍历“第一步”得到的集合。</p>
+<pre>
+    // 假设map是HashMap对象
+    // map中的key是String类型，value是Integer类型
+    Integer integ = null;
+    Iterator iter = map.entrySet().iterator();
+    while(iter.hasNext()) {
+        Map.Entry entry = (Map.Entry)iter.next();
+        // 获取key
+        key = (String)entry.getKey();
+        // 获取value
+        integ = (Integer)entry.getValue();
+    }
+</pre>
+
+<h2 id="4-2-遍历HashMap的键"><a href="#4-2-遍历HashMap的键" class="headerlink" title="4.2 遍历HashMap的键"></a>4.2 遍历HashMap的键</h2><p>第一步：根据keySet()获取HashMap的“键”的Set集合。<br>第二步：通过Iterator迭代器遍历“第一步”得到的集合。</p>
+<pre>
+    // 假设map是HashMap对象
+    // map中的key是String类型，value是Integer类型
+    String key = null;
+    Integer integ = null;
+    Iterator iter = map.keySet().iterator();
+    while (iter.hasNext()) {
+            // 获取key
+        key = (String)iter.next();
+            // 根据key，获取value
+        integ = (Integer)map.get(key);
+    }
+</pre>
+
+<h2 id="4-3-遍历HashMap的值"><a href="#4-3-遍历HashMap的值" class="headerlink" title="4.3 遍历HashMap的值"></a>4.3 遍历HashMap的值</h2><p>第一步：根据value()获取HashMap的“值”的集合。<br>第二步：通过Iterator迭代器遍历“第一步”得到的集合。</p>
+<pre>
+    // 假设map是HashMap对象
+    // map中的key是String类型，value是Integer类型
+    Integer value = null;
+    Collection c = map.values();
+    Iterator iter= c.iterator();
+    while (iter.hasNext()) {
+        value = (Integer)iter.next();
+    }
+</pre>
                 
+
+
 <p class="teal-link-context">
     <a href="/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/" rel="next" title="手把手教学，教你把你的个人项目推送到maven中央仓库">
-    上一篇：手把手教学，教你把你的个人项目推送到maven中央仓库
-  </a>
-</p>
-
-
-
-<p class="teal-link-context">
-    <a href="/2018/06/07/java基础-0——Object类/" rel="next" title="Java基础-0——Object类">
-    下一篇：Java基础-0——Object类
+    下一篇：手把手教学，教你把你的个人项目推送到maven中央仓库
   </a>
 </p>
 
