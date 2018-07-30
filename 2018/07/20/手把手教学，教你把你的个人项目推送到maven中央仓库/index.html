@@ -238,7 +238,7 @@
 
 
             </div>
-            <time class="pink-link-context" datetime="2018-07-20T08:43:08.000Z"><a href="/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/">2018-07-20</a></time>
+            <time class="teal-link-context" datetime="2018-07-20T08:43:08.000Z"><a href="/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/">2018-07-20</a></time>
 
             <span id="busuanzi_container_page_pv" class="read-times-container">
     <i class="fa fa-eye"></i>
@@ -248,19 +248,19 @@
             
     <div class="tags-row">
         
-            <a href="/tags/手把手教学/" class="chip pink lighten-1">手把手教学</a>
+            <a href="/tags/手把手教学/" class="chip teal lighten-1">手把手教学</a>
         
-            <a href="/tags/maven中央仓库/" class="chip pink lighten-1">maven中央仓库</a>
+            <a href="/tags/maven中央仓库/" class="chip teal lighten-1">maven中央仓库</a>
         
     </div>
 
 
-            <div class="toc pink-link-context hide-on-med-and-down">
+            <div class="toc teal-link-context hide-on-med-and-down">
     <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#前言"><span class="section table-of-contents-text">前言</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#1-在sonatype中创建issue"><span class="section table-of-contents-text">1 在sonatype中创建issue</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#2-使用gpg生成秘钥"><span class="section table-of-contents-text">2 使用gpg生成秘钥</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-1-安装"><span class="section table-of-contents-text">2.1 安装</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-2-生成key"><span class="section table-of-contents-text">2.2 生成key</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-3-上传公钥"><span class="section table-of-contents-text">2.3 上传公钥</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#3-配置Maven"><span class="section table-of-contents-text">3 配置Maven</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-1-配置maven-setting-xml"><span class="section table-of-contents-text">3.1 配置maven setting.xml</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-3-部署到中央仓库"><span class="section table-of-contents-text">3.3 部署到中央仓库</span></a></li></ol></li></ol>
 </div>
 
 
-            <div class="entry pink-link-context">
+            <div class="entry teal-link-context">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;最近闲下来了，想要自己造点小轮子用，方便自己在不同项目使用，同时想偷懒，不想每次都在项目里面copy代码。于是想到了重要仓库这个东西，把自己的代码托管到github（虽然现在的github已经不再单纯），然后发布jar包到maven中央仓库，以后每个项目都只用引入maven依赖就可以了。同时还能方便好基友们使用，万一哪一天好基友高兴就献身了呢，想想就有点小激动呢。好了废话不多说，下面正式开始手把手教学活动。</p><br><p>&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="https://github.com/weechang/JUtil" target="_blank" rel="noopener">附上小轮子传送门</a>给感兴趣的小伙伴</b></p><br><p>&nbsp;&nbsp;&nbsp;&nbsp;将项目发布到maven仓库需要以下几步:</p><br><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.在sonatype中创建issue </p><br><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.使用gpg生成秘钥 </p><br><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.配置Maven进行deploy和release </p>
 
 <h1 id="1-在sonatype中创建issue"><a href="#1-在sonatype中创建issue" class="headerlink" title="1 在sonatype中创建issue"></a>1 在sonatype中创建issue</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;首先我们需要在<a href="https://issues.sonatype.org/secure/Dashboard.jspa" targe="_blank" target="_blank" rel="noopener">https://issues.sonatype.org/secure/Dashboard.jspa</a>中新建一个issues。如果没有sonatype账号的话，分分钟注册一个</p><br><p>&nbsp;&nbsp;&nbsp;&nbsp;<img src="/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/创建项目.png" title="手把手教学，教你把你的个人项目推送到maven中央仓库"></p><br><p>&nbsp;&nbsp;&nbsp;&nbsp;创建完成后就是如下图示</p><br><p>&nbsp;&nbsp;&nbsp;&nbsp;<img src="/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/创建完成.png" title="手把手教学，教你把你的个人项目推送到maven中央仓库"></p><br><p>&nbsp;&nbsp;&nbsp;&nbsp;这个时候只需要耐心等待工作人员审核就行了，因为我的domain问题，经历了二次审核，但是都很快，一般提交后两个小时内就会有结果。当issues状态变为Resolved就可以继续下一步操作了。</p>
@@ -277,7 +277,7 @@
                 
 
 
-<p class="pink-link-context">
+<p class="teal-link-context">
     <a href="/2018/06/07/java基础-0——Object类/" rel="next" title="Java基础.0——Object类">
     下一篇：Java基础.0——Object类
   </a>
@@ -298,7 +298,7 @@
 </div>
 
         <div class="fixed-action-btn float-sitemap">
-    <a class="btn-floating btn-large pink">
+    <a class="btn-floating btn-large teal">
       <i class="fa fa-caret-square-o-up"></i>
     </a>
     <ul>
@@ -355,7 +355,7 @@
     </div>
     
 
-    <div class="footer-copyright pink-link-context">
+    <div class="footer-copyright teal-link-context">
         <div class="container">
             © 2018 weechang.com, All rights reserved.
             <p class="right" style="margin-top: 0;">本博客由 <a href="https://hexo.io">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
@@ -452,11 +452,11 @@
             $('li.tab a').hover(function() {
                 $(this).toggleClass('text-lighten-4');
             });
-            $('.indicator').addClass('pink lighten-2');
+            $('.indicator').addClass('teal lighten-2');
 
             
             // 添加new标签
-            $('.menu-search').append('<span class="new badge pink"></span>');
+            $('.menu-search').append('<span class="new badge teal"></span>');
             
 
             // 搜索功能
@@ -531,7 +531,7 @@
                             if (isMatch) {
                                 keywords.forEach(function(keyword) {
                                     var regS = new RegExp(keyword, "gi");
-                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword teal lighten-2\">" + keyword + "</span>");
                                 });
 
                                 str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
@@ -553,7 +553,7 @@
                                     // highlight all keywords
                                     keywords.forEach(function(keyword) {
                                         var regS = new RegExp(keyword, "gi");
-                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword teal lighten-2\">" + keyword + "</span>");
                                     });
 
                                     str += "<p class=\"search-result\">..." + match_content + "...</p>"

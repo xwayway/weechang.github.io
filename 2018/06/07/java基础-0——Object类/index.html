@@ -243,7 +243,7 @@ public final native Class getClass();
 
 
             </div>
-            <time class="pink-link-context" datetime="2018-06-07T10:39:22.000Z"><a href="/2018/06/07/java基础-0——Object类/">2018-06-07</a></time>
+            <time class="teal-link-context" datetime="2018-06-07T10:39:22.000Z"><a href="/2018/06/07/java基础-0——Object类/">2018-06-07</a></time>
 
             <span id="busuanzi_container_page_pv" class="read-times-container">
     <i class="fa fa-eye"></i>
@@ -253,19 +253,19 @@ public final native Class getClass();
             
     <div class="tags-row">
         
-            <a href="/tags/Java学习/" class="chip pink lighten-1">Java学习</a>
+            <a href="/tags/Java学习/" class="chip teal lighten-1">Java学习</a>
         
-            <a href="/tags/Java基础/" class="chip pink lighten-1">Java基础</a>
+            <a href="/tags/Java基础/" class="chip teal lighten-1">Java基础</a>
         
     </div>
 
 
-            <div class="toc pink-link-context hide-on-med-and-down">
+            <div class="toc teal-link-context hide-on-med-and-down">
     <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#一、getClass"><span class="section table-of-contents-text">一、getClass()</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#二、hashCode"><span class="section table-of-contents-text">二、hashCode()</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#三、equals"><span class="section table-of-contents-text">三、equals()</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#四、clone"><span class="section table-of-contents-text">四、clone()</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-1-clone与copy的区别"><span class="section table-of-contents-text">4.1 clone与copy的区别</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-2-Shallow-Clone与Deep-Clone"><span class="section table-of-contents-text">4.2 Shallow Clone与Deep Clone</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#五、toString"><span class="section table-of-contents-text">五、toString()</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#六、notify"><span class="section table-of-contents-text">六、notify()</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#七、notifyAll"><span class="section table-of-contents-text">七、notifyAll()</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#八、wait"><span class="section table-of-contents-text">八、wait()</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#九、finalize"><span class="section table-of-contents-text">九、finalize()</span></a></li></ol>
 </div>
 
 
-            <div class="entry pink-link-context">
+            <div class="entry teal-link-context">
                 <p>从这篇文章起就正式开始Java学习之旅了。java中，万物皆对象，所以第一篇先学习Java的Object类，循序渐进。</p>
 <h1 id="一、getClass"><a href="#一、getClass" class="headerlink" title="一、getClass()"></a>一、getClass()</h1><pre>
 public final native Class<?> getClass();
@@ -379,7 +379,7 @@ finalize()的用途：
 　　不过这种情况一般发生在使用“本地方法”的情况下，本地方法是一种在Java中调用非Java代码的方式。
 </pre>
                 
-<p class="pink-link-context">
+<p class="teal-link-context">
     <a href="/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/" rel="next" title="手把手教学，教你把你的个人项目推送到maven中央仓库">
     上一篇：手把手教学，教你把你的个人项目推送到maven中央仓库
   </a>
@@ -402,7 +402,7 @@ finalize()的用途：
 </div>
 
         <div class="fixed-action-btn float-sitemap">
-    <a class="btn-floating btn-large pink">
+    <a class="btn-floating btn-large teal">
       <i class="fa fa-caret-square-o-up"></i>
     </a>
     <ul>
@@ -459,7 +459,7 @@ finalize()的用途：
     </div>
     
 
-    <div class="footer-copyright pink-link-context">
+    <div class="footer-copyright teal-link-context">
         <div class="container">
             © 2018 weechang.com, All rights reserved.
             <p class="right" style="margin-top: 0;">本博客由 <a href="https://hexo.io">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
@@ -556,11 +556,11 @@ finalize()的用途：
             $('li.tab a').hover(function() {
                 $(this).toggleClass('text-lighten-4');
             });
-            $('.indicator').addClass('pink lighten-2');
+            $('.indicator').addClass('teal lighten-2');
 
             
             // 添加new标签
-            $('.menu-search').append('<span class="new badge pink"></span>');
+            $('.menu-search').append('<span class="new badge teal"></span>');
             
 
             // 搜索功能
@@ -635,7 +635,7 @@ finalize()的用途：
                             if (isMatch) {
                                 keywords.forEach(function(keyword) {
                                     var regS = new RegExp(keyword, "gi");
-                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword teal lighten-2\">" + keyword + "</span>");
                                 });
 
                                 str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
@@ -657,7 +657,7 @@ finalize()的用途：
                                     // highlight all keywords
                                     keywords.forEach(function(keyword) {
                                         var regS = new RegExp(keyword, "gi");
-                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword teal lighten-2\">" + keyword + "</span>");
                                     });
 
                                     str += "<p class=\"search-result\">..." + match_content + "...</p>"
