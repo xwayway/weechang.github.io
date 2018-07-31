@@ -170,7 +170,7 @@
 
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/Java基础/">
-                    Java基础 <span class="right">3 篇</span></a>
+                    Java基础 <span class="right">4 篇</span></a>
                 </a>
             </li>
 
@@ -218,6 +218,74 @@
             <div class="article-title">
                 
     
+        <h1 class="indigo-link-context"><a href="/2018/07/31/googled47a97b14340e51f/">无题</a></h1>
+    
+
+
+            </div>
+
+            <time class="teal-link-context" datetime="2018-07-31T06:14:40.019Z"><a href="/2018/07/31/googled47a97b14340e51f/">2018-07-31</a></time>
+
+            
+
+
+            
+        </div>
+
+        
+    </div>
+</article>
+
+    
+        <article class="simple-article">
+    <div class="card">
+        <div class="card-content">
+            <div class="article-title">
+                
+    
+        <h1 class="indigo-link-context"><a href="/2018/07/31/java基础-3——HashTable类/">Java基础-3——HashTable类</a></h1>
+    
+
+
+            </div>
+
+            <time class="teal-link-context" datetime="2018-07-31T06:00:29.000Z"><a href="/2018/07/31/java基础-3——HashTable类/">2018-07-31</a></time>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/Java学习/" class="chip teal lighten-1">Java学习</a>
+        
+            <a href="/tags/Java基础/" class="chip teal lighten-1">Java基础</a>
+        
+            <a href="/tags/HashTable/" class="chip teal lighten-1">HashTable</a>
+        
+    </div>
+
+
+
+            
+                <div class="entry teal-link-context">
+                    <h1 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h1><p>和HashMap一样，HashTable 也是一个散列表，它存储的内容是键值对(key-value)映射。<br>HashTable 继承于Dictionary，实现了Map、Cloneable、java.io.Serializable接口。<br>HashTable 的函数都是同步的，这意味着它是线程安全的。它的key、value都不可以为null。此外，HashTable中的映射不是有序的。<br>
+                </div>
+            
+        </div>
+
+        
+        <div class="card-action teal-link-context">
+            <a href="/2018/07/31/java基础-3——HashTable类/">阅读全文</a>
+        </ div>
+        
+    </div>
+</article>
+
+    
+        <article class="simple-article">
+    <div class="card">
+        <div class="card-content">
+            <div class="article-title">
+                
+    
         <h1 class="indigo-link-context"><a href="/2018/07/30/java基础-2——HashMap类/">Java基础-2——HashMap类</a></h1>
     
 
@@ -241,7 +309,7 @@
 
             
                 <div class="entry teal-link-context">
-                    <h1 id="一、原理实现"><a href="#一、原理实现" class="headerlink" title="一、原理实现"></a>一、原理实现</h1><p>hashMap的本质是一个数组，数组中每一个元素称为一个Node，Node中存放的是hash值与链表（或红黑树）的键值对。<br>hashMap的存储过程如下:<br>根据 key 计算出它的哈希值 h。<br>假设Node的个数为 n，那么这个键值对应该放在第 (h % n) 个Node中。</p>
+                    <h1 id="一、原理实现"><a href="#一、原理实现" class="headerlink" title="一、原理实现"></a>一、原理实现</h1><p>hashMap的本质是一个数组，数组中每一个元素称为一个Node，Node中存放的是hash值与链表（或红黑树）的键值对。<br>hashMap的存储过程如下:<br>根据 key 计算出它的哈希值 h。<br>假设Node的个数为 n，那么这个键值对应该放在第 (h % n) 个Node中。<br>
                 </div>
             
         </div>
@@ -282,7 +350,7 @@
 
             
                 <div class="entry teal-link-context">
-                    <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近闲下来了，想要自己造点小轮子用，方便自己在不同项目使用，同时想偷懒，不想每次都在项目里面copy代码。于是想到了重要仓库这个东西，把自己的代码托管到github（虽然现在的github已经不再单纯），然后发布jar包到maven中央仓库，以后每个项目都只用引入maven依赖就可以了。同时还能方便好基友们使用，万一哪一天好基友高兴就献身了呢，想想就有点小激动呢。好了废话不多说，下面正式开始手把手教学活动。</p>
+                    <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近闲下来了，想要自己造点小轮子用，方便自己在不同项目使用，同时想偷懒，不想每次都在项目里面copy代码。于是想到了重要仓库这个东西，把自己的代码托管到github（虽然现在的github已经不再单纯），然后发布jar包到maven中央仓库，以后每个项目都只用引入maven依赖就可以了。同时还能方便好基友们使用，万一哪一天好基友高兴就献身了呢，想想就有点小激动呢。好了废话不多说，下面正式开始手把手教学活动。<br>
                 </div>
             
         </div>
@@ -339,7 +407,7 @@
 </string></pre>
 
 
-<p>从源码可以看出，<b>String底层是通过一个不可变的字符串常量来进行维护的。所以只要一个字符改变就会生成一个新的String类型对象。</b></p>
+<p>从源码可以看出，<b>String底层是通过一个不可变的字符串常量来进行维护的。所以只要一个字符改变就会生成一个新的String类型对象。</b><br>
                 </div>
             
         </div>
@@ -382,7 +450,7 @@
 
             
                 <div class="entry teal-link-context">
-                    <p>从这篇文章起就正式开始Java学习之旅了。java中，万物皆对象，所以第一篇先学习Java的Object类，循序渐进。</p>
+                    <p>从这篇文章起就正式开始Java学习之旅了。java中，万物皆对象，所以第一篇先学习Java的Object类，循序渐进。<br>
                 </div>
             
         </div>

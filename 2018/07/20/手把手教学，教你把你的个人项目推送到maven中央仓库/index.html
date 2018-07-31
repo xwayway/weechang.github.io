@@ -172,7 +172,7 @@
 
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/Java基础/">
-                    Java基础 <span class="right">3 篇</span></a>
+                    Java基础 <span class="right">4 篇</span></a>
                 </a>
             </li>
 
@@ -261,9 +261,7 @@
 
 
             <div class="entry teal-link-context">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近闲下来了，想要自己造点小轮子用，方便自己在不同项目使用，同时想偷懒，不想每次都在项目里面copy代码。于是想到了重要仓库这个东西，把自己的代码托管到github（虽然现在的github已经不再单纯），然后发布jar包到maven中央仓库，以后每个项目都只用引入maven依赖就可以了。同时还能方便好基友们使用，万一哪一天好基友高兴就献身了呢，想想就有点小激动呢。好了废话不多说，下面正式开始手把手教学活动。</p>
-<a id="more"></a>
-<p><b><a href="https://github.com/weechang/JUtil" target="_blank" rel="noopener">附上小轮子传送门</a>给感兴趣的小伙伴</b><br>将项目发布到maven仓库需要以下几步:<br>1.在sonatype中创建issue<br>2.使用gpg生成秘钥<br>3.配置Maven进行deploy和release</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近闲下来了，想要自己造点小轮子用，方便自己在不同项目使用，同时想偷懒，不想每次都在项目里面copy代码。于是想到了重要仓库这个东西，把自己的代码托管到github（虽然现在的github已经不再单纯），然后发布jar包到maven中央仓库，以后每个项目都只用引入maven依赖就可以了。同时还能方便好基友们使用，万一哪一天好基友高兴就献身了呢，想想就有点小激动呢。好了废话不多说，下面正式开始手把手教学活动。<br><a id="more"></a><br><b><a href="https://github.com/weechang/JUtil" target="_blank" rel="noopener">附上小轮子传送门</a>给感兴趣的小伙伴</b><br>将项目发布到maven仓库需要以下几步:<br>1.在sonatype中创建issue<br>2.使用gpg生成秘钥<br>3.配置Maven进行deploy和release</p>
 <h1 id="1-在sonatype中创建issue"><a href="#1-在sonatype中创建issue" class="headerlink" title="1 在sonatype中创建issue"></a>1 在sonatype中创建issue</h1><p>首先我们需要在<a href="https://issues.sonatype.org/secure/Dashboard.jspa" targe="_blank" target="_blank" rel="noopener">https://issues.sonatype.org/secure/Dashboard.jspa</a>中新建一个issues。如果没有sonatype账号的话，分分钟注册一个<br><img src="/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/创建项目.png" title="手把手教学，教你把你的个人项目推送到maven中央仓库"><br>创建完成后就是如下图示<br><img src="/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/创建完成.png" title="手把手教学，教你把你的个人项目推送到maven中央仓库"><br>这个时候只需要耐心等待工作人员审核就行了，因为我的domain问题，经历了二次审核，但是都很快，一般提交后两个小时内就会有结果。当issues状态变为Resolved就可以继续下一步操作了。</p>
 <h1 id="2-使用gpg生成秘钥"><a href="#2-使用gpg生成秘钥" class="headerlink" title="2 使用gpg生成秘钥"></a>2 使用gpg生成秘钥</h1><h2 id="2-1-安装"><a href="#2-1-安装" class="headerlink" title="2.1 安装"></a>2.1 安装</h2><p>选择对应的OS版本进行下载安装即可，下载地址传送门：<a href="https://www.gnupg.org/download/index.html" targe="_blank" target="_blank" rel="noopener">https://www.gnupg.org/download/index.html</a></p>
 <h2 id="2-2-生成key"><a href="#2-2-生成key" class="headerlink" title="2.2 生成key"></a>2.2 生成key</h2><p>首先查看安装成功没有 <pre>gpg –version</pre> （MAC 和 Linux系统需要 gpg2 –version）<br>通过 <pre>gpg –gen-key</pre> 生成key，也可以通过UI界面生成和管理key<br><img src="/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/生成key.png" title="手把手教学，教你把你的个人项目推送到maven中央仓库"><br>运行后gpg要求你选择加密算法，过期时间等等，这些直接选择默认值即可。通过对比发现，gpg 2.0以上的版本运行gpg –gen-key命令 会跳过这些步骤。<br>之后gpg要求你输入姓名，邮箱以及关键的Passphrase，依次输入即可。然后gpg为你生成了一对秘钥。<br>通过<pre>gpg –list-keys</pre>查看生成的key列表<br><img src="/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/秘钥列表.png" title="手把手教学，教你把你的个人项目推送到maven中央仓库"><br>这里可以看到我的公钥是：34754DFE562C10E1A09907B7F4797C9A95E36DB6，记住这个key，下面我们需要用到。</p>
