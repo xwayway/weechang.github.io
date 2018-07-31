@@ -240,8 +240,16 @@
 
 
             
+                <div class="entry teal-link-context">
+                    <h1 id="一、原理实现"><a href="#一、原理实现" class="headerlink" title="一、原理实现"></a>一、原理实现</h1><p>hashMap的本质是一个数组，数组中每一个元素称为一个Node，Node中存放的是hash值与链表（或红黑树）的键值对。<br>hashMap的存储过程如下:<br>根据 key 计算出它的哈希值 h。<br>假设Node的个数为 n，那么这个键值对应该放在第 (h % n) 个Node中。</p>
+                </div>
+            
         </div>
 
+        
+        <div class="card-action teal-link-context">
+            <a href="/2018/07/30/java基础-2——HashMap类/">阅读全文</a>
+        </ div>
         
     </div>
 </article>
@@ -273,8 +281,16 @@
 
 
             
+                <div class="entry teal-link-context">
+                    <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近闲下来了，想要自己造点小轮子用，方便自己在不同项目使用，同时想偷懒，不想每次都在项目里面copy代码。于是想到了重要仓库这个东西，把自己的代码托管到github（虽然现在的github已经不再单纯），然后发布jar包到maven中央仓库，以后每个项目都只用引入maven依赖就可以了。同时还能方便好基友们使用，万一哪一天好基友高兴就献身了呢，想想就有点小激动呢。好了废话不多说，下面正式开始手把手教学活动。</p>
+                </div>
+            
         </div>
 
+        
+        <div class="card-action teal-link-context">
+            <a href="/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/">阅读全文</a>
+        </ div>
         
     </div>
 </article>
@@ -308,8 +324,30 @@
 
 
             
+                <div class="entry teal-link-context">
+                    <h1 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h1><h2 id="1-1-成员变量"><a href="#1-1-成员变量" class="headerlink" title="1.1 成员变量"></a>1.1 成员变量</h2><pre>
+    public final class String implements java.io.Serializable, Comparable<string>, CharSequence {
+
+        private final char value[];
+
+        private int hash; // Default to 0
+
+        private static final long serialVersionUID = -6849794470754667710L;
+
+        private static final ObjectStreamField[] serialPersistentFields = new ObjectStreamField[0];
+    }
+</string></pre>
+
+
+<p>从源码可以看出，<b>String底层是通过一个不可变的字符串常量来进行维护的。所以只要一个字符改变就会生成一个新的String类型对象。</b></p>
+                </div>
+            
         </div>
 
+        
+        <div class="card-action teal-link-context">
+            <a href="/2018/06/08/java基础-1——String类/">阅读全文</a>
+        </ div>
         
     </div>
 </article>
@@ -343,8 +381,16 @@
 
 
             
+                <div class="entry teal-link-context">
+                    <p>从这篇文章起就正式开始Java学习之旅了。java中，万物皆对象，所以第一篇先学习Java的Object类，循序渐进。</p>
+                </div>
+            
         </div>
 
+        
+        <div class="card-action teal-link-context">
+            <a href="/2018/06/07/java基础-0——Object类/">阅读全文</a>
+        </ div>
         
     </div>
 </article>

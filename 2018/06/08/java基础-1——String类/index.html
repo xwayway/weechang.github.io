@@ -15,7 +15,16 @@
 
         private final char value[];
 
-        p">
+        private int hash; // Default to 0
+
+        private static final long serialVersionUID = -6849794470754667710L;
+
+        private static final ObjectStreamField[] serialPersistentFields = new ObjectStreamField[0];
+    }
+
+
+
+从源码可以看出，String底层是通过一个不可变的字符串常量来进行维护的。所以只要一个字符改变就会生成一个新的String类型对象。">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -283,6 +292,7 @@
 
 
 <p>从源码可以看出，<b>String底层是通过一个不可变的字符串常量来进行维护的。所以只要一个字符改变就会生成一个新的String类型对象。</b></p>
+<a id="more"></a>
 <h2 id="1-2-构造方法"><a href="#1-2-构造方法" class="headerlink" title="1.2 构造方法"></a>1.2 构造方法</h2><pre>
     String()
     String(String original)

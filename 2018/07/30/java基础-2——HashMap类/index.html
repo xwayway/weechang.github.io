@@ -10,12 +10,7 @@
     <title>Java基础-2——HashMap类 | 张未的技术博客</title>
     <meta name="author" content="耒耒耒耒耒">
     
-    <meta name="description" content="一、简介1.1 成员变量
-    /**
-     * 默认初始容量 - 必须是2的幂。
-     * 个数不能太多或太少。如果太少，很容易触发扩容，如果太多，遍历哈希表会比较慢。
-     */
-    static final int DEFAULT_INITIAL_CAPACITY = 1">
+    <meta name="description" content="一、原理实现hashMap的本质是一个数组，数组中每一个元素称为一个Node，Node中存放的是hash值与链表（或红黑树）的键值对。hashMap的存储过程如下:根据 key 计算出它的哈希值 h。假设Node的个数为 n，那么这个键值对应该放在第 (h % n) 个Node中。">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -263,12 +258,66 @@
 
 
             <div class="toc teal-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#一、简介"><span class="section table-of-contents-text">一、简介</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-1-成员变量"><span class="section table-of-contents-text">1.1 成员变量</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#二、原理实现"><span class="section table-of-contents-text">二、原理实现</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#三、常用方法"><span class="section table-of-contents-text">三、常用方法</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-1-构造方法"><span class="section table-of-contents-text">3.1 构造方法</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-2-对外方法"><span class="section table-of-contents-text">3.2 对外方法</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#四、HashMap的遍历"><span class="section table-of-contents-text">四、HashMap的遍历</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-1-遍历HashMap的键值对"><span class="section table-of-contents-text">4.1 遍历HashMap的键值对</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-2-遍历HashMap的键"><span class="section table-of-contents-text">4.2 遍历HashMap的键</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-3-遍历HashMap的值"><span class="section table-of-contents-text">4.3 遍历HashMap的值</span></a></li></ol></li></ol>
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#一、原理实现"><span class="section table-of-contents-text">一、原理实现</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#二、简介"><span class="section table-of-contents-text">二、简介</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-1-成员变量"><span class="section table-of-contents-text">2.1 成员变量</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#三、常用方法"><span class="section table-of-contents-text">三、常用方法</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-1-构造方法"><span class="section table-of-contents-text">3.1 构造方法</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-2-对外方法"><span class="section table-of-contents-text">3.2 对外方法</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#四、HashMap的遍历"><span class="section table-of-contents-text">四、HashMap的遍历</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-1-遍历HashMap的键值对"><span class="section table-of-contents-text">4.1 遍历HashMap的键值对</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-2-遍历HashMap的键"><span class="section table-of-contents-text">4.2 遍历HashMap的键</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-3-遍历HashMap的值"><span class="section table-of-contents-text">4.3 遍历HashMap的值</span></a></li></ol></li></ol>
 </div>
 
 
             <div class="entry teal-link-context">
-                <h1 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h1><h2 id="1-1-成员变量"><a href="#1-1-成员变量" class="headerlink" title="1.1 成员变量"></a>1.1 成员变量</h2><pre>
+                <h1 id="一、原理实现"><a href="#一、原理实现" class="headerlink" title="一、原理实现"></a>一、原理实现</h1><p>hashMap的本质是一个数组，数组中每一个元素称为一个Node，Node中存放的是hash值与链表（或红黑树）的键值对。<br>hashMap的存储过程如下:<br>根据 key 计算出它的哈希值 h。<br>假设Node的个数为 n，那么这个键值对应该放在第 (h % n) 个Node中。</p>
+<a id="more"></a>
+<p>如果该Node中已经有了键值对，就使用<a href="http://www.cnblogs.com/lizhanwu/p/4303410.html" target="_blank">拉链法</a>解决冲突。<br>hashMap还有一个重要的属性: 负载因子(load factor)，它用来衡量hashMap的 空/满 程度，一定程度上也可以体现查询的效率，计算公式为:</p>
+<p>负载因子 = 总键值对数 / Node个数</p>
+<p>负载因子越大，意味着哈希表越满，越容易导致冲突，性能也就越低。因此，一般来说，当负载因子大于某个常数(可能是 1，或者 0.75 等)时，hashMap将自动扩容。<br>hashMap在自动扩容时，一般会创建两倍于原来个数的Node，因此即使 key 的hashMap不变，对箱子个数取余的结果也会发生改变，因此所有键值对的存放位置都有可能发生改变，这个过程也称为重哈希(rehash)。<br>hashMap的扩容并不总是能够有效解决负载因子过大的问题。假设所有 key 的哈希值都一样，那么即使扩容以后他们的位置也不会变化。虽然负载因子会降低，但实际存储在每个Node中的链表长度并不发生改变，因此也就不能提高hashMap的查询性能。</p>
+<p>基于以上总结，细心的读者可能会发现hashMap的两个问题:</p>
+<p>如果hashMap中本来Node就比较多，扩容时需要重新哈希并移动数据，性能影响较大。<br>如果哈希函数设计不合理，hashMap在极端情况下会变成线性表，性能极低。<br>于是针对这种问题，java8中采用了红黑树与链表相互转换的方式来解决。当Node中的键值对大于8的时候，链表结构将变为树形结构。该方式能够在一定程度上解决链表的查询效率问题，但是最好的解决方案还是在hash函数的设计上，尽量减少hash冲突。</p>
+<p>根据概率论分析，理想状态下，hashMap中的Node满足泊松分布<br>当负载因子为 0.75 时，上述公式中 λ 约等于 0.5，因此箱子中元素个数和概率的关系如下:</p>
+<table>
+<thead>
+<tr>
+<th>数量</th>
+<th>概率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0.60653066</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0.30326533</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0.07581633</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0.01263606</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0.00157952</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0.00015795</td>
+</tr>
+<tr>
+<td>6</td>
+<td>0.00001316</td>
+</tr>
+<tr>
+<td>7</td>
+<td>0.00000094</td>
+</tr>
+<tr>
+<td>8</td>
+<td>0.00000006</td>
+</tr>
+</tbody>
+</table>
+<h1 id="二、简介"><a href="#二、简介" class="headerlink" title="二、简介"></a>二、简介</h1><h2 id="2-1-成员变量"><a href="#2-1-成员变量" class="headerlink" title="2.1 成员变量"></a>2.1 成员变量</h2><pre>
     /**
      * 默认初始容量 - 必须是2的幂。
      * 个数不能太多或太少。如果太少，很容易触发扩容，如果太多，遍历哈希表会比较慢。
@@ -324,59 +373,6 @@
     final float loadFactor;
 </map.entry<k,v></k,v></pre>
 
-<h1 id="二、原理实现"><a href="#二、原理实现" class="headerlink" title="二、原理实现"></a>二、原理实现</h1><p>hashMap的本质是一个数组，数组中每一个元素称为一个Node，Node中存放的是hash值与链表（或红黑树）的键值对。<br>hashMap的存储过程如下:<br>根据 key 计算出它的哈希值 h。<br>假设Node的个数为 n，那么这个键值对应该放在第 (h % n) 个Node中。<br>如果该Node中已经有了键值对，就使用<a href="http://www.cnblogs.com/lizhanwu/p/4303410.html" target="_blank">拉链法</a>解决冲突。<br>hashMap还有一个重要的属性: 负载因子(load factor)，它用来衡量hashMap的 空/满 程度，一定程度上也可以体现查询的效率，计算公式为:</p>
-<p>负载因子 = 总键值对数 / Node个数</p>
-<p>负载因子越大，意味着哈希表越满，越容易导致冲突，性能也就越低。因此，一般来说，当负载因子大于某个常数(可能是 1，或者 0.75 等)时，hashMap将自动扩容。<br>hashMap在自动扩容时，一般会创建两倍于原来个数的Node，因此即使 key 的hashMap不变，对箱子个数取余的结果也会发生改变，因此所有键值对的存放位置都有可能发生改变，这个过程也称为重哈希(rehash)。<br>hashMap的扩容并不总是能够有效解决负载因子过大的问题。假设所有 key 的哈希值都一样，那么即使扩容以后他们的位置也不会变化。虽然负载因子会降低，但实际存储在每个Node中的链表长度并不发生改变，因此也就不能提高hashMap的查询性能。</p>
-<p>基于以上总结，细心的读者可能会发现hashMap的两个问题:</p>
-<p>如果hashMap中本来Node就比较多，扩容时需要重新哈希并移动数据，性能影响较大。<br>如果哈希函数设计不合理，hashMap在极端情况下会变成线性表，性能极低。<br>于是针对这种问题，java8中采用了红黑树与链表相互转换的方式来解决。当Node中的键值对大于8的时候，链表结构将变为树形结构。该方式能够在一定程度上解决链表的查询效率问题，但是最好的解决方案还是在hash函数的设计上，尽量减少hash冲突。</p>
-<p>根据概率论分析，理想状态下，hashMap中的Node满足泊松分布</p>
-<p>当负载因子为 0.75 时，上述公式中 λ 约等于 0.5，因此箱子中元素个数和概率的关系如下:</p>
-<table>
-<thead>
-<tr>
-<th>数量</th>
-<th>概率</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>0.60653066</td>
-</tr>
-<tr>
-<td>1</td>
-<td>0.30326533</td>
-</tr>
-<tr>
-<td>2</td>
-<td>0.07581633</td>
-</tr>
-<tr>
-<td>3</td>
-<td>0.01263606</td>
-</tr>
-<tr>
-<td>4</td>
-<td>0.00157952</td>
-</tr>
-<tr>
-<td>5</td>
-<td>0.00015795</td>
-</tr>
-<tr>
-<td>6</td>
-<td>0.00001316</td>
-</tr>
-<tr>
-<td>7</td>
-<td>0.00000094</td>
-</tr>
-<tr>
-<td>8</td>
-<td>0.00000006</td>
-</tr>
-</tbody>
-</table>
 <h1 id="三、常用方法"><a href="#三、常用方法" class="headerlink" title="三、常用方法"></a>三、常用方法</h1><h2 id="3-1-构造方法"><a href="#3-1-构造方法" class="headerlink" title="3.1 构造方法"></a>3.1 构造方法</h2><pre>
     /**
     * @param initialCapacity 初始大小
