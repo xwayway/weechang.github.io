@@ -10,105 +10,129 @@
 <!-- created with PRO Sitemap Service https://pro-sitemaps.com -->
 
   <url>
-       <loc>https://weechang.github.io/</loc>
-       <lastmod>2018-08-01T02:25:13+00:00</lastmod>
+       <loc>http://blog.weechang.xyz/</loc>
+       <lastmod>2018-08-01T07:07:33+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>1.0000</priority>
   </url>
   <url>
-       <loc>https://weechang.github.io/categories/Java学习之从头开始/</loc>
-       <lastmod>2018-08-01T02:25:13+00:00</lastmod>
+       <loc>http://blog.weechang.xyz/atom.xml</loc>
+       <lastmod>2018-08-01T07:12:09+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.8000</priority>
   </url>
   <url>
-       <loc>https://weechang.github.io/categories/Java学习之从头开始/Java基础/</loc>
-       <lastmod>2018-08-01T02:25:13+00:00</lastmod>
+       <loc>http://blog.weechang.xyz/categories/Java学习之从头开始/</loc>
+       <lastmod>2018-08-01T07:07:33+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.8000</priority>
   </url>
   <url>
-       <loc>https://weechang.github.io/categories/开源之路/</loc>
-       <lastmod>2018-08-01T02:25:13+00:00</lastmod>
+       <loc>http://blog.weechang.xyz/categories/Java学习之从头开始/Java基础/</loc>
+       <lastmod>2018-08-01T07:07:33+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.8000</priority>
   </url>
   <url>
-       <loc>https://weechang.github.io/2018/07/31/java基础-3——HashTable类/</loc>
-       <lastmod>2018-08-01T02:25:13+00:00</lastmod>
+       <loc>http://blog.weechang.xyz/categories/开源之路/</loc>
+       <lastmod>2018-08-01T07:07:33+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.8000</priority>
   </url>
   <url>
-       <loc>https://weechang.github.io/tags/Java学习之从头开始/</loc>
-       <lastmod>2018-08-01T02:25:13+00:00</lastmod>
+       <loc>http://blog.weechang.xyz/2018/07/31/java基础-3——HashTable类/</loc>
+       <lastmod>2018-08-01T07:07:33+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.8000</priority>
   </url>
   <url>
-       <loc>https://weechang.github.io/tags/Java基础/</loc>
-       <lastmod>2018-08-01T02:25:13+00:00</lastmod>
+       <loc>http://blog.weechang.xyz/tags/Java学习之从头开始/</loc>
+       <lastmod>2018-08-01T07:07:33+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.8000</priority>
   </url>
   <url>
-       <loc>https://weechang.github.io/tags/HashTable/</loc>
-       <lastmod>2018-08-01T02:25:13+00:00</lastmod>
+       <loc>http://blog.weechang.xyz/tags/Java基础/</loc>
+       <lastmod>2018-08-01T07:07:33+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.8000</priority>
   </url>
   <url>
-       <loc>https://weechang.github.io/2018/07/30/java基础-2——HashMap类/</loc>
-       <lastmod>2018-08-01T02:25:13+00:00</lastmod>
+       <loc>http://blog.weechang.xyz/tags/HashTable/</loc>
+       <lastmod>2018-08-01T07:07:33+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.8000</priority>
   </url>
   <url>
-       <loc>https://weechang.github.io/tags/HashMap/</loc>
-       <lastmod>2018-08-01T02:25:13+00:00</lastmod>
+       <loc>http://blog.weechang.xyz/2018/07/30/java基础-2——HashMap类/</loc>
+       <lastmod>2018-08-01T07:07:33+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.8000</priority>
   </url>
   <url>
-       <loc>https://weechang.github.io/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/</loc>
-       <lastmod>2018-08-01T02:25:13+00:00</lastmod>
+       <loc>http://blog.weechang.xyz/tags/HashMap/</loc>
+       <lastmod>2018-08-01T07:07:33+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.8000</priority>
   </url>
   <url>
-       <loc>https://weechang.github.io/tags/手把手教学/</loc>
-       <lastmod>2018-08-01T02:25:13+00:00</lastmod>
+       <loc>http://blog.weechang.xyz/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/</loc>
+       <lastmod>2018-08-01T07:07:33+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.8000</priority>
   </url>
   <url>
-       <loc>https://weechang.github.io/tags/maven中央仓库/</loc>
-       <lastmod>2018-08-01T02:25:13+00:00</lastmod>
+       <loc>http://blog.weechang.xyz/tags/手把手教学/</loc>
+       <lastmod>2018-08-01T07:07:33+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.8000</priority>
   </url>
   <url>
-       <loc>https://weechang.github.io/2018/06/08/java基础-1——String类/</loc>
-       <lastmod>2018-08-01T02:25:13+00:00</lastmod>
+       <loc>http://blog.weechang.xyz/tags/maven中央仓库/</loc>
+       <lastmod>2018-08-01T07:07:33+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.8000</priority>
   </url>
   <url>
-       <loc>https://weechang.github.io/tags/String/</loc>
-       <lastmod>2018-08-01T02:25:13+00:00</lastmod>
+       <loc>http://blog.weechang.xyz/2018/06/08/java基础-1——String类/</loc>
+       <lastmod>2018-08-01T07:07:33+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.8000</priority>
   </url>
   <url>
-       <loc>https://weechang.github.io/2018/06/07/java基础-0——Object类/</loc>
-       <lastmod>2018-08-01T02:25:13+00:00</lastmod>
+       <loc>http://blog.weechang.xyz/tags/String/</loc>
+       <lastmod>2018-08-01T07:07:33+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.8000</priority>
   </url>
   <url>
-       <loc>https://weechang.github.io/tags/Object/</loc>
-       <lastmod>2018-08-01T02:25:13+00:00</lastmod>
+       <loc>http://blog.weechang.xyz/2018/06/07/java基础-0——Object类/</loc>
+       <lastmod>2018-08-01T07:07:33+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>http://blog.weechang.xyz/tags/Object/</loc>
+       <lastmod>2018-08-01T07:07:33+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>http://blog.weechang.xyz/archives/</loc>
+       <lastmod>2018-08-01T07:07:33+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.6400</priority>
+  </url>
+  <url>
+       <loc>http://blog.weechang.xyz/reading/</loc>
+       <lastmod>2018-08-01T07:07:33+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.6400</priority>
+  </url>
+  <url>
+       <loc>http://blog.weechang.xyz/about/</loc>
+       <lastmod>2018-08-01T07:07:33+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.6400</priority>
   </url>
 </urlset>
