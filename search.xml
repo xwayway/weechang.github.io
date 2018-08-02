@@ -3,6 +3,29 @@
   
     
     <entry>
+      <title>六元一个的私有博客系统，了解一下？</title>
+      <link href="/2018/08/02/%E5%85%AD%E5%85%83%E4%B8%80%E4%B8%AA%E7%9A%84%E7%A7%81%E6%9C%89%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%EF%BC%8C%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B%EF%BC%9F/"/>
+      <url>/2018/08/02/%E5%85%AD%E5%85%83%E4%B8%80%E4%B8%AA%E7%9A%84%E7%A7%81%E6%9C%89%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%EF%BC%8C%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B%EF%BC%9F/</url>
+      <content type="html"><![CDATA[<h1 id="神说要有光，于是便有了光"><a href="#神说要有光，于是便有了光" class="headerlink" title="神说要有光，于是便有了光"></a>神说要有光，于是便有了光</h1><p>写代码的，偶尔都想装点逼，想要自己写点博客。刚开始还能在各大社区写，比如说CSDN，开源中国，博客园什么的。但是越写就会越觉得，那些博客平台都不是自己想要的，虽然大平台，能够提高在搜索引擎的收录，但是我看着别人的博客，我也想要有一个自建的博客系统。于是开始了自建博客的入坑之旅，在这儿给大伙分享一下我的自建博客历程。</p><a id="more"></a><h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>因为自己不是很懂，网上找的资料也很分散。所以整个历程大概经历了四天左右才把自己的博客系统搞好。首先需要准备以下资源</p><ol><li>github账号（应该都有吧，没有的自己去注册一个）<a href="https://www.github.com" target="_blank">传送门</a></li><li>选择一个你喜欢的hexo主题，这个网上太多了。可以去<a href="http://hexo.io/themes/" target="_blank">hexo官网</a>，或者<a href="https://github.com/search?q=hexo" target="_blank">github</a>上看看</li><li>准备一个nodeJS环境，具体怎么搞，可以度娘一下 <a href="https://www.cnblogs.com/zhouyu2017/p/6485265.html" target="_blank">windows传送门</a>，<a herf="https://www.cnblogs.com/BinXu/p/6050850.html" target="_blank">Mac 传送门</a></li><li>一个阿里云账号（如果使用github提供的域名的话，这个可以省了）</li></ol><p># </p>]]></content>
+      
+      <categories>
+          
+          <category> 开源之路 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 手把手教学 </tag>
+            
+            <tag> GitHub Pages </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>【Java学习之从头开始】Java基础-3——HashTable类</title>
       <link href="/2018/07/31/java%E5%9F%BA%E7%A1%80-3%E2%80%94%E2%80%94HashTable%E7%B1%BB/"/>
       <url>/2018/07/31/java%E5%9F%BA%E7%A1%80-3%E2%80%94%E2%80%94HashTable%E7%B1%BB/</url>
@@ -137,17 +160,17 @@
   
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
-      <content type="html"><![CDATA[<p>我是耒耒耒耒耒（张未）。欢迎来到我的个人技术博客。目前主要做Java后端开发，同时兼顾一些Vue页面的开发，对领域驱动较为感兴趣。</p>]]></content>
-    </entry>
-    
-    <entry>
       <title>读书</title>
       <link href="/reading/index.html"/>
       <url>/reading/index.html</url>
       <content type="html"><![CDATA[]]></content>
+    </entry>
+    
+    <entry>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
+      <content type="html"><![CDATA[<p>我是耒耒耒耒耒（张未）。欢迎来到我的个人技术博客。目前主要做Java后端开发，同时兼顾一些Vue页面的开发，对领域驱动较为感兴趣。</p>]]></content>
     </entry>
     
   
