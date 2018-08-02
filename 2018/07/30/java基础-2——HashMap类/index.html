@@ -521,6 +521,23 @@
 
 
 
+<!-- Link Gitalk 的支持文件  -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>     <script type="text/javascript">
+    var gitalk = new Gitalk({
+        // gitalk的主要参数
+        clientID: "275f71ce035d4923cb38",
+        clientSecret: "275f71ce035d4923cb38",
+        repo: 'https://blog.weechang.xyz',
+        owner: 'weechang',
+        admin: ['weechang'],
+        id:window.location.pathname,
+    });
+    gitalk.render('gitalk-container');
+</script>
+<!-- Gitalk end -->
+
 
 
 </div>
@@ -587,7 +604,7 @@
 
     <div class="footer-copyright teal-link-context">
         <div class="container">
-            <p class="right" style="margin-top: 0;">Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+            <p class="left" style="margin-top: 0;">Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
             © 2018 weechang.xyz, All rights reserved.
             <p class="right" style="margin-top: 0;">本博客由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism" target="_blank">raytaylorism</a></p>
         </div>
