@@ -854,10 +854,15 @@ code {
 }
 .article-inner {
   overflow: hidden;
+  -webkit-box-shadow: 3px 3px 3px #888;
+  box-shadow: 3px 3px 3px #888;
 }
 .article-banner {
   width: 100%;
   height: auto;
+}
+.article-word-count {
+  float: right;
 }
 .article-header {
   padding: 20px 20px 0;
@@ -868,12 +873,12 @@ code {
 }
 .article-title {
   font-size: 2em;
-  color: #a0881e;
+  color: #a47648;
   text-decoration: none;
   line-height: 1.3em;
 }
 a.article-title:visited {
-  color: #565a5f;
+  color: #a47648;
 }
 a.article-title:hover {
   color: #38b7ea;
