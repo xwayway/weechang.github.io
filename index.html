@@ -172,11 +172,11 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                9
+                10
                 <span>文章</span>
             </div>
             <div class="article-info-block">
-                12
+                14
                 <span>标签</span>
             </div>
         </div>
@@ -227,6 +227,149 @@
 
             
             <section id="main">
+    <article id="post-ElasticSearch查询报错fielddata-true" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/08/17/ElasticSearch查询报错fielddata-true/">ElasticSearch查询报错fielddata=true</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fas fa-calendar-alt"></i>
+        <a href="/2018/08/17/ElasticSearch查询报错fielddata-true/">
+            <time datetime="2018-08-17T09:01:18.000Z" itemprop="datePublished">2018-08-17</time>
+        </a>
+    </div>
+
+
+                        <div class="article-user">
+    <i class="fas fa-user-alt"></i>
+    
+        <span>耒耒耒耒耒</span>
+    
+</div>
+
+                        
+    <div class="article-category">
+    	<i class="fas fa-folder"></i>
+        <a class="article-category-link" href="/categories/日常记录/">日常记录</a><i class="fas fa-angle-right"></i><a class="article-category-link" href="/categories/日常记录/ElasticSearch/">ElasticSearch</a>
+    </div>
+
+                    </div>
+                    <div class="article-meta">
+                         
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><p>记录下ElasticSearch查询报错的解决方案，今天在java中查询ElasticSearch的数据发生报错。</p></p>
+            <p class="article-more-link">
+                <a href="/2018/08/17/ElasticSearch查询报错fielddata-true/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/ElasticSearch/">ElasticSearch</a>, <a class="tag-link" href="/tags/日常记录/">日常记录</a>
+    </div>
+
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://blog.weechang.xyz/2018/08/17/ElasticSearch查询报错fielddata-true/" data-id="cjkxroyf30005lktgizcu206p" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+
+
     <article id="post-AxonFramework消息、命令和事件" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -293,7 +436,7 @@
 
 </div>
 
-    <a data-url="https://blog.weechang.xyz/2018/08/17/AxonFramework消息、命令和事件/" data-id="cjkxrhi4k0001b8tgzxn106k2" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="https://blog.weechang.xyz/2018/08/17/AxonFramework消息、命令和事件/" data-id="cjkxroyex0001lktg7ce361tb" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -436,7 +579,7 @@
 
 </div>
 
-    <a data-url="https://blog.weechang.xyz/2018/08/17/AxonFramework架构概述/" data-id="cjkxrhi4f0000b8tgsmu0ji43" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="https://blog.weechang.xyz/2018/08/17/AxonFramework架构概述/" data-id="cjkxroyet0000lktgzgh6davn" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -579,7 +722,7 @@
 
 </div>
 
-    <a data-url="https://blog.weechang.xyz/2018/08/17/AxonFramework简介/" data-id="cjkxrhi4o0004b8tgu5t8g0h7" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="https://blog.weechang.xyz/2018/08/17/AxonFramework简介/" data-id="cjkxroyf10004lktg0t2a2gj6" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -722,7 +865,7 @@
 
 </div>
 
-    <a data-url="https://blog.weechang.xyz/2018/08/02/六元一个的私有博客系统，了解一下？/" data-id="cjkxrhi4x000db8tgjwpgiizc" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="https://blog.weechang.xyz/2018/08/02/六元一个的私有博客系统，了解一下？/" data-id="cjkxroyfe000hlktg6egte3uz" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -865,7 +1008,7 @@
 
 </div>
 
-    <a data-url="https://blog.weechang.xyz/2018/07/31/java基础-3——HashTable类/" data-id="cjkxrhi4v000ab8tgl10ejf89" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="https://blog.weechang.xyz/2018/07/31/java基础-3——HashTable类/" data-id="cjkxroyfa000dlktgkdj8ub5p" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1008,7 +1151,7 @@
 
 </div>
 
-    <a data-url="https://blog.weechang.xyz/2018/07/30/java基础-2——HashMap类/" data-id="cjkxrhi4u0009b8tgglxmiaon" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="https://blog.weechang.xyz/2018/07/30/java基础-2——HashMap类/" data-id="cjkxroyf8000alktgqetu84an" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1151,7 +1294,7 @@
 
 </div>
 
-    <a data-url="https://blog.weechang.xyz/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/" data-id="cjkxrhi4y000eb8tgfkzkghre" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="https://blog.weechang.xyz/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/" data-id="cjkxroyfb000elktgnjnqjtp2" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1308,7 +1451,7 @@
 
 </div>
 
-    <a data-url="https://blog.weechang.xyz/2018/06/08/java基础-1——String类/" data-id="cjkxrhi4r0006b8tg99fqwlme" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="https://blog.weechang.xyz/2018/06/08/java基础-1——String类/" data-id="cjkxroyf70009lktgapebjoin" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1451,7 +1594,7 @@
 
 </div>
 
-    <a data-url="https://blog.weechang.xyz/2018/06/07/java基础-0——Object类/" data-id="cjkxrhi4q0005b8tgb6aq24i9" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="https://blog.weechang.xyz/2018/06/07/java基础-0——Object类/" data-id="cjkxroyf40006lktgk2jehwr9" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1542,6 +1685,15 @@
                     <li>
                         
                         <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/日常记录/">日常记录</a><i class="fas fa-angle-right"></i><a class="article-category-link" href="/categories/日常记录/ElasticSearch/">ElasticSearch</a></p>
+                            <p class="item-title"><a href="/2018/08/17/ElasticSearch查询报错fielddata-true/" class="title">ElasticSearch查询报错fielddata=true</a></p>
+                            <p class="item-date"><time datetime="2018-08-17T09:01:18.000Z" itemprop="datePublished">2018-08-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/DDD/">DDD</a><i class="fas fa-angle-right"></i><a class="article-category-link" href="/categories/DDD/AxonFramework/">AxonFramework</a></p>
                             <p class="item-title"><a href="/2018/08/17/AxonFramework消息、命令和事件/" class="title">AxonFramework消息、命令和事件</a></p>
                             <p class="item-date"><time datetime="2018-08-17T08:38:47.000Z" itemprop="datePublished">2018-08-17</time></p>
@@ -1575,15 +1727,6 @@
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Java学习之从头开始/">Java学习之从头开始</a><i class="fas fa-angle-right"></i><a class="article-category-link" href="/categories/Java学习之从头开始/Java基础/">Java基础</a></p>
-                            <p class="item-title"><a href="/2018/07/31/java基础-3——HashTable类/" class="title">【Java学习之从头开始】Java基础-3——HashTable类</a></p>
-                            <p class="item-date"><time datetime="2018-07-31T06:00:29.000Z" itemprop="datePublished">2018-07-31</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -1593,7 +1736,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DDD/">DDD</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/DDD/AxonFramework/">AxonFramework</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java学习之从头开始/">Java学习之从头开始</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java学习之从头开始/Java基础/">Java基础</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/开源之路/">开源之路</a><span class="category-list-count">2</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DDD/">DDD</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/DDD/AxonFramework/">AxonFramework</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java学习之从头开始/">Java学习之从头开始</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java学习之从头开始/Java基础/">Java基础</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/开源之路/">开源之路</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/日常记录/">日常记录</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/日常记录/ElasticSearch/">ElasticSearch</a><span class="category-list-count">1</span></li></ul></li></ul>
         </div>
     </div>
 
@@ -1602,7 +1745,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -1611,7 +1754,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AxonFramework/">AxonFramework</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CQRS/">CQRS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DDD/">DDD</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub-Pages/">GitHub Pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap/">HashMap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashTable/">HashTable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java基础/">Java基础</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java学习之从头开始/">Java学习之从头开始</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object/">Object</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven中央仓库/">maven中央仓库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/手把手教学/">手把手教学</a><span class="tag-list-count">2</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AxonFramework/">AxonFramework</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CQRS/">CQRS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DDD/">DDD</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ElasticSearch/">ElasticSearch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub-Pages/">GitHub Pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap/">HashMap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashTable/">HashTable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java基础/">Java基础</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java学习之从头开始/">Java学习之从头开始</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object/">Object</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven中央仓库/">maven中央仓库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/手把手教学/">手把手教学</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日常记录/">日常记录</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -1620,7 +1763,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/AxonFramework/" style="font-size: 16.67px;">AxonFramework</a> <a href="/tags/CQRS/" style="font-size: 16.67px;">CQRS</a> <a href="/tags/DDD/" style="font-size: 16.67px;">DDD</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/HashTable/" style="font-size: 10px;">HashTable</a> <a href="/tags/Java基础/" style="font-size: 20px;">Java基础</a> <a href="/tags/Java学习之从头开始/" style="font-size: 20px;">Java学习之从头开始</a> <a href="/tags/Object/" style="font-size: 10px;">Object</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/maven中央仓库/" style="font-size: 10px;">maven中央仓库</a> <a href="/tags/手把手教学/" style="font-size: 13.33px;">手把手教学</a>
+            <a href="/tags/AxonFramework/" style="font-size: 16.67px;">AxonFramework</a> <a href="/tags/CQRS/" style="font-size: 16.67px;">CQRS</a> <a href="/tags/DDD/" style="font-size: 16.67px;">DDD</a> <a href="/tags/ElasticSearch/" style="font-size: 10px;">ElasticSearch</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/HashTable/" style="font-size: 10px;">HashTable</a> <a href="/tags/Java基础/" style="font-size: 20px;">Java基础</a> <a href="/tags/Java学习之从头开始/" style="font-size: 20px;">Java学习之从头开始</a> <a href="/tags/Object/" style="font-size: 10px;">Object</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/maven中央仓库/" style="font-size: 10px;">maven中央仓库</a> <a href="/tags/手把手教学/" style="font-size: 13.33px;">手把手教学</a> <a href="/tags/日常记录/" style="font-size: 10px;">日常记录</a>
         </div>
     </div>
 

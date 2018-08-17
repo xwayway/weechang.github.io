@@ -3,16 +3,20 @@
 <head>
     <meta charset="utf-8">
     
-    <title>归档: 2018/8 | 耒耒耒耒耒</title>
+    <title>ElasticSearch查询报错fielddata=true | 耒耒耒耒耒</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="keywords" content="耒耒耒耒耒">
-<meta property="og:type" content="website">
-<meta property="og:title" content="耒耒耒耒耒">
-<meta property="og:url" content="https://blog.weechang.xyz/archives/2018/08/index.html">
+    <meta name="description" content="记录下ElasticSearch查询报错的解决方案，今天在java中查询ElasticSearch的数据发生报错。">
+<meta name="keywords" content="日常记录,ElasticSearch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ElasticSearch查询报错fielddata=true">
+<meta property="og:url" content="https://blog.weechang.xyz/2018/08/17/ElasticSearch查询报错fielddata-true/index.html">
 <meta property="og:site_name" content="耒耒耒耒耒">
+<meta property="og:description" content="记录下ElasticSearch查询报错的解决方案，今天在java中查询ElasticSearch的数据发生报错。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-17T09:04:10.509Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="耒耒耒耒耒">
+<meta name="twitter:title" content="ElasticSearch查询报错fielddata=true">
+<meta name="twitter:description" content="记录下ElasticSearch查询报错的解决方案，今天在java中查询ElasticSearch的数据发生报错。">
     
 
     
@@ -226,25 +230,21 @@
 </aside>
 
             
-            <section id="main"><div class="timeline timeline-wrap">
-    
-            <div class="timeline-row timeline-row-major">
-                <span class="node"><i class="fas fa-calendar-alt"></i></span>
-                <h1 class="title">2018</h1>
-            </div>
+            <section id="main"><article id="post-ElasticSearch查询报错fielddata-true" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/08/17/ElasticSearch查询报错fielddata-true/">ElasticSearch查询报错fielddata=true</a>
+        <h1 class="article-title" itemprop="name">
+            ElasticSearch查询报错fielddata=true
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fas fa-calendar-alt"></i>
         <a href="/2018/08/17/ElasticSearch查询报错fielddata-true/">
@@ -253,167 +253,203 @@
     </div>
 
 
-                    
+                        <div class="article-user">
+    <i class="fas fa-user-alt"></i>
+    
+        <span>耒耒耒耒耒</span>
+    
+</div>
+
+                        
     <div class="article-category">
     	<i class="fas fa-folder"></i>
         <a class="article-category-link" href="/categories/日常记录/">日常记录</a><i class="fas fa-angle-right"></i><a class="article-category-link" href="/categories/日常记录/ElasticSearch/">ElasticSearch</a>
     </div>
 
-                    
+                    </div>
+                    <div class="article-meta">
+                         
+                             <div class="article-word-count">
+<span>
+    <i class="fas fa-file-word"></i>
+    共351字，
+</span>
+<span>
+    <i class="fas fa-clock"></i>
+    大约需要1分钟
+</span>
+</div>
+<span id="busuanzi_container_page_pv">
+    <i class="fas fa-eye"></i>
+    已被阅读<span id="busuanzi_value_page_pv"></span>次
+</span>
+
+                         
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>记录下ElasticSearch查询报错的解决方案，今天在java中查询ElasticSearch的数据发生报错。</p>
+<a id="more"></a>
+<pre>
+java.lang.IllegalArgumentException: Fielddata is disabled on text fields by default. Set fielddata=true on [pkgts_date] in order to load fielddata in memory by uninverting the inverted index. Note that this can however use significant memory.
+</pre>
+
+<p>百度了一下。特汇总解决方法。<br>首先，看到这个报错。很自然的就去将pkgts_date字段设置  fielddata=true.但是这样会占用比较多的内存。导致性能下降。因此找到了另外的解决方法。<br>遇到这个错误是因为你尝试对一个text类型的字段做排序，而text类型的字段是要分词的。 一来词典很大，性能会很差；二来排序结果是词典里的词，而并非整个text的内容。 出于这2点原因，ES5.x以后对于text类型默认禁用了fielddata，防止对text字段一些错误的操作（排序，聚合，script)而给heap造成很大的压力。<br>如果一定有对该字段按照文本字母序做排序的需求，可以将该字段定义为multi-filed，例如:</p>
+<pre>
+    PUT my_index
+    {
+      "mappings": {
+        "my_type": {
+          "properties": {
+            "city": {
+              "type": "text",
+              "fields": {
+                "raw": { 
+                  "type":  "keyword"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+</pre>
+
+<p>上面的city是text类型，适合做全文搜索，然后排序的时候可以用其keyword类型即city.raw。  这样排序结果是正确的，并且keyword字段是通过doc values排序的，内存消耗远小于fielddata。</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            
     <div class="article-tag">
         <i class="fas fa-tag"></i>
         <a class="tag-link" href="/tags/ElasticSearch/">ElasticSearch</a>, <a class="tag-link" href="/tags/日常记录/">日常记录</a>
     </div>
 
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/08/17/AxonFramework消息、命令和事件/">AxonFramework消息、命令和事件</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/17/AxonFramework消息、命令和事件/">
-            <time datetime="2018-08-17T08:38:47.000Z" itemprop="datePublished">2018-08-17</time>
-        </a>
-    </div>
+            <div class="share-container">
 
 
-                    
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/DDD/">DDD</a><i class="fas fa-angle-right"></i><a class="article-category-link" href="/categories/DDD/AxonFramework/">AxonFramework</a>
-    </div>
 
-                    
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/AxonFramework/">AxonFramework</a>, <a class="tag-link" href="/tags/CQRS/">CQRS</a>, <a class="tag-link" href="/tags/DDD/">DDD</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/08/17/AxonFramework架构概述/">AxonFramework架构概述</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/17/AxonFramework架构概述/">
-            <time datetime="2018-08-17T08:33:12.000Z" itemprop="datePublished">2018-08-17</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/DDD/">DDD</a><i class="fas fa-angle-right"></i><a class="article-category-link" href="/categories/DDD/AxonFramework/">AxonFramework</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/AxonFramework/">AxonFramework</a>, <a class="tag-link" href="/tags/CQRS/">CQRS</a>, <a class="tag-link" href="/tags/DDD/">DDD</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/08/17/AxonFramework简介/">AxonFramework简介</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/17/AxonFramework简介/">
-            <time datetime="2018-08-17T08:19:19.000Z" itemprop="datePublished">2018-08-17</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/DDD/">DDD</a><i class="fas fa-angle-right"></i><a class="article-category-link" href="/categories/DDD/AxonFramework/">AxonFramework</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/AxonFramework/">AxonFramework</a>, <a class="tag-link" href="/tags/CQRS/">CQRS</a>, <a class="tag-link" href="/tags/DDD/">DDD</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/08/02/六元一个的私有博客系统，了解一下？/">六元一个的私有博客系统，了解一下？</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/02/六元一个的私有博客系统，了解一下？/">
-            <time datetime="2018-08-02T06:33:09.000Z" itemprop="datePublished">2018-08-02</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/开源之路/">开源之路</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/GitHub-Pages/">GitHub Pages</a>, <a class="tag-link" href="/tags/手把手教学/">手把手教学</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
 </div>
+
+    <a data-url="https://blog.weechang.xyz/2018/08/17/ElasticSearch查询报错fielddata-true/" data-id="cjkxroyf30005lktgizcu206p" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2018/08/17/AxonFramework消息、命令和事件/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">AxonFramework消息、命令和事件</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+
+
+
+
+    
+<!-- Link Gitalk 的支持文件  -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        // gitalk的主要参数
+        clientID: "295b369cd27d90dc5cfc",
+        clientSecret: "23a308db213cd99742ff3e07da9021b9c5909b68",
+        repo: 'weechang.github.io',
+        owner: 'weechang',
+        admin: ['weechang'],
+        id: 'ElasticSearch查询报错fielddata=true',
+    });
+    gitalk.render('gitalk-container');
+</script>
+<!-- Gitalk end -->
+
 </section>
             
                 
