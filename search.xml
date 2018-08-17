@@ -3,6 +3,33 @@
   
     
     <entry>
+      <title>AxonFramework架构概述</title>
+      <link href="/2018/08/17/AxonFramework%E6%9E%B6%E6%9E%84%E6%A6%82%E8%BF%B0/"/>
+      <url>/2018/08/17/AxonFramework%E6%9E%B6%E6%9E%84%E6%A6%82%E8%BF%B0/</url>
+      <content type="html"><![CDATA[<p>CQRS本身是一个非常简单的模式。它只规定了处理命令的应用程序的组件应该与处理查询 的组件分离。 虽然这种分离本身非常简单，但它与其他模式结合时提供了许多非常强大的功能。Axon 提供的构件更容易实现不同的模式与CQRS的结合。</p><a id="more"></a><p>下图显示了一个示例，一个基于CQRS的事件驱动的架构图示。 左侧显示的是UI组件, 通过 两种方式与应用程序的其余部分进行交互：它向应用程序发送命令 (显示在顶端的部分), 并从应用程序中查询信息 (显示在底端的部分)。</p><img src="/2018/08/17/AxonFramework架构概述/cqrs.jpg" title="CQRS架构图"><p>Command(命令)通常用简单的对象表示，这些对象包含命令处理器执行所需的所有数据。一个命令通过它的名字来表达它的意图。在Java术语中，这意味着使用类名来确定需要做什么，命令的字段提供了执行该操作所需的信息。</p><p>Command Bus接受命令并路由它们到命令处理器(Command handler) 。每个命令处理器响应特定类型的命令，并根据命令的内容执行逻辑。 然而，在某些情况下，你也希望不顾实际的命令类型去执行逻辑，如验证、日志或权限。</p><p>Command handler(命令处理器)从仓储中恢复领域对象(聚合)并执行方法来改变它们的状态。这些聚合通常包含真实的业务逻辑并负责维护自身的不变性。聚合的状态变化导致了领域事件的产生,领域事件和聚合都从领域模型中来。</p><p>repositories(仓储)负责提供访问聚合。通常情况下，这些仓储的优化设计是仅通过其唯一标识符来查找聚合。一些仓储将存储聚合自身的状态(例如，使用对象关系映射，ORM)， 而另一些则存储聚合的状态的更改到Event Store中，仓储还负责对其备份数据库中的聚合进行更改。</p><p>Axon提供了直接持久化聚合（使用对象关系映射，ORM）和事件溯源(event sourcing)两种方式.</p><p>Event bus(事件总线)分派事件到所有感兴趣的事件监听器(Event listener)中。可以同步或异 步完成。异步事件调度允许命令执行返回和移交控制给用户，这些事件在后台被分派和处理，不必等待事件处理完成，这样应用程序就会响应得更快。同步事件处理，另一方面，更简单，是 一个合适的默认选项。 默认情况下,同步处理将在同一事务中处理事件监听器和命令处理 器。</p><p>Event listener(事件监听器)接收并处理事件。一些处理器将更新用于查询的数据源，而其他处理器则将消息发送到外部系统。你可能会注意到了,命令处理器只对组件所做的更改感兴趣，却完全察觉不到它们的存在。这意味着它可以非侵入地扩展应用程序的新功能， 你需要做的就只是添加一个事件监听器。事件让应用程序中的所有组件松散耦合。</p><p>在某些情况下,事件处理需要把新的命令发送到应用程序。这方面例子，例如，当接收到一 个订单，这可能意味着客户的账户应当扣除购买商品所需的金额，并必须通知装运方准备打包这批商品。在许多应用中，逻辑将变得更加复杂:如果客户没有及时支付呢?你会马上发货还是等待付款？saga(长事务处理)是CQRS的概念，它负责管理这些复杂的商业事务。</p><p>在用户界面和数据源之间的瘦数据层，为实际的查询实现提供了一个明确定义的接口。这个数据层通常返回包含查询结果的只读DTO对象。这些DTO的内容通常是由用户界面的需求驱 动的。在大多数情况下,他们直接映射到用户界面的一个特定的视图(也称为table-per-view)。</p><p>Axon不提供任何应用程序这部分的构件。主要的原因是这非常简单，并且与分层架构并没有太大的区别。</p><h1 id="Axon模块结构"><a href="#Axon模块结构" class="headerlink" title="Axon模块结构"></a>Axon模块结构</h1><p>Axon Framework由多个针对CQRS特定问题域的模块组成。根据项目的具体需求，你需要包括一个或多个这些模块。<br>从Axon2.1起,所有模块兼容OSGi。这意味着它们在manifest文件包含所需的头文件,并声明它们导入和导出的包。目前,只有Slf4J bundle(1.7.0 &lt;= 版本&lt; 2.0.0)是必需的。所有其他导入的都被标记为可选,尽管你很可能需要这些。</p><h1 id="主模块"><a href="#主模块" class="headerlink" title="主模块"></a>主模块</h1><p>Axon的主要模块已经过完全的测试，强大到足以在苛刻的生产环境中使用。所有这些模 块的maven groupId都是org.axonframework。</p><p>核心模块顾名思义是Axon的核心组件。如果你使用single-node设置,这个模块可能会提供给你需要的所有组件。其他所有的Axon模块依赖这个模块，所以它必须在classpath中可用。</p><p>测试模块包含有你可以使用的测试固件来测试基于Axon的组件，比如你的命令处理器、聚 合和Sagas。你通常在运行时不需要这个模块，只需在测试过程中添加到classpath。</p><p>分布式CommandBus包含了可用于在多个节点发送命令的实现。它配备了JGroups和Spring Cloud连接器，来连接这些节点。</p><p>AMQP模块提供的组件，允许你打造一个基于AMQP的EventBus，并使用message broker作为分配机制。这允许保证事件送达，即使事件处理器节点暂时不可用。</p><p>Spring模块允许Axon组件在Spring程序上下文中配置。它还提供了一些针对Spring框架的构件的实现，例如用于在Spring消息信道上发布和检索Axon事件的适配器。</p><p>MongoDB是一个基于文档的NoSQL数据库，Mongo模块实现事件和saga的存储，并用MongoDB数据库存储事件流和saga。</p><p>几个AxonFramework组件提供监控信息。Metrics模块提供基于Codehale的基本实现来收集监控信息。</p><h1 id="与Axon-API一起工作"><a href="#与Axon-API一起工作" class="headerlink" title="与Axon API一起工作"></a>与Axon API一起工作</h1><p>QRS是一种架构模式，它不可能提供一个适合所有项目的单一解决方案。显然，Axon Framework并不试图提供这样的解决方案。相反，Axon提供了遵循最佳实践的实现和将每一个实现都调整到符合你的特定需求的手段。</p><p>几乎所有基础设施构件都提供检查点(如拦截器,解析器等)，允许你向这些构件添 加application-specific行为。大多数情况下，Axon将为那些适合大多数用例的检查点提供实现，如果需要，你可以简单地实现自己的。</p><p>非基础设施对象，如消息，通常是不可变的。这确保了这些对象在多线程环境中是安全的， 没有副作用的。</p><p>为了确保定制的最大化，所有Axon组件都使用接口定义。抽象类和具体的实现类提供了帮助你的方式，但框架对你没有任何要求，它总是允许使用该接口构建任何完全自定义实现的构件。</p><h1 id="Spring的支持"><a href="#Spring的支持" class="headerlink" title="Spring的支持"></a>Spring的支持</h1><p>Axon Framework对Spring提供了广泛的支持，但不强制你使用Spring来使用Axon。所有的组件都可以以编程方式配置，并且不需要把Spring放在classpath中。然而，如果你使用Spring、使 用Spring的annotation，很多的配置会变得更加容易。</p><p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/943f5b3ab139" target="_blank" rel="noopener">https://www.jianshu.com/p/943f5b3ab139</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>]]></content>
+      
+      <categories>
+          
+          <category> DDD </category>
+          
+          <category> AxonFramework </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AxonFramework </tag>
+            
+            <tag> DDD </tag>
+            
+            <tag> CQRS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>AxonFramework简介</title>
       <link href="/2018/08/17/AxonFramework%E7%AE%80%E4%BB%8B/"/>
       <url>/2018/08/17/AxonFramework%E7%AE%80%E4%BB%8B/</url>
@@ -187,17 +214,17 @@
   
     
     <entry>
-      <title>读书</title>
-      <link href="/reading/index.html"/>
-      <url>/reading/index.html</url>
-      <content type="html"><![CDATA[]]></content>
-    </entry>
-    
-    <entry>
       <title>关于</title>
       <link href="/about/index.html"/>
       <url>/about/index.html</url>
       <content type="html"><![CDATA[<p>我是耒耒耒耒耒（张未）。欢迎来到我的个人技术博客。目前主要做Java后端开发，同时兼顾一些Vue页面的开发，对领域驱动较为感兴趣。</p>]]></content>
+    </entry>
+    
+    <entry>
+      <title>读书</title>
+      <link href="/reading/index.html"/>
+      <url>/reading/index.html</url>
+      <content type="html"><![CDATA[]]></content>
     </entry>
     
   
