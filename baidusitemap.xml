@@ -4,6 +4,33 @@
 
     
   <url>
+    <loc>https://blog.weechang.xyz/2018/08/17/AxonFramework%E6%B6%88%E6%81%AF%E3%80%81%E5%91%BD%E4%BB%A4%E5%92%8C%E4%BA%8B%E4%BB%B6/</loc>
+    <lastmod>2018-08-17T08:59:10.699Z</lastmod>
+    <data>
+        <display>
+        <title>AxonFramework消息、命令和事件</title>
+        <pubTime>2018-08-17T08:38:47.000Z</pubTime>
+        
+        <tag>AxonFramework</tag>
+         
+        <tag>DDD</tag>
+         
+        <tag>CQRS</tag>
+         
+         
+           
+             
+              <breadCrumb title="DDD" url="https://blog.weechang.xyz/categories/DDD/"/>
+          
+             
+              <breadCrumb title="AxonFramework" url="https://blog.weechang.xyz/categories/DDD/AxonFramework/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://blog.weechang.xyz/2018/08/17/AxonFramework%E6%9E%B6%E6%9E%84%E6%A6%82%E8%BF%B0/</loc>
     <lastmod>2018-08-17T08:36:04.821Z</lastmod>
     <data>
