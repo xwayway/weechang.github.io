@@ -4,24 +4,26 @@
 
     
   <url>
-    <loc>https://blog.weechang.xyz/2018/08/17/ElasticSearch%E6%9F%A5%E8%AF%A2%E6%8A%A5%E9%94%99fielddata-true/</loc>
-    <lastmod>2018-08-17T09:04:10.509Z</lastmod>
+    <loc>https://blog.weechang.xyz/2018/08/20/AxonFramework%E5%B7%A5%E4%BD%9C%E5%8D%95%E5%85%83/</loc>
+    <lastmod>2018-08-20T05:24:29.796Z</lastmod>
     <data>
         <display>
-        <title>ElasticSearch查询报错fielddata=true</title>
-        <pubTime>2018-08-17T09:01:18.000Z</pubTime>
+        <title>AxonFramework工作单元</title>
+        <pubTime>2018-08-20T05:17:12.000Z</pubTime>
         
-        <tag>日常记录</tag>
+        <tag>AxonFramework</tag>
          
-        <tag>ElasticSearch</tag>
+        <tag>DDD</tag>
+         
+        <tag>CQRS</tag>
          
          
            
              
-              <breadCrumb title="日常记录" url="https://blog.weechang.xyz/categories/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/"/>
+              <breadCrumb title="DDD" url="https://blog.weechang.xyz/categories/DDD/"/>
           
              
-              <breadCrumb title="ElasticSearch" url="https://blog.weechang.xyz/categories/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/ElasticSearch/"/>
+              <breadCrumb title="AxonFramework" url="https://blog.weechang.xyz/categories/DDD/AxonFramework/"/>
           
         </display>
     </data>
@@ -30,7 +32,7 @@
     
   <url>
     <loc>https://blog.weechang.xyz/2018/08/17/AxonFramework%E6%B6%88%E6%81%AF%E3%80%81%E5%91%BD%E4%BB%A4%E5%92%8C%E4%BA%8B%E4%BB%B6/</loc>
-    <lastmod>2018-08-17T08:59:10.699Z</lastmod>
+    <lastmod>2018-08-20T05:24:29.773Z</lastmod>
     <data>
         <display>
         <title>AxonFramework消息、命令和事件</title>
@@ -56,12 +58,12 @@
 
     
   <url>
-    <loc>https://blog.weechang.xyz/2018/08/17/AxonFramework%E6%9E%B6%E6%9E%84%E6%A6%82%E8%BF%B0/</loc>
-    <lastmod>2018-08-17T08:36:04.821Z</lastmod>
+    <loc>https://blog.weechang.xyz/2018/08/17/AxonFramework%E7%AE%80%E4%BB%8B/</loc>
+    <lastmod>2018-08-20T05:24:29.732Z</lastmod>
     <data>
         <display>
-        <title>AxonFramework架构概述</title>
-        <pubTime>2018-08-17T08:33:12.000Z</pubTime>
+        <title>AxonFramework简介</title>
+        <pubTime>2018-08-17T08:19:19.000Z</pubTime>
         
         <tag>AxonFramework</tag>
          
@@ -83,12 +85,37 @@
 
     
   <url>
-    <loc>https://blog.weechang.xyz/2018/08/17/AxonFramework%E7%AE%80%E4%BB%8B/</loc>
-    <lastmod>2018-08-17T08:27:53.395Z</lastmod>
+    <loc>https://blog.weechang.xyz/2018/08/17/ElasticSearch%E6%9F%A5%E8%AF%A2%E6%8A%A5%E9%94%99fielddata-true/</loc>
+    <lastmod>2018-08-17T09:04:10.509Z</lastmod>
     <data>
         <display>
-        <title>AxonFramework简介</title>
-        <pubTime>2018-08-17T08:19:19.000Z</pubTime>
+        <title>ElasticSearch查询报错fielddata=true</title>
+        <pubTime>2018-08-17T09:01:18.000Z</pubTime>
+        
+        <tag>日常记录</tag>
+         
+        <tag>ElasticSearch</tag>
+         
+         
+           
+             
+              <breadCrumb title="日常记录" url="https://blog.weechang.xyz/categories/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/"/>
+          
+             
+              <breadCrumb title="ElasticSearch" url="https://blog.weechang.xyz/categories/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/ElasticSearch/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.weechang.xyz/2018/08/17/AxonFramework%E6%9E%B6%E6%9E%84%E6%A6%82%E8%BF%B0/</loc>
+    <lastmod>2018-08-17T08:36:04.821Z</lastmod>
+    <data>
+        <display>
+        <title>AxonFramework架构概述</title>
+        <pubTime>2018-08-17T08:33:12.000Z</pubTime>
         
         <tag>AxonFramework</tag>
          

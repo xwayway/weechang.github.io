@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="耒耒耒耒耒">
 <meta property="og:description" content="Axon是一个轻量级框架，能够帮助开发者通过在架构层面构建可扩展和可伸缩的应用。(注：以DDD面向领域驱动设计为基础的CQRS框架)">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-17T08:27:53.395Z">
+<meta property="og:updated_time" content="2018-08-20T05:24:29.732Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AxonFramework简介">
 <meta name="twitter:description" content="Axon是一个轻量级框架，能够帮助开发者通过在架构层面构建可扩展和可伸缩的应用。(注：以DDD面向领域驱动设计为基础的CQRS框架)">
@@ -176,7 +176,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                10
+                11
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -297,11 +297,9 @@
 <h1 id="Axon-Framework背景、发展简史"><a href="#Axon-Framework背景、发展简史" class="headerlink" title="Axon Framework背景、发展简史"></a>Axon Framework背景、发展简史</h1><p>随着时间的发展，软件的需求也在不断增长。公司都希望自己的(web)应用程序和自身业务共同发展。这就意味着不仅仅是工程和代码变得更复杂，也意味着功能不断地新增、更改和移除。它令人沮丧的是,一个看似易于实现的功能，却要求开发团队改动整个应用程 序。此外，如今的web程序的目标是针对潜在的数十亿用户，这便使可伸缩性成了必要的条件。</p>
 <p>虽然有很多的应用和框架围绕着可扩展性问题进行处理，例如GigaSpaces(类似Microsoft Azure) 和 Terracotta(分布式缓存线性扩展平台),它们都存在着一个根本的缺陷。他们通过要求开发人员在开发应用时，使用分层体系架构，来试图解决可扩展性问题。在某些情况下，他们甚至会阻止或严格限制使用一个真正的领域模型，强迫所有领域逻辑都放到服务中。虽然可以很快地构建一个应用程序，最终，这种做法将导致复杂性的增加和开发速度减慢。</p>
 <p>命令查询职责分离(CQRS)模式解决了这些问题，大幅改变了应用程序的架构。CQRS不是将分离的逻辑分到不同的层 ,逻辑的分离是以改变应用程序的状态或查询为依据。这意味着，执行命令(行为有可能更改应用程序的状态)和查询应用程序数据是由不同的组件执行。这种分离事实上最重要的原因是，他们各自有不同的技术和非技术的要求。当命令执行后，查询组件利用事件同步或异步地进行更新。该更新机制通过事件来完成，正是这种架构如此的可扩展，可伸缩，最终会更易于维护。</p>
-<pre>
-<b>注意</b>
-一个完整的CQRS解释不在本文的范围之内。如果你想了解更多关于CQRS的信息, 请访问 Axon Framework的网站: www.axonframework.org。它包含了背景知识的链接。
-</pre>
-
+<blockquote>
+<p><b>注意</b><br>一个完整的CQRS解释不在本文的范围之内。如果你想了解更多关于CQRS的信息, 请访问 Axon Framework的网站: <a href="http://www.axonframework.org。它包含了背景知识的链接。" target="_blank" rel="noopener">www.axonframework.org。它包含了背景知识的链接。</a></p>
+</blockquote>
 <p>由于CQRS与主导当今软件局面的分层架构有着根本上的不同，开发人员试图找到自己实现这个架构的方式，但往往会掉入各种陷阱。这就是了Axon Framework 产生的原因：帮助开发人员实现CQRS，并让他们只专注于业务逻辑。</p>
 <h1 id="Axon是什么"><a href="#Axon是什么" class="headerlink" title="Axon是什么?"></a>Axon是什么?</h1><p>Axon Framework 通过支持开发者应用命令查询职责分离(CQRS)架构模式,来帮助构建可伸缩、可扩展和可维护的应用程序。它通过提供最重要的构建块的实现来实现，如：聚合、仓储以及事件总线(事件的调度机制)。此外，Axon提供了对注解(annotation)的支持,它允许你构建聚合和事件监听器而不用将你的代码捆绑到Axon特有的逻辑。这使你能够专注于业务逻辑, 而不是数据传输(the plumbing)，并帮助你使代码更容易隔离测试。</p>
 <p>Axon不会试图以任何方式隐藏CQRS架构或任何组件。因此，根据团队规模，明智的选择是，每 个团队中有一个或多个对CQRS有着透彻了解的开发人员。不管怎么样,Axon帮助保证把事件交付给正确的事件监听器，并按正确的顺序并发处理它们。这些多线程问题通常很难处理,导致难以跟踪Bug、应用程序完全失去响应。当你的时间紧迫,你可能甚至不想去关心这些问 题。Axon的代码是经过完全测试的,以防止这些类型错误的出现。</p>
@@ -337,7 +335,7 @@
 
 </div>
 
-    <a data-url="https://blog.weechang.xyz/2018/08/17/AxonFramework简介/" data-id="cjkxs3mp20007dctgatrjidb1" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="https://blog.weechang.xyz/2018/08/17/AxonFramework简介/" data-id="cjl1u5ucx0006kstglkhhpy8f" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -473,6 +471,15 @@
                     <li>
                         
                         <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/DDD/">DDD</a><i class="fas fa-angle-right"></i><a class="article-category-link" href="/categories/DDD/AxonFramework/">AxonFramework</a></p>
+                            <p class="item-title"><a href="/2018/08/20/AxonFramework工作单元/" class="title">AxonFramework工作单元</a></p>
+                            <p class="item-date"><time datetime="2018-08-20T05:17:12.000Z" itemprop="datePublished">2018-08-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/日常记录/">日常记录</a><i class="fas fa-angle-right"></i><a class="article-category-link" href="/categories/日常记录/ElasticSearch/">ElasticSearch</a></p>
                             <p class="item-title"><a href="/2018/08/17/ElasticSearch查询报错fielddata-true/" class="title">ElasticSearch查询报错fielddata=true</a></p>
                             <p class="item-date"><time datetime="2018-08-17T09:01:18.000Z" itemprop="datePublished">2018-08-17</time></p>
@@ -506,15 +513,6 @@
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/开源之路/">开源之路</a></p>
-                            <p class="item-title"><a href="/2018/08/02/六元一个的私有博客系统，了解一下？/" class="title">六元一个的私有博客系统，了解一下？</a></p>
-                            <p class="item-date"><time datetime="2018-08-02T06:33:09.000Z" itemprop="datePublished">2018-08-02</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -524,7 +522,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DDD/">DDD</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/DDD/AxonFramework/">AxonFramework</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java学习之从头开始/">Java学习之从头开始</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java学习之从头开始/Java基础/">Java基础</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/开源之路/">开源之路</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/日常记录/">日常记录</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/日常记录/ElasticSearch/">ElasticSearch</a><span class="category-list-count">1</span></li></ul></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DDD/">DDD</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/DDD/AxonFramework/">AxonFramework</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java学习之从头开始/">Java学习之从头开始</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java学习之从头开始/Java基础/">Java基础</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/开源之路/">开源之路</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/日常记录/">日常记录</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/日常记录/ElasticSearch/">ElasticSearch</a><span class="category-list-count">1</span></li></ul></li></ul>
         </div>
     </div>
 
@@ -533,7 +531,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -542,7 +540,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AxonFramework/">AxonFramework</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CQRS/">CQRS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DDD/">DDD</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ElasticSearch/">ElasticSearch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub-Pages/">GitHub Pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap/">HashMap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashTable/">HashTable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java基础/">Java基础</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java学习之从头开始/">Java学习之从头开始</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object/">Object</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven中央仓库/">maven中央仓库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/手把手教学/">手把手教学</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日常记录/">日常记录</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AxonFramework/">AxonFramework</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CQRS/">CQRS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DDD/">DDD</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ElasticSearch/">ElasticSearch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub-Pages/">GitHub Pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap/">HashMap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashTable/">HashTable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java基础/">Java基础</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java学习之从头开始/">Java学习之从头开始</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object/">Object</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven中央仓库/">maven中央仓库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/手把手教学/">手把手教学</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日常记录/">日常记录</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -551,7 +549,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/AxonFramework/" style="font-size: 16.67px;">AxonFramework</a> <a href="/tags/CQRS/" style="font-size: 16.67px;">CQRS</a> <a href="/tags/DDD/" style="font-size: 16.67px;">DDD</a> <a href="/tags/ElasticSearch/" style="font-size: 10px;">ElasticSearch</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/HashTable/" style="font-size: 10px;">HashTable</a> <a href="/tags/Java基础/" style="font-size: 20px;">Java基础</a> <a href="/tags/Java学习之从头开始/" style="font-size: 20px;">Java学习之从头开始</a> <a href="/tags/Object/" style="font-size: 10px;">Object</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/maven中央仓库/" style="font-size: 10px;">maven中央仓库</a> <a href="/tags/手把手教学/" style="font-size: 13.33px;">手把手教学</a> <a href="/tags/日常记录/" style="font-size: 10px;">日常记录</a>
+            <a href="/tags/AxonFramework/" style="font-size: 20px;">AxonFramework</a> <a href="/tags/CQRS/" style="font-size: 20px;">CQRS</a> <a href="/tags/DDD/" style="font-size: 20px;">DDD</a> <a href="/tags/ElasticSearch/" style="font-size: 10px;">ElasticSearch</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/HashTable/" style="font-size: 10px;">HashTable</a> <a href="/tags/Java基础/" style="font-size: 20px;">Java基础</a> <a href="/tags/Java学习之从头开始/" style="font-size: 20px;">Java学习之从头开始</a> <a href="/tags/Object/" style="font-size: 10px;">Object</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/maven中央仓库/" style="font-size: 10px;">maven中央仓库</a> <a href="/tags/手把手教学/" style="font-size: 15px;">手把手教学</a> <a href="/tags/日常记录/" style="font-size: 10px;">日常记录</a>
         </div>
     </div>
 
