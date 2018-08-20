@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.weechang.xyz/"/>
-  <updated>2018-08-20T05:27:26.611Z</updated>
+  <updated>2018-08-20T10:35:02.024Z</updated>
   <id>https://blog.weechang.xyz/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>AxonFramework配置</title>
+    <link href="https://blog.weechang.xyz/2018/08/20/AxonFramework%E9%85%8D%E7%BD%AE/"/>
+    <id>https://blog.weechang.xyz/2018/08/20/AxonFramework配置/</id>
+    <published>2018-08-20T10:34:05.000Z</published>
+    <updated>2018-08-20T10:35:02.024Z</updated>
+    
+    <content type="html"><![CDATA[<p>获得一个默认的配置是非常容易的：<br>Configuration config = DefaultConfigurer.defaultConfiguration().buildConfiguration();</p><a id="more"></a><p>这个配置为分发消息提供了在线程上处理消息、分发它们的实现。显然，这种配置不会很有用。你必须将你的命令模型对象和事件处理器注册到该配置中。</p><p>为此,通过.defaultConfiguration()方法返回配置实例。<br>Configurer configurer = DefaultConfigurer.defaultConfiguration();</p><p>配置提供了多种允许你注册这些组件的方法。在每个组件的相应章节有如何配置这些组件的详细描述。</p><p>组件一般形式的注册,如下:<br>Configurer configurer = DefaultConfigurer.defaultConfiguration();<br>configurer.registerCommandHandler(c -&gt; doCreateComponent());<br>注意registerCommandBus中lambda表达式的调用。这个表达式的参数c是描述完整配置的配置对象。如果组件需要其他组件正常运行，则可以使用此配置来检索它们。</p><p>例如,注册一个需要序列化器的命令处理程序<br>configurer.registerCommandHandler(c -&gt; new MyCommandHandler(c.serializer());</p><p>不是所有的组件都有其明确的accesor方法。检索一个配置中的组件,使用：<br>configurer.registerCommandHandler(c -&gt; new MyCommandHandler(c.getComponent(MyOtherComp<br>onent.class));</p><p>该组件必须和配置一起注册,使用<br>configurer.registerComponent(componentType, builderFunction) .builder函数将接受配置对象作为输入参数。</p><p>使用Spring设置配置<br>使用Spring时,不需要显式地使用配置。相反,你可以简单地把@EnableAxon设置到一个Spring @configuration类上。</p><p>Axon将使用Spring应用程序上下文来定位构件的特定实现，并为那些不存在的提供默认值。因此,取代在配置中注册构件,你只需要在Spring应用程序上下文中让@Bean可用即可。</p><p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/7fcbc0dcc39c" target="_blank" rel="noopener">https://www.jianshu.com/p/7fcbc0dcc39c</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;获得一个默认的配置是非常容易的：&lt;br&gt;Configuration config = DefaultConfigurer.defaultConfiguration().buildConfiguration();&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="DDD" scheme="https://blog.weechang.xyz/categories/DDD/"/>
+    
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/categories/DDD/AxonFramework/"/>
+    
+    
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/tags/AxonFramework/"/>
+    
+      <category term="DDD" scheme="https://blog.weechang.xyz/tags/DDD/"/>
+    
+      <category term="CQRS" scheme="https://blog.weechang.xyz/tags/CQRS/"/>
+    
+  </entry>
   
   <entry>
     <title>AxonFramework工作单元</title>
