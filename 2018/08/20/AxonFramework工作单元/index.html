@@ -5,18 +5,18 @@
     
     <title>AxonFramework工作单元 | 耒耒耒耒耒</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="工作单元是Axon Framework的一个重要的概念,虽然在大多数情况下你可能不太直接与它交互。消息的处理被视为一个独立单元。工作单元的目的是在处理一条消息(命令或事件)期间去协调行为的执行。组件可以在工作单元每一个阶段执行注册行为,如onPrepareCommit或onCleanup。 你可能不太需要直接访问工作单元，主要使用Axon提供的构件来访问。不管出于什么原因，如果你需要访问它，有几种">
+    <meta name="description" content="工作单元是Axon Framework的一个重要的概念,虽然在大多数情况下你可能不太直接与它交互。消息的处理被视为一个独立单元。工作单元的目的是在处理一条消息(命令或事件)期间去协调行为的执行。组件可以在工作单元每一个阶段执行注册行为,如onPrepareCommit或onCleanup。  你可能不太需要直接访问工作单元，主要使用Axon提供的构件来访问。不管出于什么原因，如果你需要访问它，有几">
 <meta name="keywords" content="AxonFramework,DDD,CQRS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AxonFramework工作单元">
 <meta property="og:url" content="https://blog.weechang.xyz/2018/08/20/AxonFramework工作单元/index.html">
 <meta property="og:site_name" content="耒耒耒耒耒">
-<meta property="og:description" content="工作单元是Axon Framework的一个重要的概念,虽然在大多数情况下你可能不太直接与它交互。消息的处理被视为一个独立单元。工作单元的目的是在处理一条消息(命令或事件)期间去协调行为的执行。组件可以在工作单元每一个阶段执行注册行为,如onPrepareCommit或onCleanup。 你可能不太需要直接访问工作单元，主要使用Axon提供的构件来访问。不管出于什么原因，如果你需要访问它，有几种">
+<meta property="og:description" content="工作单元是Axon Framework的一个重要的概念,虽然在大多数情况下你可能不太直接与它交互。消息的处理被视为一个独立单元。工作单元的目的是在处理一条消息(命令或事件)期间去协调行为的执行。组件可以在工作单元每一个阶段执行注册行为,如onPrepareCommit或onCleanup。  你可能不太需要直接访问工作单元，主要使用Axon提供的构件来访问。不管出于什么原因，如果你需要访问它，有几">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-20T05:24:29.796Z">
+<meta property="og:updated_time" content="2018-08-20T05:26:03.013Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AxonFramework工作单元">
-<meta name="twitter:description" content="工作单元是Axon Framework的一个重要的概念,虽然在大多数情况下你可能不太直接与它交互。消息的处理被视为一个独立单元。工作单元的目的是在处理一条消息(命令或事件)期间去协调行为的执行。组件可以在工作单元每一个阶段执行注册行为,如onPrepareCommit或onCleanup。 你可能不太需要直接访问工作单元，主要使用Axon提供的构件来访问。不管出于什么原因，如果你需要访问它，有几种">
+<meta name="twitter:description" content="工作单元是Axon Framework的一个重要的概念,虽然在大多数情况下你可能不太直接与它交互。消息的处理被视为一个独立单元。工作单元的目的是在处理一条消息(命令或事件)期间去协调行为的执行。组件可以在工作单元每一个阶段执行注册行为,如onPrepareCommit或onCleanup。  你可能不太需要直接访问工作单元，主要使用Axon提供的构件来访问。不管出于什么原因，如果你需要访问它，有几">
     
 
     
@@ -294,6 +294,7 @@
         
             
             <p>工作单元是Axon Framework的一个重要的概念,虽然在大多数情况下你可能不太直接与它交互。消息的处理被视为一个独立单元。工作单元的目的是在处理一条消息(命令或事件)期间去协调行为的执行。组件可以在工作单元每一个阶段执行注册行为,如onPrepareCommit或onCleanup。</p>
+<p><-- more="" --=""></--></p>
 <p>你可能不太需要直接访问工作单元，主要使用Axon提供的构件来访问。不管出于什么原因，如果你需要访问它，有几种方式可以获得它。处理器可以在处理函数中通过一个参数来接收工作单元。如果你使用注解，你可以添加一个UnitOfWork类型参数到你被注解的函数。在其他地方,你可以通过调用CurrentUnitOfWork.get()把工作单元绑定到当前线程。注意，如果没有把工作单元绑定到当前线程，这个方法将抛出一个异常。使用CurrentUnitOfWork.isStarted()可检测它是否可用。</p>
 <p>需要访问当前工作单元的一个原因是，在消息处理过程中附加需要多次重复使用的资源，或者，如果创建资源时需要在工作单元结束时进行清理工作。在这种情况下,unitOfWork.getOrComputeResource()和生命周期回调方法,如onRollback(),afterCommit()和onCleanup()，允许你在工作单元处理期间，注册资源和声明行为。</p>
 <blockquote>
@@ -347,7 +348,7 @@ uow.executeWithResult(() -> ... logic here);
 
 </div>
 
-    <a data-url="https://blog.weechang.xyz/2018/08/20/AxonFramework工作单元/" data-id="cjl1u5ubm0001kstg3npoj2yr" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="https://blog.weechang.xyz/2018/08/20/AxonFramework工作单元/" data-id="cjl1u7vfz0000r4tg5e4nwszu" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
