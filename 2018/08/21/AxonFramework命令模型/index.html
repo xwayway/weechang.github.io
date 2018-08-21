@@ -3,16 +3,20 @@
 <head>
     <meta charset="utf-8">
     
-    <title>分类: 开源之路 | 耒耒耒耒耒</title>
+    <title>AxonFramework命令模型 | 耒耒耒耒耒</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="keywords" content="耒耒耒耒耒">
-<meta property="og:type" content="website">
-<meta property="og:title" content="耒耒耒耒耒">
-<meta property="og:url" content="https://blog.weechang.xyz/categories/开源之路/index.html">
+    <meta name="description" content="在一个基于CQRS的应用程序中，领域模型(由Eric Evans和Martin Fowler定义)可以是一个非常强大的机制，来驾驭在验证和执行状态的变化时所涉及的复杂性，虽然典型的领域模型提供了大量的构建块，但当在CQRS中应用命令处理时有一个构件起着主导性的作用：聚合。 应用程序中的一个状态的改变，始于一个命令。命令不但是表达意图(描述你想要做什么)的组合，而且是基于这一意图采取行动所需的信息。">
+<meta name="keywords" content="AxonFramework,DDD,CQRS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AxonFramework命令模型">
+<meta property="og:url" content="https://blog.weechang.xyz/2018/08/21/AxonFramework命令模型/index.html">
 <meta property="og:site_name" content="耒耒耒耒耒">
+<meta property="og:description" content="在一个基于CQRS的应用程序中，领域模型(由Eric Evans和Martin Fowler定义)可以是一个非常强大的机制，来驾驭在验证和执行状态的变化时所涉及的复杂性，虽然典型的领域模型提供了大量的构建块，但当在CQRS中应用命令处理时有一个构件起着主导性的作用：聚合。 应用程序中的一个状态的改变，始于一个命令。命令不但是表达意图(描述你想要做什么)的组合，而且是基于这一意图采取行动所需的信息。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-21T06:03:42.310Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="耒耒耒耒耒">
+<meta name="twitter:title" content="AxonFramework命令模型">
+<meta name="twitter:description" content="在一个基于CQRS的应用程序中，领域模型(由Eric Evans和Martin Fowler定义)可以是一个非常强大的机制，来驾驭在验证和执行状态的变化时所涉及的复杂性，虽然典型的领域模型提供了大量的构建块，但当在CQRS中应用命令处理时有一个构件起着主导性的作用：聚合。 应用程序中的一个状态的改变，始于一个命令。命令不但是表达意图(描述你想要做什么)的组合，而且是基于这一意图采取行动所需的信息。">
     
 
     
@@ -226,86 +230,236 @@
 </aside>
 
             
-            <section id="main">
-<div class="timeline timeline-wrap">
-    <div class="timeline-row timeline-row-major">
-        <span class="node"><i class="fas fa-folder"></i></span>
-        <h1 class="title">开源之路</h1>
-    </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="post-AxonFramework命令模型" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/08/02/六元一个的私有博客系统，了解一下？/">六元一个的私有博客系统，了解一下？</a>
+        <h1 class="article-title" itemprop="name">
+            AxonFramework命令模型
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/02/六元一个的私有博客系统，了解一下？/">
-            <time datetime="2018-08-02T06:33:09.000Z" itemprop="datePublished">2018-08-02</time>
+        <a href="/2018/08/21/AxonFramework命令模型/">
+            <time datetime="2018-08-21T06:00:06.000Z" itemprop="datePublished">2018-08-21</time>
         </a>
     </div>
 
 
-                    
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/开源之路/">开源之路</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/GitHub-Pages/">GitHub Pages</a>, <a class="tag-link" href="/tags/手把手教学/">手把手教学</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
+                        <div class="article-user">
+    <i class="fas fa-user-alt"></i>
     
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/">手把手教学，教你把你的个人项目推送到maven中央仓库</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/">
-            <time datetime="2018-07-20T08:43:08.000Z" itemprop="datePublished">2018-07-20</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/开源之路/">开源之路</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/maven中央仓库/">maven中央仓库</a>, <a class="tag-link" href="/tags/手把手教学/">手把手教学</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
+        <span>勇赴</span>
     
 </div>
+
+                        
+    <div class="article-category">
+    	<i class="fas fa-folder"></i>
+        <a class="article-category-link" href="/categories/DDD/">DDD</a><i class="fas fa-angle-right"></i><a class="article-category-link" href="/categories/DDD/AxonFramework/">AxonFramework</a>
+    </div>
+
+                    </div>
+                    <div class="article-meta">
+                         
+                             <div class="article-word-count">
+<span>
+    <i class="fas fa-file-word"></i>
+    共1,206字，
+</span>
+<span>
+    <i class="fas fa-clock"></i>
+    大约需要4分钟
+</span>
+</div>
+<span id="busuanzi_container_page_pv">
+    <i class="fas fa-eye"></i>
+    已被阅读<span id="busuanzi_value_page_pv"></span>次
+</span>
+
+                         
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>在一个基于CQRS的应用程序中，领域模型(由Eric Evans和Martin Fowler定义)可以是一个非常强大的机制，来驾驭在验证和执行状态的变化时所涉及的复杂性，虽然典型的领域模型提供了大量的构建块，但当在CQRS中应用命令处理时有一个构件起着主导性的作用：聚合。</p>
+<p>应用程序中的一个状态的改变，始于一个命令。命令不但是表达意图(描述你想要做什么)的组合，而且是基于这一意图采取行动所需的信息。命令模型用于处理传入的命令，以验证并定义它的结果。在这个模型中，一个命令处理器负责处理某种类型的命令，并根据它包含的信息采取行动。</p>
+<h2 id="聚合"><a href="#聚合" class="headerlink" title="聚合"></a>聚合</h2><p>聚合是一个总是保持一致性状态的实体或一组实体。聚合根是聚合树顶部负责维护这个一致性状态的对象。这使得聚合主要构件在任何基于CQRS应用中实现命令模型。</p>
+<blockquote>
+<p><b>注意</b><br>“聚合”指的是埃文斯在领域驱动设计中所定义的聚合:<br>”作为数据变更的一个单元来处理的一组相关联的对象。在外部只能引用聚合的聚合根对象。在聚合边界内使用一组一致性规则。”</p>
+</blockquote>
+<p>例如，“联系人”聚合可以包含两个实体：联系人和地址。若要保持整个聚合处于一致性状态，向联系人添加地址时应通过联系人实体完成。在这种情况下，联系人实体是约定的聚合根。</p>
+<p>在Axon中，聚合由聚合标识符标识。这可能是任何对象，但也有一些标识符良好实现的指导原则。<br>标识符必须:</p>
+<p>实现equals和hashCode来保证与其他实例进行相等比较，<br>实现一个提供一致结果的toString()方法(相等的标识符，toString()方法的结果也应该相等),<br>并且最好是可序列化的。<br>当聚合使用不兼容标识符时，测试固件（见测试）将验证这些条件并使测试失败。 字符串类型的标识符，UUID和数值类型都适用。 不要使用原始类型作为标识符，因为它们不允许进行延迟初始化。在某些情况下，Axon可能会错误地假设原始类型的默认值是标识符的值。</p>
+<p>注意<br>一个经过深思熟虑的好实践是使用随机生成的标识符，而不是使用序列。使用序列会大大降低应用程序的可伸缩性，因为机器需要保持彼此最后一次使用的最新的序列号。UUID冲突的机率非常地小(假如你生成8.2乘以10的11次方个UUID，冲突的机率也只有10的负15次方)。</p>
+<p>此外，聚合应小心地使用函数式标识符。因为它们有变化的倾向，使得它很难适应相应的应用程序。</p>
+<h2 id="聚合的实现"><a href="#聚合的实现" class="headerlink" title="聚合的实现"></a>聚合的实现</h2><p>聚合总是通过一个称为聚合根的实体访问。通常，这个实体的名称和聚合完全一样。例如,Order聚合可能由Order实体引用几个Orderline实体组合而成。Order 和Orderline一起形成聚合。</p>
+<p>一个聚合是一个合乎规范的对象,其中包含状态和和改变这个状态的方法。虽然根据CQRS原则并不完全正确，也可能通过访问器方法暴露出聚合的状态。</p>
+<p>聚合根必须声明一个包含聚合标识符的字段。这个标识符字段必须最迟在第一个事件发布时初始化。这个标识符字段必须由@AggregateIdentifier来注解。如果你在聚合上使用JPA注解，Axon也可以使用由JPA提供的@Id注解。</p>
+<p>聚合可以使用AggregateLifecycle.apply()方法来注册发布的事件。与EventBus不同，这些信息需要被包装在一个EventMessage中，apply()允许你直接传递负载对象。</p>
+<pre>
+@Entity // Mark this aggregate as a JPA Entity
+public class MyAggregate {
+
+    @Id // When annotating with JPA @Id, the @AggregateIdentifier annotation is not necessary
+    private String id;
+
+    // fields containing state...
+
+    @CommandHandler
+    public MyAggregate(CreateMyAggregateCommand command) {
+        // ... update state
+        apply(new MyAggregateCreatedEvent(...));
+    }
+
+    // constructor needed by JPA
+    protected MyAggregate() {
+    }
+}
+</pre>
+
+<p>通过定义一个带@EventHandler注解的方法，聚合内的实体能监听聚合发布的事件。当一个EventMessage发布时这些方法将被调用（在任何外部处理器被发布之前）。</p>
+<p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/6cfc9ab399b2" target="_blank" rel="noopener">https://www.jianshu.com/p/6cfc9ab399b2</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/AxonFramework/">AxonFramework</a>, <a class="tag-link" href="/tags/CQRS/">CQRS</a>, <a class="tag-link" href="/tags/DDD/">DDD</a>
+    </div>
+
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://blog.weechang.xyz/2018/08/21/AxonFramework命令模型/" data-id="cjl3b115j000000tghnjz6yjx" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2018/08/20/AxonFramework配置/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">AxonFramework配置</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+
+
+
+
+    
+<!-- Link Gitalk 的支持文件  -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        // gitalk的主要参数
+        clientID: "295b369cd27d90dc5cfc",
+        clientSecret: "23a308db213cd99742ff3e07da9021b9c5909b68",
+        repo: 'weechang.github.io',
+        owner: 'weechang',
+        admin: ['weechang'],
+        id: 'AxonFramework命令模型',
+    });
+    gitalk.render('gitalk-container');
+</script>
+<!-- Gitalk end -->
+
 </section>
             
                 

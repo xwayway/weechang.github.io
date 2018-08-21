@@ -14,7 +14,7 @@
 <meta property="og:description" content="消息传送的概念消息是Axon的核心概念之一。组件之间的所有通信都使用消息对象完成。这为这些组件提供了位置透明性，在必要时需要能够进行扩展和分发这些组件。 尽管所有这些消息都实现了消息接口，但不同类型的消息及其处理方式之间有明显的区别。所有消息包含payload、元数据和唯一标识符。消息的payload是消息的功能说明。该对象的类名组合与它所携带的数据，描述了消息的应用程序的含义。元数据允许你描述正">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://blog.weechang.xyz/2018/08/17/AxonFramework消息、命令和事件/state_change.jpg">
-<meta property="og:updated_time" content="2018-08-20T05:24:29.773Z">
+<meta property="og:updated_time" content="2018-08-21T06:04:24.325Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AxonFramework消息、命令和事件">
 <meta name="twitter:description" content="消息传送的概念消息是Axon的核心概念之一。组件之间的所有通信都使用消息对象完成。这为这些组件提供了位置透明性，在必要时需要能够进行扩展和分发这些组件。 尽管所有这些消息都实现了消息接口，但不同类型的消息及其处理方式之间有明显的区别。所有消息包含payload、元数据和唯一标识符。消息的payload是消息的功能说明。该对象的类名组合与它所携带的数据，描述了消息的应用程序的含义。元数据允许你描述正">
@@ -178,7 +178,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                12
+                13
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -295,15 +295,15 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <h1 id="消息传送的概念"><a href="#消息传送的概念" class="headerlink" title="消息传送的概念"></a>消息传送的概念</h1><p>消息是Axon的核心概念之一。组件之间的所有通信都使用消息对象完成。这为这些组件提供了位置透明性，在必要时需要能够进行扩展和分发这些组件。</p>
+            <h2 id="消息传送的概念"><a href="#消息传送的概念" class="headerlink" title="消息传送的概念"></a>消息传送的概念</h2><p>消息是Axon的核心概念之一。组件之间的所有通信都使用消息对象完成。这为这些组件提供了位置透明性，在必要时需要能够进行扩展和分发这些组件。</p>
 <p>尽管所有这些消息都实现了消息接口，但不同类型的消息及其处理方式之间有明显的区别。所有消息包含payload、元数据和唯一标识符。消息的payload是消息的功能说明。该对象的类名组合与它所携带的数据，描述了消息的应用程序的含义。元数据允许你描述正在发送消息的上下文。例如，你可以存储跟踪信息，以允许跟踪消息的来源或原因。你还可以存储信息以描述正在执行命令的安全上下文。</p>
 <a id="more"></a>
 <blockquote>
 <p><b>注意</b><br>注意所有消息都是不可变的。将数据存储在一个消息中，实际上意味着在前一个消息的基础上，创建一个添加了额外信息的新消息。这保证了消息在多线程和分布式环境中使用是安全的。</p>
 </blockquote>
-<h1 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h1><p>命令描述改变应用程序状态的意图。命令用一个CommandMessage来包装POJO（最好是只读的）来实现。</p>
+<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><p>命令描述改变应用程序状态的意图。命令用一个CommandMessage来包装POJO（最好是只读的）来实现。</p>
 <p>命令总是有一个确切的目的地。虽然发送者并不关心由哪个组件来处理命令或该组件驻留在哪里，但它可能对它的结果感兴趣。这就是命令总线上发送命令消息后，允许返回结果的原因。</p>
-<h1 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h1><p>事件是描述应用程序中已经发生的事情的对象。聚合是事件的典型来源。当聚合中发生重要的事情时，它将引发一个事件。在Axon Framework中，事件可以是任何对象。非常希望你能确保所有的事件都是可序列化的。</p>
+<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><p>事件是描述应用程序中已经发生的事情的对象。聚合是事件的典型来源。当聚合中发生重要的事情时，它将引发一个事件。在Axon Framework中，事件可以是任何对象。非常希望你能确保所有的事件都是可序列化的。</p>
 <p>当事件被分发时，Axon把他们包装在一个EventMessage中。实际使用的消息类型取决于事件的来源。当一个事件是由一个聚合引发时，它被包装在DomainEventMessage（继承自EventMessage）中。所有其他事件都被包装在一个EventMessage中。除了像唯一标识这种常见的消息属性，EventMessage还包含一个时间戳。DomainEventMessage额外包含类型和聚合的标识符，它还在聚合的事件流中包含事件的序号,以允许重现事件的顺序。</p>
 <blockquote>
 <p><b>注意</b><br>尽管DomainEventMessage总包含一个对聚合标识符的引用,你也应该包括实际事件本身的标识符。EventStore通过DomainEventMessage中的标识符来存储事件，标识符可能并不总是会提供一个可靠值用于其他目标。</p>
@@ -334,7 +334,7 @@
 
 </div>
 
-    <a data-url="https://blog.weechang.xyz/2018/08/17/AxonFramework消息、命令和事件/" data-id="cjl259c6d00000gtg2wzos3cr" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
+    <a data-url="https://blog.weechang.xyz/2018/08/17/AxonFramework消息、命令和事件/" data-id="cjl3b1164000100tgqbb1sj4d" class="article-share-link"><i class="fas fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -471,6 +471,15 @@
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/DDD/">DDD</a><i class="fas fa-angle-right"></i><a class="article-category-link" href="/categories/DDD/AxonFramework/">AxonFramework</a></p>
+                            <p class="item-title"><a href="/2018/08/21/AxonFramework命令模型/" class="title">AxonFramework命令模型</a></p>
+                            <p class="item-date"><time datetime="2018-08-21T06:00:06.000Z" itemprop="datePublished">2018-08-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/DDD/">DDD</a><i class="fas fa-angle-right"></i><a class="article-category-link" href="/categories/DDD/AxonFramework/">AxonFramework</a></p>
                             <p class="item-title"><a href="/2018/08/20/AxonFramework配置/" class="title">AxonFramework配置</a></p>
                             <p class="item-date"><time datetime="2018-08-20T10:34:05.000Z" itemprop="datePublished">2018-08-20</time></p>
                         </div>
@@ -503,15 +512,6 @@
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/DDD/">DDD</a><i class="fas fa-angle-right"></i><a class="article-category-link" href="/categories/DDD/AxonFramework/">AxonFramework</a></p>
-                            <p class="item-title"><a href="/2018/08/17/AxonFramework架构概述/" class="title">AxonFramework架构概述</a></p>
-                            <p class="item-date"><time datetime="2018-08-17T08:33:12.000Z" itemprop="datePublished">2018-08-17</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -521,7 +521,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DDD/">DDD</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/DDD/AxonFramework/">AxonFramework</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java学习之从头开始/">Java学习之从头开始</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java学习之从头开始/Java基础/">Java基础</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/开源之路/">开源之路</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/日常记录/">日常记录</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/日常记录/ElasticSearch/">ElasticSearch</a><span class="category-list-count">1</span></li></ul></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/DDD/">DDD</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/DDD/AxonFramework/">AxonFramework</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java学习之从头开始/">Java学习之从头开始</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java学习之从头开始/Java基础/">Java基础</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/开源之路/">开源之路</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/日常记录/">日常记录</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/日常记录/ElasticSearch/">ElasticSearch</a><span class="category-list-count">1</span></li></ul></li></ul>
         </div>
     </div>
 
@@ -530,7 +530,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -539,7 +539,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AxonFramework/">AxonFramework</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CQRS/">CQRS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DDD/">DDD</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ElasticSearch/">ElasticSearch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub-Pages/">GitHub Pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap/">HashMap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashTable/">HashTable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java基础/">Java基础</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java学习之从头开始/">Java学习之从头开始</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object/">Object</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven中央仓库/">maven中央仓库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/手把手教学/">手把手教学</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日常记录/">日常记录</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AxonFramework/">AxonFramework</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CQRS/">CQRS</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DDD/">DDD</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ElasticSearch/">ElasticSearch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub-Pages/">GitHub Pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap/">HashMap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashTable/">HashTable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java基础/">Java基础</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java学习之从头开始/">Java学习之从头开始</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object/">Object</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven中央仓库/">maven中央仓库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/手把手教学/">手把手教学</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日常记录/">日常记录</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
