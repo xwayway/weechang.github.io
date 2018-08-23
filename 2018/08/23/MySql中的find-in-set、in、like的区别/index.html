@@ -5,18 +5,18 @@
     
     <title>MySql中的find_in_set、in、like的区别 | 耒耒耒耒耒</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="最近">
+    <meta name="description" content="最近需要做项目，遇到一个需要查询表中的某一列，其数据结构为多个id间用“,”隔开的字符串。需要判断是否包含某一个id，最开始想的是用like查询，但是转念一想，like查询会存在查询id为1的时候，11、12这样的数据也会被查询出来，后来开始寻找其他方法，找到了find_in_set(str, Strs)函数。然后就对MySql中字符串查询的函数一起做一个总结。">
 <meta name="keywords" content="日常记录,MySql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySql中的find_in_set、in、like的区别">
 <meta property="og:url" content="https://blog.weechang.xyz/2018/08/23/MySql中的find-in-set、in、like的区别/index.html">
 <meta property="og:site_name" content="耒耒耒耒耒">
-<meta property="og:description" content="最近">
+<meta property="og:description" content="最近需要做项目，遇到一个需要查询表中的某一列，其数据结构为多个id间用“,”隔开的字符串。需要判断是否包含某一个id，最开始想的是用like查询，但是转念一想，like查询会存在查询id为1的时候，11、12这样的数据也会被查询出来，后来开始寻找其他方法，找到了find_in_set(str, Strs)函数。然后就对MySql中字符串查询的函数一起做一个总结。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-23T02:34:10.098Z">
+<meta property="og:updated_time" content="2018-08-23T06:51:36.112Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySql中的find_in_set、in、like的区别">
-<meta name="twitter:description" content="最近">
+<meta name="twitter:description" content="最近需要做项目，遇到一个需要查询表中的某一列，其数据结构为多个id间用“,”隔开的字符串。需要判断是否包含某一个id，最开始想的是用like查询，但是转念一想，like查询会存在查询id为1的时候，11、12这样的数据也会被查询出来，后来开始寻找其他方法，找到了find_in_set(str, Strs)函数。然后就对MySql中字符串查询的函数一起做一个总结。">
     
 
     
@@ -272,7 +272,7 @@
                              <div class="article-word-count">
 <span>
     <i class="fas fa-file-word"></i>
-    共2字，
+    共137字，
 </span>
 <span>
     <i class="fas fa-clock"></i>
@@ -293,8 +293,11 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>最近</p>
-
+            <blockquote>
+<p>最近需要做项目，遇到一个需要查询表中的某一列，其数据结构为多个id间用“,”隔开的字符串。需要判断是否包含某一个id，最开始想的是用like查询，但是转念一想，like查询会存在查询id为1的时候，11、12这样的数据也会被查询出来，后来开始寻找其他方法，找到了find_in_set(str, Strs)函数。然后就对MySql中字符串查询的函数一起做一个总结。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="IN"><a href="#IN" class="headerlink" title="IN"></a>IN</h2><h2 id="NOT-IN"><a href="#NOT-IN" class="headerlink" title="NOT IN"></a>NOT IN</h2><h2 id="LIKE"><a href="#LIKE" class="headerlink" title="LIKE"></a>LIKE</h2><h2 id="SUBSTR"><a href="#SUBSTR" class="headerlink" title="SUBSTR()"></a>SUBSTR()</h2><h2 id="FIND-IN-SET"><a href="#FIND-IN-SET" class="headerlink" title="FIND_IN_SET()"></a>FIND_IN_SET()</h2>
         
         </div>
         <footer class="article-footer">

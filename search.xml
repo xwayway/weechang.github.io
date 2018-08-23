@@ -6,7 +6,7 @@
       <title>MySql中的find_in_set、in、like的区别</title>
       <link href="/2018/08/23/MySql%E4%B8%AD%E7%9A%84find-in-set%E3%80%81in%E3%80%81like%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
       <url>/2018/08/23/MySql%E4%B8%AD%E7%9A%84find-in-set%E3%80%81in%E3%80%81like%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
-      <content type="html"><![CDATA[<p>最近</p>]]></content>
+      <content type="html"><![CDATA[<blockquote><p>最近需要做项目，遇到一个需要查询表中的某一列，其数据结构为多个id间用“,”隔开的字符串。需要判断是否包含某一个id，最开始想的是用like查询，但是转念一想，like查询会存在查询id为1的时候，11、12这样的数据也会被查询出来，后来开始寻找其他方法，找到了find_in_set(str, Strs)函数。然后就对MySql中字符串查询的函数一起做一个总结。</p></blockquote><a id="more"></a><h2 id="IN"><a href="#IN" class="headerlink" title="IN"></a>IN</h2><h2 id="NOT-IN"><a href="#NOT-IN" class="headerlink" title="NOT IN"></a>NOT IN</h2><h2 id="LIKE"><a href="#LIKE" class="headerlink" title="LIKE"></a>LIKE</h2><h2 id="SUBSTR"><a href="#SUBSTR" class="headerlink" title="SUBSTR()"></a>SUBSTR()</h2><h2 id="FIND-IN-SET"><a href="#FIND-IN-SET" class="headerlink" title="FIND_IN_SET()"></a>FIND_IN_SET()</h2>]]></content>
       
       <categories>
           

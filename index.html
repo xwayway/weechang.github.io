@@ -266,22 +266,6 @@
                     </div>
                     <div class="article-meta">
                          
-                             <div class="article-word-count">
-<span>
-    <i class="fas fa-file-word"></i>
-    共2字，
-</span>
-<span>
-    <i class="fas fa-clock"></i>
-    大约需要1分钟
-</span>
-</div>
-<span id="busuanzi_container_page_pv">
-    <i class="fas fa-eye"></i>
-    已被阅读<span id="busuanzi_value_page_pv"></span>次
-</span>
-
-                         
                     </div>
                 
             </header>
@@ -289,9 +273,12 @@
         
         <div class="article-entry" itemprop="articleBody">
         
-            
-            <p>最近</p>
-
+            <p><blockquote>
+<p>最近需要做项目，遇到一个需要查询表中的某一列，其数据结构为多个id间用“,”隔开的字符串。需要判断是否包含某一个id，最开始想的是用like查询，但是转念一想，like查询会存在查询id为1的时候，11、12这样的数据也会被查询出来，后来开始寻找其他方法，找到了find_in_set(str, Strs)函数。然后就对MySql中字符串查询的函数一起做一个总结。</p>
+</blockquote></p>
+            <p class="article-more-link">
+                <a href="/2018/08/23/MySql中的find-in-set、in、like的区别/#more">查看更多</a>
+            </p>
         
         </div>
         <footer class="article-footer">
