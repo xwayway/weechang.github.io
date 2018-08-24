@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.weechang.xyz/tools/index.html</loc>
+    
+    <lastmod>2018-08-24T08:12:13.140Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.weechang.xyz/2018/08/23/MySql%E4%B8%AD%E7%9A%84find-in-set%E3%80%81in%E3%80%81like%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
     
     <lastmod>2018-08-24T05:35:00.298Z</lastmod>

@@ -2193,3 +2193,13 @@ a.article-title:hover {
 .highlight .code .selector-id {
   font-weight: bold;
 }
+.tools {
+  margin-top: 40px;
+  -webkit-box-shadow: 3px 3px 3px #888;
+  box-shadow: 3px 3px 3px #888;
+}
+.tool-row .tool-item {
+  width: 33.33%;
+  padding: 0 14px;
+  margin-bottom: 20px;
+}
