@@ -5,9 +5,9 @@
   <subtitle>张未的技术博客</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://blog.weechang.xyz/"/>
+  <link href="http://blog.weechang.xyz/"/>
   <updated>2018-08-27T07:02:47.688Z</updated>
-  <id>https://blog.weechang.xyz/</id>
+  <id>http://blog.weechang.xyz/</id>
   
   <author>
     <name>耒耒耒耒耒</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>AxonFramework事件处理</title>
-    <link href="https://blog.weechang.xyz/2018/08/27/AxonFramework%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/"/>
-    <id>https://blog.weechang.xyz/2018/08/27/AxonFramework事件处理/</id>
+    <link href="http://blog.weechang.xyz/2018/08/27/AxonFramework%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/"/>
+    <id>http://blog.weechang.xyz/2018/08/27/AxonFramework事件处理/</id>
     <published>2018-08-27T06:47:54.000Z</published>
     <updated>2018-08-27T07:02:47.688Z</updated>
     
@@ -31,21 +31,21 @@
     
     </summary>
     
-      <category term="AxonFramework" scheme="https://blog.weechang.xyz/categories/AxonFramework/"/>
+      <category term="AxonFramework" scheme="http://blog.weechang.xyz/categories/AxonFramework/"/>
     
     
-      <category term="AxonFramework" scheme="https://blog.weechang.xyz/tags/AxonFramework/"/>
+      <category term="AxonFramework" scheme="http://blog.weechang.xyz/tags/AxonFramework/"/>
     
-      <category term="DDD" scheme="https://blog.weechang.xyz/tags/DDD/"/>
+      <category term="DDD" scheme="http://blog.weechang.xyz/tags/DDD/"/>
     
-      <category term="CQRS" scheme="https://blog.weechang.xyz/tags/CQRS/"/>
+      <category term="CQRS" scheme="http://blog.weechang.xyz/tags/CQRS/"/>
     
   </entry>
   
   <entry>
     <title>AxonFramework管理复杂的业务事务</title>
-    <link href="https://blog.weechang.xyz/2018/08/27/AxonFramework%E7%AE%A1%E7%90%86%E5%A4%8D%E6%9D%82%E7%9A%84%E4%B8%9A%E5%8A%A1%E4%BA%8B%E5%8A%A1/"/>
-    <id>https://blog.weechang.xyz/2018/08/27/AxonFramework管理复杂的业务事务/</id>
+    <link href="http://blog.weechang.xyz/2018/08/27/AxonFramework%E7%AE%A1%E7%90%86%E5%A4%8D%E6%9D%82%E7%9A%84%E4%B8%9A%E5%8A%A1%E4%BA%8B%E5%8A%A1/"/>
+    <id>http://blog.weechang.xyz/2018/08/27/AxonFramework管理复杂的业务事务/</id>
     <published>2018-08-27T06:43:56.000Z</published>
     <updated>2018-08-27T06:45:00.963Z</updated>
     
@@ -57,21 +57,21 @@
     
     </summary>
     
-      <category term="AxonFramework" scheme="https://blog.weechang.xyz/categories/AxonFramework/"/>
+      <category term="AxonFramework" scheme="http://blog.weechang.xyz/categories/AxonFramework/"/>
     
     
-      <category term="AxonFramework" scheme="https://blog.weechang.xyz/tags/AxonFramework/"/>
+      <category term="AxonFramework" scheme="http://blog.weechang.xyz/tags/AxonFramework/"/>
     
-      <category term="DDD" scheme="https://blog.weechang.xyz/tags/DDD/"/>
+      <category term="DDD" scheme="http://blog.weechang.xyz/tags/DDD/"/>
     
-      <category term="CQRS" scheme="https://blog.weechang.xyz/tags/CQRS/"/>
+      <category term="CQRS" scheme="http://blog.weechang.xyz/tags/CQRS/"/>
     
   </entry>
   
   <entry>
     <title>AxonFramework在聚合中处理命令</title>
-    <link href="https://blog.weechang.xyz/2018/08/27/AxonFramework%E5%9C%A8%E8%81%9A%E5%90%88%E4%B8%AD%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4/"/>
-    <id>https://blog.weechang.xyz/2018/08/27/AxonFramework在聚合中处理命令/</id>
+    <link href="http://blog.weechang.xyz/2018/08/27/AxonFramework%E5%9C%A8%E8%81%9A%E5%90%88%E4%B8%AD%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4/"/>
+    <id>http://blog.weechang.xyz/2018/08/27/AxonFramework在聚合中处理命令/</id>
     <published>2018-08-27T06:04:52.000Z</published>
     <updated>2018-08-27T06:55:16.086Z</updated>
     
@@ -83,21 +83,21 @@
     
     </summary>
     
-      <category term="AxonFramework" scheme="https://blog.weechang.xyz/categories/AxonFramework/"/>
+      <category term="AxonFramework" scheme="http://blog.weechang.xyz/categories/AxonFramework/"/>
     
     
-      <category term="AxonFramework" scheme="https://blog.weechang.xyz/tags/AxonFramework/"/>
+      <category term="AxonFramework" scheme="http://blog.weechang.xyz/tags/AxonFramework/"/>
     
-      <category term="DDD" scheme="https://blog.weechang.xyz/tags/DDD/"/>
+      <category term="DDD" scheme="http://blog.weechang.xyz/tags/DDD/"/>
     
-      <category term="CQRS" scheme="https://blog.weechang.xyz/tags/CQRS/"/>
+      <category term="CQRS" scheme="http://blog.weechang.xyz/tags/CQRS/"/>
     
   </entry>
   
   <entry>
     <title>AxonFramework聚合事件溯源</title>
-    <link href="https://blog.weechang.xyz/2018/08/27/AxonFramework%E8%81%9A%E5%90%88%E4%BA%8B%E4%BB%B6%E6%BA%AF%E6%BA%90/"/>
-    <id>https://blog.weechang.xyz/2018/08/27/AxonFramework聚合事件溯源/</id>
+    <link href="http://blog.weechang.xyz/2018/08/27/AxonFramework%E8%81%9A%E5%90%88%E4%BA%8B%E4%BB%B6%E6%BA%AF%E6%BA%90/"/>
+    <id>http://blog.weechang.xyz/2018/08/27/AxonFramework聚合事件溯源/</id>
     <published>2018-08-27T05:56:57.000Z</published>
     <updated>2018-08-27T06:55:16.031Z</updated>
     
@@ -109,21 +109,21 @@
     
     </summary>
     
-      <category term="AxonFramework" scheme="https://blog.weechang.xyz/categories/AxonFramework/"/>
+      <category term="AxonFramework" scheme="http://blog.weechang.xyz/categories/AxonFramework/"/>
     
     
-      <category term="AxonFramework" scheme="https://blog.weechang.xyz/tags/AxonFramework/"/>
+      <category term="AxonFramework" scheme="http://blog.weechang.xyz/tags/AxonFramework/"/>
     
-      <category term="DDD" scheme="https://blog.weechang.xyz/tags/DDD/"/>
+      <category term="DDD" scheme="http://blog.weechang.xyz/tags/DDD/"/>
     
-      <category term="CQRS" scheme="https://blog.weechang.xyz/tags/CQRS/"/>
+      <category term="CQRS" scheme="http://blog.weechang.xyz/tags/CQRS/"/>
     
   </entry>
   
   <entry>
     <title>MySql中的find_in_set、in、like的区别</title>
-    <link href="https://blog.weechang.xyz/2018/08/23/MySql%E4%B8%AD%E7%9A%84find-in-set%E3%80%81in%E3%80%81like%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
-    <id>https://blog.weechang.xyz/2018/08/23/MySql中的find-in-set、in、like的区别/</id>
+    <link href="http://blog.weechang.xyz/2018/08/23/MySql%E4%B8%AD%E7%9A%84find-in-set%E3%80%81in%E3%80%81like%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>http://blog.weechang.xyz/2018/08/23/MySql中的find-in-set、in、like的区别/</id>
     <published>2018-08-23T02:33:26.000Z</published>
     <updated>2018-08-24T05:35:00.298Z</updated>
     
@@ -137,19 +137,19 @@
     
     </summary>
     
-      <category term="日常记录" scheme="https://blog.weechang.xyz/categories/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/"/>
+      <category term="日常记录" scheme="http://blog.weechang.xyz/categories/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/"/>
     
     
-      <category term="日常记录" scheme="https://blog.weechang.xyz/tags/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/"/>
+      <category term="日常记录" scheme="http://blog.weechang.xyz/tags/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/"/>
     
-      <category term="MySql" scheme="https://blog.weechang.xyz/tags/MySql/"/>
+      <category term="MySql" scheme="http://blog.weechang.xyz/tags/MySql/"/>
     
   </entry>
   
   <entry>
     <title>AxonFramework命令模型</title>
-    <link href="https://blog.weechang.xyz/2018/08/21/AxonFramework%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%9E%8B/"/>
-    <id>https://blog.weechang.xyz/2018/08/21/AxonFramework命令模型/</id>
+    <link href="http://blog.weechang.xyz/2018/08/21/AxonFramework%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%9E%8B/"/>
+    <id>http://blog.weechang.xyz/2018/08/21/AxonFramework命令模型/</id>
     <published>2018-08-21T06:00:06.000Z</published>
     <updated>2018-08-24T05:33:54.372Z</updated>
     
@@ -161,21 +161,21 @@
     
     </summary>
     
-      <category term="AxonFramework" scheme="https://blog.weechang.xyz/categories/AxonFramework/"/>
+      <category term="AxonFramework" scheme="http://blog.weechang.xyz/categories/AxonFramework/"/>
     
     
-      <category term="AxonFramework" scheme="https://blog.weechang.xyz/tags/AxonFramework/"/>
+      <category term="AxonFramework" scheme="http://blog.weechang.xyz/tags/AxonFramework/"/>
     
-      <category term="DDD" scheme="https://blog.weechang.xyz/tags/DDD/"/>
+      <category term="DDD" scheme="http://blog.weechang.xyz/tags/DDD/"/>
     
-      <category term="CQRS" scheme="https://blog.weechang.xyz/tags/CQRS/"/>
+      <category term="CQRS" scheme="http://blog.weechang.xyz/tags/CQRS/"/>
     
   </entry>
   
   <entry>
     <title>AxonFramework配置</title>
-    <link href="https://blog.weechang.xyz/2018/08/20/AxonFramework%E9%85%8D%E7%BD%AE/"/>
-    <id>https://blog.weechang.xyz/2018/08/20/AxonFramework配置/</id>
+    <link href="http://blog.weechang.xyz/2018/08/20/AxonFramework%E9%85%8D%E7%BD%AE/"/>
+    <id>http://blog.weechang.xyz/2018/08/20/AxonFramework配置/</id>
     <published>2018-08-20T10:34:05.000Z</published>
     <updated>2018-08-24T05:34:22.966Z</updated>
     
@@ -187,21 +187,21 @@
     
     </summary>
     
-      <category term="AxonFramework" scheme="https://blog.weechang.xyz/categories/AxonFramework/"/>
+      <category term="AxonFramework" scheme="http://blog.weechang.xyz/categories/AxonFramework/"/>
     
     
-      <category term="AxonFramework" scheme="https://blog.weechang.xyz/tags/AxonFramework/"/>
+      <category term="AxonFramework" scheme="http://blog.weechang.xyz/tags/AxonFramework/"/>
     
-      <category term="DDD" scheme="https://blog.weechang.xyz/tags/DDD/"/>
+      <category term="DDD" scheme="http://blog.weechang.xyz/tags/DDD/"/>
     
-      <category term="CQRS" scheme="https://blog.weechang.xyz/tags/CQRS/"/>
+      <category term="CQRS" scheme="http://blog.weechang.xyz/tags/CQRS/"/>
     
   </entry>
   
   <entry>
     <title>AxonFramework工作单元</title>
-    <link href="https://blog.weechang.xyz/2018/08/20/AxonFramework%E5%B7%A5%E4%BD%9C%E5%8D%95%E5%85%83/"/>
-    <id>https://blog.weechang.xyz/2018/08/20/AxonFramework工作单元/</id>
+    <link href="http://blog.weechang.xyz/2018/08/20/AxonFramework%E5%B7%A5%E4%BD%9C%E5%8D%95%E5%85%83/"/>
+    <id>http://blog.weechang.xyz/2018/08/20/AxonFramework工作单元/</id>
     <published>2018-08-20T05:17:12.000Z</published>
     <updated>2018-08-24T05:34:04.873Z</updated>
     
@@ -213,21 +213,21 @@
     
     </summary>
     
-      <category term="AxonFramework" scheme="https://blog.weechang.xyz/categories/AxonFramework/"/>
+      <category term="AxonFramework" scheme="http://blog.weechang.xyz/categories/AxonFramework/"/>
     
     
-      <category term="AxonFramework" scheme="https://blog.weechang.xyz/tags/AxonFramework/"/>
+      <category term="AxonFramework" scheme="http://blog.weechang.xyz/tags/AxonFramework/"/>
     
-      <category term="DDD" scheme="https://blog.weechang.xyz/tags/DDD/"/>
+      <category term="DDD" scheme="http://blog.weechang.xyz/tags/DDD/"/>
     
-      <category term="CQRS" scheme="https://blog.weechang.xyz/tags/CQRS/"/>
+      <category term="CQRS" scheme="http://blog.weechang.xyz/tags/CQRS/"/>
     
   </entry>
   
   <entry>
     <title>ElasticSearch查询报错fielddata=true</title>
-    <link href="https://blog.weechang.xyz/2018/08/17/ElasticSearch%E6%9F%A5%E8%AF%A2%E6%8A%A5%E9%94%99fielddata-true/"/>
-    <id>https://blog.weechang.xyz/2018/08/17/ElasticSearch查询报错fielddata-true/</id>
+    <link href="http://blog.weechang.xyz/2018/08/17/ElasticSearch%E6%9F%A5%E8%AF%A2%E6%8A%A5%E9%94%99fielddata-true/"/>
+    <id>http://blog.weechang.xyz/2018/08/17/ElasticSearch查询报错fielddata-true/</id>
     <published>2018-08-17T09:01:18.000Z</published>
     <updated>2018-08-24T05:34:30.543Z</updated>
     
@@ -239,19 +239,19 @@
     
     </summary>
     
-      <category term="日常记录" scheme="https://blog.weechang.xyz/categories/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/"/>
+      <category term="日常记录" scheme="http://blog.weechang.xyz/categories/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/"/>
     
     
-      <category term="日常记录" scheme="https://blog.weechang.xyz/tags/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/"/>
+      <category term="日常记录" scheme="http://blog.weechang.xyz/tags/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/"/>
     
-      <category term="ElasticSearch" scheme="https://blog.weechang.xyz/tags/ElasticSearch/"/>
+      <category term="ElasticSearch" scheme="http://blog.weechang.xyz/tags/ElasticSearch/"/>
     
   </entry>
   
   <entry>
     <title>AxonFramework消息、命令和事件</title>
-    <link href="https://blog.weechang.xyz/2018/08/17/AxonFramework%E6%B6%88%E6%81%AF%E3%80%81%E5%91%BD%E4%BB%A4%E5%92%8C%E4%BA%8B%E4%BB%B6/"/>
-    <id>https://blog.weechang.xyz/2018/08/17/AxonFramework消息、命令和事件/</id>
+    <link href="http://blog.weechang.xyz/2018/08/17/AxonFramework%E6%B6%88%E6%81%AF%E3%80%81%E5%91%BD%E4%BB%A4%E5%92%8C%E4%BA%8B%E4%BB%B6/"/>
+    <id>http://blog.weechang.xyz/2018/08/17/AxonFramework消息、命令和事件/</id>
     <published>2018-08-17T08:38:47.000Z</published>
     <updated>2018-08-24T05:34:14.657Z</updated>
     
@@ -264,21 +264,21 @@
     
     </summary>
     
-      <category term="AxonFramework" scheme="https://blog.weechang.xyz/categories/AxonFramework/"/>
+      <category term="AxonFramework" scheme="http://blog.weechang.xyz/categories/AxonFramework/"/>
     
     
-      <category term="AxonFramework" scheme="https://blog.weechang.xyz/tags/AxonFramework/"/>
+      <category term="AxonFramework" scheme="http://blog.weechang.xyz/tags/AxonFramework/"/>
     
-      <category term="DDD" scheme="https://blog.weechang.xyz/tags/DDD/"/>
+      <category term="DDD" scheme="http://blog.weechang.xyz/tags/DDD/"/>
     
-      <category term="CQRS" scheme="https://blog.weechang.xyz/tags/CQRS/"/>
+      <category term="CQRS" scheme="http://blog.weechang.xyz/tags/CQRS/"/>
     
   </entry>
   
   <entry>
     <title>AxonFramework架构概述</title>
-    <link href="https://blog.weechang.xyz/2018/08/17/AxonFramework%E6%9E%B6%E6%9E%84%E6%A6%82%E8%BF%B0/"/>
-    <id>https://blog.weechang.xyz/2018/08/17/AxonFramework架构概述/</id>
+    <link href="http://blog.weechang.xyz/2018/08/17/AxonFramework%E6%9E%B6%E6%9E%84%E6%A6%82%E8%BF%B0/"/>
+    <id>http://blog.weechang.xyz/2018/08/17/AxonFramework架构概述/</id>
     <published>2018-08-17T08:33:12.000Z</published>
     <updated>2018-08-24T05:34:09.590Z</updated>
     
@@ -290,21 +290,21 @@
     
     </summary>
     
-      <category term="AxonFramework" scheme="https://blog.weechang.xyz/categories/AxonFramework/"/>
+      <category term="AxonFramework" scheme="http://blog.weechang.xyz/categories/AxonFramework/"/>
     
     
-      <category term="AxonFramework" scheme="https://blog.weechang.xyz/tags/AxonFramework/"/>
+      <category term="AxonFramework" scheme="http://blog.weechang.xyz/tags/AxonFramework/"/>
     
-      <category term="DDD" scheme="https://blog.weechang.xyz/tags/DDD/"/>
+      <category term="DDD" scheme="http://blog.weechang.xyz/tags/DDD/"/>
     
-      <category term="CQRS" scheme="https://blog.weechang.xyz/tags/CQRS/"/>
+      <category term="CQRS" scheme="http://blog.weechang.xyz/tags/CQRS/"/>
     
   </entry>
   
   <entry>
     <title>AxonFramework简介</title>
-    <link href="https://blog.weechang.xyz/2018/08/17/AxonFramework%E7%AE%80%E4%BB%8B/"/>
-    <id>https://blog.weechang.xyz/2018/08/17/AxonFramework简介/</id>
+    <link href="http://blog.weechang.xyz/2018/08/17/AxonFramework%E7%AE%80%E4%BB%8B/"/>
+    <id>http://blog.weechang.xyz/2018/08/17/AxonFramework简介/</id>
     <published>2018-08-17T08:19:19.000Z</published>
     <updated>2018-08-24T05:34:18.663Z</updated>
     
@@ -316,21 +316,21 @@
     
     </summary>
     
-      <category term="AxonFramework" scheme="https://blog.weechang.xyz/categories/AxonFramework/"/>
+      <category term="AxonFramework" scheme="http://blog.weechang.xyz/categories/AxonFramework/"/>
     
     
-      <category term="AxonFramework" scheme="https://blog.weechang.xyz/tags/AxonFramework/"/>
+      <category term="AxonFramework" scheme="http://blog.weechang.xyz/tags/AxonFramework/"/>
     
-      <category term="DDD" scheme="https://blog.weechang.xyz/tags/DDD/"/>
+      <category term="DDD" scheme="http://blog.weechang.xyz/tags/DDD/"/>
     
-      <category term="CQRS" scheme="https://blog.weechang.xyz/tags/CQRS/"/>
+      <category term="CQRS" scheme="http://blog.weechang.xyz/tags/CQRS/"/>
     
   </entry>
   
   <entry>
     <title>六元一个的私有博客系统，了解一下？</title>
-    <link href="https://blog.weechang.xyz/2018/08/02/%E5%85%AD%E5%85%83%E4%B8%80%E4%B8%AA%E7%9A%84%E7%A7%81%E6%9C%89%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%EF%BC%8C%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B%EF%BC%9F/"/>
-    <id>https://blog.weechang.xyz/2018/08/02/六元一个的私有博客系统，了解一下？/</id>
+    <link href="http://blog.weechang.xyz/2018/08/02/%E5%85%AD%E5%85%83%E4%B8%80%E4%B8%AA%E7%9A%84%E7%A7%81%E6%9C%89%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%EF%BC%8C%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B%EF%BC%9F/"/>
+    <id>http://blog.weechang.xyz/2018/08/02/六元一个的私有博客系统，了解一下？/</id>
     <published>2018-08-02T06:33:09.000Z</published>
     <updated>2018-08-02T07:16:52.831Z</updated>
     
@@ -342,19 +342,19 @@
     
     </summary>
     
-      <category term="开源之路" scheme="https://blog.weechang.xyz/categories/%E5%BC%80%E6%BA%90%E4%B9%8B%E8%B7%AF/"/>
+      <category term="开源之路" scheme="http://blog.weechang.xyz/categories/%E5%BC%80%E6%BA%90%E4%B9%8B%E8%B7%AF/"/>
     
     
-      <category term="手把手教学" scheme="https://blog.weechang.xyz/tags/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E5%AD%A6/"/>
+      <category term="手把手教学" scheme="http://blog.weechang.xyz/tags/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E5%AD%A6/"/>
     
-      <category term="GitHub Pages" scheme="https://blog.weechang.xyz/tags/GitHub-Pages/"/>
+      <category term="GitHub Pages" scheme="http://blog.weechang.xyz/tags/GitHub-Pages/"/>
     
   </entry>
   
   <entry>
     <title>【Java学习之从头开始】Java基础-3——HashTable类</title>
-    <link href="https://blog.weechang.xyz/2018/07/31/java%E5%9F%BA%E7%A1%80-3%E2%80%94%E2%80%94HashTable%E7%B1%BB/"/>
-    <id>https://blog.weechang.xyz/2018/07/31/java基础-3——HashTable类/</id>
+    <link href="http://blog.weechang.xyz/2018/07/31/java%E5%9F%BA%E7%A1%80-3%E2%80%94%E2%80%94HashTable%E7%B1%BB/"/>
+    <id>http://blog.weechang.xyz/2018/07/31/java基础-3——HashTable类/</id>
     <published>2018-07-31T06:00:29.000Z</published>
     <updated>2018-08-24T05:34:54.591Z</updated>
     
@@ -366,21 +366,21 @@
     
     </summary>
     
-      <category term="Java学习之从头开始" scheme="https://blog.weechang.xyz/categories/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/"/>
+      <category term="Java学习之从头开始" scheme="http://blog.weechang.xyz/categories/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/"/>
     
     
-      <category term="Java学习之从头开始" scheme="https://blog.weechang.xyz/tags/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/"/>
+      <category term="Java学习之从头开始" scheme="http://blog.weechang.xyz/tags/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/"/>
     
-      <category term="Java基础" scheme="https://blog.weechang.xyz/tags/Java%E5%9F%BA%E7%A1%80/"/>
+      <category term="Java基础" scheme="http://blog.weechang.xyz/tags/Java%E5%9F%BA%E7%A1%80/"/>
     
-      <category term="HashTable" scheme="https://blog.weechang.xyz/tags/HashTable/"/>
+      <category term="HashTable" scheme="http://blog.weechang.xyz/tags/HashTable/"/>
     
   </entry>
   
   <entry>
     <title>【Java学习之从头开始】Java基础-2——HashMap类</title>
-    <link href="https://blog.weechang.xyz/2018/07/30/java%E5%9F%BA%E7%A1%80-2%E2%80%94%E2%80%94HashMap%E7%B1%BB/"/>
-    <id>https://blog.weechang.xyz/2018/07/30/java基础-2——HashMap类/</id>
+    <link href="http://blog.weechang.xyz/2018/07/30/java%E5%9F%BA%E7%A1%80-2%E2%80%94%E2%80%94HashMap%E7%B1%BB/"/>
+    <id>http://blog.weechang.xyz/2018/07/30/java基础-2——HashMap类/</id>
     <published>2018-07-30T09:05:03.000Z</published>
     <updated>2018-08-24T05:34:47.607Z</updated>
     
@@ -392,21 +392,21 @@
     
     </summary>
     
-      <category term="Java学习之从头开始" scheme="https://blog.weechang.xyz/categories/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/"/>
+      <category term="Java学习之从头开始" scheme="http://blog.weechang.xyz/categories/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/"/>
     
     
-      <category term="Java学习之从头开始" scheme="https://blog.weechang.xyz/tags/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/"/>
+      <category term="Java学习之从头开始" scheme="http://blog.weechang.xyz/tags/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/"/>
     
-      <category term="Java基础" scheme="https://blog.weechang.xyz/tags/Java%E5%9F%BA%E7%A1%80/"/>
+      <category term="Java基础" scheme="http://blog.weechang.xyz/tags/Java%E5%9F%BA%E7%A1%80/"/>
     
-      <category term="HashMap" scheme="https://blog.weechang.xyz/tags/HashMap/"/>
+      <category term="HashMap" scheme="http://blog.weechang.xyz/tags/HashMap/"/>
     
   </entry>
   
   <entry>
     <title>手把手教学，教你把你的个人项目推送到maven中央仓库</title>
-    <link href="https://blog.weechang.xyz/2018/07/20/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E5%AD%A6%EF%BC%8C%E6%95%99%E4%BD%A0%E6%8A%8A%E4%BD%A0%E7%9A%84%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE%E6%8E%A8%E9%80%81%E5%88%B0maven%E4%B8%AD%E5%A4%AE%E4%BB%93%E5%BA%93/"/>
-    <id>https://blog.weechang.xyz/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/</id>
+    <link href="http://blog.weechang.xyz/2018/07/20/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E5%AD%A6%EF%BC%8C%E6%95%99%E4%BD%A0%E6%8A%8A%E4%BD%A0%E7%9A%84%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE%E6%8E%A8%E9%80%81%E5%88%B0maven%E4%B8%AD%E5%A4%AE%E4%BB%93%E5%BA%93/"/>
+    <id>http://blog.weechang.xyz/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/</id>
     <published>2018-07-20T08:43:08.000Z</published>
     <updated>2018-07-31T06:05:56.893Z</updated>
     
@@ -418,19 +418,19 @@
     
     </summary>
     
-      <category term="开源之路" scheme="https://blog.weechang.xyz/categories/%E5%BC%80%E6%BA%90%E4%B9%8B%E8%B7%AF/"/>
+      <category term="开源之路" scheme="http://blog.weechang.xyz/categories/%E5%BC%80%E6%BA%90%E4%B9%8B%E8%B7%AF/"/>
     
     
-      <category term="手把手教学" scheme="https://blog.weechang.xyz/tags/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E5%AD%A6/"/>
+      <category term="手把手教学" scheme="http://blog.weechang.xyz/tags/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E5%AD%A6/"/>
     
-      <category term="maven中央仓库" scheme="https://blog.weechang.xyz/tags/maven%E4%B8%AD%E5%A4%AE%E4%BB%93%E5%BA%93/"/>
+      <category term="maven中央仓库" scheme="http://blog.weechang.xyz/tags/maven%E4%B8%AD%E5%A4%AE%E4%BB%93%E5%BA%93/"/>
     
   </entry>
   
   <entry>
     <title>【Java学习之从头开始】Java基础-1——String类</title>
-    <link href="https://blog.weechang.xyz/2018/06/08/java%E5%9F%BA%E7%A1%80-1%E2%80%94%E2%80%94String%E7%B1%BB/"/>
-    <id>https://blog.weechang.xyz/2018/06/08/java基础-1——String类/</id>
+    <link href="http://blog.weechang.xyz/2018/06/08/java%E5%9F%BA%E7%A1%80-1%E2%80%94%E2%80%94String%E7%B1%BB/"/>
+    <id>http://blog.weechang.xyz/2018/06/08/java基础-1——String类/</id>
     <published>2018-06-08T05:59:02.000Z</published>
     <updated>2018-08-24T05:34:42.706Z</updated>
     
@@ -456,21 +456,21 @@
     
     </summary>
     
-      <category term="Java学习之从头开始" scheme="https://blog.weechang.xyz/categories/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/"/>
+      <category term="Java学习之从头开始" scheme="http://blog.weechang.xyz/categories/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/"/>
     
     
-      <category term="Java学习之从头开始" scheme="https://blog.weechang.xyz/tags/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/"/>
+      <category term="Java学习之从头开始" scheme="http://blog.weechang.xyz/tags/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/"/>
     
-      <category term="Java基础" scheme="https://blog.weechang.xyz/tags/Java%E5%9F%BA%E7%A1%80/"/>
+      <category term="Java基础" scheme="http://blog.weechang.xyz/tags/Java%E5%9F%BA%E7%A1%80/"/>
     
-      <category term="String" scheme="https://blog.weechang.xyz/tags/String/"/>
+      <category term="String" scheme="http://blog.weechang.xyz/tags/String/"/>
     
   </entry>
   
   <entry>
     <title>【Java学习之从头开始】Java基础-0——Object类</title>
-    <link href="https://blog.weechang.xyz/2018/06/07/java%E5%9F%BA%E7%A1%80-0%E2%80%94%E2%80%94Object%E7%B1%BB/"/>
-    <id>https://blog.weechang.xyz/2018/06/07/java基础-0——Object类/</id>
+    <link href="http://blog.weechang.xyz/2018/06/07/java%E5%9F%BA%E7%A1%80-0%E2%80%94%E2%80%94Object%E7%B1%BB/"/>
+    <id>http://blog.weechang.xyz/2018/06/07/java基础-0——Object类/</id>
     <published>2018-06-07T10:39:22.000Z</published>
     <updated>2018-08-24T05:34:37.583Z</updated>
     
@@ -482,14 +482,14 @@
     
     </summary>
     
-      <category term="Java学习之从头开始" scheme="https://blog.weechang.xyz/categories/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/"/>
+      <category term="Java学习之从头开始" scheme="http://blog.weechang.xyz/categories/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/"/>
     
     
-      <category term="Java学习之从头开始" scheme="https://blog.weechang.xyz/tags/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/"/>
+      <category term="Java学习之从头开始" scheme="http://blog.weechang.xyz/tags/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/"/>
     
-      <category term="Java基础" scheme="https://blog.weechang.xyz/tags/Java%E5%9F%BA%E7%A1%80/"/>
+      <category term="Java基础" scheme="http://blog.weechang.xyz/tags/Java%E5%9F%BA%E7%A1%80/"/>
     
-      <category term="Object" scheme="https://blog.weechang.xyz/tags/Object/"/>
+      <category term="Object" scheme="http://blog.weechang.xyz/tags/Object/"/>
     
   </entry>
   

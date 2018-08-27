@@ -9,7 +9,7 @@
 <meta name="keywords" content="AxonFramework,DDD,CQRS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AxonFramework管理复杂的业务事务">
-<meta property="og:url" content="https://blog.weechang.xyz/2018/08/27/AxonFramework管理复杂的业务事务/index.html">
+<meta property="og:url" content="http://blog.weechang.xyz/2018/08/27/AxonFramework管理复杂的业务事务/index.html">
 <meta property="og:site_name" content="耒耒耒耒耒">
 <meta property="og:description" content="并不是每个命令都能够在一个ACID事务中完全执行。现金转账事务是一个很常见频繁出现的例子，用来作为论据。通常认为，把钱从一个账户转移到另一个账户，绝对需要原子性和一致性。其实并非如此，相反，这是完全不可能的。如果钱从A银行的帐户转移到B银行的帐户怎么办？A银行要获得B银行数据库的锁吗？如果转账正在进行的时候，A银行已经扣除了金额,但B银行并没收到它，这不是很奇怪吗?事实上不是，这是“正在进行”。另">
 <meta property="og:locale" content="zh-CN">
@@ -383,11 +383,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
 
     
     
-
-
-
-
-    
+        <section id="comments">
 <!-- Link Gitalk 的支持文件  -->
 <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
 <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
@@ -405,6 +401,8 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
     gitalk.render('gitalk-container');
 </script>
 <!-- Gitalk end -->
+</section>
+    
 
 </section>
             
