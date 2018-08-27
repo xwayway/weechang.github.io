@@ -5,18 +5,18 @@
     
     <title>AxonFramework事件处理 | 耒耒耒耒耒</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="saga中的事件处理非常接近一个普通的事件监听器。上述的对于方法和参数解析的规则在这里是有效的。不过,有一个主要区别。虽然存在事件监听器只有单个实例处理所有传入事件，但也存在一个saga有多个实例，每个实例都对不同的事件感兴趣。例如,关于Order的id为1的管理业务Saga对Order“2”的事件不感兴趣，反之亦然。 Axon不会将所有事件都发布给所有saga实例（这将是对资源的完全浪费），而是">
+    <meta name="description" content="saga中的事件处理非常接近一个普通的事件监听器。上述的对于方法和参数解析的规则在这里是有效的。不过,有一个主要区别。虽然存在事件监听器只有单个实例处理所有传入事件，但也存在一个saga有多个实例，每个实例都对不同的事件感兴趣。例如,关于Order的id为1的管理业务Saga对Order“2”的事件不感兴趣，反之亦然。">
 <meta name="keywords" content="AxonFramework,DDD,CQRS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AxonFramework事件处理">
 <meta property="og:url" content="https://blog.weechang.xyz/2018/08/27/AxonFramework事件处理/index.html">
 <meta property="og:site_name" content="耒耒耒耒耒">
-<meta property="og:description" content="saga中的事件处理非常接近一个普通的事件监听器。上述的对于方法和参数解析的规则在这里是有效的。不过,有一个主要区别。虽然存在事件监听器只有单个实例处理所有传入事件，但也存在一个saga有多个实例，每个实例都对不同的事件感兴趣。例如,关于Order的id为1的管理业务Saga对Order“2”的事件不感兴趣，反之亦然。 Axon不会将所有事件都发布给所有saga实例（这将是对资源的完全浪费），而是">
+<meta property="og:description" content="saga中的事件处理非常接近一个普通的事件监听器。上述的对于方法和参数解析的规则在这里是有效的。不过,有一个主要区别。虽然存在事件监听器只有单个实例处理所有传入事件，但也存在一个saga有多个实例，每个实例都对不同的事件感兴趣。例如,关于Order的id为1的管理业务Saga对Order“2”的事件不感兴趣，反之亦然。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-27T06:48:52.031Z">
+<meta property="og:updated_time" content="2018-08-27T06:52:02.063Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AxonFramework事件处理">
-<meta name="twitter:description" content="saga中的事件处理非常接近一个普通的事件监听器。上述的对于方法和参数解析的规则在这里是有效的。不过,有一个主要区别。虽然存在事件监听器只有单个实例处理所有传入事件，但也存在一个saga有多个实例，每个实例都对不同的事件感兴趣。例如,关于Order的id为1的管理业务Saga对Order“2”的事件不感兴趣，反之亦然。 Axon不会将所有事件都发布给所有saga实例（这将是对资源的完全浪费），而是">
+<meta name="twitter:description" content="saga中的事件处理非常接近一个普通的事件监听器。上述的对于方法和参数解析的规则在这里是有效的。不过,有一个主要区别。虽然存在事件监听器只有单个实例处理所有传入事件，但也存在一个saga有多个实例，每个实例都对不同的事件感兴趣。例如,关于Order的id为1的管理业务Saga对Order“2”的事件不感兴趣，反之亦然。">
     
 
     
@@ -290,6 +290,7 @@
         
             
             <p>saga中的事件处理非常接近一个普通的事件监听器。上述的对于方法和参数解析的规则在这里是有效的。不过,有一个主要区别。虽然存在事件监听器只有单个实例处理所有传入事件，但也存在一个saga有多个实例，每个实例都对不同的事件感兴趣。例如,关于Order的id为1的管理业务Saga对Order“2”的事件不感兴趣，反之亦然。</p>
+<a id="more"></a>
 <p>Axon不会将所有事件都发布给所有saga实例（这将是对资源的完全浪费），而是只发布与saga相关联的属性的事件。这个通过使用AssociationValues完成。一个AssociationValue由key和value组成。key代表标识符使用的类型，例如“orderId”或“order”。value表示前面例子中相应“1”或“2”值。</p>
 <p>带@SagaEventHandler注解的方法被评估的顺序与带@EventHandler的相同。如果处理器方法的参数与传入的事件匹配，那么方法就匹配，如果saga有一个定义在处理器方法上的association属性。</p>
 <p>@SagaEventHandler注解有两个attribute,其中associationProperty是最重要的。这是传入事件上property的名称，应该用来寻找相关的saga。association值的key是property的名称。这个值是由property的getter方法返回的值。</p>
