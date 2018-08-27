@@ -4,6 +4,30 @@
 
     
   <url>
+    <loc>https://blog.weechang.xyz/2018/08/27/AxonFramework%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/</loc>
+    <lastmod>2018-08-27T07:02:47.688Z</lastmod>
+    <data>
+        <display>
+        <title>AxonFramework事件处理</title>
+        <pubTime>2018-08-27T06:47:54.000Z</pubTime>
+        
+        <tag>AxonFramework</tag>
+         
+        <tag>DDD</tag>
+         
+        <tag>CQRS</tag>
+         
+         
+           
+             
+              <breadCrumb title="AxonFramework" url="https://blog.weechang.xyz/categories/AxonFramework/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://blog.weechang.xyz/2018/08/27/AxonFramework%E5%9C%A8%E8%81%9A%E5%90%88%E4%B8%AD%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4/</loc>
     <lastmod>2018-08-27T06:55:16.086Z</lastmod>
     <data>
@@ -34,30 +58,6 @@
         <display>
         <title>AxonFramework聚合事件溯源</title>
         <pubTime>2018-08-27T05:56:57.000Z</pubTime>
-        
-        <tag>AxonFramework</tag>
-         
-        <tag>DDD</tag>
-         
-        <tag>CQRS</tag>
-         
-         
-           
-             
-              <breadCrumb title="AxonFramework" url="https://blog.weechang.xyz/categories/AxonFramework/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.weechang.xyz/2018/08/27/AxonFramework%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/</loc>
-    <lastmod>2018-08-27T06:53:19.254Z</lastmod>
-    <data>
-        <display>
-        <title>AxonFramework事件处理</title>
-        <pubTime>2018-08-27T06:47:54.000Z</pubTime>
         
         <tag>AxonFramework</tag>
          
