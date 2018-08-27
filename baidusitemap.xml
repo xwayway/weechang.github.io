@@ -3,6 +3,30 @@
 
 
     
+  <url>
+    <loc>https://blog.weechang.xyz/2018/08/27/AxonFramework%E8%81%9A%E5%90%88%E4%BA%8B%E4%BB%B6%E6%BA%AF%E6%BA%90/</loc>
+    <lastmod>2018-08-27T05:59:19.271Z</lastmod>
+    <data>
+        <display>
+        <title>AxonFramework聚合事件溯源</title>
+        <pubTime>2018-08-27T05:56:57.000Z</pubTime>
+        
+        <tag>AxonFramework</tag>
+         
+        <tag>DDD</tag>
+         
+        <tag>CQRS</tag>
+         
+         
+           
+             
+              <breadCrumb title="AxonFramework" url="https://blog.weechang.xyz/categories/AxonFramework/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>https://blog.weechang.xyz/2018/08/23/MySql%E4%B8%AD%E7%9A%84find-in-set%E3%80%81in%E3%80%81like%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
