@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="耒耒耒耒耒">
 <meta property="og:description" content="saga中的事件处理非常接近一个普通的事件监听器。上述的对于方法和参数解析的规则在这里是有效的。不过,有一个主要区别。虽然存在事件监听器只有单个实例处理所有传入事件，但也存在一个saga有多个实例，每个实例都对不同的事件感兴趣。例如,关于Order的id为1的管理业务Saga对Order“2”的事件不感兴趣，反之亦然。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-27T06:52:02.063Z">
+<meta property="og:updated_time" content="2018-08-27T06:53:19.254Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AxonFramework事件处理">
 <meta name="twitter:description" content="saga中的事件处理非常接近一个普通的事件监听器。上述的对于方法和参数解析的规则在这里是有效的。不过,有一个主要区别。虽然存在事件监听器只有单个实例处理所有传入事件，但也存在一个saga有多个实例，每个实例都对不同的事件感兴趣。例如,关于Order的id为1的管理业务Saga对Order“2”的事件不感兴趣，反之亦然。">
@@ -298,11 +298,35 @@
 <p>有时,想要关联的属性的名称不是想要使用的关联的名称。例如,你有一个销售订单相匹配购买订单的saga。你可以有一个包含“buyOrderId”和“sellOrderId”的事务对象。如果你想要的saga将“orderId”作为关联的值，你可以定义一个不同的keyName 在@SagaEventHandler注解中。它将变成@SagaEventHandler(associationProperty=”sellOrderId”, keyName=”orderId”)。</p>
 <h2 id="管理关联"><a href="#管理关联" class="headerlink" title="管理关联"></a>管理关联</h2><p>当一个saga事务管理跨多个域的概念，如订单、发货,、发票，等等，saga需要与这些概念的实例关联。一个关联需要两个参数：key，识别关联的类型(订单、发货等)和一个value，该值表示该概念的标识符。<br>在以下几个方面完成用概念关联到saga。第一，当新创建一个saga时将调用一个用@StartSaga注解的事件处理器时，它将自动与@SagaEventHandler方法中标识的关联。所有其他的关联用SagaLifecycle.associateWith(String key, String/Number value)方法创建。用SagaLifecycle.removeAssociationWith(String key, String/Number value)方法去移除一个特定的关联。</p>
 <p>想象一下为一个围绕着订单的事务而已经被创建的一个saga。saga自动关联订单，方法被@StartSaga注解。saga是负责创建该订单的发票，并告诉航运创建一个载货量。一旦货物到达和发票支付,交易完成后,saga被关闭。<br>这是一个saga的代码：</p>
-<p><pre><br>public class OrderManagementSaga {<br>private boolean paid = false;<br>private boolean delivered = false;<br>@Inject<br>private transient CommandGateway commandGateway;</pre></p>
-<p>@StartSaga<br>@SagaEventHandler(associationProperty = “orderId”)<br>public void handle(OrderCreatedEvent event) {<br>    // client generated identifiers<br>    ShippingId shipmentId = createShipmentId();<br>    InvoiceId invoiceId = createInvoiceId();<br>    // associate the Saga with these values, before sending the commands<br>    associateWith(“shipmentId”, shipmentId);<br>    associateWith(“invoiceId”, invoiceId);<br>    // send the commands<br>    commandGateway.send(new PrepareShippingCommand(…));<br>    commandGateway.send(new CreateInvoiceCommand(…));<br>}</p>
-<p>@SagaEventHandler(associationProperty = “shipmentId”)<br>public void handle(ShippingArrivedEvent event) {<br>    delivered = true;<br>    if (paid) { end(); }<br>}</p>
-<p>@SagaEventHandler(associationProperty = “invoiceId”)<br>public void handle(InvoicePaidEvent event) {<br>    paid = true;<br>    if (delivered) { end(); }<br>}</p>
-<p>// …<br>}<br><br>通过允许客户端生成标识符，可以很容易地与一个概念相关联，而不需要请求响应类型命令。在发布命令之前，我们将事件与这些概念关联起来。通过这种方式，我们也保证捕捉到作为该命令的一部分生成的事件。一旦发票付清，货物到达，saga也将结束。</p>
+<p><pre><br>public class OrderManagementSaga {<br>    private boolean paid = false;<br>    private boolean delivered = false;<br>    @Inject<br>    private transient CommandGateway commandGateway;</pre></p>
+<pre><code>@StartSaga
+@SagaEventHandler(associationProperty = &quot;orderId&quot;)
+public void handle(OrderCreatedEvent event) {
+    // client generated identifiers
+    ShippingId shipmentId = createShipmentId();
+    InvoiceId invoiceId = createInvoiceId();
+    // associate the Saga with these values, before sending the commands
+    associateWith(&quot;shipmentId&quot;, shipmentId);
+    associateWith(&quot;invoiceId&quot;, invoiceId);
+    // send the commands
+    commandGateway.send(new PrepareShippingCommand(...));
+    commandGateway.send(new CreateInvoiceCommand(...));
+}
+
+@SagaEventHandler(associationProperty = &quot;shipmentId&quot;)
+public void handle(ShippingArrivedEvent event) {
+    delivered = true;
+    if (paid) { end(); }
+}
+
+@SagaEventHandler(associationProperty = &quot;invoiceId&quot;)
+public void handle(InvoicePaidEvent event) {
+    paid = true;
+    if (delivered) { end(); }
+}
+
+// ...
+</code></pre><p>}<br><br>通过允许客户端生成标识符，可以很容易地与一个概念相关联，而不需要请求响应类型命令。在发布命令之前，我们将事件与这些概念关联起来。通过这种方式，我们也保证捕捉到作为该命令的一部分生成的事件。一旦发票付清，货物到达，saga也将结束。</p>
 <p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/297622466ca9" target="_blank" rel="noopener">https://www.jianshu.com/p/297622466ca9</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
 
         

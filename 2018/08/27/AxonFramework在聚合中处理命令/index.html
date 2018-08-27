@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="耒耒耒耒耒">
 <meta property="og:description" content="建议在包含处理状态命令的聚合中直接定义命令处理器，因为命令处理器有可能需要该集合的状态来执行其任务。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-27T06:11:34.656Z">
+<meta property="og:updated_time" content="2018-08-27T06:55:16.086Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AxonFramework在聚合中处理命令">
 <meta name="twitter:description" content="建议在包含处理状态命令的聚合中直接定义命令处理器，因为命令处理器有可能需要该集合的状态来执行其任务。">
@@ -388,16 +388,18 @@ public class MyEntity {
 <h2 id="外部命令处理器"><a href="#外部命令处理器" class="headerlink" title="外部命令处理器"></a>外部命令处理器</h2><p>在某些情况下,想要直接向一个聚合实例路由命令是不可能。在这种情况下,可以注册一个命令处理器对象。命令处理器对象是一个简单的(常规的)对象，是带@CommandHandle注解的方法。与集合的情况不同，命令处理器对象只有单个实例，该对象处理其方法中声明的所有命令类型。</p>
 <pre>
 public class MyAnnotatedHandler {
-@CommandHandler
-public void handleSomeCommand(SomeCommand command, @MetaDataValue("userId") String
-userId) {
-// whatever logic here
+
+    @CommandHandler
+    public void handleSomeCommand(SomeCommand command, @MetaDataValue("userId") String userId) {
+        // whatever logic here
+    }
+
+    @CommandHandler(commandName = "myCustomCommand")
+    public void handleCustomCommand(SomeCommand command) {
+        // handling logic here
+    }
 }
-@CommandHandler(commandName = "myCustomCommand")
-public void handleCustomCommand(SomeCommand command) {
-// handling logic here
-}
-}
+
 // To register the annotated handlers to the command bus:
 Configurer configurer = ...
 configurer.registerCommandHandler(c -> new MyAnnotatedHandler());
