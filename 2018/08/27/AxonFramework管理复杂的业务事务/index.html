@@ -3,16 +3,20 @@
 <head>
     <meta charset="utf-8">
     
-    <title>标签: String | 耒耒耒耒耒</title>
+    <title>AxonFramework管理复杂的业务事务 | 耒耒耒耒耒</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="keywords" content="耒耒耒耒耒">
-<meta property="og:type" content="website">
-<meta property="og:title" content="耒耒耒耒耒">
-<meta property="og:url" content="https://blog.weechang.xyz/tags/String/index.html">
+    <meta name="description" content="并不是每个命令都能够在一个ACID事务中完全执行。现金转账事务是一个很常见频繁出现的例子，用来作为论据。通常认为，把钱从一个账户转移到另一个账户，绝对需要原子性和一致性。其实并非如此，相反，这是完全不可能的。如果钱从A银行的帐户转移到B银行的帐户怎么办？A银行要获得B银行数据库的锁吗？如果转账正在进行的时候，A银行已经扣除了金额,但B银行并没收到它，这不是很奇怪吗?事实上不是，这是“正在进行”。另">
+<meta name="keywords" content="AxonFramework,DDD,CQRS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AxonFramework管理复杂的业务事务">
+<meta property="og:url" content="https://blog.weechang.xyz/2018/08/27/AxonFramework管理复杂的业务事务/index.html">
 <meta property="og:site_name" content="耒耒耒耒耒">
+<meta property="og:description" content="并不是每个命令都能够在一个ACID事务中完全执行。现金转账事务是一个很常见频繁出现的例子，用来作为论据。通常认为，把钱从一个账户转移到另一个账户，绝对需要原子性和一致性。其实并非如此，相反，这是完全不可能的。如果钱从A银行的帐户转移到B银行的帐户怎么办？A银行要获得B银行数据库的锁吗？如果转账正在进行的时候，A银行已经扣除了金额,但B银行并没收到它，这不是很奇怪吗?事实上不是，这是“正在进行”。另">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-27T06:45:00.963Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="耒耒耒耒耒">
+<meta name="twitter:title" content="AxonFramework管理复杂的业务事务">
+<meta name="twitter:description" content="并不是每个命令都能够在一个ACID事务中完全执行。现金转账事务是一个很常见频繁出现的例子，用来作为论据。通常认为，把钱从一个账户转移到另一个账户，绝对需要原子性和一致性。其实并非如此，相反，这是完全不可能的。如果钱从A银行的帐户转移到B银行的帐户怎么办？A银行要获得B银行数据库的锁吗？如果转账正在进行的时候，A银行已经扣除了金额,但B银行并没收到它，这不是很奇怪吗?事实上不是，这是“正在进行”。另">
     
 
     
@@ -222,50 +226,186 @@
 </aside>
 
             
-            <section id="main">
-<div class="timeline timeline-wrap">
-    <div class="timeline-row timeline-row-major">
-        <span class="node"><i class="fas fa-tag"></i></span>
-        <h1 class="title">#String</h1>
-    </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="post-AxonFramework管理复杂的业务事务" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/06/08/java基础-1——String类/">【Java学习之从头开始】Java基础-1——String类</a>
+        <h1 class="article-title" itemprop="name">
+            AxonFramework管理复杂的业务事务
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/06/08/java基础-1——String类/">
-            <time datetime="2018-06-08T05:59:02.000Z" itemprop="datePublished">2018-06-08</time>
+        <a href="/2018/08/27/AxonFramework管理复杂的业务事务/">
+            <time datetime="2018-08-27T06:43:56.000Z" itemprop="datePublished">2018-08-27</time>
         </a>
     </div>
 
 
-                    
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/Java学习之从头开始/">Java学习之从头开始</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/Java基础/">Java基础</a>, <a class="tag-link" href="/tags/Java学习之从头开始/">Java学习之从头开始</a>, <a class="tag-link" href="/tags/String/">String</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
+                        <div class="article-user">
+    <i class="fas fa-user-alt"></i>
+    
+        <span>勇赴</span>
     
 </div>
+
+                        
+    <div class="article-category">
+    	<i class="fas fa-folder"></i>
+        <a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a>
+    </div>
+
+                    </div>
+                    <div class="article-meta">
+                         
+                             <div class="article-word-count">
+<span>
+    <i class="fas fa-file-word"></i>
+    共987字，
+</span>
+<span>
+    <i class="fas fa-clock"></i>
+    大约需要3分钟
+</span>
+</div>
+<span id="busuanzi_container_page_pv">
+    <i class="fas fa-eye"></i>
+    已被阅读<span id="busuanzi_value_page_pv"></span>次
+</span>
+
+                         
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>并不是每个命令都能够在一个ACID事务中完全执行。现金转账事务是一个很常见频繁出现的例子，用来作为论据。通常认为，把钱从一个账户转移到另一个账户，绝对需要原子性和一致性。其实并非如此，相反，这是完全不可能的。如果钱从A银行的帐户转移到B银行的帐户怎么办？A银行要获得B银行数据库的锁吗？如果转账正在进行的时候，A银行已经扣除了金额,但B银行并没收到它，这不是很奇怪吗?事实上不是，这是“正在进行”。另一方面,如果在向B银行的帐户中存资金时出现错误，A银行的客户就想要他的钱回退。所以我们需要某种形式的最终一致性。</p>
+<a id="more"></a>
+<p>虽然ACID事务在某些情况下不是必需的甚至是不可能的，但仍然需要某种形式的事务管理。通常，这些事务称为BASE事务：基本的可用性，软性状态，最终一致性。 与ACID相反，BASE事务无法轻松回滚。 要回滚，需要采取补偿措施来恢复作为事务一部分发生的任何事情。 在汇款的例子中，如果没有把钱存入B银行，将把钱退还给A银行。<br>在CQRS中，Sagas可用于管理这些BASE事务。 他们对事件做出响应，并可能调度命令，调用外部应用程序等。在领域驱动设计的上下文中，将Sagas用作多个限界上下文之间的协调机制并不罕见。</p>
+<h2 id="Saga"><a href="#Saga" class="headerlink" title="Saga"></a>Saga</h2><p>一个saga是一种特殊类型的事件监听器：用来管理业务事务。一些事务可能运行数天甚至数周，而另一些则在几毫秒内完成。在Axon中，saga的每个实例负责管理一个业务事务。这意味着saga维护状态必须管理事务，持续或采取补偿动作回滚已经被采取任何动作。通常情况下，与常规的事件监听器相反，saga有一个起点和终点，都由事件触发。虽然saga的起点通常是非常明确的，但可能有多种方式结束一个saga。</p>
+<p>在Axon中,Sagas是定义了一个或多个@SagaEventHandler方法的类。与常规事件处理器不同，在任何时间可能存在多个saga的实例。Saga由一个Processor管理(跟踪或订阅)，Processor通过事件致力于处理特定saga类型。</p>
+<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p>一个单独的saga实例负责管理一个单独的事务。这意味着你需要能够标示一个saga生命周期的开始和结束。</p>
+<p>在一个saga中，事件处理器用@SagaEventHandler注解。如果一个特定的事件标志着开始一个事务，在同一个方法上添加另一个注解:@StartSaga。这个注解将创建一个新的saga，并且当匹配事件后布后调用它的事件处理器方法。</p>
+<p>默认情况下,只有在找不到匹配的saga时才能开启一个新的saga。你也可以强行创建一个新的saga实例，通过把@StartSaga注解上的forceNew属性设置为true。</p>
+<p>结束一个saga可以以两种方式完成。如果一个特定的事件总是标示saga生命周期的结束，在saga上用@EndSaga注解事件的处理器。在调用处理器后，saga的生命周期将结束。作为一种选择,你可以调用end()从saga内部去结束生命周期。这允许你有条件地结束saga。</p>
+<p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/9c8d7fb623a0" target="_blank" rel="noopener">https://www.jianshu.com/p/9c8d7fb623a0</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/AxonFramework/">AxonFramework</a>, <a class="tag-link" href="/tags/CQRS/">CQRS</a>, <a class="tag-link" href="/tags/DDD/">DDD</a>
+    </div>
+
+            <div class="share-container">
+
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='https://blog.weechang.xyz/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+</div>
+
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/08/27/AxonFramework事件处理/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    AxonFramework事件处理
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2018/08/27/AxonFramework在聚合中处理命令/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">AxonFramework在聚合中处理命令</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+
+
+
+
+    
+<!-- Link Gitalk 的支持文件  -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        // gitalk的主要参数
+        clientID: "295b369cd27d90dc5cfc",
+        clientSecret: "23a308db213cd99742ff3e07da9021b9c5909b68",
+        repo: "weechang.github.io",
+        owner: "weechang",
+        admin: ["weechang"],
+        id: 'AxonFramework管理复杂的业务事务',
+    });
+    gitalk.render('gitalk-container');
+</script>
+<!-- Gitalk end -->
+
 </section>
             
                 
@@ -378,6 +518,24 @@
 </footer>
         
     
+<!-- Link Gitalk 的支持文件  -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        // gitalk的主要参数
+        clientID: "295b369cd27d90dc5cfc",
+        clientSecret: "23a308db213cd99742ff3e07da9021b9c5909b68",
+        repo: "weechang.github.io",
+        owner: "weechang",
+        admin: ["weechang"],
+        id: 'AxonFramework管理复杂的业务事务',
+    });
+    gitalk.render('gitalk-container');
+</script>
+<!-- Gitalk end -->
+
 
 
 

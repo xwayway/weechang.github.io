@@ -3,16 +3,20 @@
 <head>
     <meta charset="utf-8">
     
-    <title>标签: String | 耒耒耒耒耒</title>
+    <title>AxonFramework在聚合中处理命令 | 耒耒耒耒耒</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="keywords" content="耒耒耒耒耒">
-<meta property="og:type" content="website">
-<meta property="og:title" content="耒耒耒耒耒">
-<meta property="og:url" content="https://blog.weechang.xyz/tags/String/index.html">
+    <meta name="description" content="建议在包含处理状态命令的聚合中直接定义命令处理器，因为命令处理器有可能需要该集合的状态来执行其任务。">
+<meta name="keywords" content="AxonFramework,DDD,CQRS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AxonFramework在聚合中处理命令">
+<meta property="og:url" content="https://blog.weechang.xyz/2018/08/27/AxonFramework在聚合中处理命令/index.html">
 <meta property="og:site_name" content="耒耒耒耒耒">
+<meta property="og:description" content="建议在包含处理状态命令的聚合中直接定义命令处理器，因为命令处理器有可能需要该集合的状态来执行其任务。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-27T06:11:34.656Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="耒耒耒耒耒">
+<meta name="twitter:title" content="AxonFramework在聚合中处理命令">
+<meta name="twitter:description" content="建议在包含处理状态命令的聚合中直接定义命令处理器，因为命令处理器有可能需要该集合的状态来执行其任务。">
     
 
     
@@ -222,50 +226,291 @@
 </aside>
 
             
-            <section id="main">
-<div class="timeline timeline-wrap">
-    <div class="timeline-row timeline-row-major">
-        <span class="node"><i class="fas fa-tag"></i></span>
-        <h1 class="title">#String</h1>
-    </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="post-AxonFramework在聚合中处理命令" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/06/08/java基础-1——String类/">【Java学习之从头开始】Java基础-1——String类</a>
+        <h1 class="article-title" itemprop="name">
+            AxonFramework在聚合中处理命令
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/06/08/java基础-1——String类/">
-            <time datetime="2018-06-08T05:59:02.000Z" itemprop="datePublished">2018-06-08</time>
+        <a href="/2018/08/27/AxonFramework在聚合中处理命令/">
+            <time datetime="2018-08-27T06:04:52.000Z" itemprop="datePublished">2018-08-27</time>
         </a>
     </div>
 
 
-                    
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/Java学习之从头开始/">Java学习之从头开始</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/Java基础/">Java基础</a>, <a class="tag-link" href="/tags/Java学习之从头开始/">Java学习之从头开始</a>, <a class="tag-link" href="/tags/String/">String</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
+                        <div class="article-user">
+    <i class="fas fa-user-alt"></i>
+    
+        <span>勇赴</span>
     
 </div>
+
+                        
+    <div class="article-category">
+    	<i class="fas fa-folder"></i>
+        <a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a>
+    </div>
+
+                    </div>
+                    <div class="article-meta">
+                         
+                             <div class="article-word-count">
+<span>
+    <i class="fas fa-file-word"></i>
+    共1,725字，
+</span>
+<span>
+    <i class="fas fa-clock"></i>
+    大约需要6分钟
+</span>
+</div>
+<span id="busuanzi_container_page_pv">
+    <i class="fas fa-eye"></i>
+    已被阅读<span id="busuanzi_value_page_pv"></span>次
+</span>
+
+                         
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>建议在包含处理状态命令的聚合中直接定义命令处理器，因为命令处理器有可能需要该集合的状态来执行其任务。</p>
+<a id="more"></a>
+<p>要在一个聚合上定义一个命令处理器,只需用@CommandHandler注解命令处理方法即可。带@CommandHandler注解方法的规则和其他处理方法都是一样的。然而,命令不仅通过他们的有效载荷(payload)进行路由。命令消息携带一个名字,该名称默认为命令对象的完全限定类名。</p>
+<p>默认情况下,带@CommandHandler注解的方法允许以下参数类型:</p>
+<ul>
+<li><p>第一个参数是命令消息的有效载荷。它的类型也可能是Message或CommandMessage，如果@CommandHandler 注解明确定义命令处理器的名称。默认情况下，命令名是命令的有效载荷的完全限定类名。</p>
+</li>
+<li><p>用@MetaDataValue注解的参数，将用注解上的键对元数据值进行解析。如果需要为false（默认值），则在元数据值不存在时传递NULL。如果需要为True，在元数据值不存在时，该解析器将不匹配并阻止该方法被调用。</p>
+</li>
+<li><p>参数的类型元数据将注入整个CommandMessage的元数据。</p>
+</li>
+<li><p>UnitOfWork类型的参数获取当前工作单元注入。这允许命令处理器注册的行为在工作单元的特定阶段执行，或获得与它注册的资源的访问。</p>
+</li>
+<li><p>Message或CommandMessage类型的参数，将得到完整的消息，包括有效载荷和元数据。如果方法需要多个元数据字段或包装消息的其他属性，则此方法非常有用。</p>
+</li>
+</ul>
+<p>为了使Axon知道哪一个聚合类型的实例应该处理命令消息，命令对象的属性传送聚合标识符，必须用@TargetAggregateIdentifier注解。注解可以放置在任何字段或访问器方法上（例如getter）。</p>
+<p>创建聚合实例的命令不需要标识目标聚合标识符，虽然建议标注聚合标识符。</p>
+<p>如果你喜欢使用另一个机制路由命令，这种行为可以通过提供一个自定义CommandTargetResolver来重写。这个类应该返回聚合标识符和预期的版本(如果有的话)基于给定的命令。</p>
+<blockquote>
+<p><b>注意</b><br>当@CommandHandler注解放在一个聚合的构造函数上时，相应的命令将创建一个新的聚合实例，并将它添加到存储库。这些命令不需要针对特的定聚合实例。因此，这些命令不需要任何@TargetAggregateIdentifier或@TargetAggregateVersion注解，也不会调用自定义CommandTargetResolver。<br>当一个命令创建一个聚合实例时，该命令的回调函数在命令执行成功执行后，将得到聚合标识符。</p>
+</blockquote>
+<pre>
+public class MyAggregate {
+    @AggregateIdentifier
+    private String id;
+    @CommandHandler
+    public MyAggregate(CreateMyAggregateCommand command) {
+        apply(new MyAggregateCreatedEvent(IdentifierFactory.getInstance().generateIden
+tifier()));
+    }
+    // no-arg constructor for Axon
+    MyAggregate() {
+    }
+    @CommandHandler
+    public void doSomething(DoSomethingCommand command) {
+    // do something...
+    }
+    // code omitted for brevity. The event handler for MyAggregateCreatedEvent must set the id field
+}
+public class DoSomethingCommand {
+    @TargetAggregateIdentifier
+    private String aggregateId;
+    // code omitted for brevity
+}
+</pre>
+
+<p>Axon的配置API可用于配置聚合。例如:</p>
+<pre>
+Configurer configurer = ...
+// to use defaults:
+configurer.configureAggreate(MyAggregate.class);
+// allowing customizations:
+configurer.configureAggregate(
+AggregateConfigurer.defaultConfiguration(MyAggregate.class)
+.configureCommandTargetResolver(c -> new CustomCommandTargetResolver()));
+</pre>
+
+<p>@CommandHandler注释并不局限于聚合根。把所有命令处理器放在根里，有时会导致聚合根中存在大量的方法,而它们中的许多只简单地调用转发给底层实体之一。如果是这样,你可以把@CommandHandler注解在一个底层的实体的方法上。Axon找到这些带注释的方法,聚合根中声明的实体字段必须用@AggregateMember标明。注意,命令处理器只检查带注解的字段的声明类型。如果一个字段值为空时传入命令到实体,就会抛出一个异常。</p>
+<pre>
+public class MyAggregate {
+    @AggregateIdentifier
+    private String id;
+    @AggregateMember
+    private MyEntity entity;
+    @CommandHandler
+    public MyAggregate(CreateMyAggregateCommand command) {
+        apply(new MyAggregateCreatedEvent(...);
+    }
+    // no-arg constructor for Axon
+    MyAggregate() {
+    }
+    @CommandHandler
+    public void doSomething(DoSomethingCommand command) {
+        // do something...
+    }
+    // code omitted for brevity. The event handler for MyAggregateCreatedEvent must set the id field
+    // and somewhere in the lifecycle, a value for "entity" must be assigned to be able to accept
+    // DoSomethingInEntityCommand commands.
+}
+public class MyEntity {
+    @CommandHandler
+    public void handleSomeCommand(DoSomethingInEntityCommand command) {
+        // do something
+    }
+}
+</pre>
+
+<p>请注意，在聚合中每个命令必须只对应一个处理器。这意味着你不能用@CommandHandler标注多个实体(either root nor not，包含是根和不是根的所有实体)来处理相同的命令类型。如果你需要有条件地路由命令到一个实体,这些实体的父类应该处理命令,并根据apply的条件转发该命令。</p>
+<p>字段的运行时类型不需要精确地声明类型。然而，@CommandHandle方法只检查被@AggregateMember标记的字段的声明类型。</p>
+<p>也可以用@AggregateMember去注释包含实体的集合和Map。在后一种情况下，map的值有望包含实体，而键包含一个用作它们引用的值。</p>
+<p>作为一个命令需要被路由到正确的实例，这些实例必须被正确地标识。它们的“ID”字段必须用@ EntityId标记。命令的属性将用于查找该消息应被路由到的实体，默认为被标识的字段的名称。例如，当标记一个名为“myentityid”字段，命令必须具有相同名称的属性。这意味着必须提供个getmyentityid或myentityid()方法。如果字段的名称和路由属性不同，你可以提供一个值显式使用 @EntityId(routingKey = “customRoutingProperty”)。</p>
+<p>如果在带注解的集合和Map中没有实体能被找到，Axon会抛出一个IllegalStateException异常。显然,聚合不能够在那个时间点上处理命令。</p>
+<blockquote>
+<p><b>注意</b><br>字段声明的集合或Map应该包含适当的泛型,允许Axon识别实体的类型包含在集合或Map中。如果不可能添加泛型在声明中(例如因为你已经使用了一个自定义泛型类型的实现),你必须指定实体的类型，用于entityType属性@AggregateMember注解。</p>
+</blockquote>
+<h2 id="外部命令处理器"><a href="#外部命令处理器" class="headerlink" title="外部命令处理器"></a>外部命令处理器</h2><p>在某些情况下,想要直接向一个聚合实例路由命令是不可能。在这种情况下,可以注册一个命令处理器对象。命令处理器对象是一个简单的(常规的)对象，是带@CommandHandle注解的方法。与集合的情况不同，命令处理器对象只有单个实例，该对象处理其方法中声明的所有命令类型。</p>
+<pre>
+public class MyAnnotatedHandler {
+@CommandHandler
+public void handleSomeCommand(SomeCommand command, @MetaDataValue("userId") String
+userId) {
+// whatever logic here
+}
+@CommandHandler(commandName = "myCustomCommand")
+public void handleCustomCommand(SomeCommand command) {
+// handling logic here
+}
+}
+// To register the annotated handlers to the command bus:
+Configurer configurer = ...
+configurer.registerCommandHandler(c -> new MyAnnotatedHandler());
+</pre>
+
+<p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/64ddd5a8f517" target="_blank" rel="noopener">https://www.jianshu.com/p/64ddd5a8f517</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/AxonFramework/">AxonFramework</a>, <a class="tag-link" href="/tags/CQRS/">CQRS</a>, <a class="tag-link" href="/tags/DDD/">DDD</a>
+    </div>
+
+            <div class="share-container">
+
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='https://blog.weechang.xyz/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+</div>
+
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/08/27/AxonFramework管理复杂的业务事务/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    AxonFramework管理复杂的业务事务
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2018/08/27/AxonFramework聚合事件溯源/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">AxonFramework聚合事件溯源</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+
+
+
+
+    
+<!-- Link Gitalk 的支持文件  -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        // gitalk的主要参数
+        clientID: "295b369cd27d90dc5cfc",
+        clientSecret: "23a308db213cd99742ff3e07da9021b9c5909b68",
+        repo: "weechang.github.io",
+        owner: "weechang",
+        admin: ["weechang"],
+        id: 'AxonFramework在聚合中处理命令',
+    });
+    gitalk.render('gitalk-container');
+</script>
+<!-- Gitalk end -->
+
 </section>
             
                 
@@ -378,6 +623,24 @@
 </footer>
         
     
+<!-- Link Gitalk 的支持文件  -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        // gitalk的主要参数
+        clientID: "295b369cd27d90dc5cfc",
+        clientSecret: "23a308db213cd99742ff3e07da9021b9c5909b68",
+        repo: "weechang.github.io",
+        owner: "weechang",
+        admin: ["weechang"],
+        id: 'AxonFramework在聚合中处理命令',
+    });
+    gitalk.render('gitalk-container');
+</script>
+<!-- Gitalk end -->
+
 
 
 
