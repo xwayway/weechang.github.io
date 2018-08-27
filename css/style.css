@@ -1774,6 +1774,8 @@ a.article-title:hover {
 }
 .widget-title {
   margin-bottom: 0;
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 .widget {
   padding: 15px 5px;
