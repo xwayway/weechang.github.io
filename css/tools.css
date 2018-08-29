@@ -19,6 +19,10 @@
   background: #fff;
   margin-right: 20px;
 }
+.tool-row .no-item {
+  background: #f5f8f9 !important;
+  border: 1px solid #f5f8f9 !important;
+}
 .tool-item .tool-name {
   font-weight: bold;
   font-size: 1.5rem;
