@@ -4,8 +4,32 @@
 
     
   <url>
+    <loc>http://blog.weechang.xyz/2018/08/29/AxonFramework-%E6%B5%8B%E8%AF%95%E5%B8%A6%E6%B3%A8%E8%A7%A3%E7%9A%84Saga/</loc>
+    <lastmod>2018-08-29T03:43:16.904Z</lastmod>
+    <data>
+        <display>
+        <title>AxonFramework-测试带注解的Saga</title>
+        <pubTime>2018-08-29T03:30:56.000Z</pubTime>
+        
+        <tag>AxonFramework</tag>
+         
+        <tag>DDD</tag>
+         
+        <tag>CQRS</tag>
+         
+         
+           
+             
+              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.weechang.xyz/2018/08/29/AxonFramework%E6%B5%8B%E8%AF%95/</loc>
-    <lastmod>2018-08-29T02:37:09.622Z</lastmod>
+    <lastmod>2018-08-29T03:41:04.883Z</lastmod>
     <data>
         <display>
         <title>AxonFramework测试</title>
