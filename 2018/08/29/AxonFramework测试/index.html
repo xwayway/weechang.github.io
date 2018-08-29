@@ -5,18 +5,18 @@
     
     <title>AxonFramework测试 | 耒耒耒耒耒</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="CQRS最大的好处之一，尤其是事件溯源就事件和命令而言，单纯地表达测试是可能的。这两个功能组件，事件和命令对领域专家或业务所有者都有明确的含义。这不仅意味着测试表达就事件和命令而言有明确的功能含义，这也意味着他们不依靠任何实现选择。 本章描述的特性需要axon-test模块,可通过配置maven依赖(使用axon-test 和test&amp;lt;/scope)或通过完整包下载。 本章中描述的固件可用于">
+    <meta name="description" content="CQRS最大的好处之一，尤其是事件溯源就事件和命令而言，单纯地表达测试是可能的。这两个功能组件，事件和命令对领域专家或业务所有者都有明确的含义。这不仅意味着测试表达就事件和命令而言有明确的功能含义，这也意味着他们不依靠任何实现选择。">
 <meta name="keywords" content="AxonFramework,DDD,CQRS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AxonFramework测试">
 <meta property="og:url" content="http://blog.weechang.xyz/2018/08/29/AxonFramework测试/index.html">
 <meta property="og:site_name" content="耒耒耒耒耒">
-<meta property="og:description" content="CQRS最大的好处之一，尤其是事件溯源就事件和命令而言，单纯地表达测试是可能的。这两个功能组件，事件和命令对领域专家或业务所有者都有明确的含义。这不仅意味着测试表达就事件和命令而言有明确的功能含义，这也意味着他们不依靠任何实现选择。 本章描述的特性需要axon-test模块,可通过配置maven依赖(使用axon-test 和test&amp;lt;/scope)或通过完整包下载。 本章中描述的固件可用于">
+<meta property="og:description" content="CQRS最大的好处之一，尤其是事件溯源就事件和命令而言，单纯地表达测试是可能的。这两个功能组件，事件和命令对领域专家或业务所有者都有明确的含义。这不仅意味着测试表达就事件和命令而言有明确的功能含义，这也意味着他们不依靠任何实现选择。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-29T02:34:53.554Z">
+<meta property="og:updated_time" content="2018-08-29T02:37:09.622Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AxonFramework测试">
-<meta name="twitter:description" content="CQRS最大的好处之一，尤其是事件溯源就事件和命令而言，单纯地表达测试是可能的。这两个功能组件，事件和命令对领域专家或业务所有者都有明确的含义。这不仅意味着测试表达就事件和命令而言有明确的功能含义，这也意味着他们不依靠任何实现选择。 本章描述的特性需要axon-test模块,可通过配置maven依赖(使用axon-test 和test&amp;lt;/scope)或通过完整包下载。 本章中描述的固件可用于">
+<meta name="twitter:description" content="CQRS最大的好处之一，尤其是事件溯源就事件和命令而言，单纯地表达测试是可能的。这两个功能组件，事件和命令对领域专家或业务所有者都有明确的含义。这不仅意味着测试表达就事件和命令而言有明确的功能含义，这也意味着他们不依靠任何实现选择。">
     
 
     
@@ -290,6 +290,7 @@
         
             
             <p>CQRS最大的好处之一，尤其是事件溯源就事件和命令而言，单纯地表达测试是可能的。这两个功能组件，事件和命令对领域专家或业务所有者都有明确的含义。这不仅意味着测试表达就事件和命令而言有明确的功能含义，这也意味着他们不依靠任何实现选择。</p>
+<a id="more"></a>
 <p>本章描述的特性需要axon-test模块,可通过配置maven依赖(使用<artifactid>axon-test</artifactid> 和<scope>test&lt;/scope)或通过完整包下载。</scope></p>
 <p>本章中描述的固件可用于任何测试框架，如JUnit和TestNG。</p>
 <h2 id="命令组件测试"><a href="#命令组件测试" class="headerlink" title="命令组件测试"></a>命令组件测试</h2><p>在任何CQRS基础架构中命令处理组件通常是最复杂的。比其他组件更复杂，这也意味着该组件有额外的与测试相关的需求。</p>
