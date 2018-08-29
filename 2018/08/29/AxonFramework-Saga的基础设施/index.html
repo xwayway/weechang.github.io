@@ -3,16 +3,20 @@
 <head>
     <meta charset="utf-8">
     
-    <title>标签: CQRS | 耒耒耒耒耒</title>
+    <title>AxonFramework-Saga的基础设施 | 耒耒耒耒耒</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="keywords" content="耒耒耒耒耒">
-<meta property="og:type" content="website">
-<meta property="og:title" content="耒耒耒耒耒">
-<meta property="og:url" content="http://blog.weechang.xyz/tags/CQRS/index.html">
+    <meta name="description" content="事件需要被重定向到适当的saga实例。为此,一些基础设施类是必需的。最重要的组件是SagaManager和SagaRepository。">
+<meta name="keywords" content="AxonFramework,DDD,CQRS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AxonFramework-Saga的基础设施">
+<meta property="og:url" content="http://blog.weechang.xyz/2018/08/29/AxonFramework-Saga的基础设施/index.html">
 <meta property="og:site_name" content="耒耒耒耒耒">
+<meta property="og:description" content="事件需要被重定向到适当的saga实例。为此,一些基础设施类是必需的。最重要的组件是SagaManager和SagaRepository。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-29T02:27:36.301Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="耒耒耒耒耒">
+<meta name="twitter:title" content="AxonFramework-Saga的基础设施">
+<meta name="twitter:description" content="事件需要被重定向到适当的saga实例。为此,一些基础设施类是必需的。最重要的组件是SagaManager和SagaRepository。">
     
 
     
@@ -222,25 +226,21 @@
 </aside>
 
             
-            <section id="main">
-<div class="timeline timeline-wrap">
-    <div class="timeline-row timeline-row-major">
-        <span class="node"><i class="fas fa-tag"></i></span>
-        <h1 class="title">#CQRS</h1>
-    </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="post-AxonFramework-Saga的基础设施" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/08/29/AxonFramework-Saga的基础设施/">AxonFramework-Saga的基础设施</a>
+        <h1 class="article-title" itemprop="name">
+            AxonFramework-Saga的基础设施
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fas fa-calendar-alt"></i>
         <a href="/2018/08/29/AxonFramework-Saga的基础设施/">
@@ -249,419 +249,174 @@
     </div>
 
 
-                    
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/AxonFramework/">AxonFramework</a>, <a class="tag-link" href="/tags/CQRS/">CQRS</a>, <a class="tag-link" href="/tags/DDD/">DDD</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
+                        <div class="article-user">
+    <i class="fas fa-user-alt"></i>
     
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/08/29/AxonFramework跟踪最后期限/">AxonFramework跟踪最后期限</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/29/AxonFramework跟踪最后期限/">
-            <time datetime="2018-08-29T02:11:46.000Z" itemprop="datePublished">2018-08-29</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/AxonFramework/">AxonFramework</a>, <a class="tag-link" href="/tags/CQRS/">CQRS</a>, <a class="tag-link" href="/tags/DDD/">DDD</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/08/27/AxonFramework事件处理/">AxonFramework事件处理</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/27/AxonFramework事件处理/">
-            <time datetime="2018-08-27T06:47:54.000Z" itemprop="datePublished">2018-08-27</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/AxonFramework/">AxonFramework</a>, <a class="tag-link" href="/tags/CQRS/">CQRS</a>, <a class="tag-link" href="/tags/DDD/">DDD</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/08/27/AxonFramework管理复杂的业务事务/">AxonFramework管理复杂的业务事务</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/27/AxonFramework管理复杂的业务事务/">
-            <time datetime="2018-08-27T06:43:56.000Z" itemprop="datePublished">2018-08-27</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/AxonFramework/">AxonFramework</a>, <a class="tag-link" href="/tags/CQRS/">CQRS</a>, <a class="tag-link" href="/tags/DDD/">DDD</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/08/27/AxonFramework在聚合中处理命令/">AxonFramework在聚合中处理命令</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/27/AxonFramework在聚合中处理命令/">
-            <time datetime="2018-08-27T06:04:52.000Z" itemprop="datePublished">2018-08-27</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/AxonFramework/">AxonFramework</a>, <a class="tag-link" href="/tags/CQRS/">CQRS</a>, <a class="tag-link" href="/tags/DDD/">DDD</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/08/27/AxonFramework聚合事件溯源/">AxonFramework聚合事件溯源</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/27/AxonFramework聚合事件溯源/">
-            <time datetime="2018-08-27T05:56:57.000Z" itemprop="datePublished">2018-08-27</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/AxonFramework/">AxonFramework</a>, <a class="tag-link" href="/tags/CQRS/">CQRS</a>, <a class="tag-link" href="/tags/DDD/">DDD</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/08/21/AxonFramework命令模型/">AxonFramework命令模型</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/21/AxonFramework命令模型/">
-            <time datetime="2018-08-21T06:00:06.000Z" itemprop="datePublished">2018-08-21</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/AxonFramework/">AxonFramework</a>, <a class="tag-link" href="/tags/CQRS/">CQRS</a>, <a class="tag-link" href="/tags/DDD/">DDD</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/08/20/AxonFramework配置/">AxonFramework配置</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/20/AxonFramework配置/">
-            <time datetime="2018-08-20T10:34:05.000Z" itemprop="datePublished">2018-08-20</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/AxonFramework/">AxonFramework</a>, <a class="tag-link" href="/tags/CQRS/">CQRS</a>, <a class="tag-link" href="/tags/DDD/">DDD</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/08/20/AxonFramework工作单元/">AxonFramework工作单元</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/20/AxonFramework工作单元/">
-            <time datetime="2018-08-20T05:17:12.000Z" itemprop="datePublished">2018-08-20</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/AxonFramework/">AxonFramework</a>, <a class="tag-link" href="/tags/CQRS/">CQRS</a>, <a class="tag-link" href="/tags/DDD/">DDD</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/08/17/AxonFramework消息、命令和事件/">AxonFramework消息、命令和事件</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/17/AxonFramework消息、命令和事件/">
-            <time datetime="2018-08-17T08:38:47.000Z" itemprop="datePublished">2018-08-17</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/AxonFramework/">AxonFramework</a>, <a class="tag-link" href="/tags/CQRS/">CQRS</a>, <a class="tag-link" href="/tags/DDD/">DDD</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/08/17/AxonFramework架构概述/">AxonFramework架构概述</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/17/AxonFramework架构概述/">
-            <time datetime="2018-08-17T08:33:12.000Z" itemprop="datePublished">2018-08-17</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/AxonFramework/">AxonFramework</a>, <a class="tag-link" href="/tags/CQRS/">CQRS</a>, <a class="tag-link" href="/tags/DDD/">DDD</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/08/17/AxonFramework简介/">AxonFramework简介</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/17/AxonFramework简介/">
-            <time datetime="2018-08-17T08:19:19.000Z" itemprop="datePublished">2018-08-17</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/AxonFramework/">AxonFramework</a>, <a class="tag-link" href="/tags/CQRS/">CQRS</a>, <a class="tag-link" href="/tags/DDD/">DDD</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
+        <span>勇赴</span>
     
 </div>
+
+                        
+    <div class="article-category">
+    	<i class="fas fa-folder"></i>
+        <a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a>
+    </div>
+
+                    </div>
+                    <div class="article-meta">
+                         
+                             <div class="article-word-count">
+<span>
+    <i class="fas fa-file-word"></i>
+    共1,381字，
+</span>
+<span>
+    <i class="fas fa-clock"></i>
+    大约需要5分钟
+</span>
+</div>
+<span id="busuanzi_container_page_pv">
+    <i class="fas fa-eye"></i>
+    已被阅读<span id="busuanzi_value_page_pv"></span>次
+</span>
+
+                         
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>事件需要被重定向到适当的saga实例。为此,一些基础设施类是必需的。最重要的组件是SagaManager和SagaRepository。</p>
+<a id="more"></a>
+<h2 id="Saga-Manager"><a href="#Saga-Manager" class="headerlink" title="Saga Manager"></a>Saga Manager</h2><p>与处理事件的任何组件一样，processing也是由事件处理器完成的。然而，因为saga不是单例实例处理事件，但是有独特的生命周期，它们需要管理。</p>
+<p>Axon通过AnnotatedSagaManager来支持生命周期管理，这是提供给一个事件Processor来执行处理器的实际的调用。它的初始化使用saga的类型来管理，也使用可以存储和恢复的SagaRepository这种saga类型。一个AnnotatedSagaManager只能管理一个saga类型。</p>
+<p>当使用配置API时，Axon将对大多数组件使用合理的默认设置。不管怎样，强烈建议定义一个SagaStore的实现使用。SagaStore是在某处物理存储saga实例的机制，AnnotatedSagaRepository(默认)要求它们使用SagaStore去存储和检索saga实例。</p>
+<pre>
+Configurer configurer = DefaultConfigurer.defaultConfiguration();
+configurer.registerModule(
+        SagaConfiguration.subscribingSagaManager(MySagaType.class)
+                         // Axon defaults to an in-memory SagaStore, defining another is recommended
+                         .configureSagaStore(c -> new JpaSagaStore(...)));
+
+// alternatively, it is possible to register a single SagaStore for all Saga types:
+configurer.registerComponent(SagaStore.class, c -> new JpaSagaStore(...));
+</pre>
+
+<h2 id="saga存储库和saga存储"><a href="#saga存储库和saga存储" class="headerlink" title="saga存储库和saga存储"></a>saga存储库和saga存储</h2><p>SagaRepository负责存储和检索saga，使用SagaManager。它能够通过标识符和关联值检索特定的saga实例。然而，有一些特殊的要求。因为在saga中的并发处理是一个非常微妙的过程，存储库必须确保每个概念的saga实例（具有相同的标识符）只有一个实例存在于JVM。</p>
+<p>Axon提供了 AnnotatedSagaRepository 实现，允许saga实例的查找，同时保证在同一时间只有一个saga实例被访问。它使用一个SagaStore执行saga实例实际的持久化。</p>
+<p>实现的选择主要取决于应用程序使用的存储引擎。Axon提供了JdbcSagaStore、InMemorySagaStore JpaSagaStore 和MongoSagaStore。</p>
+<p>在某些情况下,应用程序受益于缓存Saga实例。在这种情况下，有一个CachingSagaStore包装另一个实现添加缓存行为。<br>请注意，CachingSagaStore 是一 个write-through 缓存，这意味着保存操作总是立即转发到后备存储器，以确保数据安全。</p>
+<h2 id="JpaSagaStore"><a href="#JpaSagaStore" class="headerlink" title="JpaSagaStore"></a>JpaSagaStore</h2><p>JpaSagaStore使用JPA来存储状态和关联saga的值。saga本身并不需要任何JPA注解；Axon将使用序列化器序列化saga(类似于事件序列化，你可以使用JavaSerializer或XStreamSerializer)。</p>
+<p>JpaSagaStore通过EntityManagerProvider来配置,它提供对EntityManager实例的访问。这种抽象允许使用应用程序管理和容器管理EntityManagers。根据情况,你可以定义序列化器去序列化saga实例。Axon默认为XStreamSerializer。</p>
+<h2 id="JdbcSagaStore"><a href="#JdbcSagaStore" class="headerlink" title="JdbcSagaStore"></a>JdbcSagaStore</h2><p>JdbcSagaStore使用原来的JDBC存储saga实例及其关联值。类似于JpaSagaStore，saga实例不需要知道他们是如何存储的。序列化使用序列化器。</p>
+<p>用DataSource 或ConnectionProvider初始化JdbcSagaStore 。虽然不是必需的，用ConnectionProvider初始化时，建议在UnitOfWorkAwareConnectionProviderWrapper包装实现。它将检查已经打开的数据库连接的当前工作单元，以确保工作单元中的所有活动都是在单个连接上完成的。</p>
+<p>不像JPA，JdbcSagaRepository使用普通的SQL语句，存储和检索信息。这可能意味着某些操作依赖于数据库特有的SQL方言。情况也可能是这样，某些数据库供应商提供了你希望使用的非标准特性。允许这个，你可以提供自己的SagaSqlSchema。SagaSqlSchema接口定义的存储库的所有操作要在底层数据库上执行。它允许你定制为它们执行的SQL语句。默认是GenericSagaSqlSchema。其他可用的实现是PostgresSagaSqlSchema,Oracle11SagaSqlSchema 和HsqlSagaSchema。</p>
+<h2 id="MongoSagaStore"><a href="#MongoSagaStore" class="headerlink" title="MongoSagaStore"></a>MongoSagaStore</h2><p>MongoSagaStore存储saga实例和它们的关联到MongoDB数据库中。MongoSagaStore存储在单个集合中的所有saga到MongoDB数据库中。每个saga实例创建一个文档。</p>
+<p>MongoSagaStore还确保在任何时候，在单个JVM中任何唯一的saga只有一个saga实例存在。这样可以确保不因并发问题而丢失任何状态更改。</p>
+<p>使用MongoTemplate和一个可选的序列化器初始化MongoSagaStore。MongoTemplate提供了一个对集合的引用存储Sagas。Axon 提供了DefaultMongoTemplate，DefaultMongoTemplate获取MongoClient实例，还获取数据库名称和集合的名称存储Sagas。数据库名称和集合的名称可以省略。在这种情况下，他们分别默认为“axonframework”和“sagas”。</p>
+<h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h2><p>如果使用一个支持的saga存储的数据库，保存和加载Saga 实例可能是相对昂贵的操作。特别是在很短的时间段内多次调用同一个saga实例的情况下，缓存对应用程序的性能是有利的。</p>
+<p>Axon 提供了CachingSagaStore实现。这个SagaStore包装实际的存储。加载saga或关联值时，CachingSagaStore将首先查阅其缓存，优于委托给包装的存储库。当存储信息时，所有调用总是被委托，以确保后备存储器总是有一个与saga的状态一致的视图。</p>
+<p>配置缓存,简单包装任何SagaStore到CachingSagaStore中。CachingSagaStore的构造函数接受三个参数:分别是，包装的存储库、用于关联值的缓存和saga的实例。后两个参数可以引用相同或不同的缓存。这取决于你的具体的程序的逐出需求。</p>
+<p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/57bd121412fa" target="_blank" rel="noopener">https://www.jianshu.com/p/57bd121412fa</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/AxonFramework/">AxonFramework</a>, <a class="tag-link" href="/tags/CQRS/">CQRS</a>, <a class="tag-link" href="/tags/DDD/">DDD</a>
+    </div>
+
+            <div class="share-container">
+
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='https://blog.weechang.xyz/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+</div>
+
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2018/08/29/AxonFramework跟踪最后期限/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">AxonFramework跟踪最后期限</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+<!-- Link Gitalk 的支持文件  -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        // gitalk的主要参数
+        clientID: "295b369cd27d90dc5cfc",
+        clientSecret: "23a308db213cd99742ff3e07da9021b9c5909b68",
+        repo: "weechang.github.io",
+        owner: "weechang",
+        admin: ["weechang"],
+        id: 'AxonFramework-Saga的基础设施',
+    });
+    gitalk.render('gitalk-container');
+</script>
+<!-- Gitalk end -->
+</section>
+    
+
 </section>
             
                 
@@ -774,6 +529,24 @@
 </footer>
         
     
+<!-- Link Gitalk 的支持文件  -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        // gitalk的主要参数
+        clientID: "295b369cd27d90dc5cfc",
+        clientSecret: "23a308db213cd99742ff3e07da9021b9c5909b68",
+        repo: "weechang.github.io",
+        owner: "weechang",
+        admin: ["weechang"],
+        id: 'AxonFramework-Saga的基础设施',
+    });
+    gitalk.render('gitalk-container');
+</script>
+<!-- Gitalk end -->
+
 
 
 
