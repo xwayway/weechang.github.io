@@ -3,22 +3,20 @@
 <head>
     <meta charset="utf-8">
     
-    <title>AxonFramework消息、命令和事件 | 耒耒耒耒耒</title>
+    <title>AxonFramework测试 | 耒耒耒耒耒</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="消息传送的概念消息是Axon的核心概念之一。组件之间的所有通信都使用消息对象完成。这为这些组件提供了位置透明性，在必要时需要能够进行扩展和分发这些组件。 尽管所有这些消息都实现了消息接口，但不同类型的消息及其处理方式之间有明显的区别。所有消息包含payload、元数据和唯一标识符。消息的payload是消息的功能说明。该对象的类名组合与它所携带的数据，描述了消息的应用程序的含义。元数据允许你描述正">
+    <meta name="description" content="CQRS最大的好处之一，尤其是事件溯源就事件和命令而言，单纯地表达测试是可能的。这两个功能组件，事件和命令对领域专家或业务所有者都有明确的含义。这不仅意味着测试表达就事件和命令而言有明确的功能含义，这也意味着他们不依靠任何实现选择。 本章描述的特性需要axon-test模块,可通过配置maven依赖(使用axon-test 和test&amp;lt;/scope)或通过完整包下载。 本章中描述的固件可用于">
 <meta name="keywords" content="AxonFramework,DDD,CQRS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AxonFramework消息、命令和事件">
-<meta property="og:url" content="http://blog.weechang.xyz/2018/08/17/AxonFramework消息、命令和事件/index.html">
+<meta property="og:title" content="AxonFramework测试">
+<meta property="og:url" content="http://blog.weechang.xyz/2018/08/29/AxonFramework测试/index.html">
 <meta property="og:site_name" content="耒耒耒耒耒">
-<meta property="og:description" content="消息传送的概念消息是Axon的核心概念之一。组件之间的所有通信都使用消息对象完成。这为这些组件提供了位置透明性，在必要时需要能够进行扩展和分发这些组件。 尽管所有这些消息都实现了消息接口，但不同类型的消息及其处理方式之间有明显的区别。所有消息包含payload、元数据和唯一标识符。消息的payload是消息的功能说明。该对象的类名组合与它所携带的数据，描述了消息的应用程序的含义。元数据允许你描述正">
+<meta property="og:description" content="CQRS最大的好处之一，尤其是事件溯源就事件和命令而言，单纯地表达测试是可能的。这两个功能组件，事件和命令对领域专家或业务所有者都有明确的含义。这不仅意味着测试表达就事件和命令而言有明确的功能含义，这也意味着他们不依靠任何实现选择。 本章描述的特性需要axon-test模块,可通过配置maven依赖(使用axon-test 和test&amp;lt;/scope)或通过完整包下载。 本章中描述的固件可用于">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://blog.weechang.xyz/2018/08/17/AxonFramework消息、命令和事件/state_change.jpg">
-<meta property="og:updated_time" content="2018-08-24T05:34:14.657Z">
+<meta property="og:updated_time" content="2018-08-29T02:34:53.554Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AxonFramework消息、命令和事件">
-<meta name="twitter:description" content="消息传送的概念消息是Axon的核心概念之一。组件之间的所有通信都使用消息对象完成。这为这些组件提供了位置透明性，在必要时需要能够进行扩展和分发这些组件。 尽管所有这些消息都实现了消息接口，但不同类型的消息及其处理方式之间有明显的区别。所有消息包含payload、元数据和唯一标识符。消息的payload是消息的功能说明。该对象的类名组合与它所携带的数据，描述了消息的应用程序的含义。元数据允许你描述正">
-<meta name="twitter:image" content="http://blog.weechang.xyz/2018/08/17/AxonFramework消息、命令和事件/state_change.jpg">
+<meta name="twitter:title" content="AxonFramework测试">
+<meta name="twitter:description" content="CQRS最大的好处之一，尤其是事件溯源就事件和命令而言，单纯地表达测试是可能的。这两个功能组件，事件和命令对领域专家或业务所有者都有明确的含义。这不仅意味着测试表达就事件和命令而言有明确的功能含义，这也意味着他们不依靠任何实现选择。 本章描述的特性需要axon-test模块,可通过配置maven依赖(使用axon-test 和test&amp;lt;/scope)或通过完整包下载。 本章中描述的固件可用于">
     
 
     
@@ -228,7 +226,7 @@
 </aside>
 
             
-            <section id="main"><article id="post-AxonFramework消息、命令和事件" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-AxonFramework测试" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -236,7 +234,7 @@
                 
     
         <h1 class="article-title" itemprop="name">
-            AxonFramework消息、命令和事件
+            AxonFramework测试
         </h1>
     
 
@@ -245,8 +243,8 @@
                         
     <div class="article-date">
         <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/17/AxonFramework消息、命令和事件/">
-            <time datetime="2018-08-17T08:38:47.000Z" itemprop="datePublished">2018-08-17</time>
+        <a href="/2018/08/29/AxonFramework测试/">
+            <time datetime="2018-08-29T02:30:35.000Z" itemprop="datePublished">2018-08-29</time>
         </a>
     </div>
 
@@ -270,11 +268,11 @@
                              <div class="article-word-count">
 <span>
     <i class="fas fa-file-word"></i>
-    共1,381字，
+    共2,486字，
 </span>
 <span>
     <i class="fas fa-clock"></i>
-    大约需要5分钟
+    大约需要9分钟
 </span>
 </div>
 <span id="busuanzi_container_page_pv">
@@ -291,29 +289,135 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <h2 id="消息传送的概念"><a href="#消息传送的概念" class="headerlink" title="消息传送的概念"></a>消息传送的概念</h2><p>消息是Axon的核心概念之一。组件之间的所有通信都使用消息对象完成。这为这些组件提供了位置透明性，在必要时需要能够进行扩展和分发这些组件。</p>
-<p>尽管所有这些消息都实现了消息接口，但不同类型的消息及其处理方式之间有明显的区别。所有消息包含payload、元数据和唯一标识符。消息的payload是消息的功能说明。该对象的类名组合与它所携带的数据，描述了消息的应用程序的含义。元数据允许你描述正在发送消息的上下文。例如，你可以存储跟踪信息，以允许跟踪消息的来源或原因。你还可以存储信息以描述正在执行命令的安全上下文。</p>
-<a id="more"></a>
-<blockquote>
-<p><b>注意</b><br>注意所有消息都是不可变的。将数据存储在一个消息中，实际上意味着在前一个消息的基础上，创建一个添加了额外信息的新消息。这保证了消息在多线程和分布式环境中使用是安全的。</p>
-</blockquote>
-<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><p>命令描述改变应用程序状态的意图。命令用一个CommandMessage来包装POJO（最好是只读的）来实现。</p>
-<p>命令总是有一个确切的目的地。虽然发送者并不关心由哪个组件来处理命令或该组件驻留在哪里，但它可能对它的结果感兴趣。这就是命令总线上发送命令消息后，允许返回结果的原因。</p>
-<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><p>事件是描述应用程序中已经发生的事情的对象。聚合是事件的典型来源。当聚合中发生重要的事情时，它将引发一个事件。在Axon Framework中，事件可以是任何对象。非常希望你能确保所有的事件都是可序列化的。</p>
-<p>当事件被分发时，Axon把他们包装在一个EventMessage中。实际使用的消息类型取决于事件的来源。当一个事件是由一个聚合引发时，它被包装在DomainEventMessage（继承自EventMessage）中。所有其他事件都被包装在一个EventMessage中。除了像唯一标识这种常见的消息属性，EventMessage还包含一个时间戳。DomainEventMessage额外包含类型和聚合的标识符，它还在聚合的事件流中包含事件的序号,以允许重现事件的顺序。</p>
-<blockquote>
-<p><b>注意</b><br>尽管DomainEventMessage总包含一个对聚合标识符的引用,你也应该包括实际事件本身的标识符。EventStore通过DomainEventMessage中的标识符来存储事件，标识符可能并不总是会提供一个可靠值用于其他目标。</p>
-</blockquote>
-<p>原始事件对象存储为EventMessage的payload。紧挨着的payload,你可以将信息存储在一个事件消息的元数据中。元数据的目的是存储关于事件的额外信息,而不是业务信息。审计信息就是一个典型的例子。它可以让你看到在哪些情况下，一个事件会被引发，比如用户帐户触发进程，或处理事件的机器名称。</p>
-<blockquote>
-<p><b>注意</b><br>一般来说，你不应该基于事件消息的元数据中的信息进行业务决策。如果是这样的话，你可能有附加的信息，而不是事件本身的一部分信息。元数据通常用于报告、审计和跟踪。</p>
-</blockquote>
-<p>虽然不是强制性的，但让领域事件不可变是一种很好的做法，最好是将所有字段声明为final并在构造函数中初始化。如果事件构造太麻烦可考虑使用建造者模式(Builder pattern )。</p>
-<blockquote>
-<p><b>注意</b><br>虽然领域事件在技术上表示状态的变化,你也应该试图在事件中捕捉状态意图。一个好的实践是使用一个抽象的领域事件实现来捕获某些状态已经改变了这一事实,并使用一个抽象类具体的sub-implementation来表示变化的意图。例如,你可以有一个AddressChangedEvent抽象类，并用实现ContactMovedEvent和AddressCorrectedEvent这两个子类来达到捕获状态变化的意图。一些监听器不关心这些意图(例如,数据库更新事件监听器)，将监听抽象类型。其他关心这些意图监听器，它们将监听具体的子类(例如发送一个地址变更确认电子邮件给消费者)。<br><img src="/2018/08/17/AxonFramework消息、命令和事件/state_change.jpg" title="State change"></p>
-</blockquote>
-<p>当在事件总线分发事件时,你需要把它包装在一个事件消息中。GenericEventMessage是一个允许你将你的事件包装到一个消息的实现。你可以使用构造函数,或静态方法：asEventMessage()。 后者检查给出的参数是否已经实现了消息接口，如果是这样，它直接返回（如果它实现了EventMessage），或者返回一个使用给定消息的payload和元数据来实例化的GenericEventMessage。如果一个事件通过聚合发布，Axon将自动把事件包装在一个DomainEventMessage中，包含聚合的标识符,类型和序列号。</p>
-<p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/e7abb5a228e9" target="_blank" rel="noopener">https://www.jianshu.com/p/e7abb5a228e9</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
+            <p>CQRS最大的好处之一，尤其是事件溯源就事件和命令而言，单纯地表达测试是可能的。这两个功能组件，事件和命令对领域专家或业务所有者都有明确的含义。这不仅意味着测试表达就事件和命令而言有明确的功能含义，这也意味着他们不依靠任何实现选择。</p>
+<p>本章描述的特性需要axon-test模块,可通过配置maven依赖(使用<artifactid>axon-test</artifactid> 和<scope>test&lt;/scope)或通过完整包下载。</scope></p>
+<p>本章中描述的固件可用于任何测试框架，如JUnit和TestNG。</p>
+<h2 id="命令组件测试"><a href="#命令组件测试" class="headerlink" title="命令组件测试"></a>命令组件测试</h2><p>在任何CQRS基础架构中命令处理组件通常是最复杂的。比其他组件更复杂，这也意味着该组件有额外的与测试相关的需求。</p>
+<p>虽然更复杂，但是命令的API处理组件相当容易。它有一个命令进来，然后事件出去。在某些情况下，可能有一个查询作为命令执行的一部分。除此之外，命令和事件是API的唯一部分。这意味着可以在事件和命令的基础上完整地定义测试场景。典型地，以：</p>
+<ul>
+<li>given过去的某些事件，</li>
+<li>when 执行这个命令，</li>
+<li>expect 这些事件将被发布和/或存储</li>
+</ul>
+<p>Axon Framework提供了一个测试固件，使你能够做到这一点。AggregateTestFixture允许你配置某些基础设施，包括必要的命令处理器和存储库，并以given-when-then形式的事件和命令来表达你的场景。</p>
+<p>下面的示例展示了用JUnit 4对given-when-then测试固件的使用：</p>
+<pre>
+public class MyCommandComponentTest {
+ private FixtureConfiguration fixture;
+ @Before
+ public void setUp() {
+     fixture = new AggregateTestFixture(MyAggregate.class);
+ }
+
+ @Test
+ public void testFirstFixture() {
+     fixture.given(new MyEvent(1))
+            .when(new TestCommand())
+            .expectSuccessfulHandlerExecution()
+            .expectEvents(new MyEvent(2));
+     /*
+     These four lines define the actual scenario and its expected
+     result. The first line defines the events that happened in the
+     past. These events define the state of the aggregate under test.
+     In practical terms, these are the events that the event store
+     returns when an aggregate is loaded. The second line defines the
+     command that we wish to execute against our system. Finally, we
+     have two more methods that define expected behavior. In the
+     example, we use the recommended void return type. The last method
+     defines that we expect a single event as result of the command
+     execution.
+     /*
+ }
+}
+</pre>
+given-when-then测试固件定义了三个阶段：配置、执行和验证。每个阶段由不同的接口表示：分别是，FixtureConfiguration, TestExecutor 和 ResultValidator。固件类的静态newGivenWhenThenFixture()方法提供了对第一个的引用，进而可能提供验证，等等。
+
+><b>注意</b>
+为了最好地利用这些阶段之间的迁移，最好使用这些方法提供的流式接口，如上面的示例所示。
+
+在配置阶段（即在提供第一个“given”之前），你提供了执行测试所需的构件。作为固件的一部分提供事件总线、命令总线和事件存储的专用版本。有accessor方法来获得对它们的引用。任何命令处理器不直接在聚合上注册，需要显式地使用registerAnnotatedCommandHandler 方法配置。除了带注解的命令处理器外，你还可以配置各种组件和设置，定义应该如何设置测试周围的基础设施。
+
+一旦固件配置好，你就可以定义“given”事件。测试固件将用DomainEventMessage包装这些事件。如果“given”事件实现消息，消息的有效负载和元数据将被纳入DomainEventMessage，否则given事件作为有效负载。DomainEventMessage 的序列号顺序，从0开始。
+
+或者，你也可以为“given”场景提供命令。在这种情况下，在执行实际的测试命令时，这些命令生成的事件将被用于事件源聚合。使用“givenCommands(…)”方法提供命令对象。
+
+执行阶段允许你提供一个针对命令处理组件执行的命令。对调用处理程序的行为(无论是在聚合或外部处理程序)进行监控，并与在验证阶段注册的预期进行比较。
+
+><b>注意</b>
+在执行测试过程中，Axon试图检测测试中的所有在聚合上的非法状态的更改。它通过将聚合的状态与命令执行后的聚合状态进行比较，如果它从所有“given”和存储的事件溯源。如果状态不相同，这意味着状态变化发生在聚合事件处理器方法之外。比较时将忽略静态和瞬态字段，因为它们通常包含对资源的引用。
+可以使用setReportIllegalStateChange方法在固件的配置中切换检测。
+
+最后一个阶段是验证阶段，允许你检查命令处理组件的活动。这完全是根据返回值和事件来完成的。
+
+测试固件允许你验证命令处理程序的返回值。你可以显式地定义预期的返回值，或者简单地要求成功返回该方法。你也可以表达任何你期望的CommandHandler抛出的异常。
+
+另一个组件是对已发布事件的验证。有两种匹配预期事件的方法。
+
+第一是通过事件实例，它需要与实际的事件是行逐字的比较。将预期事件的所有属性与实际事件中的对应对象进行比较（使用equals()）。如果其中一个属性不相等，则测试失败，并生成一个广泛的错误报告。
+
+表达期望的另一种方式是使用的匹配器(Hamcrest库提供的)。匹配器接口规定了两个方法matches(Object)和describeTo(Description)。第一个返回一个布尔值，指示是否匹配或不匹配。第二个让你表达你的期望。例如，一个“GreaterThanTwoMatcher”可以添加“任何值大于2的事件“的描述。描述允许创建关于测试用例失败的错误消息。
+
+创建事件列表的匹配器可能是繁琐和容易出错的工作。为了简化问题，Axon提供了一组匹配器允许你提供一组特定于事件的匹配器，并告诉Axon应该如何匹配列表。
+
+下面是可用的事件列表匹配器和他们的目的的概述：
+
+* List with all of: Matchers.listWithAllOf(event matchers...)
+如果所有的事件匹配器与真实事件列表中至少一个事件匹配，该匹配器将成功。不管是否有多个匹配器匹配相同的事件，或如果列表中一个事件不匹配任何匹配器。
+
+* List with any of: Matchers.listWithAnyOf(event matchers...)
+如果一个或多个事件匹配器与实际的事件列表中一个或多个事件匹配，该匹配器将成功。一些匹配器甚至一个也不匹配，而另一个匹配多个。
+
+* Sequence of Events: Matchers.sequenceOf(event matchers...)
+使用此匹配器来验证实际事件匹配器和提供的事件匹配器有相同的顺序。如果匹配器与后一个事件相匹配，与前一个匹配器匹配的事件相匹配，该匹配器将成功。这意味着可能出现不匹配事件的“gaps”。
+如果评估事件之后，更多的匹配器是可用的，他们都是匹配“null”。它是由事件的匹配器来决定是否接受。
+
+* Exact sequence of Events: Matchers.exactSequenceOf(event matchers...)
+“事件的序列”匹配器的变化不允许不匹配事件的空隙。这意味着每个匹配器必须与事件后面的事件相匹配，与前一个匹配器匹配的事件相匹配。每个匹配器都应该与它前一个匹配器相对应的事件的后续一个事件相匹配
+
+为了方便起见,提供了一些普遍需要的事件匹配器。他们与单个事件实例相匹配:
+
+* Equal Event: Matchers.equalTo(instance...)
+验证given对象在语义上等于given事件，这个匹配器将比较实际和预期的对象的所有字段的值使用一个null-safe相等方法。这意味着可以比较事件，即使它们不实现equals方法。存储在given参数字段上的对象用equals进行比较，要求他们正确实现。
+
+* No More Events: Matchers.andNoMore() or Matchers.nothing()
+仅与空值匹配，这个匹配器可以作为最后一个匹配器添加到事件的准确顺序匹配器,以确保没有不匹配的事件依然存在。
+
+由于匹配器传递一个事件消息列表，有时你只是想验证消息的有效负载。有匹配器来帮助你:
+
+* Payload Matching: Matchers.messageWithPayload(payload matcher)
+验证消息的有效负载匹配给定的有效载荷匹配器。
+
+* Payloads Matching: Matchers.payloadsMatching(list matcher)
+验证消息的有效负载匹配给定的有效载荷匹配器。给定的匹配器必须匹配列表包含的每个消息的有效负载。有效负载匹配匹配器通常用作外匹配器,以防止重复有效负载匹配器。
+
+下面是一个简单的代码示例，以显示这些匹配器的使用。在这个例子中,我们预期共有两个事件发布。第一个事件必须是一个“ThirdEvent”，第二个是“aFourthEventWithSomeSpecialThings”。可能没有第三个事件，因为那样"andNoMore"匹配器会失败。
+
+<pre>
+fixture.given(new FirstEvent(), new SecondEvent())
+       .when(new DoSomethingCommand("aggregateId"))
+       .expectEventsMatching(exactSequenceOf(
+           // we can match against the payload only:
+           messageWithPayload(equalTo(new ThirdEvent())),
+           // this will match against a Message
+           aFourthEventWithSomeSpecialThings(),
+           // this will ensure that there are no more events
+           andNoMore()
+       ));
+
+// or if we prefer to match on payloads only:
+       .expectEventsMatching(payloadsMatching(
+               exactSequenceOf(
+                   // we only have payloads, so we can equalTo directly
+                   equalTo(new ThirdEvent()),
+                   // now, this matcher matches against the payload too
+                   aFourthEventWithSomeSpecialThings(),
+                   // this still requires that there is no more events
+                   andNoMore()
+               )
+       ));
+</pre>
+
+<p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/2e893c9d48bf" target="_blank" rel="noopener">https://www.jianshu.com/p/2e893c9d48bf</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
 
         
         </div>
@@ -374,19 +478,10 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         
 <nav id="article-nav">
     
-        <a href="/2018/08/17/ElasticSearch查询报错fielddata-true/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">上一篇</strong>
-            <div class="article-nav-title">
-                
-                    ElasticSearch查询报错fielddata=true
-                
-            </div>
-        </a>
     
-    
-        <a href="/2018/08/17/AxonFramework架构概述/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2018/08/29/AxonFramework-Saga的基础设施/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">AxonFramework架构概述</div>
+            <div class="article-nav-title">AxonFramework-Saga的基础设施</div>
         </a>
     
 </nav>
@@ -411,7 +506,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         repo: "weechang.github.io",
         owner: "weechang",
         admin: ["weechang"],
-        id: 'AxonFramework消息、命令和事件',
+        id: 'AxonFramework测试',
     });
     gitalk.render('gitalk-container');
 </script>
@@ -543,7 +638,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         repo: "weechang.github.io",
         owner: "weechang",
         admin: ["weechang"],
-        id: 'AxonFramework消息、命令和事件',
+        id: 'AxonFramework测试',
     });
     gitalk.render('gitalk-container');
 </script>
