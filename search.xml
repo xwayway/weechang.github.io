@@ -19,10 +19,6 @@
             
             <tag> AxonFramework </tag>
             
-            <tag> DDD </tag>
-            
-            <tag> CQRS </tag>
-            
         </tags>
       
     </entry>
@@ -43,10 +39,6 @@
         <tags>
             
             <tag> AxonFramework </tag>
-            
-            <tag> DDD </tag>
-            
-            <tag> CQRS </tag>
             
         </tags>
       
@@ -69,10 +61,6 @@
             
             <tag> AxonFramework </tag>
             
-            <tag> DDD </tag>
-            
-            <tag> CQRS </tag>
-            
         </tags>
       
     </entry>
@@ -93,10 +81,6 @@
         <tags>
             
             <tag> AxonFramework </tag>
-            
-            <tag> DDD </tag>
-            
-            <tag> CQRS </tag>
             
         </tags>
       
@@ -119,10 +103,6 @@
             
             <tag> AxonFramework </tag>
             
-            <tag> DDD </tag>
-            
-            <tag> CQRS </tag>
-            
         </tags>
       
     </entry>
@@ -143,10 +123,6 @@
         <tags>
             
             <tag> AxonFramework </tag>
-            
-            <tag> DDD </tag>
-            
-            <tag> CQRS </tag>
             
         </tags>
       
@@ -169,10 +145,6 @@
             
             <tag> AxonFramework </tag>
             
-            <tag> DDD </tag>
-            
-            <tag> CQRS </tag>
-            
         </tags>
       
     </entry>
@@ -193,10 +165,6 @@
         <tags>
             
             <tag> AxonFramework </tag>
-            
-            <tag> DDD </tag>
-            
-            <tag> CQRS </tag>
             
         </tags>
       
@@ -242,10 +210,6 @@
             
             <tag> AxonFramework </tag>
             
-            <tag> DDD </tag>
-            
-            <tag> CQRS </tag>
-            
         </tags>
       
     </entry>
@@ -267,10 +231,6 @@
             
             <tag> AxonFramework </tag>
             
-            <tag> DDD </tag>
-            
-            <tag> CQRS </tag>
-            
         </tags>
       
     </entry>
@@ -291,10 +251,6 @@
         <tags>
             
             <tag> AxonFramework </tag>
-            
-            <tag> DDD </tag>
-            
-            <tag> CQRS </tag>
             
         </tags>
       
@@ -340,10 +296,6 @@
             
             <tag> AxonFramework </tag>
             
-            <tag> DDD </tag>
-            
-            <tag> CQRS </tag>
-            
         </tags>
       
     </entry>
@@ -365,10 +317,6 @@
             
             <tag> AxonFramework </tag>
             
-            <tag> DDD </tag>
-            
-            <tag> CQRS </tag>
-            
         </tags>
       
     </entry>
@@ -389,10 +337,6 @@
         <tags>
             
             <tag> AxonFramework </tag>
-            
-            <tag> DDD </tag>
-            
-            <tag> CQRS </tag>
             
         </tags>
       
@@ -429,7 +373,7 @@
       
       <categories>
           
-          <category> Java学习之从头开始 </category>
+          <category> Java集合 </category>
           
       </categories>
       
@@ -438,9 +382,9 @@
             
             <tag> Java学习之从头开始 </tag>
             
-            <tag> Java基础 </tag>
-            
             <tag> HashTable </tag>
+            
+            <tag> Java集合 </tag>
             
         </tags>
       
@@ -454,7 +398,7 @@
       
       <categories>
           
-          <category> Java学习之从头开始 </category>
+          <category> Java集合 </category>
           
       </categories>
       
@@ -463,9 +407,9 @@
             
             <tag> Java学习之从头开始 </tag>
             
-            <tag> Java基础 </tag>
-            
             <tag> HashMap </tag>
+            
+            <tag> Java集合 </tag>
             
         </tags>
       
@@ -502,7 +446,7 @@
       
       <categories>
           
-          <category> Java学习之从头开始 </category>
+          <category> Java基础 </category>
           
       </categories>
       
@@ -527,7 +471,7 @@
       
       <categories>
           
-          <category> Java学习之从头开始 </category>
+          <category> Java基础 </category>
           
       </categories>
       
