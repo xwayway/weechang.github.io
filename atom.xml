@@ -10,7 +10,7 @@
   <id>http://blog.weechang.xyz/</id>
   
   <author>
-    <name>耒耒耒耒耒</name>
+    <name>张未</name>
     
   </author>
   
@@ -419,9 +419,9 @@
     
       <category term="Java学习之从头开始" scheme="http://blog.weechang.xyz/tags/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/"/>
     
-      <category term="HashTable" scheme="http://blog.weechang.xyz/tags/HashTable/"/>
-    
       <category term="Java集合" scheme="http://blog.weechang.xyz/tags/Java%E9%9B%86%E5%90%88/"/>
+    
+      <category term="HashTable" scheme="http://blog.weechang.xyz/tags/HashTable/"/>
     
   </entry>
   
@@ -445,9 +445,9 @@
     
       <category term="Java学习之从头开始" scheme="http://blog.weechang.xyz/tags/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/"/>
     
-      <category term="HashMap" scheme="http://blog.weechang.xyz/tags/HashMap/"/>
-    
       <category term="Java集合" scheme="http://blog.weechang.xyz/tags/Java%E9%9B%86%E5%90%88/"/>
+    
+      <category term="HashMap" scheme="http://blog.weechang.xyz/tags/HashMap/"/>
     
   </entry>
   
