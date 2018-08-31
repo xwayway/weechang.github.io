@@ -3,20 +3,20 @@
 <head>
     <meta charset="utf-8">
     
-    <title>AxonFramework-分布式命令总线连接器 | 耒耒耒耒耒</title>
+    <title>AxonFramework管理复杂的业务事务 | 耒耒耒耒耒</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="JGroupsConnectorJGroupsConnector使用(正如它的名字已经说明)JGroups作为底层发现和调度机制。描述JGroups的特性有太多的参考指南,请参阅JGroups用户指南以了解更多的细节。">
+    <meta name="description" content="并不是每个命令都能够在一个ACID事务中完全执行。现金转账事务是一个很常见频繁出现的例子，用来作为论据。通常认为，把钱从一个账户转移到另一个账户，绝对需要原子性和一致性。其实并非如此，相反，这是完全不可能的。如果钱从A银行的帐户转移到B银行的帐户怎么办？A银行要获得B银行数据库的锁吗？如果转账正在进行的时候，A银行已经扣除了金额,但B银行并没收到它，这不是很奇怪吗?事实上不是，这是“正在进行”。另">
 <meta name="keywords" content="AxonFramework">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AxonFramework-分布式命令总线连接器">
-<meta property="og:url" content="http://blog.weechang.xyz/2018/08/31/AxonFramework-分布式命令总线连接器/index.html">
+<meta property="og:title" content="AxonFramework管理复杂的业务事务">
+<meta property="og:url" content="http://blog.weechang.xyz/2018/08/27/AxonFramework-管理复杂的业务事务/index.html">
 <meta property="og:site_name" content="耒耒耒耒耒">
-<meta property="og:description" content="JGroupsConnectorJGroupsConnector使用(正如它的名字已经说明)JGroups作为底层发现和调度机制。描述JGroups的特性有太多的参考指南,请参阅JGroups用户指南以了解更多的细节。">
+<meta property="og:description" content="并不是每个命令都能够在一个ACID事务中完全执行。现金转账事务是一个很常见频繁出现的例子，用来作为论据。通常认为，把钱从一个账户转移到另一个账户，绝对需要原子性和一致性。其实并非如此，相反，这是完全不可能的。如果钱从A银行的帐户转移到B银行的帐户怎么办？A银行要获得B银行数据库的锁吗？如果转账正在进行的时候，A银行已经扣除了金额,但B银行并没收到它，这不是很奇怪吗?事实上不是，这是“正在进行”。另">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-31T02:43:19.215Z">
+<meta property="og:updated_time" content="2018-08-30T06:03:51.685Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AxonFramework-分布式命令总线连接器">
-<meta name="twitter:description" content="JGroupsConnectorJGroupsConnector使用(正如它的名字已经说明)JGroups作为底层发现和调度机制。描述JGroups的特性有太多的参考指南,请参阅JGroups用户指南以了解更多的细节。">
+<meta name="twitter:title" content="AxonFramework管理复杂的业务事务">
+<meta name="twitter:description" content="并不是每个命令都能够在一个ACID事务中完全执行。现金转账事务是一个很常见频繁出现的例子，用来作为论据。通常认为，把钱从一个账户转移到另一个账户，绝对需要原子性和一致性。其实并非如此，相反，这是完全不可能的。如果钱从A银行的帐户转移到B银行的帐户怎么办？A银行要获得B银行数据库的锁吗？如果转账正在进行的时候，A银行已经扣除了金额,但B银行并没收到它，这不是很奇怪吗?事实上不是，这是“正在进行”。另">
     
 
     
@@ -226,7 +226,7 @@
 </aside>
 
             
-            <section id="main"><article id="post-AxonFramework-分布式命令总线连接器" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-AxonFramework-管理复杂的业务事务" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -234,7 +234,7 @@
                 
     
         <h1 class="article-title" itemprop="name">
-            AxonFramework-分布式命令总线连接器
+            AxonFramework管理复杂的业务事务
         </h1>
     
 
@@ -243,8 +243,8 @@
                         
     <div class="article-date">
         <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/31/AxonFramework-分布式命令总线连接器/">
-            <time datetime="2018-08-31T02:40:27.000Z" itemprop="datePublished">2018-08-31</time>
+        <a href="/2018/08/27/AxonFramework-管理复杂的业务事务/">
+            <time datetime="2018-08-27T06:43:56.000Z" itemprop="datePublished">2018-08-27</time>
         </a>
     </div>
 
@@ -268,11 +268,11 @@
                              <div class="article-word-count">
 <span>
     <i class="fas fa-file-word"></i>
-    共1,418字，
+    共987字，
 </span>
 <span>
     <i class="fas fa-clock"></i>
-    大约需要6分钟
+    大约需要3分钟
 </span>
 </div>
 <span id="busuanzi_container_page_pv">
@@ -289,113 +289,16 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <h2 id="JGroupsConnector"><a href="#JGroupsConnector" class="headerlink" title="JGroupsConnector"></a>JGroupsConnector</h2><p>JGroupsConnector使用(正如它的名字已经说明)JGroups作为底层发现和调度机制。描述JGroups的特性有太多的参考指南,请参阅JGroups用户指南以了解更多的细节。</p>
+            <p>并不是每个命令都能够在一个ACID事务中完全执行。现金转账事务是一个很常见频繁出现的例子，用来作为论据。通常认为，把钱从一个账户转移到另一个账户，绝对需要原子性和一致性。其实并非如此，相反，这是完全不可能的。如果钱从A银行的帐户转移到B银行的帐户怎么办？A银行要获得B银行数据库的锁吗？如果转账正在进行的时候，A银行已经扣除了金额,但B银行并没收到它，这不是很奇怪吗?事实上不是，这是“正在进行”。另一方面,如果在向B银行的帐户中存资金时出现错误，A银行的客户就想要他的钱回退。所以我们需要某种形式的最终一致性。</p>
 <a id="more"></a>
-<p>因为JGroups既处理节点的发现又处理它们之间的通信，所以JGroupsConnector既充当CommandBusConnector也充当CommandRouter。</p>
-<blockquote>
-<p><b>注意</b><br>你可以在axon-distributed-commandbus-jgroups模块中，为DistributedCommandBus找到JGroups特定组件。</p>
-</blockquote>
-<p>JGroupsConnector有四个强制性配置元素：</p>
-<ul>
-<li>第一种是JChannel，它定义了JGroups协议栈。一般来说，用JGroups配置文件的引用构造JChannel。JGroups附带的默认配置,可以用作自己配置的依据。请记住，IP多路广播一般不工作在云服务中，像亚马逊。中这种类型的环境中， TCP Gossip通常是一个好的开端。</li>
-<li>集群名称定义了每个segment应登记到的集群的名称。具有相同的集群名称的Segment最终会探测到彼此，并在彼此间分发命令。</li>
-<li>“本地segment”是命令总线实现，分发命令去往本地的JVM。这些命令可能已通过其他JVM或从本地的一个实例分发。</li>
-<li>最后，序列化器是用来序列化之前通过线路发送的命令消息。</li>
-</ul>
-<blockquote>
-<p><b>注意</b><br>当使用缓存时，当ConsistentHash更改以避免潜在的数据损坏时，它应该被清空（例如，当命令没有指定一个@TargetAggregateVersion和新成员快速加入和离开JGroup，修改聚合然而它还要缓存到其他地方）。</p>
-</blockquote>
-<p>最终，JGroupsConnector需要实际连接，按顺序分发消息到其他segment。这样做，调用connect()方法。</p>
-<pre>
-JChannel channel = new JChannel("path/to/channel/config.xml");
-CommandBus localSegment = new SimpleCommandBus();
-Serializer serializer = new XStreamSerializer();
-
-JGroupsConnector connector = new JGroupsConnector(channel, "myCommandBus", localSegment, serializer);
-DistributedCommandBus commandBus = new DistributedCommandBus(connector, connector);
-
-// on one node:
-commandBus.subscribe(CommandType.class.getName(), handler);
-connector.connect();
-
-// on another node, with more CPU:
-commandBus.subscribe(CommandType.class.getName(), handler);
-commandBus.subscribe(AnotherCommandType.class.getName(), handler2);
-commandBus.updateLoadFactor(150); // defaults to 100
-connector.connect();
-
-// from now on, just deal with commandBus as if it is local...
-</pre>
-
-<blockquote>
-<p><b>注意</b><br>注意，并非所有的segment都必需具有相同类型的命令的命令处理器。你完全可以为不同的命令类型使用不同的segment。分布式命令总线总是选择一个节点分发命令到那个支持特定类型的命令。</p>
-</blockquote>
-<p>如果你使用Spring，你可能需要考虑使用JGroupsConnectorFactoryBean。它自动连接连接器当ApplicationContext启动后，并且在ApplicationContext关闭时完全的断开。此外,它为测试环境使用合理的默认值(但不应被视为生产准备)和自动装配配置。</p>
-<h2 id="Spring-Cloud-Connector"><a href="#Spring-Cloud-Connector" class="headerlink" title="Spring Cloud Connector"></a>Spring Cloud Connector</h2><p>Spring Cloud连接器装置，用Spring Cloud来描述使用服务注册和发现机制来分配命令总线。因此，你可以自由选择使用哪一个Spring Cloud实现用来分发你的命令。实现的一个例子是 Eureka Discovery/Eureka 服务器组合。</p>
-<blockquote>
-<p><b>注意</b><br>当前版本(Axon 3.0.4)SpringCloudCommandRouter使用ServiceInstance。Metadata 字段来通知所有系统中的节点，通过CommandNameFilter它可以处理命令。这是很重要的,Spring Cloud实现选择支持ServiceInstance.Metadata字段的使用。例如Spring Cloud Consul目前不支持该字段，因此SpringCloudCommandRouter并不是一个可行的解决方案。我们正在研究一个额外的解决方案，从中检索CommandNameFilter 。</p>
-</blockquote>
-<p>提供每个SpringCloud实现的描述将推动本参考指南。因此，我们参考他们各自的文件以获得进一步的信息。</p>
-<p>Spring Cloud连接器装置是一个SpringCloudCommandRouter和SpringHttpCommandBusConnector的组合，分别填充CommandRouter的地点和 DistributedCommandBus的CommandBusConnector。</p>
-<blockquote>
-<p><b>注意</b><br>Spring Cloud连接器特定的组件DistributedCommandBus可以在axon-distributed-commandbus-springcloud模块中找到 。</p>
-</blockquote>
-<p>SpringCloudCommandRouter必须由以下提供的来创建：</p>
-<ul>
-<li>一个DiscoveryClient类型“discovery client”。这可以通过用@EnableDiscoveryClient注解你的Spring Boot应用程序来提供,将在你的类路径中寻找Spring Cloud 的实现。</li>
-<li>一个RoutingStrategy类型的”routing strategy”。目前axon-core模块提供了一些实现，但是一函数调用也可以满足要求。例如，如果你想路由命令基于“聚合标识符”，你可以使用AnnotationRoutingStrategy和注解有效载荷的字段，用@TargetAggregateIdentifier识别聚合。</li>
-</ul>
-<p>SpringHttpCommandBusConnector需要创建三个参数:</p>
-<ul>
-<li>一个CommandBus类型的“local command bus”。这是命令总线实现，它将分发命令到本地的JVM。这些命令可能是由其他JVM上的或本地的实例分发。</li>
-<li>RestOperations对象来执行一个命令消息的发布到另一个实例。</li>
-<li>最后一个Serializer类型的“序列serializer”。序列化器用于在命令发送到网络之前序列化命令消息。</li>
-</ul>
-<p>SpringCloudCommandRouter和SpringHttpCommandBusConnector应该都被用于创建DistributedCommandsBus。在Spring Java 配置中，看起来如下:</p>
-<pre>
-// Simple Spring Boot App providing the `DiscoveryClient` bean
-@EnableDiscoveryClient
-@SpringBootApplication
-public class MyApplication {
-
-    public static void main(String[] args) {
-        SpringApplication.run(MyApplication.class, args);
-    }
-
-    // Example function providing a Spring Cloud Connector
-    @Bean
-    public CommandRouter springCloudCommandRouter(DiscoveryClient discoveryClient) {
-        return new SpringCloudCommandRouter(discoveryClient, new AnnotationRoutingStrategy());
-    }
-
-    @Bean
-    public CommandBusConnector springHttpCommandBusConnector(@Qualifier("localSegment") CommandBus localSegment,
-                                                             RestOperations restOperations,
-                                                             Serializer serializer) {
-        return new SpringHttpCommandBusConnector(localSegment, restOperations, serializer);
-    }
-
-    @Primary // to make sure this CommandBus implementation is used for autowiring
-    @Bean
-    public DistributedCommandBus springCloudDistributedCommandBus(CommandRouter commandRouter, 
-                                                                  CommandBusConnector commandBusConnector) {
-        return new DistributedCommandBus(commandRouter, commandBusConnector);
-    }
-
-}
-
-// if you don't use Spring Boot Autoconfiguration, you will need to explicitly define the local segment:
-@Bean
-@Qualifier("localSegment")
-public CommandBus localSegment() {
-    return new SimpleCommandBus();
-}
-</pre>
-
-<blockquote>
-<p><b>注意</b><br>注意，并非所有的segment都必需具有相同类型的命令的命令处理器。你完全可以为不同的命令类型使用不同的segment。分布式命令总线总是选择一个节点分发命令到那个支持特定类型的命令。</p>
-</blockquote>
-<p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/ccef9924f8d7" target="_blank" rel="noopener">https://www.jianshu.com/p/ccef9924f8d7</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
+<p>虽然ACID事务在某些情况下不是必需的甚至是不可能的，但仍然需要某种形式的事务管理。通常，这些事务称为BASE事务：基本的可用性，软性状态，最终一致性。 与ACID相反，BASE事务无法轻松回滚。 要回滚，需要采取补偿措施来恢复作为事务一部分发生的任何事情。 在汇款的例子中，如果没有把钱存入B银行，将把钱退还给A银行。<br>在CQRS中，Sagas可用于管理这些BASE事务。 他们对事件做出响应，并可能调度命令，调用外部应用程序等。在领域驱动设计的上下文中，将Sagas用作多个限界上下文之间的协调机制并不罕见。</p>
+<h2 id="Saga"><a href="#Saga" class="headerlink" title="Saga"></a>Saga</h2><p>一个saga是一种特殊类型的事件监听器：用来管理业务事务。一些事务可能运行数天甚至数周，而另一些则在几毫秒内完成。在Axon中，saga的每个实例负责管理一个业务事务。这意味着saga维护状态必须管理事务，持续或采取补偿动作回滚已经被采取任何动作。通常情况下，与常规的事件监听器相反，saga有一个起点和终点，都由事件触发。虽然saga的起点通常是非常明确的，但可能有多种方式结束一个saga。</p>
+<p>在Axon中,Sagas是定义了一个或多个@SagaEventHandler方法的类。与常规事件处理器不同，在任何时间可能存在多个saga的实例。Saga由一个Processor管理(跟踪或订阅)，Processor通过事件致力于处理特定saga类型。</p>
+<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p>一个单独的saga实例负责管理一个单独的事务。这意味着你需要能够标示一个saga生命周期的开始和结束。</p>
+<p>在一个saga中，事件处理器用@SagaEventHandler注解。如果一个特定的事件标志着开始一个事务，在同一个方法上添加另一个注解:@StartSaga。这个注解将创建一个新的saga，并且当匹配事件后布后调用它的事件处理器方法。</p>
+<p>默认情况下,只有在找不到匹配的saga时才能开启一个新的saga。你也可以强行创建一个新的saga实例，通过把@StartSaga注解上的forceNew属性设置为true。</p>
+<p>结束一个saga可以以两种方式完成。如果一个特定的事件总是标示saga生命周期的结束，在saga上用@EndSaga注解事件的处理器。在调用处理器后，saga的生命周期将结束。作为一种选择,你可以调用end()从saga内部去结束生命周期。这允许你有条件地结束saga。</p>
+<p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/9c8d7fb623a0" target="_blank" rel="noopener">https://www.jianshu.com/p/9c8d7fb623a0</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
 
         
         </div>
@@ -456,19 +359,19 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         
 <nav id="article-nav">
     
-        <a href="/2018/08/31/AxonFramework-事件发布和处理/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2018/08/27/AxonFramework-事件处理/" id="article-nav-newer" class="article-nav-link-wrap">
             <strong class="article-nav-caption">上一篇</strong>
             <div class="article-nav-title">
                 
-                    AxonFramework-事件发布和处理
+                    AxonFramework事件处理
                 
             </div>
         </a>
     
     
-        <a href="/2018/08/31/AxonFramework-命令拦截器/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2018/08/27/AxonFramework-在聚合中处理命令/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">AxonFramework命令拦截器</div>
+            <div class="article-nav-title">AxonFramework在聚合中处理命令</div>
         </a>
     
 </nav>
@@ -493,7 +396,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         repo: "weechang.github.io",
         owner: "weechang",
         admin: ["weechang"],
-        id: 'AxonFramework-分布式命令总线连接器',
+        id: 'AxonFramework管理复杂的业务事务',
     });
     gitalk.render('gitalk-container');
 </script>
@@ -625,7 +528,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         repo: "weechang.github.io",
         owner: "weechang",
         admin: ["weechang"],
-        id: 'AxonFramework-分布式命令总线连接器',
+        id: 'AxonFramework管理复杂的业务事务',
     });
     gitalk.render('gitalk-container');
 </script>

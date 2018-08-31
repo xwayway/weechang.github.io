@@ -3,20 +3,20 @@
 <head>
     <meta charset="utf-8">
     
-    <title>AxonFramework-分布式命令总线连接器 | 耒耒耒耒耒</title>
+    <title>AxonFramework跟踪最后期限 | 耒耒耒耒耒</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="JGroupsConnectorJGroupsConnector使用(正如它的名字已经说明)JGroups作为底层发现和调度机制。描述JGroups的特性有太多的参考指南,请参阅JGroups用户指南以了解更多的细节。">
+    <meta name="description" content="当有事发生时，很容易使一个saga采取行动。毕竟，有一个事件要通知saga。但是如果你想让你的saga，在什么事情都没发生的情况下做些什么呢？这就是最后期限。在发票中，通常是几周，而信用卡支付的确认可能在几秒钟内。">
 <meta name="keywords" content="AxonFramework">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AxonFramework-分布式命令总线连接器">
-<meta property="og:url" content="http://blog.weechang.xyz/2018/08/31/AxonFramework-分布式命令总线连接器/index.html">
+<meta property="og:title" content="AxonFramework跟踪最后期限">
+<meta property="og:url" content="http://blog.weechang.xyz/2018/08/29/AxonFramework-跟踪最后期限/index.html">
 <meta property="og:site_name" content="耒耒耒耒耒">
-<meta property="og:description" content="JGroupsConnectorJGroupsConnector使用(正如它的名字已经说明)JGroups作为底层发现和调度机制。描述JGroups的特性有太多的参考指南,请参阅JGroups用户指南以了解更多的细节。">
+<meta property="og:description" content="当有事发生时，很容易使一个saga采取行动。毕竟，有一个事件要通知saga。但是如果你想让你的saga，在什么事情都没发生的情况下做些什么呢？这就是最后期限。在发票中，通常是几周，而信用卡支付的确认可能在几秒钟内。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-31T02:43:19.215Z">
+<meta property="og:updated_time" content="2018-08-30T06:03:51.733Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AxonFramework-分布式命令总线连接器">
-<meta name="twitter:description" content="JGroupsConnectorJGroupsConnector使用(正如它的名字已经说明)JGroups作为底层发现和调度机制。描述JGroups的特性有太多的参考指南,请参阅JGroups用户指南以了解更多的细节。">
+<meta name="twitter:title" content="AxonFramework跟踪最后期限">
+<meta name="twitter:description" content="当有事发生时，很容易使一个saga采取行动。毕竟，有一个事件要通知saga。但是如果你想让你的saga，在什么事情都没发生的情况下做些什么呢？这就是最后期限。在发票中，通常是几周，而信用卡支付的确认可能在几秒钟内。">
     
 
     
@@ -226,7 +226,7 @@
 </aside>
 
             
-            <section id="main"><article id="post-AxonFramework-分布式命令总线连接器" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-AxonFramework-跟踪最后期限" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -234,7 +234,7 @@
                 
     
         <h1 class="article-title" itemprop="name">
-            AxonFramework-分布式命令总线连接器
+            AxonFramework跟踪最后期限
         </h1>
     
 
@@ -243,8 +243,8 @@
                         
     <div class="article-date">
         <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/31/AxonFramework-分布式命令总线连接器/">
-            <time datetime="2018-08-31T02:40:27.000Z" itemprop="datePublished">2018-08-31</time>
+        <a href="/2018/08/29/AxonFramework-跟踪最后期限/">
+            <time datetime="2018-08-29T02:11:46.000Z" itemprop="datePublished">2018-08-29</time>
         </a>
     </div>
 
@@ -268,11 +268,11 @@
                              <div class="article-word-count">
 <span>
     <i class="fas fa-file-word"></i>
-    共1,418字，
+    共975字，
 </span>
 <span>
     <i class="fas fa-clock"></i>
-    大约需要6分钟
+    大约需要3分钟
 </span>
 </div>
 <span id="busuanzi_container_page_pv">
@@ -289,113 +289,27 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <h2 id="JGroupsConnector"><a href="#JGroupsConnector" class="headerlink" title="JGroupsConnector"></a>JGroupsConnector</h2><p>JGroupsConnector使用(正如它的名字已经说明)JGroups作为底层发现和调度机制。描述JGroups的特性有太多的参考指南,请参阅JGroups用户指南以了解更多的细节。</p>
+            <p>当有事发生时，很容易使一个saga采取行动。毕竟，有一个事件要通知saga。但是如果你想让你的saga，在什么事情都没发生的情况下做些什么呢？这就是最后期限。在发票中，通常是几周，而信用卡支付的确认可能在几秒钟内。</p>
 <a id="more"></a>
-<p>因为JGroups既处理节点的发现又处理它们之间的通信，所以JGroupsConnector既充当CommandBusConnector也充当CommandRouter。</p>
+<p>在Axon中，你可以使用一个EventScheduler计划发布一个事件。在发票的例子中，你希望发票在30内付清。saga将在发送CreateInvoiceCommand后，安排一个InvoicePaymentDeadlineExpiredEvent在30天后发布。计划一个事件后EventScheduler返回ScheduleToken。这个令牌可以用来取消计划，例如已收到发票的付款。</p>
+<p>Axon提供了两种EventScheduler实现:一个纯Java和一个使用Quartz 2作为调度机制支持。</p>
+<p>这个纯java实现的EventScheduler使用ScheduledExecutorService去计划事件发布。虽然这个计划器的定时非常可靠，但它是一个纯内存实现。一旦JVM关闭，所有的计划都将丢失。这使得这种实现不适合长期限的计划。</p>
+<p>SimpleEventScheduler 需要配置一个EventBus和一个SchedulingExecutorService（看java.util.concurrent.Executors类的静态方法的helper方法）。</p>
+<p>QuartzEventScheduler是一个更可靠，企业信得过的实现。使用Quartz 作为底层调度机制，它提供了更强大的功能，如持久性、集群和失败的管理。这意味着事件发布将被保证。可能会晚一点，但会发布。</p>
+<p>需要配置一个Quartz调度器和EventBus。另外，你可以设置以组的名称进行计划，默认为”AxonFramework-Events”</p>
+<p>一个或多个组件将监听计划的事件。这些组件可能依赖于绑定到调用它们的线程的事务。计划的事件由EventScheduler管理的线程发布。管理事务在这些线程上，你可以配置一个TransactionManager或UnitOfWorkFactory创建一个事务绑定工作单元。</p>
 <blockquote>
-<p><b>注意</b><br>你可以在axon-distributed-commandbus-jgroups模块中，为DistributedCommandBus找到JGroups特定组件。</p>
+<p><b>注意</b><br>Spring用户可以使用quartzeventschedulerfactorybean或simpleeventschedulerfactorybean进行更简单的配置。它允许你直接设置PlatformTransactionManager。</p>
 </blockquote>
-<p>JGroupsConnector有四个强制性配置元素：</p>
-<ul>
-<li>第一种是JChannel，它定义了JGroups协议栈。一般来说，用JGroups配置文件的引用构造JChannel。JGroups附带的默认配置,可以用作自己配置的依据。请记住，IP多路广播一般不工作在云服务中，像亚马逊。中这种类型的环境中， TCP Gossip通常是一个好的开端。</li>
-<li>集群名称定义了每个segment应登记到的集群的名称。具有相同的集群名称的Segment最终会探测到彼此，并在彼此间分发命令。</li>
-<li>“本地segment”是命令总线实现，分发命令去往本地的JVM。这些命令可能已通过其他JVM或从本地的一个实例分发。</li>
-<li>最后，序列化器是用来序列化之前通过线路发送的命令消息。</li>
-</ul>
+<h2 id="注入资源"><a href="#注入资源" class="headerlink" title="注入资源"></a>注入资源</h2><p>saga一般做的不仅仅是维护基于事件的状态。它们与外部的组件进行交互。要做到这一点，他们需要访问处理组件所需的资源。通常，这些资源实际上并不是saga状态的一部分，也不应该持久化。但是，一旦重新构建一个saga，在事件被路由到该实例之前，必须注入这些资源。</p>
+<p>为了这个目的有了ResourceInjector。它使用SagaRepository将资源注入到一个saga。Axon提供了SpringResourceInjector用应用程序上下文中的资源注入带注解的字段和方法，和一个SimpleResourceInjector，注册已经注册的资源到用@Inject注解的方法和字段。</p>
 <blockquote>
-<p><b>注意</b><br>当使用缓存时，当ConsistentHash更改以避免潜在的数据损坏时，它应该被清空（例如，当命令没有指定一个@TargetAggregateVersion和新成员快速加入和离开JGroup，修改聚合然而它还要缓存到其他地方）。</p>
+<p><b>提示</b><br>由于资源与saga不应该被持久化，所以务必向这些字段添加临时关键字。这将防止序列化机制尝试将这些字段的内容写入存储库。存储库将在saga被反序列化之后自动重新注入所需的资源。</p>
 </blockquote>
-<p>最终，JGroupsConnector需要实际连接，按顺序分发消息到其他segment。这样做，调用connect()方法。</p>
-<pre>
-JChannel channel = new JChannel("path/to/channel/config.xml");
-CommandBus localSegment = new SimpleCommandBus();
-Serializer serializer = new XStreamSerializer();
-
-JGroupsConnector connector = new JGroupsConnector(channel, "myCommandBus", localSegment, serializer);
-DistributedCommandBus commandBus = new DistributedCommandBus(connector, connector);
-
-// on one node:
-commandBus.subscribe(CommandType.class.getName(), handler);
-connector.connect();
-
-// on another node, with more CPU:
-commandBus.subscribe(CommandType.class.getName(), handler);
-commandBus.subscribe(AnotherCommandType.class.getName(), handler2);
-commandBus.updateLoadFactor(150); // defaults to 100
-connector.connect();
-
-// from now on, just deal with commandBus as if it is local...
-</pre>
-
-<blockquote>
-<p><b>注意</b><br>注意，并非所有的segment都必需具有相同类型的命令的命令处理器。你完全可以为不同的命令类型使用不同的segment。分布式命令总线总是选择一个节点分发命令到那个支持特定类型的命令。</p>
-</blockquote>
-<p>如果你使用Spring，你可能需要考虑使用JGroupsConnectorFactoryBean。它自动连接连接器当ApplicationContext启动后，并且在ApplicationContext关闭时完全的断开。此外,它为测试环境使用合理的默认值(但不应被视为生产准备)和自动装配配置。</p>
-<h2 id="Spring-Cloud-Connector"><a href="#Spring-Cloud-Connector" class="headerlink" title="Spring Cloud Connector"></a>Spring Cloud Connector</h2><p>Spring Cloud连接器装置，用Spring Cloud来描述使用服务注册和发现机制来分配命令总线。因此，你可以自由选择使用哪一个Spring Cloud实现用来分发你的命令。实现的一个例子是 Eureka Discovery/Eureka 服务器组合。</p>
-<blockquote>
-<p><b>注意</b><br>当前版本(Axon 3.0.4)SpringCloudCommandRouter使用ServiceInstance。Metadata 字段来通知所有系统中的节点，通过CommandNameFilter它可以处理命令。这是很重要的,Spring Cloud实现选择支持ServiceInstance.Metadata字段的使用。例如Spring Cloud Consul目前不支持该字段，因此SpringCloudCommandRouter并不是一个可行的解决方案。我们正在研究一个额外的解决方案，从中检索CommandNameFilter 。</p>
-</blockquote>
-<p>提供每个SpringCloud实现的描述将推动本参考指南。因此，我们参考他们各自的文件以获得进一步的信息。</p>
-<p>Spring Cloud连接器装置是一个SpringCloudCommandRouter和SpringHttpCommandBusConnector的组合，分别填充CommandRouter的地点和 DistributedCommandBus的CommandBusConnector。</p>
-<blockquote>
-<p><b>注意</b><br>Spring Cloud连接器特定的组件DistributedCommandBus可以在axon-distributed-commandbus-springcloud模块中找到 。</p>
-</blockquote>
-<p>SpringCloudCommandRouter必须由以下提供的来创建：</p>
-<ul>
-<li>一个DiscoveryClient类型“discovery client”。这可以通过用@EnableDiscoveryClient注解你的Spring Boot应用程序来提供,将在你的类路径中寻找Spring Cloud 的实现。</li>
-<li>一个RoutingStrategy类型的”routing strategy”。目前axon-core模块提供了一些实现，但是一函数调用也可以满足要求。例如，如果你想路由命令基于“聚合标识符”，你可以使用AnnotationRoutingStrategy和注解有效载荷的字段，用@TargetAggregateIdentifier识别聚合。</li>
-</ul>
-<p>SpringHttpCommandBusConnector需要创建三个参数:</p>
-<ul>
-<li>一个CommandBus类型的“local command bus”。这是命令总线实现，它将分发命令到本地的JVM。这些命令可能是由其他JVM上的或本地的实例分发。</li>
-<li>RestOperations对象来执行一个命令消息的发布到另一个实例。</li>
-<li>最后一个Serializer类型的“序列serializer”。序列化器用于在命令发送到网络之前序列化命令消息。</li>
-</ul>
-<p>SpringCloudCommandRouter和SpringHttpCommandBusConnector应该都被用于创建DistributedCommandsBus。在Spring Java 配置中，看起来如下:</p>
-<pre>
-// Simple Spring Boot App providing the `DiscoveryClient` bean
-@EnableDiscoveryClient
-@SpringBootApplication
-public class MyApplication {
-
-    public static void main(String[] args) {
-        SpringApplication.run(MyApplication.class, args);
-    }
-
-    // Example function providing a Spring Cloud Connector
-    @Bean
-    public CommandRouter springCloudCommandRouter(DiscoveryClient discoveryClient) {
-        return new SpringCloudCommandRouter(discoveryClient, new AnnotationRoutingStrategy());
-    }
-
-    @Bean
-    public CommandBusConnector springHttpCommandBusConnector(@Qualifier("localSegment") CommandBus localSegment,
-                                                             RestOperations restOperations,
-                                                             Serializer serializer) {
-        return new SpringHttpCommandBusConnector(localSegment, restOperations, serializer);
-    }
-
-    @Primary // to make sure this CommandBus implementation is used for autowiring
-    @Bean
-    public DistributedCommandBus springCloudDistributedCommandBus(CommandRouter commandRouter, 
-                                                                  CommandBusConnector commandBusConnector) {
-        return new DistributedCommandBus(commandRouter, commandBusConnector);
-    }
-
-}
-
-// if you don't use Spring Boot Autoconfiguration, you will need to explicitly define the local segment:
-@Bean
-@Qualifier("localSegment")
-public CommandBus localSegment() {
-    return new SimpleCommandBus();
-}
-</pre>
-
-<blockquote>
-<p><b>注意</b><br>注意，并非所有的segment都必需具有相同类型的命令的命令处理器。你完全可以为不同的命令类型使用不同的segment。分布式命令总线总是选择一个节点分发命令到那个支持特定类型的命令。</p>
-</blockquote>
-<p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/ccef9924f8d7" target="_blank" rel="noopener">https://www.jianshu.com/p/ccef9924f8d7</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
+<p>Simpleresourceinjector允许一个预先指定的资源集合被注射。它扫描saga的(setter)方法和字段，以找到被@Inject注解的那个。</p>
+<p>当使用配置API，Axon将默认为the ConfigurationResourceInjector。它将注入配置中可用的任何资源。组件像EventBus、EventStore CommandBus和CommandGateway默认情况下是可用的,但你也可以使用configurer.registerComponent()注册自己的组件。</p>
+<p>Springresourceinjector使用Spring的依赖注入机制注入资源聚合。这意味着，如果需要，可以使用setter注入或直接字段注入。要注入的方法或字段需要注解，以便Spring识别它为依赖项。例如@Autowired。</p>
+<p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/02e3636fc735" target="_blank" rel="noopener">https://www.jianshu.com/p/02e3636fc735</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
 
         
         </div>
@@ -456,19 +370,19 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         
 <nav id="article-nav">
     
-        <a href="/2018/08/31/AxonFramework-事件发布和处理/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2018/08/29/AxonFramework-Saga的基础设施/" id="article-nav-newer" class="article-nav-link-wrap">
             <strong class="article-nav-caption">上一篇</strong>
             <div class="article-nav-title">
                 
-                    AxonFramework-事件发布和处理
+                    AxonFramework-Saga的基础设施
                 
             </div>
         </a>
     
     
-        <a href="/2018/08/31/AxonFramework-命令拦截器/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2018/08/27/AxonFramework-事件处理/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">AxonFramework命令拦截器</div>
+            <div class="article-nav-title">AxonFramework事件处理</div>
         </a>
     
 </nav>
@@ -493,7 +407,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         repo: "weechang.github.io",
         owner: "weechang",
         admin: ["weechang"],
-        id: 'AxonFramework-分布式命令总线连接器',
+        id: 'AxonFramework跟踪最后期限',
     });
     gitalk.render('gitalk-container');
 </script>
@@ -625,7 +539,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         repo: "weechang.github.io",
         owner: "weechang",
         admin: ["weechang"],
-        id: 'AxonFramework-分布式命令总线连接器',
+        id: 'AxonFramework跟踪最后期限',
     });
     gitalk.render('gitalk-container');
 </script>

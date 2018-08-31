@@ -3,20 +3,20 @@
 <head>
     <meta charset="utf-8">
     
-    <title>AxonFramework-分布式命令总线连接器 | 耒耒耒耒耒</title>
+    <title>AxonFramework在聚合中处理命令 | 耒耒耒耒耒</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="JGroupsConnectorJGroupsConnector使用(正如它的名字已经说明)JGroups作为底层发现和调度机制。描述JGroups的特性有太多的参考指南,请参阅JGroups用户指南以了解更多的细节。">
+    <meta name="description" content="建议在包含处理状态命令的聚合中直接定义命令处理器，因为命令处理器有可能需要该集合的状态来执行其任务。">
 <meta name="keywords" content="AxonFramework">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AxonFramework-分布式命令总线连接器">
-<meta property="og:url" content="http://blog.weechang.xyz/2018/08/31/AxonFramework-分布式命令总线连接器/index.html">
+<meta property="og:title" content="AxonFramework在聚合中处理命令">
+<meta property="og:url" content="http://blog.weechang.xyz/2018/08/27/AxonFramework-在聚合中处理命令/index.html">
 <meta property="og:site_name" content="耒耒耒耒耒">
-<meta property="og:description" content="JGroupsConnectorJGroupsConnector使用(正如它的名字已经说明)JGroups作为底层发现和调度机制。描述JGroups的特性有太多的参考指南,请参阅JGroups用户指南以了解更多的细节。">
+<meta property="og:description" content="建议在包含处理状态命令的聚合中直接定义命令处理器，因为命令处理器有可能需要该集合的状态来执行其任务。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-31T02:43:19.215Z">
+<meta property="og:updated_time" content="2018-08-30T06:03:51.707Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AxonFramework-分布式命令总线连接器">
-<meta name="twitter:description" content="JGroupsConnectorJGroupsConnector使用(正如它的名字已经说明)JGroups作为底层发现和调度机制。描述JGroups的特性有太多的参考指南,请参阅JGroups用户指南以了解更多的细节。">
+<meta name="twitter:title" content="AxonFramework在聚合中处理命令">
+<meta name="twitter:description" content="建议在包含处理状态命令的聚合中直接定义命令处理器，因为命令处理器有可能需要该集合的状态来执行其任务。">
     
 
     
@@ -226,7 +226,7 @@
 </aside>
 
             
-            <section id="main"><article id="post-AxonFramework-分布式命令总线连接器" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-AxonFramework-在聚合中处理命令" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -234,7 +234,7 @@
                 
     
         <h1 class="article-title" itemprop="name">
-            AxonFramework-分布式命令总线连接器
+            AxonFramework在聚合中处理命令
         </h1>
     
 
@@ -243,8 +243,8 @@
                         
     <div class="article-date">
         <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/31/AxonFramework-分布式命令总线连接器/">
-            <time datetime="2018-08-31T02:40:27.000Z" itemprop="datePublished">2018-08-31</time>
+        <a href="/2018/08/27/AxonFramework-在聚合中处理命令/">
+            <time datetime="2018-08-27T06:04:52.000Z" itemprop="datePublished">2018-08-27</time>
         </a>
     </div>
 
@@ -268,7 +268,7 @@
                              <div class="article-word-count">
 <span>
     <i class="fas fa-file-word"></i>
-    共1,418字，
+    共1,725字，
 </span>
 <span>
     <i class="fas fa-clock"></i>
@@ -289,113 +289,123 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <h2 id="JGroupsConnector"><a href="#JGroupsConnector" class="headerlink" title="JGroupsConnector"></a>JGroupsConnector</h2><p>JGroupsConnector使用(正如它的名字已经说明)JGroups作为底层发现和调度机制。描述JGroups的特性有太多的参考指南,请参阅JGroups用户指南以了解更多的细节。</p>
+            <p>建议在包含处理状态命令的聚合中直接定义命令处理器，因为命令处理器有可能需要该集合的状态来执行其任务。</p>
 <a id="more"></a>
-<p>因为JGroups既处理节点的发现又处理它们之间的通信，所以JGroupsConnector既充当CommandBusConnector也充当CommandRouter。</p>
-<blockquote>
-<p><b>注意</b><br>你可以在axon-distributed-commandbus-jgroups模块中，为DistributedCommandBus找到JGroups特定组件。</p>
-</blockquote>
-<p>JGroupsConnector有四个强制性配置元素：</p>
+<p>要在一个聚合上定义一个命令处理器,只需用@CommandHandler注解命令处理方法即可。带@CommandHandler注解方法的规则和其他处理方法都是一样的。然而,命令不仅通过他们的有效载荷(payload)进行路由。命令消息携带一个名字,该名称默认为命令对象的完全限定类名。</p>
+<p>默认情况下,带@CommandHandler注解的方法允许以下参数类型:</p>
 <ul>
-<li>第一种是JChannel，它定义了JGroups协议栈。一般来说，用JGroups配置文件的引用构造JChannel。JGroups附带的默认配置,可以用作自己配置的依据。请记住，IP多路广播一般不工作在云服务中，像亚马逊。中这种类型的环境中， TCP Gossip通常是一个好的开端。</li>
-<li>集群名称定义了每个segment应登记到的集群的名称。具有相同的集群名称的Segment最终会探测到彼此，并在彼此间分发命令。</li>
-<li>“本地segment”是命令总线实现，分发命令去往本地的JVM。这些命令可能已通过其他JVM或从本地的一个实例分发。</li>
-<li>最后，序列化器是用来序列化之前通过线路发送的命令消息。</li>
+<li><p>第一个参数是命令消息的有效载荷。它的类型也可能是Message或CommandMessage，如果@CommandHandler 注解明确定义命令处理器的名称。默认情况下，命令名是命令的有效载荷的完全限定类名。</p>
+</li>
+<li><p>用@MetaDataValue注解的参数，将用注解上的键对元数据值进行解析。如果需要为false（默认值），则在元数据值不存在时传递NULL。如果需要为True，在元数据值不存在时，该解析器将不匹配并阻止该方法被调用。</p>
+</li>
+<li><p>参数的类型元数据将注入整个CommandMessage的元数据。</p>
+</li>
+<li><p>UnitOfWork类型的参数获取当前工作单元注入。这允许命令处理器注册的行为在工作单元的特定阶段执行，或获得与它注册的资源的访问。</p>
+</li>
+<li><p>Message或CommandMessage类型的参数，将得到完整的消息，包括有效载荷和元数据。如果方法需要多个元数据字段或包装消息的其他属性，则此方法非常有用。</p>
+</li>
 </ul>
+<p>为了使Axon知道哪一个聚合类型的实例应该处理命令消息，命令对象的属性传送聚合标识符，必须用@TargetAggregateIdentifier注解。注解可以放置在任何字段或访问器方法上（例如getter）。</p>
+<p>创建聚合实例的命令不需要标识目标聚合标识符，虽然建议标注聚合标识符。</p>
+<p>如果你喜欢使用另一个机制路由命令，这种行为可以通过提供一个自定义CommandTargetResolver来重写。这个类应该返回聚合标识符和预期的版本(如果有的话)基于给定的命令。</p>
 <blockquote>
-<p><b>注意</b><br>当使用缓存时，当ConsistentHash更改以避免潜在的数据损坏时，它应该被清空（例如，当命令没有指定一个@TargetAggregateVersion和新成员快速加入和离开JGroup，修改聚合然而它还要缓存到其他地方）。</p>
+<p><b>注意</b><br>当@CommandHandler注解放在一个聚合的构造函数上时，相应的命令将创建一个新的聚合实例，并将它添加到存储库。这些命令不需要针对特的定聚合实例。因此，这些命令不需要任何@TargetAggregateIdentifier或@TargetAggregateVersion注解，也不会调用自定义CommandTargetResolver。<br>当一个命令创建一个聚合实例时，该命令的回调函数在命令执行成功执行后，将得到聚合标识符。</p>
 </blockquote>
-<p>最终，JGroupsConnector需要实际连接，按顺序分发消息到其他segment。这样做，调用connect()方法。</p>
 <pre>
-JChannel channel = new JChannel("path/to/channel/config.xml");
-CommandBus localSegment = new SimpleCommandBus();
-Serializer serializer = new XStreamSerializer();
-
-JGroupsConnector connector = new JGroupsConnector(channel, "myCommandBus", localSegment, serializer);
-DistributedCommandBus commandBus = new DistributedCommandBus(connector, connector);
-
-// on one node:
-commandBus.subscribe(CommandType.class.getName(), handler);
-connector.connect();
-
-// on another node, with more CPU:
-commandBus.subscribe(CommandType.class.getName(), handler);
-commandBus.subscribe(AnotherCommandType.class.getName(), handler2);
-commandBus.updateLoadFactor(150); // defaults to 100
-connector.connect();
-
-// from now on, just deal with commandBus as if it is local...
-</pre>
-
-<blockquote>
-<p><b>注意</b><br>注意，并非所有的segment都必需具有相同类型的命令的命令处理器。你完全可以为不同的命令类型使用不同的segment。分布式命令总线总是选择一个节点分发命令到那个支持特定类型的命令。</p>
-</blockquote>
-<p>如果你使用Spring，你可能需要考虑使用JGroupsConnectorFactoryBean。它自动连接连接器当ApplicationContext启动后，并且在ApplicationContext关闭时完全的断开。此外,它为测试环境使用合理的默认值(但不应被视为生产准备)和自动装配配置。</p>
-<h2 id="Spring-Cloud-Connector"><a href="#Spring-Cloud-Connector" class="headerlink" title="Spring Cloud Connector"></a>Spring Cloud Connector</h2><p>Spring Cloud连接器装置，用Spring Cloud来描述使用服务注册和发现机制来分配命令总线。因此，你可以自由选择使用哪一个Spring Cloud实现用来分发你的命令。实现的一个例子是 Eureka Discovery/Eureka 服务器组合。</p>
-<blockquote>
-<p><b>注意</b><br>当前版本(Axon 3.0.4)SpringCloudCommandRouter使用ServiceInstance。Metadata 字段来通知所有系统中的节点，通过CommandNameFilter它可以处理命令。这是很重要的,Spring Cloud实现选择支持ServiceInstance.Metadata字段的使用。例如Spring Cloud Consul目前不支持该字段，因此SpringCloudCommandRouter并不是一个可行的解决方案。我们正在研究一个额外的解决方案，从中检索CommandNameFilter 。</p>
-</blockquote>
-<p>提供每个SpringCloud实现的描述将推动本参考指南。因此，我们参考他们各自的文件以获得进一步的信息。</p>
-<p>Spring Cloud连接器装置是一个SpringCloudCommandRouter和SpringHttpCommandBusConnector的组合，分别填充CommandRouter的地点和 DistributedCommandBus的CommandBusConnector。</p>
-<blockquote>
-<p><b>注意</b><br>Spring Cloud连接器特定的组件DistributedCommandBus可以在axon-distributed-commandbus-springcloud模块中找到 。</p>
-</blockquote>
-<p>SpringCloudCommandRouter必须由以下提供的来创建：</p>
-<ul>
-<li>一个DiscoveryClient类型“discovery client”。这可以通过用@EnableDiscoveryClient注解你的Spring Boot应用程序来提供,将在你的类路径中寻找Spring Cloud 的实现。</li>
-<li>一个RoutingStrategy类型的”routing strategy”。目前axon-core模块提供了一些实现，但是一函数调用也可以满足要求。例如，如果你想路由命令基于“聚合标识符”，你可以使用AnnotationRoutingStrategy和注解有效载荷的字段，用@TargetAggregateIdentifier识别聚合。</li>
-</ul>
-<p>SpringHttpCommandBusConnector需要创建三个参数:</p>
-<ul>
-<li>一个CommandBus类型的“local command bus”。这是命令总线实现，它将分发命令到本地的JVM。这些命令可能是由其他JVM上的或本地的实例分发。</li>
-<li>RestOperations对象来执行一个命令消息的发布到另一个实例。</li>
-<li>最后一个Serializer类型的“序列serializer”。序列化器用于在命令发送到网络之前序列化命令消息。</li>
-</ul>
-<p>SpringCloudCommandRouter和SpringHttpCommandBusConnector应该都被用于创建DistributedCommandsBus。在Spring Java 配置中，看起来如下:</p>
-<pre>
-// Simple Spring Boot App providing the `DiscoveryClient` bean
-@EnableDiscoveryClient
-@SpringBootApplication
-public class MyApplication {
-
-    public static void main(String[] args) {
-        SpringApplication.run(MyApplication.class, args);
+public class MyAggregate {
+    @AggregateIdentifier
+    private String id;
+    @CommandHandler
+    public MyAggregate(CreateMyAggregateCommand command) {
+        apply(new MyAggregateCreatedEvent(IdentifierFactory.getInstance().generateIden
+tifier()));
     }
-
-    // Example function providing a Spring Cloud Connector
-    @Bean
-    public CommandRouter springCloudCommandRouter(DiscoveryClient discoveryClient) {
-        return new SpringCloudCommandRouter(discoveryClient, new AnnotationRoutingStrategy());
+    // no-arg constructor for Axon
+    MyAggregate() {
     }
-
-    @Bean
-    public CommandBusConnector springHttpCommandBusConnector(@Qualifier("localSegment") CommandBus localSegment,
-                                                             RestOperations restOperations,
-                                                             Serializer serializer) {
-        return new SpringHttpCommandBusConnector(localSegment, restOperations, serializer);
+    @CommandHandler
+    public void doSomething(DoSomethingCommand command) {
+    // do something...
     }
-
-    @Primary // to make sure this CommandBus implementation is used for autowiring
-    @Bean
-    public DistributedCommandBus springCloudDistributedCommandBus(CommandRouter commandRouter, 
-                                                                  CommandBusConnector commandBusConnector) {
-        return new DistributedCommandBus(commandRouter, commandBusConnector);
-    }
-
+    // code omitted for brevity. The event handler for MyAggregateCreatedEvent must set the id field
 }
-
-// if you don't use Spring Boot Autoconfiguration, you will need to explicitly define the local segment:
-@Bean
-@Qualifier("localSegment")
-public CommandBus localSegment() {
-    return new SimpleCommandBus();
+public class DoSomethingCommand {
+    @TargetAggregateIdentifier
+    private String aggregateId;
+    // code omitted for brevity
 }
 </pre>
 
+<p>Axon的配置API可用于配置聚合。例如:</p>
+<pre>
+Configurer configurer = ...
+// to use defaults:
+configurer.configureAggreate(MyAggregate.class);
+// allowing customizations:
+configurer.configureAggregate(
+AggregateConfigurer.defaultConfiguration(MyAggregate.class)
+.configureCommandTargetResolver(c -> new CustomCommandTargetResolver()));
+</pre>
+
+<p>@CommandHandler注释并不局限于聚合根。把所有命令处理器放在根里，有时会导致聚合根中存在大量的方法,而它们中的许多只简单地调用转发给底层实体之一。如果是这样,你可以把@CommandHandler注解在一个底层的实体的方法上。Axon找到这些带注释的方法,聚合根中声明的实体字段必须用@AggregateMember标明。注意,命令处理器只检查带注解的字段的声明类型。如果一个字段值为空时传入命令到实体,就会抛出一个异常。</p>
+<pre>
+public class MyAggregate {
+    @AggregateIdentifier
+    private String id;
+    @AggregateMember
+    private MyEntity entity;
+    @CommandHandler
+    public MyAggregate(CreateMyAggregateCommand command) {
+        apply(new MyAggregateCreatedEvent(...);
+    }
+    // no-arg constructor for Axon
+    MyAggregate() {
+    }
+    @CommandHandler
+    public void doSomething(DoSomethingCommand command) {
+        // do something...
+    }
+    // code omitted for brevity. The event handler for MyAggregateCreatedEvent must set the id field
+    // and somewhere in the lifecycle, a value for "entity" must be assigned to be able to accept
+    // DoSomethingInEntityCommand commands.
+}
+public class MyEntity {
+    @CommandHandler
+    public void handleSomeCommand(DoSomethingInEntityCommand command) {
+        // do something
+    }
+}
+</pre>
+
+<p>请注意，在聚合中每个命令必须只对应一个处理器。这意味着你不能用@CommandHandler标注多个实体(either root nor not，包含是根和不是根的所有实体)来处理相同的命令类型。如果你需要有条件地路由命令到一个实体,这些实体的父类应该处理命令,并根据apply的条件转发该命令。</p>
+<p>字段的运行时类型不需要精确地声明类型。然而，@CommandHandle方法只检查被@AggregateMember标记的字段的声明类型。</p>
+<p>也可以用@AggregateMember去注释包含实体的集合和Map。在后一种情况下，map的值有望包含实体，而键包含一个用作它们引用的值。</p>
+<p>作为一个命令需要被路由到正确的实例，这些实例必须被正确地标识。它们的“ID”字段必须用@ EntityId标记。命令的属性将用于查找该消息应被路由到的实体，默认为被标识的字段的名称。例如，当标记一个名为“myentityid”字段，命令必须具有相同名称的属性。这意味着必须提供个getmyentityid或myentityid()方法。如果字段的名称和路由属性不同，你可以提供一个值显式使用 @EntityId(routingKey = “customRoutingProperty”)。</p>
+<p>如果在带注解的集合和Map中没有实体能被找到，Axon会抛出一个IllegalStateException异常。显然,聚合不能够在那个时间点上处理命令。</p>
 <blockquote>
-<p><b>注意</b><br>注意，并非所有的segment都必需具有相同类型的命令的命令处理器。你完全可以为不同的命令类型使用不同的segment。分布式命令总线总是选择一个节点分发命令到那个支持特定类型的命令。</p>
+<p><b>注意</b><br>字段声明的集合或Map应该包含适当的泛型,允许Axon识别实体的类型包含在集合或Map中。如果不可能添加泛型在声明中(例如因为你已经使用了一个自定义泛型类型的实现),你必须指定实体的类型，用于entityType属性@AggregateMember注解。</p>
 </blockquote>
-<p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/ccef9924f8d7" target="_blank" rel="noopener">https://www.jianshu.com/p/ccef9924f8d7</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
+<h2 id="外部命令处理器"><a href="#外部命令处理器" class="headerlink" title="外部命令处理器"></a>外部命令处理器</h2><p>在某些情况下,想要直接向一个聚合实例路由命令是不可能。在这种情况下,可以注册一个命令处理器对象。命令处理器对象是一个简单的(常规的)对象，是带@CommandHandle注解的方法。与集合的情况不同，命令处理器对象只有单个实例，该对象处理其方法中声明的所有命令类型。</p>
+<pre>
+public class MyAnnotatedHandler {
+
+    @CommandHandler
+    public void handleSomeCommand(SomeCommand command, @MetaDataValue("userId") String userId) {
+        // whatever logic here
+    }
+
+    @CommandHandler(commandName = "myCustomCommand")
+    public void handleCustomCommand(SomeCommand command) {
+        // handling logic here
+    }
+}
+
+// To register the annotated handlers to the command bus:
+Configurer configurer = ...
+configurer.registerCommandHandler(c -> new MyAnnotatedHandler());
+</pre>
+
+<p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/64ddd5a8f517" target="_blank" rel="noopener">https://www.jianshu.com/p/64ddd5a8f517</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
 
         
         </div>
@@ -456,19 +466,19 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         
 <nav id="article-nav">
     
-        <a href="/2018/08/31/AxonFramework-事件发布和处理/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2018/08/27/AxonFramework-管理复杂的业务事务/" id="article-nav-newer" class="article-nav-link-wrap">
             <strong class="article-nav-caption">上一篇</strong>
             <div class="article-nav-title">
                 
-                    AxonFramework-事件发布和处理
+                    AxonFramework管理复杂的业务事务
                 
             </div>
         </a>
     
     
-        <a href="/2018/08/31/AxonFramework-命令拦截器/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2018/08/27/AxonFramework-聚合事件溯源/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">AxonFramework命令拦截器</div>
+            <div class="article-nav-title">AxonFramework聚合事件溯源</div>
         </a>
     
 </nav>
@@ -493,7 +503,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         repo: "weechang.github.io",
         owner: "weechang",
         admin: ["weechang"],
-        id: 'AxonFramework-分布式命令总线连接器',
+        id: 'AxonFramework在聚合中处理命令',
     });
     gitalk.render('gitalk-container');
 </script>
@@ -625,7 +635,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         repo: "weechang.github.io",
         owner: "weechang",
         admin: ["weechang"],
-        id: 'AxonFramework-分布式命令总线连接器',
+        id: 'AxonFramework在聚合中处理命令',
     });
     gitalk.render('gitalk-container');
 </script>

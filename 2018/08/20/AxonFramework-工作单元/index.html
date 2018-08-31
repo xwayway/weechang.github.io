@@ -3,20 +3,20 @@
 <head>
     <meta charset="utf-8">
     
-    <title>AxonFramework-分布式命令总线连接器 | 耒耒耒耒耒</title>
+    <title>AxonFramework工作单元 | 耒耒耒耒耒</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="JGroupsConnectorJGroupsConnector使用(正如它的名字已经说明)JGroups作为底层发现和调度机制。描述JGroups的特性有太多的参考指南,请参阅JGroups用户指南以了解更多的细节。">
+    <meta name="description" content="工作单元是Axon Framework的一个重要的概念,虽然在大多数情况下你可能不太直接与它交互。消息的处理被视为一个独立单元。工作单元的目的是在处理一条消息(命令或事件)期间去协调行为的执行。组件可以在工作单元每一个阶段执行注册行为,如onPrepareCommit或onCleanup。">
 <meta name="keywords" content="AxonFramework">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AxonFramework-分布式命令总线连接器">
-<meta property="og:url" content="http://blog.weechang.xyz/2018/08/31/AxonFramework-分布式命令总线连接器/index.html">
+<meta property="og:title" content="AxonFramework工作单元">
+<meta property="og:url" content="http://blog.weechang.xyz/2018/08/20/AxonFramework-工作单元/index.html">
 <meta property="og:site_name" content="耒耒耒耒耒">
-<meta property="og:description" content="JGroupsConnectorJGroupsConnector使用(正如它的名字已经说明)JGroups作为底层发现和调度机制。描述JGroups的特性有太多的参考指南,请参阅JGroups用户指南以了解更多的细节。">
+<meta property="og:description" content="工作单元是Axon Framework的一个重要的概念,虽然在大多数情况下你可能不太直接与它交互。消息的处理被视为一个独立单元。工作单元的目的是在处理一条消息(命令或事件)期间去协调行为的执行。组件可以在工作单元每一个阶段执行注册行为,如onPrepareCommit或onCleanup。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-31T02:43:19.215Z">
+<meta property="og:updated_time" content="2018-08-30T06:03:51.577Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AxonFramework-分布式命令总线连接器">
-<meta name="twitter:description" content="JGroupsConnectorJGroupsConnector使用(正如它的名字已经说明)JGroups作为底层发现和调度机制。描述JGroups的特性有太多的参考指南,请参阅JGroups用户指南以了解更多的细节。">
+<meta name="twitter:title" content="AxonFramework工作单元">
+<meta name="twitter:description" content="工作单元是Axon Framework的一个重要的概念,虽然在大多数情况下你可能不太直接与它交互。消息的处理被视为一个独立单元。工作单元的目的是在处理一条消息(命令或事件)期间去协调行为的执行。组件可以在工作单元每一个阶段执行注册行为,如onPrepareCommit或onCleanup。">
     
 
     
@@ -226,7 +226,7 @@
 </aside>
 
             
-            <section id="main"><article id="post-AxonFramework-分布式命令总线连接器" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-AxonFramework-工作单元" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -234,7 +234,7 @@
                 
     
         <h1 class="article-title" itemprop="name">
-            AxonFramework-分布式命令总线连接器
+            AxonFramework工作单元
         </h1>
     
 
@@ -243,8 +243,8 @@
                         
     <div class="article-date">
         <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/31/AxonFramework-分布式命令总线连接器/">
-            <time datetime="2018-08-31T02:40:27.000Z" itemprop="datePublished">2018-08-31</time>
+        <a href="/2018/08/20/AxonFramework-工作单元/">
+            <time datetime="2018-08-20T05:17:12.000Z" itemprop="datePublished">2018-08-20</time>
         </a>
     </div>
 
@@ -268,11 +268,11 @@
                              <div class="article-word-count">
 <span>
     <i class="fas fa-file-word"></i>
-    共1,418字，
+    共1,388字，
 </span>
 <span>
     <i class="fas fa-clock"></i>
-    大约需要6分钟
+    大约需要5分钟
 </span>
 </div>
 <span id="busuanzi_container_page_pv">
@@ -289,113 +289,45 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <h2 id="JGroupsConnector"><a href="#JGroupsConnector" class="headerlink" title="JGroupsConnector"></a>JGroupsConnector</h2><p>JGroupsConnector使用(正如它的名字已经说明)JGroups作为底层发现和调度机制。描述JGroups的特性有太多的参考指南,请参阅JGroups用户指南以了解更多的细节。</p>
+            <p>工作单元是Axon Framework的一个重要的概念,虽然在大多数情况下你可能不太直接与它交互。消息的处理被视为一个独立单元。工作单元的目的是在处理一条消息(命令或事件)期间去协调行为的执行。组件可以在工作单元每一个阶段执行注册行为,如onPrepareCommit或onCleanup。</p>
 <a id="more"></a>
-<p>因为JGroups既处理节点的发现又处理它们之间的通信，所以JGroupsConnector既充当CommandBusConnector也充当CommandRouter。</p>
+<p>你可能不太需要直接访问工作单元，主要使用Axon提供的构件来访问。不管出于什么原因，如果你需要访问它，有几种方式可以获得它。处理器可以在处理函数中通过一个参数来接收工作单元。如果你使用注解，你可以添加一个UnitOfWork类型参数到你被注解的函数。在其他地方,你可以通过调用CurrentUnitOfWork.get()把工作单元绑定到当前线程。注意，如果没有把工作单元绑定到当前线程，这个方法将抛出一个异常。使用CurrentUnitOfWork.isStarted()可检测它是否可用。</p>
+<p>需要访问当前工作单元的一个原因是，在消息处理过程中附加需要多次重复使用的资源，或者，如果创建资源时需要在工作单元结束时进行清理工作。在这种情况下,unitOfWork.getOrComputeResource()和生命周期回调方法,如onRollback(),afterCommit()和onCleanup()，允许你在工作单元处理期间，注册资源和声明行为。</p>
 <blockquote>
-<p><b>注意</b><br>你可以在axon-distributed-commandbus-jgroups模块中，为DistributedCommandBus找到JGroups特定组件。</p>
+<p><b>注意</b><br>注意工作单元只是变化的缓存，不是事务的替代品。尽管当工作单位被提交时，所有的阶段更改都被提交，但它的提交不是原子性的。这意味着，当提交失败时一些变化可能会被持久化，而另一些则没有。最佳实践要求命令不应该包含多个行为。如果你坚持这种做法，一个工作单元只包含一个单一的行为，从而将使其被安全使用。如果你的工作单元中有更多的行为，那么你可以考虑将一个事务附加到工作单元的提交。当工作单元提交时，使用unitOfWork.onCommit(. .)注册一个行为。*</p>
 </blockquote>
-<p>JGroupsConnector有四个强制性配置元素：</p>
+<p>你的处理器可以抛出一个异常作为处理消息的结果。默认情况下,未经检测的异常将导致UnitOfWork回滚所有的更改。结果是 ，预定的副作用被撤消。</p>
+<p>Axon 提供了一些开箱即用的回滚策略:</p>
 <ul>
-<li>第一种是JChannel，它定义了JGroups协议栈。一般来说，用JGroups配置文件的引用构造JChannel。JGroups附带的默认配置,可以用作自己配置的依据。请记住，IP多路广播一般不工作在云服务中，像亚马逊。中这种类型的环境中， TCP Gossip通常是一个好的开端。</li>
-<li>集群名称定义了每个segment应登记到的集群的名称。具有相同的集群名称的Segment最终会探测到彼此，并在彼此间分发命令。</li>
-<li>“本地segment”是命令总线实现，分发命令去往本地的JVM。这些命令可能已通过其他JVM或从本地的一个实例分发。</li>
-<li>最后，序列化器是用来序列化之前通过线路发送的命令消息。</li>
+<li>RollbackConfigurationType.NEVER ,总是提交工作单元。</li>
+<li>RollbackConfigurationType.ANY_THROWABLE ,当异常发生时总是回滚。</li>
+<li>RollbackConfigurationType.UNCHECKED_EXCEPTIONS，错误和运行时异常回滚。</li>
+<li>RollbackConfigurationType.RUNTIME_EXCEPTION ,运行时异常回滚（但不是错误）</li>
 </ul>
-<blockquote>
-<p><b>注意</b><br>当使用缓存时，当ConsistentHash更改以避免潜在的数据损坏时，它应该被清空（例如，当命令没有指定一个@TargetAggregateVersion和新成员快速加入和离开JGroup，修改聚合然而它还要缓存到其他地方）。</p>
-</blockquote>
-<p>最终，JGroupsConnector需要实际连接，按顺序分发消息到其他segment。这样做，调用connect()方法。</p>
+<p>当使用Axon 组件处理消息时，将自动为你管理工作单元的生命周期。如果你选择不使用这些组件，但实现自己的处理，则需要以编程方式启动和提交(或回滚)工作单元。</p>
+<p>在大多数情况下，DefaultUnitOfWork将为你提供你所需要的功能。它在单线程中处理进程。在一个工作单元上下文中执行一个任务，可以new一个DefaultUnitOfWork并简单地调用UnitOfWork.execute(Runnable)或UnitOfWork.executeWithResult(Callable)函数。典型的用法如下:</p>
 <pre>
-JChannel channel = new JChannel("path/to/channel/config.xml");
-CommandBus localSegment = new SimpleCommandBus();
-Serializer serializer = new XStreamSerializer();
+// then, either use the autocommit approach: 
+uow.executeWithResult(() -> ... logic here);
+// or manually commit or rollback:
+ try {
+    // business logic comes here
+    uow.commit();
+} catch (Exception e) {
+    uow.rollback(e);
+    // maybe rethrow...
+}`
+``
+</pre> 
 
-JGroupsConnector connector = new JGroupsConnector(channel, "myCommandBus", localSegment, serializer);
-DistributedCommandBus commandBus = new DistributedCommandBus(connector, connector);
-
-// on one node:
-commandBus.subscribe(CommandType.class.getName(), handler);
-connector.connect();
-
-// on another node, with more CPU:
-commandBus.subscribe(CommandType.class.getName(), handler);
-commandBus.subscribe(AnotherCommandType.class.getName(), handler2);
-commandBus.updateLoadFactor(150); // defaults to 100
-connector.connect();
-
-// from now on, just deal with commandBus as if it is local...
-</pre>
-
-<blockquote>
-<p><b>注意</b><br>注意，并非所有的segment都必需具有相同类型的命令的命令处理器。你完全可以为不同的命令类型使用不同的segment。分布式命令总线总是选择一个节点分发命令到那个支持特定类型的命令。</p>
-</blockquote>
-<p>如果你使用Spring，你可能需要考虑使用JGroupsConnectorFactoryBean。它自动连接连接器当ApplicationContext启动后，并且在ApplicationContext关闭时完全的断开。此外,它为测试环境使用合理的默认值(但不应被视为生产准备)和自动装配配置。</p>
-<h2 id="Spring-Cloud-Connector"><a href="#Spring-Cloud-Connector" class="headerlink" title="Spring Cloud Connector"></a>Spring Cloud Connector</h2><p>Spring Cloud连接器装置，用Spring Cloud来描述使用服务注册和发现机制来分配命令总线。因此，你可以自由选择使用哪一个Spring Cloud实现用来分发你的命令。实现的一个例子是 Eureka Discovery/Eureka 服务器组合。</p>
-<blockquote>
-<p><b>注意</b><br>当前版本(Axon 3.0.4)SpringCloudCommandRouter使用ServiceInstance。Metadata 字段来通知所有系统中的节点，通过CommandNameFilter它可以处理命令。这是很重要的,Spring Cloud实现选择支持ServiceInstance.Metadata字段的使用。例如Spring Cloud Consul目前不支持该字段，因此SpringCloudCommandRouter并不是一个可行的解决方案。我们正在研究一个额外的解决方案，从中检索CommandNameFilter 。</p>
-</blockquote>
-<p>提供每个SpringCloud实现的描述将推动本参考指南。因此，我们参考他们各自的文件以获得进一步的信息。</p>
-<p>Spring Cloud连接器装置是一个SpringCloudCommandRouter和SpringHttpCommandBusConnector的组合，分别填充CommandRouter的地点和 DistributedCommandBus的CommandBusConnector。</p>
-<blockquote>
-<p><b>注意</b><br>Spring Cloud连接器特定的组件DistributedCommandBus可以在axon-distributed-commandbus-springcloud模块中找到 。</p>
-</blockquote>
-<p>SpringCloudCommandRouter必须由以下提供的来创建：</p>
-<ul>
-<li>一个DiscoveryClient类型“discovery client”。这可以通过用@EnableDiscoveryClient注解你的Spring Boot应用程序来提供,将在你的类路径中寻找Spring Cloud 的实现。</li>
-<li>一个RoutingStrategy类型的”routing strategy”。目前axon-core模块提供了一些实现，但是一函数调用也可以满足要求。例如，如果你想路由命令基于“聚合标识符”，你可以使用AnnotationRoutingStrategy和注解有效载荷的字段，用@TargetAggregateIdentifier识别聚合。</li>
-</ul>
-<p>SpringHttpCommandBusConnector需要创建三个参数:</p>
-<ul>
-<li>一个CommandBus类型的“local command bus”。这是命令总线实现，它将分发命令到本地的JVM。这些命令可能是由其他JVM上的或本地的实例分发。</li>
-<li>RestOperations对象来执行一个命令消息的发布到另一个实例。</li>
-<li>最后一个Serializer类型的“序列serializer”。序列化器用于在命令发送到网络之前序列化命令消息。</li>
-</ul>
-<p>SpringCloudCommandRouter和SpringHttpCommandBusConnector应该都被用于创建DistributedCommandsBus。在Spring Java 配置中，看起来如下:</p>
-<pre>
-// Simple Spring Boot App providing the `DiscoveryClient` bean
-@EnableDiscoveryClient
-@SpringBootApplication
-public class MyApplication {
-
-    public static void main(String[] args) {
-        SpringApplication.run(MyApplication.class, args);
-    }
-
-    // Example function providing a Spring Cloud Connector
-    @Bean
-    public CommandRouter springCloudCommandRouter(DiscoveryClient discoveryClient) {
-        return new SpringCloudCommandRouter(discoveryClient, new AnnotationRoutingStrategy());
-    }
-
-    @Bean
-    public CommandBusConnector springHttpCommandBusConnector(@Qualifier("localSegment") CommandBus localSegment,
-                                                             RestOperations restOperations,
-                                                             Serializer serializer) {
-        return new SpringHttpCommandBusConnector(localSegment, restOperations, serializer);
-    }
-
-    @Primary // to make sure this CommandBus implementation is used for autowiring
-    @Bean
-    public DistributedCommandBus springCloudDistributedCommandBus(CommandRouter commandRouter, 
-                                                                  CommandBusConnector commandBusConnector) {
-        return new DistributedCommandBus(commandRouter, commandBusConnector);
-    }
-
-}
-
-// if you don't use Spring Boot Autoconfiguration, you will need to explicitly define the local segment:
-@Bean
-@Qualifier("localSegment")
-public CommandBus localSegment() {
-    return new SimpleCommandBus();
-}
-</pre>
-
-<blockquote>
-<p><b>注意</b><br>注意，并非所有的segment都必需具有相同类型的命令的命令处理器。你完全可以为不同的命令类型使用不同的segment。分布式命令总线总是选择一个节点分发命令到那个支持特定类型的命令。</p>
-</blockquote>
-<p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/ccef9924f8d7" target="_blank" rel="noopener">https://www.jianshu.com/p/ccef9924f8d7</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
+<p>一个工作单元了解各个阶段。每当它进展到不同的阶段时，就会通知UnitOfWork监听器。</p>
+<p><strong>活动阶段:</strong>这是开始工作单元的地方。工作单元通常在当前线程中的这个阶段被注册(通过CurrentUnitOfWork.set(UnitOfWork))。随后，消息通常在此阶段由消息处理器处理。</p>
+<p><strong>提交阶段:</strong>在处理完消息之后，但是在提交工作单元之前，将调用onPrepareCommit监听器。如果一个工作单元被绑定到一个事务中，那么将调用onCommit监听器来提交任何的支持事务。当提交成功时，将调用afterCommit监听器。如果在提交或任何步骤之前失败，将调用onRollback监听器。如果可用，则消息处理器的结果包含在工作单元的ExecutionResult中。</p>
+<p><strong>清理阶段:</strong>在此阶段，该工作单元(如锁)所持有的任何资源都将被释放。如果多个工作单元被嵌套，那么清理阶段将被推迟到外部的单元工作都准备好清理为止。</p>
+<p>消息处理过程可以被认为是一个原子过程;它要么完全被处理，要么完全不被处理。Axon Framework使用工作单元来跟踪消息处理器执行的操作。在处理器完成后，Axon 将尝试提交在工作单元中注册的操作。</p>
+<p>将事务绑定到工作单元是可能的。许多组件，例如CommandBus的实现和所有异步处理事件处理器，都允许你配置事务管理器（Transaction Manager）。然后，该事务管理器将被用于创建事务，以绑定到用于管理消息处理的工作单元。</p>
+<p>当应用程序组件在消息处理的不同阶段需要资源时，比如，数据库连接或实体管理器(EntityManager)，这些资源能</p>
+<p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/3814c293f4fc" target="_blank" rel="noopener">https://www.jianshu.com/p/3814c293f4fc</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
 
         
         </div>
@@ -456,19 +388,19 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         
 <nav id="article-nav">
     
-        <a href="/2018/08/31/AxonFramework-事件发布和处理/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2018/08/20/AxonFramework-配置/" id="article-nav-newer" class="article-nav-link-wrap">
             <strong class="article-nav-caption">上一篇</strong>
             <div class="article-nav-title">
                 
-                    AxonFramework-事件发布和处理
+                    AxonFramework配置
                 
             </div>
         </a>
     
     
-        <a href="/2018/08/31/AxonFramework-命令拦截器/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2018/08/17/ElasticSearch查询报错fielddata-true/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">AxonFramework命令拦截器</div>
+            <div class="article-nav-title">ElasticSearch查询报错fielddata=true</div>
         </a>
     
 </nav>
@@ -493,7 +425,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         repo: "weechang.github.io",
         owner: "weechang",
         admin: ["weechang"],
-        id: 'AxonFramework-分布式命令总线连接器',
+        id: 'AxonFramework工作单元',
     });
     gitalk.render('gitalk-container');
 </script>
@@ -625,7 +557,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         repo: "weechang.github.io",
         owner: "weechang",
         admin: ["weechang"],
-        id: 'AxonFramework-分布式命令总线连接器',
+        id: 'AxonFramework工作单元',
     });
     gitalk.render('gitalk-container');
 </script>

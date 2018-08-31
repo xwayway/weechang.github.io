@@ -3,20 +3,20 @@
 <head>
     <meta charset="utf-8">
     
-    <title>AxonFramework-分布式命令总线连接器 | 耒耒耒耒耒</title>
+    <title>AxonFramework架构概述 | 耒耒耒耒耒</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="JGroupsConnectorJGroupsConnector使用(正如它的名字已经说明)JGroups作为底层发现和调度机制。描述JGroups的特性有太多的参考指南,请参阅JGroups用户指南以了解更多的细节。">
+    <meta name="description" content="CQRS本身是一个非常简单的模式。它只规定了处理命令的应用程序的组件应该与处理查询 的组件分离。 虽然这种分离本身非常简单，但它与其他模式结合时提供了许多非常强大的功能。Axon 提供的构件更容易实现不同的模式与CQRS的结合。">
 <meta name="keywords" content="AxonFramework">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AxonFramework-分布式命令总线连接器">
-<meta property="og:url" content="http://blog.weechang.xyz/2018/08/31/AxonFramework-分布式命令总线连接器/index.html">
+<meta property="og:title" content="AxonFramework架构概述">
+<meta property="og:url" content="http://blog.weechang.xyz/2018/08/17/AxonFramework-架构概述/index.html">
 <meta property="og:site_name" content="耒耒耒耒耒">
-<meta property="og:description" content="JGroupsConnectorJGroupsConnector使用(正如它的名字已经说明)JGroups作为底层发现和调度机制。描述JGroups的特性有太多的参考指南,请参阅JGroups用户指南以了解更多的细节。">
+<meta property="og:description" content="CQRS本身是一个非常简单的模式。它只规定了处理命令的应用程序的组件应该与处理查询 的组件分离。 虽然这种分离本身非常简单，但它与其他模式结合时提供了许多非常强大的功能。Axon 提供的构件更容易实现不同的模式与CQRS的结合。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-31T02:43:19.215Z">
+<meta property="og:updated_time" content="2018-08-30T06:03:51.657Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AxonFramework-分布式命令总线连接器">
-<meta name="twitter:description" content="JGroupsConnectorJGroupsConnector使用(正如它的名字已经说明)JGroups作为底层发现和调度机制。描述JGroups的特性有太多的参考指南,请参阅JGroups用户指南以了解更多的细节。">
+<meta name="twitter:title" content="AxonFramework架构概述">
+<meta name="twitter:description" content="CQRS本身是一个非常简单的模式。它只规定了处理命令的应用程序的组件应该与处理查询 的组件分离。 虽然这种分离本身非常简单，但它与其他模式结合时提供了许多非常强大的功能。Axon 提供的构件更容易实现不同的模式与CQRS的结合。">
     
 
     
@@ -226,7 +226,7 @@
 </aside>
 
             
-            <section id="main"><article id="post-AxonFramework-分布式命令总线连接器" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-AxonFramework-架构概述" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -234,7 +234,7 @@
                 
     
         <h1 class="article-title" itemprop="name">
-            AxonFramework-分布式命令总线连接器
+            AxonFramework架构概述
         </h1>
     
 
@@ -243,8 +243,8 @@
                         
     <div class="article-date">
         <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/31/AxonFramework-分布式命令总线连接器/">
-            <time datetime="2018-08-31T02:40:27.000Z" itemprop="datePublished">2018-08-31</time>
+        <a href="/2018/08/17/AxonFramework-架构概述/">
+            <time datetime="2018-08-17T08:33:12.000Z" itemprop="datePublished">2018-08-17</time>
         </a>
     </div>
 
@@ -268,11 +268,11 @@
                              <div class="article-word-count">
 <span>
     <i class="fas fa-file-word"></i>
-    共1,418字，
+    共2,085字，
 </span>
 <span>
     <i class="fas fa-clock"></i>
-    大约需要6分钟
+    大约需要7分钟
 </span>
 </div>
 <span id="busuanzi_container_page_pv">
@@ -289,113 +289,35 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <h2 id="JGroupsConnector"><a href="#JGroupsConnector" class="headerlink" title="JGroupsConnector"></a>JGroupsConnector</h2><p>JGroupsConnector使用(正如它的名字已经说明)JGroups作为底层发现和调度机制。描述JGroups的特性有太多的参考指南,请参阅JGroups用户指南以了解更多的细节。</p>
+            <p>CQRS本身是一个非常简单的模式。它只规定了处理命令的应用程序的组件应该与处理查询 的组件分离。 虽然这种分离本身非常简单，但它与其他模式结合时提供了许多非常强大的功能。Axon 提供的构件更容易实现不同的模式与CQRS的结合。</p>
 <a id="more"></a>
-<p>因为JGroups既处理节点的发现又处理它们之间的通信，所以JGroupsConnector既充当CommandBusConnector也充当CommandRouter。</p>
-<blockquote>
-<p><b>注意</b><br>你可以在axon-distributed-commandbus-jgroups模块中，为DistributedCommandBus找到JGroups特定组件。</p>
-</blockquote>
-<p>JGroupsConnector有四个强制性配置元素：</p>
-<ul>
-<li>第一种是JChannel，它定义了JGroups协议栈。一般来说，用JGroups配置文件的引用构造JChannel。JGroups附带的默认配置,可以用作自己配置的依据。请记住，IP多路广播一般不工作在云服务中，像亚马逊。中这种类型的环境中， TCP Gossip通常是一个好的开端。</li>
-<li>集群名称定义了每个segment应登记到的集群的名称。具有相同的集群名称的Segment最终会探测到彼此，并在彼此间分发命令。</li>
-<li>“本地segment”是命令总线实现，分发命令去往本地的JVM。这些命令可能已通过其他JVM或从本地的一个实例分发。</li>
-<li>最后，序列化器是用来序列化之前通过线路发送的命令消息。</li>
-</ul>
-<blockquote>
-<p><b>注意</b><br>当使用缓存时，当ConsistentHash更改以避免潜在的数据损坏时，它应该被清空（例如，当命令没有指定一个@TargetAggregateVersion和新成员快速加入和离开JGroup，修改聚合然而它还要缓存到其他地方）。</p>
-</blockquote>
-<p>最终，JGroupsConnector需要实际连接，按顺序分发消息到其他segment。这样做，调用connect()方法。</p>
-<pre>
-JChannel channel = new JChannel("path/to/channel/config.xml");
-CommandBus localSegment = new SimpleCommandBus();
-Serializer serializer = new XStreamSerializer();
+<p>下图显示了一个示例，一个基于CQRS的事件驱动的架构图示。 左侧显示的是UI组件, 通过 两种方式与应用程序的其余部分进行交互：它向应用程序发送命令 (显示在顶端的部分), 并从应用程序中查询信息 (显示在底端的部分)。</p>
 
-JGroupsConnector connector = new JGroupsConnector(channel, "myCommandBus", localSegment, serializer);
-DistributedCommandBus commandBus = new DistributedCommandBus(connector, connector);
-
-// on one node:
-commandBus.subscribe(CommandType.class.getName(), handler);
-connector.connect();
-
-// on another node, with more CPU:
-commandBus.subscribe(CommandType.class.getName(), handler);
-commandBus.subscribe(AnotherCommandType.class.getName(), handler2);
-commandBus.updateLoadFactor(150); // defaults to 100
-connector.connect();
-
-// from now on, just deal with commandBus as if it is local...
-</pre>
-
-<blockquote>
-<p><b>注意</b><br>注意，并非所有的segment都必需具有相同类型的命令的命令处理器。你完全可以为不同的命令类型使用不同的segment。分布式命令总线总是选择一个节点分发命令到那个支持特定类型的命令。</p>
-</blockquote>
-<p>如果你使用Spring，你可能需要考虑使用JGroupsConnectorFactoryBean。它自动连接连接器当ApplicationContext启动后，并且在ApplicationContext关闭时完全的断开。此外,它为测试环境使用合理的默认值(但不应被视为生产准备)和自动装配配置。</p>
-<h2 id="Spring-Cloud-Connector"><a href="#Spring-Cloud-Connector" class="headerlink" title="Spring Cloud Connector"></a>Spring Cloud Connector</h2><p>Spring Cloud连接器装置，用Spring Cloud来描述使用服务注册和发现机制来分配命令总线。因此，你可以自由选择使用哪一个Spring Cloud实现用来分发你的命令。实现的一个例子是 Eureka Discovery/Eureka 服务器组合。</p>
-<blockquote>
-<p><b>注意</b><br>当前版本(Axon 3.0.4)SpringCloudCommandRouter使用ServiceInstance。Metadata 字段来通知所有系统中的节点，通过CommandNameFilter它可以处理命令。这是很重要的,Spring Cloud实现选择支持ServiceInstance.Metadata字段的使用。例如Spring Cloud Consul目前不支持该字段，因此SpringCloudCommandRouter并不是一个可行的解决方案。我们正在研究一个额外的解决方案，从中检索CommandNameFilter 。</p>
-</blockquote>
-<p>提供每个SpringCloud实现的描述将推动本参考指南。因此，我们参考他们各自的文件以获得进一步的信息。</p>
-<p>Spring Cloud连接器装置是一个SpringCloudCommandRouter和SpringHttpCommandBusConnector的组合，分别填充CommandRouter的地点和 DistributedCommandBus的CommandBusConnector。</p>
-<blockquote>
-<p><b>注意</b><br>Spring Cloud连接器特定的组件DistributedCommandBus可以在axon-distributed-commandbus-springcloud模块中找到 。</p>
-</blockquote>
-<p>SpringCloudCommandRouter必须由以下提供的来创建：</p>
-<ul>
-<li>一个DiscoveryClient类型“discovery client”。这可以通过用@EnableDiscoveryClient注解你的Spring Boot应用程序来提供,将在你的类路径中寻找Spring Cloud 的实现。</li>
-<li>一个RoutingStrategy类型的”routing strategy”。目前axon-core模块提供了一些实现，但是一函数调用也可以满足要求。例如，如果你想路由命令基于“聚合标识符”，你可以使用AnnotationRoutingStrategy和注解有效载荷的字段，用@TargetAggregateIdentifier识别聚合。</li>
-</ul>
-<p>SpringHttpCommandBusConnector需要创建三个参数:</p>
-<ul>
-<li>一个CommandBus类型的“local command bus”。这是命令总线实现，它将分发命令到本地的JVM。这些命令可能是由其他JVM上的或本地的实例分发。</li>
-<li>RestOperations对象来执行一个命令消息的发布到另一个实例。</li>
-<li>最后一个Serializer类型的“序列serializer”。序列化器用于在命令发送到网络之前序列化命令消息。</li>
-</ul>
-<p>SpringCloudCommandRouter和SpringHttpCommandBusConnector应该都被用于创建DistributedCommandsBus。在Spring Java 配置中，看起来如下:</p>
-<pre>
-// Simple Spring Boot App providing the `DiscoveryClient` bean
-@EnableDiscoveryClient
-@SpringBootApplication
-public class MyApplication {
-
-    public static void main(String[] args) {
-        SpringApplication.run(MyApplication.class, args);
-    }
-
-    // Example function providing a Spring Cloud Connector
-    @Bean
-    public CommandRouter springCloudCommandRouter(DiscoveryClient discoveryClient) {
-        return new SpringCloudCommandRouter(discoveryClient, new AnnotationRoutingStrategy());
-    }
-
-    @Bean
-    public CommandBusConnector springHttpCommandBusConnector(@Qualifier("localSegment") CommandBus localSegment,
-                                                             RestOperations restOperations,
-                                                             Serializer serializer) {
-        return new SpringHttpCommandBusConnector(localSegment, restOperations, serializer);
-    }
-
-    @Primary // to make sure this CommandBus implementation is used for autowiring
-    @Bean
-    public DistributedCommandBus springCloudDistributedCommandBus(CommandRouter commandRouter, 
-                                                                  CommandBusConnector commandBusConnector) {
-        return new DistributedCommandBus(commandRouter, commandBusConnector);
-    }
-
-}
-
-// if you don't use Spring Boot Autoconfiguration, you will need to explicitly define the local segment:
-@Bean
-@Qualifier("localSegment")
-public CommandBus localSegment() {
-    return new SimpleCommandBus();
-}
-</pre>
-
-<blockquote>
-<p><b>注意</b><br>注意，并非所有的segment都必需具有相同类型的命令的命令处理器。你完全可以为不同的命令类型使用不同的segment。分布式命令总线总是选择一个节点分发命令到那个支持特定类型的命令。</p>
-</blockquote>
-<p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/ccef9924f8d7" target="_blank" rel="noopener">https://www.jianshu.com/p/ccef9924f8d7</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
+<p>Command(命令)通常用简单的对象表示，这些对象包含命令处理器执行所需的所有数据。一个命令通过它的名字来表达它的意图。在Java术语中，这意味着使用类名来确定需要做什么，命令的字段提供了执行该操作所需的信息。</p>
+<p>Command Bus接受命令并路由它们到命令处理器(Command handler) 。每个命令处理器响应特定类型的命令，并根据命令的内容执行逻辑。 然而，在某些情况下，你也希望不顾实际的命令类型去执行逻辑，如验证、日志或权限。</p>
+<p>Command handler(命令处理器)从仓储中恢复领域对象(聚合)并执行方法来改变它们的状态。这些聚合通常包含真实的业务逻辑并负责维护自身的不变性。聚合的状态变化导致了领域事件的产生,领域事件和聚合都从领域模型中来。</p>
+<p>repositories(仓储)负责提供访问聚合。通常情况下，这些仓储的优化设计是仅通过其唯一标识符来查找聚合。一些仓储将存储聚合自身的状态(例如，使用对象关系映射，ORM)， 而另一些则存储聚合的状态的更改到Event Store中，仓储还负责对其备份数据库中的聚合进行更改。</p>
+<p>Axon提供了直接持久化聚合（使用对象关系映射，ORM）和事件溯源(event sourcing)两种方式.</p>
+<p>Event bus(事件总线)分派事件到所有感兴趣的事件监听器(Event listener)中。可以同步或异 步完成。异步事件调度允许命令执行返回和移交控制给用户，这些事件在后台被分派和处理，不必等待事件处理完成，这样应用程序就会响应得更快。同步事件处理，另一方面，更简单，是 一个合适的默认选项。 默认情况下,同步处理将在同一事务中处理事件监听器和命令处理 器。</p>
+<p>Event listener(事件监听器)接收并处理事件。一些处理器将更新用于查询的数据源，而其他处理器则将消息发送到外部系统。你可能会注意到了,命令处理器只对组件所做的更改感兴趣，却完全察觉不到它们的存在。这意味着它可以非侵入地扩展应用程序的新功能， 你需要做的就只是添加一个事件监听器。事件让应用程序中的所有组件松散耦合。</p>
+<p>在某些情况下,事件处理需要把新的命令发送到应用程序。这方面例子，例如，当接收到一 个订单，这可能意味着客户的账户应当扣除购买商品所需的金额，并必须通知装运方准备打包这批商品。在许多应用中，逻辑将变得更加复杂:如果客户没有及时支付呢?你会马上发货还是等待付款？saga(长事务处理)是CQRS的概念，它负责管理这些复杂的商业事务。</p>
+<p>在用户界面和数据源之间的瘦数据层，为实际的查询实现提供了一个明确定义的接口。这个数据层通常返回包含查询结果的只读DTO对象。这些DTO的内容通常是由用户界面的需求驱 动的。在大多数情况下,他们直接映射到用户界面的一个特定的视图(也称为table-per-view)。</p>
+<p>Axon不提供任何应用程序这部分的构件。主要的原因是这非常简单，并且与分层架构并没有太大的区别。</p>
+<h2 id="Axon模块结构"><a href="#Axon模块结构" class="headerlink" title="Axon模块结构"></a>Axon模块结构</h2><p>Axon Framework由多个针对CQRS特定问题域的模块组成。根据项目的具体需求，你需要包括一个或多个这些模块。<br>从Axon2.1起,所有模块兼容OSGi。这意味着它们在manifest文件包含所需的头文件,并声明它们导入和导出的包。目前,只有Slf4J bundle(1.7.0 &lt;= 版本&lt; 2.0.0)是必需的。所有其他导入的都被标记为可选,尽管你很可能需要这些。</p>
+<h2 id="主模块"><a href="#主模块" class="headerlink" title="主模块"></a>主模块</h2><p>Axon的主要模块已经过完全的测试，强大到足以在苛刻的生产环境中使用。所有这些模 块的maven groupId都是org.axonframework。</p>
+<p>核心模块顾名思义是Axon的核心组件。如果你使用single-node设置,这个模块可能会提供给你需要的所有组件。其他所有的Axon模块依赖这个模块，所以它必须在classpath中可用。</p>
+<p>测试模块包含有你可以使用的测试固件来测试基于Axon的组件，比如你的命令处理器、聚 合和Sagas。你通常在运行时不需要这个模块，只需在测试过程中添加到classpath。</p>
+<p>分布式CommandBus包含了可用于在多个节点发送命令的实现。它配备了JGroups和Spring Cloud连接器，来连接这些节点。</p>
+<p>AMQP模块提供的组件，允许你打造一个基于AMQP的EventBus，并使用message broker作为分配机制。这允许保证事件送达，即使事件处理器节点暂时不可用。</p>
+<p>Spring模块允许Axon组件在Spring程序上下文中配置。它还提供了一些针对Spring框架的构件的实现，例如用于在Spring消息信道上发布和检索Axon事件的适配器。</p>
+<p>MongoDB是一个基于文档的NoSQL数据库，Mongo模块实现事件和saga的存储，并用MongoDB数据库存储事件流和saga。</p>
+<p>几个AxonFramework组件提供监控信息。Metrics模块提供基于Codehale的基本实现来收集监控信息。</p>
+<h2 id="与Axon-API一起工作"><a href="#与Axon-API一起工作" class="headerlink" title="与Axon API一起工作"></a>与Axon API一起工作</h2><p>QRS是一种架构模式，它不可能提供一个适合所有项目的单一解决方案。显然，Axon Framework并不试图提供这样的解决方案。相反，Axon提供了遵循最佳实践的实现和将每一个实现都调整到符合你的特定需求的手段。</p>
+<p>几乎所有基础设施构件都提供检查点(如拦截器,解析器等)，允许你向这些构件添 加application-specific行为。大多数情况下，Axon将为那些适合大多数用例的检查点提供实现，如果需要，你可以简单地实现自己的。</p>
+<p>非基础设施对象，如消息，通常是不可变的。这确保了这些对象在多线程环境中是安全的， 没有副作用的。</p>
+<p>为了确保定制的最大化，所有Axon组件都使用接口定义。抽象类和具体的实现类提供了帮助你的方式，但框架对你没有任何要求，它总是允许使用该接口构建任何完全自定义实现的构件。</p>
+<h2 id="Spring的支持"><a href="#Spring的支持" class="headerlink" title="Spring的支持"></a>Spring的支持</h2><p>Axon Framework对Spring提供了广泛的支持，但不强制你使用Spring来使用Axon。所有的组件都可以以编程方式配置，并且不需要把Spring放在classpath中。然而，如果你使用Spring、使 用Spring的annotation，很多的配置会变得更加容易。</p>
+<p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/943f5b3ab139" target="_blank" rel="noopener">https://www.jianshu.com/p/943f5b3ab139</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
 
         
         </div>
@@ -456,19 +378,19 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         
 <nav id="article-nav">
     
-        <a href="/2018/08/31/AxonFramework-事件发布和处理/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2018/08/17/AxonFramework-消息、命令和事件/" id="article-nav-newer" class="article-nav-link-wrap">
             <strong class="article-nav-caption">上一篇</strong>
             <div class="article-nav-title">
                 
-                    AxonFramework-事件发布和处理
+                    AxonFramework消息、命令和事件
                 
             </div>
         </a>
     
     
-        <a href="/2018/08/31/AxonFramework-命令拦截器/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2018/08/17/AxonFramework-简介/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">AxonFramework命令拦截器</div>
+            <div class="article-nav-title">AxonFramework简介</div>
         </a>
     
 </nav>
@@ -493,7 +415,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         repo: "weechang.github.io",
         owner: "weechang",
         admin: ["weechang"],
-        id: 'AxonFramework-分布式命令总线连接器',
+        id: 'AxonFramework架构概述',
     });
     gitalk.render('gitalk-container');
 </script>
@@ -625,7 +547,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         repo: "weechang.github.io",
         owner: "weechang",
         admin: ["weechang"],
-        id: 'AxonFramework-分布式命令总线连接器',
+        id: 'AxonFramework架构概述',
     });
     gitalk.render('gitalk-container');
 </script>
