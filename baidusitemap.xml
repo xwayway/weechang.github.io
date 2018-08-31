@@ -4,6 +4,146 @@
 
     
   <url>
+    <loc>http://blog.weechang.xyz/2018/08/31/AxonFramework-EventStore%E5%AE%9E%E7%8E%B0/</loc>
+    <lastmod>2018-08-31T02:55:36.387Z</lastmod>
+    <data>
+        <display>
+        <title>AxonFramework-EventStore实现</title>
+        <pubTime>2018-08-31T02:52:45.000Z</pubTime>
+        
+        <tag>AxonFramework</tag>
+         
+         
+           
+             
+              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.weechang.xyz/2018/08/31/AxonFramework-%E5%AD%98%E5%82%A8%E5%BA%93/</loc>
+    <lastmod>2018-08-31T02:52:08.827Z</lastmod>
+    <data>
+        <display>
+        <title>AxonFramework-存储库</title>
+        <pubTime>2018-08-31T02:50:48.000Z</pubTime>
+        
+        <tag>AxonFramework</tag>
+         
+         
+           
+             
+              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.weechang.xyz/2018/08/31/AxonFramework-%E5%88%86%E5%8F%91%E4%BA%8B%E4%BB%B6/</loc>
+    <lastmod>2018-08-31T02:49:58.936Z</lastmod>
+    <data>
+        <display>
+        <title>AxonFramework-分发事件</title>
+        <pubTime>2018-08-31T02:47:38.000Z</pubTime>
+        
+        <tag>AxonFramework</tag>
+         
+         
+           
+             
+              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.weechang.xyz/2018/08/31/AxonFramework-%E4%BA%8B%E4%BB%B6%E5%8F%91%E5%B8%83%E5%92%8C%E5%A4%84%E7%90%86/</loc>
+    <lastmod>2018-08-31T02:46:47.068Z</lastmod>
+    <data>
+        <display>
+        <title>AxonFramework-事件发布和处理</title>
+        <pubTime>2018-08-31T02:44:40.000Z</pubTime>
+        
+        <tag>AxonFramework</tag>
+         
+         
+           
+             
+              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.weechang.xyz/2018/08/31/AxonFramework-%E5%88%86%E5%B8%83%E5%BC%8F%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BA%BF%E8%BF%9E%E6%8E%A5%E5%99%A8/</loc>
+    <lastmod>2018-08-31T02:43:19.215Z</lastmod>
+    <data>
+        <display>
+        <title>AxonFramework-分布式命令总线连接器</title>
+        <pubTime>2018-08-31T02:40:27.000Z</pubTime>
+        
+        <tag>AxonFramework</tag>
+         
+         
+           
+             
+              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.weechang.xyz/2018/08/31/AxonFramework%E5%91%BD%E4%BB%A4%E6%8B%A6%E6%88%AA%E5%99%A8/</loc>
+    <lastmod>2018-08-31T02:33:31.112Z</lastmod>
+    <data>
+        <display>
+        <title>AxonFramework命令拦截器</title>
+        <pubTime>2018-08-31T02:29:32.000Z</pubTime>
+        
+        <tag>AxonFramework</tag>
+         
+         
+           
+             
+              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.weechang.xyz/2018/08/31/AxonFramework%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BA%BF/</loc>
+    <lastmod>2018-08-31T02:28:19.047Z</lastmod>
+    <data>
+        <display>
+        <title>AxonFramework命令总线</title>
+        <pubTime>2018-08-31T02:25:51.000Z</pubTime>
+        
+        <tag>AxonFramework</tag>
+         
+         
+           
+             
+              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.weechang.xyz/2018/08/29/AxonFramework%E6%B5%8B%E8%AF%95/</loc>
     <lastmod>2018-08-31T02:06:51.619Z</lastmod>
     <data>

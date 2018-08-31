@@ -3,19 +3,22 @@
 <head>
     <meta charset="utf-8">
     
-    <title>标签: 日常记录 | 耒耒耒耒耒</title>
+    <title>AxonFramework命令拦截器 | 耒耒耒耒耒</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="张未的技术博客">
-<meta name="keywords" content="耒耒耒耒耒">
-<meta property="og:type" content="website">
-<meta property="og:title" content="耒耒耒耒耒">
-<meta property="og:url" content="http://blog.weechang.xyz/tags/日常记录/index.html">
+    <meta name="description" content="使用命令总线的优点之一，是能够基于所有传入的命令采取相应的行动。例子是，不论哪种命令类型，你都希望去做日志记录或身份验证。这是使用拦截器来完成的。">
+<meta name="keywords" content="AxonFramework">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AxonFramework命令拦截器">
+<meta property="og:url" content="http://blog.weechang.xyz/2018/08/31/AxonFramework命令拦截器/index.html">
 <meta property="og:site_name" content="耒耒耒耒耒">
-<meta property="og:description" content="张未的技术博客">
+<meta property="og:description" content="使用命令总线的优点之一，是能够基于所有传入的命令采取相应的行动。例子是，不论哪种命令类型，你都希望去做日志记录或身份验证。这是使用拦截器来完成的。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://blog.weechang.xyz/2018/08/31/AxonFramework命令拦截器/distributed.png">
+<meta property="og:updated_time" content="2018-08-31T02:33:31.112Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="耒耒耒耒耒">
-<meta name="twitter:description" content="张未的技术博客">
+<meta name="twitter:title" content="AxonFramework命令拦截器">
+<meta name="twitter:description" content="使用命令总线的优点之一，是能够基于所有传入的命令采取相应的行动。例子是，不论哪种命令类型，你都希望去做日志记录或身份验证。这是使用拦截器来完成的。">
+<meta name="twitter:image" content="http://blog.weechang.xyz/2018/08/31/AxonFramework命令拦截器/distributed.png">
     
 
     
@@ -225,86 +228,204 @@
 </aside>
 
             
-            <section id="main">
-<div class="timeline timeline-wrap">
-    <div class="timeline-row timeline-row-major">
-        <span class="node"><i class="fas fa-tag"></i></span>
-        <h1 class="title">#日常记录</h1>
-    </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="post-AxonFramework命令拦截器" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/08/23/MySql中的find-in-set、in、like的区别/">MySql中的find_in_set、in、like的区别</a>
+        <h1 class="article-title" itemprop="name">
+            AxonFramework命令拦截器
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/23/MySql中的find-in-set、in、like的区别/">
-            <time datetime="2018-08-23T02:33:26.000Z" itemprop="datePublished">2018-08-23</time>
+        <a href="/2018/08/31/AxonFramework命令拦截器/">
+            <time datetime="2018-08-31T02:29:32.000Z" itemprop="datePublished">2018-08-31</time>
         </a>
     </div>
 
 
-                    
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/日常记录/">日常记录</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/MySql/">MySql</a>, <a class="tag-link" href="/tags/日常记录/">日常记录</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
+                        <div class="article-user">
+    <i class="fas fa-user-alt"></i>
     
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/08/17/ElasticSearch查询报错fielddata-true/">ElasticSearch查询报错fielddata=true</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/17/ElasticSearch查询报错fielddata-true/">
-            <time datetime="2018-08-17T09:01:18.000Z" itemprop="datePublished">2018-08-17</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/日常记录/">日常记录</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/ElasticSearch/">ElasticSearch</a>, <a class="tag-link" href="/tags/日常记录/">日常记录</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
+        <span>勇赴</span>
     
 </div>
+
+                        
+    <div class="article-category">
+    	<i class="fas fa-folder"></i>
+        <a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a>
+    </div>
+
+                    </div>
+                    <div class="article-meta">
+                         
+                             <div class="article-word-count">
+<span>
+    <i class="fas fa-file-word"></i>
+    共1,445字，
+</span>
+<span>
+    <i class="fas fa-clock"></i>
+    大约需要5分钟
+</span>
+</div>
+<span id="busuanzi_container_page_pv">
+    <i class="fas fa-eye"></i>
+    已被阅读<span id="busuanzi_value_page_pv"></span>次
+</span>
+
+                         
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>使用命令总线的优点之一，是能够基于所有传入的命令采取相应的行动。例子是，不论哪种命令类型，你都希望去做日志记录或身份验证。这是使用拦截器来完成的。</p>
+<a id="more"></a>
+<p>有不同类型的拦截器：Dispatch拦截器和Handler拦截器。前者在命令被分发到命令处理程序之前被调用。在那时，它甚至不能确定该命令有任何处理器的存在。后者在命令处理程序被调用之前调用。</p>
+<h2 id="Message-Dispatch-Interceptors（消息分发拦截器）"><a href="#Message-Dispatch-Interceptors（消息分发拦截器）" class="headerlink" title="Message Dispatch Interceptors（消息分发拦截器）"></a>Message Dispatch Interceptors（消息分发拦截器）</h2><p>当命令在命令总线上被分发时调用消息分发拦截器。例如，它们可以通过添加元数据来更改命令消息，或通过抛出异常来阻塞命令。这些拦截器总是在分发命令的线程上被调用。</p>
+<p>##Structural validation（结构性验证）</p>
+<p>如果它没有包含正确格式的所有必需的信息，那么处理命令是没有意义的,。事实上，一个命令缺乏信息应该尽可能早地被阻塞，甚至最好是任何事务开始之前。因此，拦截器应该检查所有传入命令的信息的可用性。这就是所谓的结构性验证。</p>
+<p>Axon Framework支持基于JSR 303 Bean Validation的验证。这允许你用像@NotEmpty和@Pattern这样的注解，去注解命令上的字段。你需要在你的类路径中include一个JSR 303实现(比如Hibernate-Validator)。然后，在命令总线上配置一个BeanValidationInterceptor，它会自动找到并配置你的验证器实现。虽然它使用合理的默认值，但你可以根据具体需要调整它。</p>
+<blockquote>
+<p><b>提示</b><br>你想在一个无效的命令上使用尽可能少的资源。因此，该拦截器通常是位于拦截器链的最前端。在某些情况下，一个日志或审计拦截器可能需要放在前面，紧跟着它的是验证拦截器。</p>
+</blockquote>
+<p>BeanValidationInterceptor还实现了MessageHandlerInterceptor，也允许你把它配置为一个处理程序（Handler）拦截器。</p>
+<h2 id="Message-Handler-Interceptors（消息处理程序拦截器）"><a href="#Message-Handler-Interceptors（消息处理程序拦截器）" class="headerlink" title="Message Handler Interceptors（消息处理程序拦截器）"></a>Message Handler Interceptors（消息处理程序拦截器）</h2><p>消息处理程序拦截器可以在命令处理之前和之后执行操作。拦截器甚至可以完全阻止命令处理，例如出于安全原因。</p>
+<p>拦截器必须实现MessageHandlerInterceptor接口。该接口声明了一个方法handle，它需要三个参数：命令消息，当前的UnitOfWork和InterceptorChain。InterceptorChain用于继续分发处理。</p>
+<p>与分发拦截器不同，处理程序拦截器在命令处理程序上下文中被调用。这意味着它们可以根据正在处理消息的工作单元附上相关数据。然后这个相关数据将被附加到在工作单元的上下文中被创建的消息。</p>
+<p>处理程序拦截器也通常用于管理围绕命令处理的事务。这么做，注册一个TransactionManagingInterceptor，使用TransactionManager依次配置启动和提交(或回滚)实际事务。</p>
+<h2 id="Distributing-the-Command-Bus-分布式命令总线"><a href="#Distributing-the-Command-Bus-分布式命令总线" class="headerlink" title="Distributing the Command Bus(分布式命令总线)"></a>Distributing the Command Bus(分布式命令总线)</h2><p>CommandBus的实现在早期声称只允许命令消息在单个JVM上分发。有时候，你想把不同JVM中的命令总线的多个实例作为一个。当返回任何结果时，在一个JVM命令总线上发出的命令应该无缝地传到到另一个JVM中的命令处理程序。</p>
+<p>这就是DistributedCommandBus（分布式命令总线）的由来。不像其他CommandBus的实现，DistributedCommandBus不调用任何处理器。它的作用是在不同的JVM的命令总线实现之间形成一座“桥”。每个JVM上的DistributedCommandBus实例称为“Segment”。</p>
+<img src="/2018/08/31/AxonFramework命令拦截器/distributed.png" title="distributed">
+<blockquote>
+<p><b>注意</b><br>虽然分布式命令总线本身是Axon Framework核心模块的一部分，但它需要的组件，你可以在其中一个以axon-distributed-commandbus -开头的模块中找到。如果你使用Maven，确保你有适当的依赖集。groupId和version与核心模块相同。</p>
+</blockquote>
+<p>DistributedCommandBus依赖于两个组件：一个是CommandBusConnector，实现JVM的之间的通信协议；一个是CommandRouter，为每个传入的命令选择目的地。这个路由器定义分布式总线命令的segment应该given一个命令，根据路由键计算得到路由策略。两个具有相同路由键的命令将始终路由到相同的segment，只要segment数量和配置没有改变。一般来说，用目标聚合的标识符作为路由键。</p>
+<p>提供两个RoutingStrategy的实现：MetaDataRoutingStrategy，它使用元数据属性在命令消息中查找路由键，而AnnotationRoutingStrategy，它使用注解在命令消息有效负载上的@TargetAggregateIdentifier来提取路由键。显然，你也可以提供自己的实现。</p>
+<p>默认情况下，当命令消息没有键能被解析时，RoutingStrategy实现将抛出一个异常时。这种行为可以改变，通过在MetaDataRoutingStrategy或AnnotationRoutingStrategy的构造函数中提供一个UnresolvedRoutingKeyPolicy。有三个可能的策略:</p>
+<ul>
+<li>ERROR:这是默认值，当路由键不可用时，会抛出一个异常。</li>
+<li>RANDOM_KEY：将返回一个随机值，当一个路由键不能从命令消息解析。这实际上意味着这些命令将被路由到命令总线的随机segment。</li>
+<li>STATIC_KEY:将返回一个静态键(现有的“未被解析的”)为未被解析的路由键。这实际上意味着所有这些命令将被路由到相同的segment，只要segment的配置不改变。</li>
+</ul>
+<p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/d603a00bc5cc" target="_blank" rel="noopener">https://www.jianshu.com/p/d603a00bc5cc</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/AxonFramework/">AxonFramework</a>
+    </div>
+
+            <div class="share-container">
+
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='https://blog.weechang.xyz/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+</div>
+
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/08/31/AxonFramework-分布式命令总线连接器/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    AxonFramework-分布式命令总线连接器
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2018/08/31/AxonFramework命令总线/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">AxonFramework命令总线</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+<!-- Link Gitalk 的支持文件  -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        // gitalk的主要参数
+        clientID: "295b369cd27d90dc5cfc",
+        clientSecret: "23a308db213cd99742ff3e07da9021b9c5909b68",
+        repo: "weechang.github.io",
+        owner: "weechang",
+        admin: ["weechang"],
+        id: 'AxonFramework命令拦截器',
+    });
+    gitalk.render('gitalk-container');
+</script>
+<!-- Gitalk end -->
+</section>
+    
+
 </section>
             
                 
@@ -417,6 +538,24 @@
 </footer>
         
     
+<!-- Link Gitalk 的支持文件  -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        // gitalk的主要参数
+        clientID: "295b369cd27d90dc5cfc",
+        clientSecret: "23a308db213cd99742ff3e07da9021b9c5909b68",
+        repo: "weechang.github.io",
+        owner: "weechang",
+        admin: ["weechang"],
+        id: 'AxonFramework命令拦截器',
+    });
+    gitalk.render('gitalk-container');
+</script>
+<!-- Gitalk end -->
+
 
 
 

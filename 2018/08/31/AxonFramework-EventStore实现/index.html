@@ -3,20 +3,20 @@
 <head>
     <meta charset="utf-8">
     
-    <title>AxonFramework命令模型 | 耒耒耒耒耒</title>
+    <title>AxonFramework-EventStore实现 | 耒耒耒耒耒</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="在一个基于CQRS的应用程序中，领域模型(由Eric Evans和Martin Fowler定义)可以是一个非常强大的机制，来驾驭在验证和执行状态的变化时所涉及的复杂性，虽然典型的领域模型提供了大量的构建块，但当在CQRS中应用命令处理时有一个构件起着主导性的作用：聚合。">
+    <meta name="description" content="事件溯源存储库需要一个事件存储（event store）从聚合中存储和加载事件。事件存储提供了一个事件总线的功能，增加了持久化已发布的事件，并能够基于聚合标识符检索事件。">
 <meta name="keywords" content="AxonFramework">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AxonFramework命令模型">
-<meta property="og:url" content="http://blog.weechang.xyz/2018/08/21/AxonFramework命令模型/index.html">
+<meta property="og:title" content="AxonFramework-EventStore实现">
+<meta property="og:url" content="http://blog.weechang.xyz/2018/08/31/AxonFramework-EventStore实现/index.html">
 <meta property="og:site_name" content="耒耒耒耒耒">
-<meta property="og:description" content="在一个基于CQRS的应用程序中，领域模型(由Eric Evans和Martin Fowler定义)可以是一个非常强大的机制，来驾驭在验证和执行状态的变化时所涉及的复杂性，虽然典型的领域模型提供了大量的构建块，但当在CQRS中应用命令处理时有一个构件起着主导性的作用：聚合。">
+<meta property="og:description" content="事件溯源存储库需要一个事件存储（event store）从聚合中存储和加载事件。事件存储提供了一个事件总线的功能，增加了持久化已发布的事件，并能够基于聚合标识符检索事件。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-30T06:03:51.610Z">
+<meta property="og:updated_time" content="2018-08-31T02:55:36.387Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AxonFramework命令模型">
-<meta name="twitter:description" content="在一个基于CQRS的应用程序中，领域模型(由Eric Evans和Martin Fowler定义)可以是一个非常强大的机制，来驾驭在验证和执行状态的变化时所涉及的复杂性，虽然典型的领域模型提供了大量的构建块，但当在CQRS中应用命令处理时有一个构件起着主导性的作用：聚合。">
+<meta name="twitter:title" content="AxonFramework-EventStore实现">
+<meta name="twitter:description" content="事件溯源存储库需要一个事件存储（event store）从聚合中存储和加载事件。事件存储提供了一个事件总线的功能，增加了持久化已发布的事件，并能够基于聚合标识符检索事件。">
     
 
     
@@ -226,7 +226,7 @@
 </aside>
 
             
-            <section id="main"><article id="post-AxonFramework命令模型" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-AxonFramework-EventStore实现" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -234,7 +234,7 @@
                 
     
         <h1 class="article-title" itemprop="name">
-            AxonFramework命令模型
+            AxonFramework-EventStore实现
         </h1>
     
 
@@ -243,8 +243,8 @@
                         
     <div class="article-date">
         <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/21/AxonFramework命令模型/">
-            <time datetime="2018-08-21T06:00:06.000Z" itemprop="datePublished">2018-08-21</time>
+        <a href="/2018/08/31/AxonFramework-EventStore实现/">
+            <time datetime="2018-08-31T02:52:45.000Z" itemprop="datePublished">2018-08-31</time>
         </a>
     </div>
 
@@ -268,11 +268,11 @@
                              <div class="article-word-count">
 <span>
     <i class="fas fa-file-word"></i>
-    共1,206字，
+    共2,209字，
 </span>
 <span>
     <i class="fas fa-clock"></i>
-    大约需要4分钟
+    大约需要8分钟
 </span>
 </div>
 <span id="busuanzi_container_page_pv">
@@ -289,45 +289,69 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>在一个基于CQRS的应用程序中，领域模型(由Eric Evans和Martin Fowler定义)可以是一个非常强大的机制，来驾驭在验证和执行状态的变化时所涉及的复杂性，虽然典型的领域模型提供了大量的构建块，但当在CQRS中应用命令处理时有一个构件起着主导性的作用：聚合。</p>
+            <p>事件溯源存储库需要一个事件存储（event store）从聚合中存储和加载事件。事件存储提供了一个事件总线的功能，增加了持久化已发布的事件，并能够基于聚合标识符检索事件。</p>
 <a id="more"></a>
-<p>应用程序中的一个状态的改变，始于一个命令。命令不但是表达意图(描述你想要做什么)的组合，而且是基于这一意图采取行动所需的信息。命令模型用于处理传入的命令，以验证并定义它的结果。在这个模型中，一个命令处理器负责处理某种类型的命令，并根据它包含的信息采取行动。</p>
-<h2 id="聚合"><a href="#聚合" class="headerlink" title="聚合"></a>聚合</h2><p>聚合是一个总是保持一致性状态的实体或一组实体。聚合根是聚合树顶部负责维护这个一致性状态的对象。这使得聚合主要构件在任何基于CQRS应用中实现命令模型。</p>
-<blockquote>
-<p><b>注意</b><br>“聚合”指的是埃文斯在领域驱动设计中所定义的聚合:<br>”作为数据变更的一个单元来处理的一组相关联的对象。在外部只能引用聚合的聚合根对象。在聚合边界内使用一组一致性规则。”</p>
-</blockquote>
-<p>例如，“联系人”聚合可以包含两个实体：联系人和地址。若要保持整个聚合处于一致性状态，向联系人添加地址时应通过联系人实体完成。在这种情况下，联系人实体是约定的聚合根。</p>
-<p>在Axon中，聚合由聚合标识符标识。这可能是任何对象，但也有一些标识符良好实现的指导原则。<br>标识符必须:</p>
-<p>实现equals和hashCode来保证与其他实例进行相等比较，<br>实现一个提供一致结果的toString()方法(相等的标识符，toString()方法的结果也应该相等),<br>并且最好是可序列化的。<br>当聚合使用不兼容标识符时，测试固件（见测试）将验证这些条件并使测试失败。 字符串类型的标识符，UUID和数值类型都适用。 不要使用原始类型作为标识符，因为它们不允许进行延迟初始化。在某些情况下，Axon可能会错误地假设原始类型的默认值是标识符的值。</p>
-<p>注意<br>一个经过深思熟虑的好实践是使用随机生成的标识符，而不是使用序列。使用序列会大大降低应用程序的可伸缩性，因为机器需要保持彼此最后一次使用的最新的序列号。UUID冲突的机率非常地小(假如你生成8.2乘以10的11次方个UUID，冲突的机率也只有10的负15次方)。</p>
-<p>此外，聚合应小心地使用函数式标识符。因为它们有变化的倾向，使得它很难适应相应的应用程序。</p>
-<h2 id="聚合的实现"><a href="#聚合的实现" class="headerlink" title="聚合的实现"></a>聚合的实现</h2><p>聚合总是通过一个称为聚合根的实体访问。通常，这个实体的名称和聚合完全一样。例如,Order聚合可能由Order实体引用几个Orderline实体组合而成。Order 和Orderline一起形成聚合。</p>
-<p>一个聚合是一个合乎规范的对象,其中包含状态和和改变这个状态的方法。虽然根据CQRS原则并不完全正确，也可能通过访问器方法暴露出聚合的状态。</p>
-<p>聚合根必须声明一个包含聚合标识符的字段。这个标识符字段必须最迟在第一个事件发布时初始化。这个标识符字段必须由@AggregateIdentifier来注解。如果你在聚合上使用JPA注解，Axon也可以使用由JPA提供的@Id注解。</p>
-<p>聚合可以使用AggregateLifecycle.apply()方法来注册发布的事件。与EventBus不同，这些信息需要被包装在一个EventMessage中，apply()允许你直接传递负载对象。</p>
+<p>Axon提供了一个开箱即用的事件存储，EmbeddedEventStore。它委托事件实际的存储和检索到EventStorageEngine。<br>有多个EventStorageEngine的实现：</p>
+<h2 id="JpaEventStorageEngine"><a href="#JpaEventStorageEngine" class="headerlink" title="JpaEventStorageEngine"></a>JpaEventStorageEngine</h2><p>JpaEventStorageEngine存储事件在JPA-compatible数据源中。JPA事件存储存储事件在所谓的条目中。这些条目包含事件的序列化形式，以及存储一些领域元数据以快速查找这些条目。使用JpaEventStorageEngine，你必须在你的类路径中有JPA注解(javax.persistence)。</p>
+<p>默认情况下，事件存储需要你配置你的持久化上下文(如在META-INF/persistence.xml中定义)包含DomainEventEntry和SnapshotEventEntry（两者都在org.axonframework.eventsourcing.eventstore.jpa包中)。<br>下面是一个持久化上下文配置的示例配置：</p>
 <pre>
-@Entity // Mark this aggregate as a JPA Entity
-public class MyAggregate {
-
-    @Id // When annotating with JPA @Id, the @AggregateIdentifier annotation is not necessary
-    private String id;
-
-    // fields containing state...
-
-    @CommandHandler
-    public MyAggregate(CreateMyAggregateCommand command) {
-        // ... update state
-        apply(new MyAggregateCreatedEvent(...));
-    }
-
-    // constructor needed by JPA
-    protected MyAggregate() {
-    }
-}
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
+    <persistence-unit name="eventStore" transaction-type="RESOURCE_LOCAL"> (1)
+        <class>org...eventstore.jpa.DomainEventEntry</class> (2)
+        <class>org...eventstore.jpa.SnapshotEventEntry</class>
+    </persistence-unit>
+</persistence>
 </pre>
 
-<p>通过定义一个带@EventHandler注解的方法，聚合内的实体能监听聚合发布的事件。当一个EventMessage发布时这些方法将被调用（在任何外部处理器被发布之前）。</p>
-<p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/6cfc9ab399b2" target="_blank" rel="noopener">https://www.jianshu.com/p/6cfc9ab399b2</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
+<p>在这个示例中，事件存储有一个特定的持久化单元。然而，你可能会选择将第三行添加到任何其他持久化单元的配置中。<br>本行注册DomainEventEntry(由JpaEventStore使用的类)到持久化上下文。</p>
+<blockquote>
+<p><b>注意</b><br>Axon使用锁来防止两个线程访问相同的聚合。然而，如果在同一数据库上你有多个jvm，这不会帮助你。在这种情况下，你不得不依靠数据库来检测冲突。并发访问事件存储将导致违反主键约束（Key Constraint Violation），因为表允许聚合只能有一个任何序列号的事件，所以，用已有的序列号为现有聚合插入第二个事件将导致错误。<br>JpaEventStorageEngine可以检测这个错误并把它转换成ConcurrencyException。然而，每个数据库系统以不同的方式报告此违规行为。如果你用JpaEventStore注册你的数据源，它将尝试检测数据库的类型，并找出错误代码是一个违反主键约束（Key Constraint Violation）。或者，你可能会提供一个PersistenceExceptionTranslator实例，如果一个给定的异常代表一个违反主键约束（Key Constraint Violation）它能分辨。<br>如果没有提供数据源或PersistenceExceptionTranslator，从数据库驱动程序按原样抛出异常。</p>
+</blockquote>
+<p>默认情况下，JPA事件存储引擎需要一个EntityManagerProvider实现，返回EventStorageEngine使用的EntityManager实例。这还允许应用程序管理所用的持久化上下文。EntityManagerProvider的责任是提供一个正确的EntityManager实例。</p>
+<p>有几个EntityManagerProvider的实现可用，各有不同的需求。SimpleEntityManagerProvider仅在构建时返回EntityManager实例给它。这使得实现成为容器管理上下文一个简单的选择。ContainerManagedEntityManagerProvider作为一种选择，返回默认的持久化上下文，并且它的使用默认通过JPA事件存储。<br>如果你有一个持久化单元称为“myPersistenceUnit”，你希望在JpaEventStore中使用，这就是EntityManagerProvider实现，可能看起来像:</p>
+<pre>
+public class MyEntityManagerProvider implements EntityManagerProvider {
+
+    private EntityManager entityManager;
+
+    @Override
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
+
+    @PersistenceContext(unitName = "myPersistenceUnit")
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+}
+</pre>   
+
+<p>默认情况下，JPA事件存储把条目存储在DomainEventEntry和SnapshotEventEntry实体中。虽然在许多情况下这就足够了，你可能会遇到这些实体提供的元数据不够的情况。或者你可能想将不同的聚合类型的事件存储在不同的表。<br>如果是这样,你可以扩展JpaEventStorageEngine。它包含了一些protected方法，你可以重写来调整其行为。</p>
+<blockquote>
+<p><b>警告</b><br>注意持久化提供者，如Hibernate，在它们的EntityManager实现上使用一级缓存。通常，这意味着在查询中使用或返回的所有隶属于EntityManager的实体。它们只有在周围事务被提交或在事务中执行显式“清除”时才被清除。当查询在事务上下文中执行时尤其如此。<br>要解决这个问题，请确保仅仅查询非实体对象。你可以使用JPA的“SELECT new SomeClass(parameters) FROM …”风格的查询来解决这个问题。或者，获取一批事件后调用EntityManager.flush()和EntityManager.clear()。未能这样做当加截大事件流时可能导致OutOfMemoryExceptions。</p>
+</blockquote>
+<h2 id="JDBC-Event-Storage-Engine"><a href="#JDBC-Event-Storage-Engine" class="headerlink" title="JDBC Event Storage Engine"></a>JDBC Event Storage Engine</h2><p>JDBC事件存储引擎使用JDBC连接将事件存储在JDBC兼容的数据存储。通常，这些都是关系数据库。从理论上讲，任何一个JDBC驱动程序都可以用来支持JDBC事件存储引擎。</p>
+<p>类似于JPA，JDBC事件存储引擎将事件存储在条目中。默认情况下，每个事件存储在一个单独的条目中，对应表中的一行。一个表用于事件，另一个用于快照。</p>
+<p>JdbcEventStorageEngine使用ConnectionProvider来获取连接。通常，这些连接可以直接从数据源中获得。然而，Axon会将这些连接绑定到一个工作单元，以便在一个工作单元使用一个连接。这将确保一个单独的事务用于存储所有事件，即使在同一线程中嵌套多个工作单元。</p>
+<blockquote>
+<p><b>注意</b><br>Spring用户建议使用SpringDataSourceConnectionProvider从数据源附加连接到现有的事务。</p>
+</blockquote>
+<h2 id="MongoDB-Event-Storage-Engine"><a href="#MongoDB-Event-Storage-Engine" class="headerlink" title="MongoDB Event Storage Engine"></a>MongoDB Event Storage Engine</h2><p>MongoDB是一个基于文档的NoSQL存储。其可伸缩特性使它适合用于事件存储。Axon提供了MongoEventStorageEngine,使用MongoDB作为数据库支持。它包含在Axon Mongo模块(Maven artifactId axon-mongo)。</p>
+<p>事件存储在两个独立的集合中：一个用于实际的事件流，一个用于快照。</p>
+<p>默认情况下，MongoEventStorageEngine将存储各自的事件在各自的文档。然而，它是可能改变StorageStrategy使用。</p>
+<p>Axon提供的选择是DocumentPerCommitStorageStrategy，为在一个单独的提交中存储所有事件，创建一个单独的文档(即在同一DomainEventStream)。</p>
+<p>在一个单独的文档中存储整个提交的好处在于提交是原子存储的。此外，它只需要对任意数量的事件进行一次往返。缺点是,它变得更加难以直接在数据库中查询事件。例如，当重构领域模型时，如果他们被包含在“commit document”中，很难从一个聚合“transfer”事件到另一个聚合。</p>
+<p>MongoDB不需要很多配置。它所需要的只是对一个存储事件集合的引用，然后你就可以开始了。在生产环境中，你可能想要对集合中的索引进行双重检查。</p>
+<h2 id="Event-Store-Utilities"><a href="#Event-Store-Utilities" class="headerlink" title="Event Store Utilities"></a>Event Store Utilities</h2><p>Axon提供了一些事件存储引擎，可能在某些情况下是有用的。</p>
+<p>SequenceEventStorageEngine是围绕其它两个事件存储引擎的包装器。当读取时,它从这两个事件存储引擎中返回事件。附加事件只是附加到第二个事件存储引擎。出于性能原因使用事件存储两种不同的实现的情况下，这是有用的，例如。第一个是一个更大的，但较慢事件存储，而第二个是优化的快速读取和写入。</p>
+<p>还有一个常驻内存的存储事件EventStorageEngine实现：InMemoryEventStorageEngine。虽然它可能优于任何其他的事件存储，这并不意味着长期生产使用。然而，它在需要事件存储的short-lived工具或测试中非常有用,。</p>
+<h2 id="Influencing-the-serialization-process（影响序列化过程）"><a href="#Influencing-the-serialization-process（影响序列化过程）" class="headerlink" title="Influencing the serialization process（影响序列化过程）"></a>Influencing the serialization process（影响序列化过程）</h2><p>事件存储需要为存储准备一种序列化事件的方法。默认情况下，Axon使用XStreamSerializer，其使用XStream序列化成XML事件。XStream是相当快的，比Java序列化更灵活。此外，XStream序列化的结果是人类可读的。对日志和调试而言非常有用。</p>
+<p>XStreamSerializer可以配置。你可以定义它应该用于某些包、类甚至字段的别名。除了可以缩短潜在的长名称之外，还可以在事件的类定义更改时使用别名。有关别名的更多信息，访问XStream网站。</p>
+<p>另外，Axon还提供了JacksonSerializer，使用Jackson将事件序列化为JSON。当它生成一个更紧凑的序列化形式，它要求类遵守Jackson所要求的约定(或配置)。</p>
+<blockquote>
+<p><b>注意</b><br>使用Java代码(或其他JVM语言)配置序列化器是很容易的。然而，由于它调用方法的局限性，在Spring XML程序上下文看配置它并不那么简单。其中一个选项是创建一个FactoryBean，创建一个XStreamSerializer实例，并配置它的代码。检查 Spring 参考更多的信息。</p>
+</blockquote>
+<p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/7ffff660d9a1" target="_blank" rel="noopener">https://www.jianshu.com/p/7ffff660d9a1</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
 
         
         </div>
@@ -388,19 +412,10 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         
 <nav id="article-nav">
     
-        <a href="/2018/08/23/MySql中的find-in-set、in、like的区别/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">上一篇</strong>
-            <div class="article-nav-title">
-                
-                    MySql中的find_in_set、in、like的区别
-                
-            </div>
-        </a>
     
-    
-        <a href="/2018/08/20/AxonFramework配置/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2018/08/31/AxonFramework-存储库/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">AxonFramework配置</div>
+            <div class="article-nav-title">AxonFramework-存储库</div>
         </a>
     
 </nav>
@@ -425,7 +440,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         repo: "weechang.github.io",
         owner: "weechang",
         admin: ["weechang"],
-        id: 'AxonFramework命令模型',
+        id: 'AxonFramework-EventStore实现',
     });
     gitalk.render('gitalk-container');
 </script>
@@ -557,7 +572,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         repo: "weechang.github.io",
         owner: "weechang",
         admin: ["weechang"],
-        id: 'AxonFramework命令模型',
+        id: 'AxonFramework-EventStore实现',
     });
     gitalk.render('gitalk-container');
 </script>

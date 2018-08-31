@@ -3,6 +3,153 @@
   
     
     <entry>
+      <title>AxonFramework-EventStore实现</title>
+      <link href="/2018/08/31/AxonFramework-EventStore%E5%AE%9E%E7%8E%B0/"/>
+      <url>/2018/08/31/AxonFramework-EventStore%E5%AE%9E%E7%8E%B0/</url>
+      <content type="html"><![CDATA[<p>事件溯源存储库需要一个事件存储（event store）从聚合中存储和加载事件。事件存储提供了一个事件总线的功能，增加了持久化已发布的事件，并能够基于聚合标识符检索事件。</p><a id="more"></a><p>Axon提供了一个开箱即用的事件存储，EmbeddedEventStore。它委托事件实际的存储和检索到EventStorageEngine。<br>有多个EventStorageEngine的实现：</p><h2 id="JpaEventStorageEngine"><a href="#JpaEventStorageEngine" class="headerlink" title="JpaEventStorageEngine"></a>JpaEventStorageEngine</h2><p>JpaEventStorageEngine存储事件在JPA-compatible数据源中。JPA事件存储存储事件在所谓的条目中。这些条目包含事件的序列化形式，以及存储一些领域元数据以快速查找这些条目。使用JpaEventStorageEngine，你必须在你的类路径中有JPA注解(javax.persistence)。</p><p>默认情况下，事件存储需要你配置你的持久化上下文(如在META-INF/persistence.xml中定义)包含DomainEventEntry和SnapshotEventEntry（两者都在org.axonframework.eventsourcing.eventstore.jpa包中)。<br>下面是一个持久化上下文配置的示例配置：</p><pre><persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">    <persistence-unit name="eventStore" transaction-type="RESOURCE_LOCAL"> (1)        <class>org...eventstore.jpa.DomainEventEntry</class> (2)        <class>org...eventstore.jpa.SnapshotEventEntry</class>    </persistence-unit></persistence></pre><p>在这个示例中，事件存储有一个特定的持久化单元。然而，你可能会选择将第三行添加到任何其他持久化单元的配置中。<br>本行注册DomainEventEntry(由JpaEventStore使用的类)到持久化上下文。</p><blockquote><p><b>注意</b><br>Axon使用锁来防止两个线程访问相同的聚合。然而，如果在同一数据库上你有多个jvm，这不会帮助你。在这种情况下，你不得不依靠数据库来检测冲突。并发访问事件存储将导致违反主键约束（Key Constraint Violation），因为表允许聚合只能有一个任何序列号的事件，所以，用已有的序列号为现有聚合插入第二个事件将导致错误。<br>JpaEventStorageEngine可以检测这个错误并把它转换成ConcurrencyException。然而，每个数据库系统以不同的方式报告此违规行为。如果你用JpaEventStore注册你的数据源，它将尝试检测数据库的类型，并找出错误代码是一个违反主键约束（Key Constraint Violation）。或者，你可能会提供一个PersistenceExceptionTranslator实例，如果一个给定的异常代表一个违反主键约束（Key Constraint Violation）它能分辨。<br>如果没有提供数据源或PersistenceExceptionTranslator，从数据库驱动程序按原样抛出异常。</p></blockquote><p>默认情况下，JPA事件存储引擎需要一个EntityManagerProvider实现，返回EventStorageEngine使用的EntityManager实例。这还允许应用程序管理所用的持久化上下文。EntityManagerProvider的责任是提供一个正确的EntityManager实例。</p><p>有几个EntityManagerProvider的实现可用，各有不同的需求。SimpleEntityManagerProvider仅在构建时返回EntityManager实例给它。这使得实现成为容器管理上下文一个简单的选择。ContainerManagedEntityManagerProvider作为一种选择，返回默认的持久化上下文，并且它的使用默认通过JPA事件存储。<br>如果你有一个持久化单元称为“myPersistenceUnit”，你希望在JpaEventStore中使用，这就是EntityManagerProvider实现，可能看起来像:</p><pre>public class MyEntityManagerProvider implements EntityManagerProvider {    private EntityManager entityManager;    @Override    public EntityManager getEntityManager() {        return entityManager;    }    @PersistenceContext(unitName = "myPersistenceUnit")    public void setEntityManager(EntityManager entityManager) {        this.entityManager = entityManager;    }}</pre>   <p>默认情况下，JPA事件存储把条目存储在DomainEventEntry和SnapshotEventEntry实体中。虽然在许多情况下这就足够了，你可能会遇到这些实体提供的元数据不够的情况。或者你可能想将不同的聚合类型的事件存储在不同的表。<br>如果是这样,你可以扩展JpaEventStorageEngine。它包含了一些protected方法，你可以重写来调整其行为。</p><blockquote><p><b>警告</b><br>注意持久化提供者，如Hibernate，在它们的EntityManager实现上使用一级缓存。通常，这意味着在查询中使用或返回的所有隶属于EntityManager的实体。它们只有在周围事务被提交或在事务中执行显式“清除”时才被清除。当查询在事务上下文中执行时尤其如此。<br>要解决这个问题，请确保仅仅查询非实体对象。你可以使用JPA的“SELECT new SomeClass(parameters) FROM …”风格的查询来解决这个问题。或者，获取一批事件后调用EntityManager.flush()和EntityManager.clear()。未能这样做当加截大事件流时可能导致OutOfMemoryExceptions。</p></blockquote><h2 id="JDBC-Event-Storage-Engine"><a href="#JDBC-Event-Storage-Engine" class="headerlink" title="JDBC Event Storage Engine"></a>JDBC Event Storage Engine</h2><p>JDBC事件存储引擎使用JDBC连接将事件存储在JDBC兼容的数据存储。通常，这些都是关系数据库。从理论上讲，任何一个JDBC驱动程序都可以用来支持JDBC事件存储引擎。</p><p>类似于JPA，JDBC事件存储引擎将事件存储在条目中。默认情况下，每个事件存储在一个单独的条目中，对应表中的一行。一个表用于事件，另一个用于快照。</p><p>JdbcEventStorageEngine使用ConnectionProvider来获取连接。通常，这些连接可以直接从数据源中获得。然而，Axon会将这些连接绑定到一个工作单元，以便在一个工作单元使用一个连接。这将确保一个单独的事务用于存储所有事件，即使在同一线程中嵌套多个工作单元。</p><blockquote><p><b>注意</b><br>Spring用户建议使用SpringDataSourceConnectionProvider从数据源附加连接到现有的事务。</p></blockquote><h2 id="MongoDB-Event-Storage-Engine"><a href="#MongoDB-Event-Storage-Engine" class="headerlink" title="MongoDB Event Storage Engine"></a>MongoDB Event Storage Engine</h2><p>MongoDB是一个基于文档的NoSQL存储。其可伸缩特性使它适合用于事件存储。Axon提供了MongoEventStorageEngine,使用MongoDB作为数据库支持。它包含在Axon Mongo模块(Maven artifactId axon-mongo)。</p><p>事件存储在两个独立的集合中：一个用于实际的事件流，一个用于快照。</p><p>默认情况下，MongoEventStorageEngine将存储各自的事件在各自的文档。然而，它是可能改变StorageStrategy使用。</p><p>Axon提供的选择是DocumentPerCommitStorageStrategy，为在一个单独的提交中存储所有事件，创建一个单独的文档(即在同一DomainEventStream)。</p><p>在一个单独的文档中存储整个提交的好处在于提交是原子存储的。此外，它只需要对任意数量的事件进行一次往返。缺点是,它变得更加难以直接在数据库中查询事件。例如，当重构领域模型时，如果他们被包含在“commit document”中，很难从一个聚合“transfer”事件到另一个聚合。</p><p>MongoDB不需要很多配置。它所需要的只是对一个存储事件集合的引用，然后你就可以开始了。在生产环境中，你可能想要对集合中的索引进行双重检查。</p><h2 id="Event-Store-Utilities"><a href="#Event-Store-Utilities" class="headerlink" title="Event Store Utilities"></a>Event Store Utilities</h2><p>Axon提供了一些事件存储引擎，可能在某些情况下是有用的。</p><p>SequenceEventStorageEngine是围绕其它两个事件存储引擎的包装器。当读取时,它从这两个事件存储引擎中返回事件。附加事件只是附加到第二个事件存储引擎。出于性能原因使用事件存储两种不同的实现的情况下，这是有用的，例如。第一个是一个更大的，但较慢事件存储，而第二个是优化的快速读取和写入。</p><p>还有一个常驻内存的存储事件EventStorageEngine实现：InMemoryEventStorageEngine。虽然它可能优于任何其他的事件存储，这并不意味着长期生产使用。然而，它在需要事件存储的short-lived工具或测试中非常有用,。</p><h2 id="Influencing-the-serialization-process（影响序列化过程）"><a href="#Influencing-the-serialization-process（影响序列化过程）" class="headerlink" title="Influencing the serialization process（影响序列化过程）"></a>Influencing the serialization process（影响序列化过程）</h2><p>事件存储需要为存储准备一种序列化事件的方法。默认情况下，Axon使用XStreamSerializer，其使用XStream序列化成XML事件。XStream是相当快的，比Java序列化更灵活。此外，XStream序列化的结果是人类可读的。对日志和调试而言非常有用。</p><p>XStreamSerializer可以配置。你可以定义它应该用于某些包、类甚至字段的别名。除了可以缩短潜在的长名称之外，还可以在事件的类定义更改时使用别名。有关别名的更多信息，访问XStream网站。</p><p>另外，Axon还提供了JacksonSerializer，使用Jackson将事件序列化为JSON。当它生成一个更紧凑的序列化形式，它要求类遵守Jackson所要求的约定(或配置)。</p><blockquote><p><b>注意</b><br>使用Java代码(或其他JVM语言)配置序列化器是很容易的。然而，由于它调用方法的局限性，在Spring XML程序上下文看配置它并不那么简单。其中一个选项是创建一个FactoryBean，创建一个XStreamSerializer实例，并配置它的代码。检查 Spring 参考更多的信息。</p></blockquote><p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/7ffff660d9a1" target="_blank" rel="noopener">https://www.jianshu.com/p/7ffff660d9a1</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>]]></content>
+      
+      <categories>
+          
+          <category> AxonFramework </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AxonFramework </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>AxonFramework-存储库</title>
+      <link href="/2018/08/31/AxonFramework-%E5%AD%98%E5%82%A8%E5%BA%93/"/>
+      <url>/2018/08/31/AxonFramework-%E5%AD%98%E5%82%A8%E5%BA%93/</url>
+      <content type="html"><![CDATA[<p>存储库是提供对聚合访问的机制。存储库充当了用于保存数据的实际存储机制的网关。在CQRS中，存储库只需要能够根据他们的惟一标识符找到聚合。任何其他类型的查询，应该在查询数据库中执行。</p><a id="more"></a><p>在Axon Framework中,所有存储库必须实现Repository接口。这个接口规定了三种方法:load(identifier, version)， load(identifier)和newInstance(factoryMethod)。load方法允许你从存储库加载聚合。version可选参数是用来检测并发修改(见Advanced conflict detection and resolution)。newInstance用于注册新创建的聚合到存储库中。</p><p>基于你潜在的持久性存储和审计需求，有一些基础实现提供大了部分存储库所需的基本功能。Axon Framework对保存聚合当前状态的存储库(见Standard Repositories)和那些存储聚合事件的存储库(见 Event Sourcing Repositories)进行了区分。</p><p>注意，存储库接口没有声明delete(identifier)方法。删除聚合是通过在一个聚合内部调用AggregateLifecycle.markDeleted()方法完成的。删除聚合是一个与其他迁移一样的状态迁移，唯一的区别是它在许多情况下是不可逆的。你应该在聚合上创建自己的有意义的方法，来将聚合的状态设置为“已删除”。这也允许你注册你想要发布的任何事件。</p><h2 id="Standard-repositories（标准存储库）"><a href="#Standard-repositories（标准存储库）" class="headerlink" title="Standard repositories（标准存储库）"></a>Standard repositories（标准存储库）</h2><p>标准存储库存储聚合的实际状态。在每次修改后，新的状态将覆盖旧的。这使得命令组件也可以使用应用程序的查询组件使用的相同信息。标准存储库存储聚合的实际状态。这可能取决于你正在创建的应用程序的类型，这是最简单的解决方案。如果是这样的话，Axon提供了一些帮助你实现这样一个存储库的构件。</p><p>Axon为标准存储库提供了一个开箱即用的实现：GenericJpaRepository。它认为聚合是一个有效的JPA实体。它使用EntityManagerProvider配置，EntityManagerProvider提供EntityManager来管理实际的持久化，并且一个类指定聚合的实际类型存储在存储库中。当聚合调用静态AggregateLifecycle.apply()方法时，你也可以通过EventBus去发布事件。</p><p>你也可以轻松实现自己的存储库。在这种情况下，最好从抽象类LockingRepository扩展。作为聚合的包装器类型，建议使用AnnotatedAggregate。看GenericJpaRepository的源码示例。</p><h2 id="Event-Sourcing-repositories（事件溯源存储库）"><a href="#Event-Sourcing-repositories（事件溯源存储库）" class="headerlink" title="Event Sourcing repositories（事件溯源存储库）"></a>Event Sourcing repositories（事件溯源存储库）</h2><p>聚合根能够根据事件重建它们的状态，也可以配置为通过事件溯源存储库加载。这些存储库不存储聚合本身，但存储聚合生成的一系列事件。基于这些事件，可以随时恢复聚合的状态。</p><p>在AxonFramework中，EventSourcingRepository实现提供了任何事件溯源存储库所需的基本功能。这依赖于EventStore(见Implementing your own Event Store)，它抽象了实际的存储机制。</p><p>根据情况，你可以提供一个聚合工厂。AggregateFactory指定了如何创建一个聚合实例。一旦创建了一个聚合，EventSourcingRepository可以使用从事件存储中加载的事件来初始化。Axon Framework自带了一些你可以使用的AggregateFactory实现。如果他们还不够，可以很容易创建你自己的实现。</p><h2 id="GenericAggregateFactory"><a href="#GenericAggregateFactory" class="headerlink" title="GenericAggregateFactory"></a>GenericAggregateFactory</h2><p>GenericAggregateFactory是一种特别的AggregateFactory实现，可用于任何类型的事件溯源聚合根。GenericAggregateFactory创建存储库管理的聚合类型的一个实例。聚合类必须是非抽象的，声明一个默认的不进行初始化的无参构造函数化。<br>GenericAggregateFactory适用于大多数场景，聚合不需要专门注入non-serializable资源。</p><h2 id="SpringPrototypeAggregateFactory"><a href="#SpringPrototypeAggregateFactory" class="headerlink" title="SpringPrototypeAggregateFactory"></a>SpringPrototypeAggregateFactory</h2><p>根据你的架构选择，使用Spring将依赖项注入到聚合中可能是有用的。例如，你可以将查询库注入到你的聚合，以确保某些值的存在(或不存在)。</p><p>注入依赖项到你的聚合，在定义了SpringPrototypeAggregateFactory的Spring上下文中，你需要配置一个聚合根的属性bean。不是使用构造函数创建的常规的实例，而是使用Spring应用程序上下文实例化你聚合。这也将在你的聚合中注入的任何依赖项。</p><h2 id="实现自己的AggregateFactory"><a href="#实现自己的AggregateFactory" class="headerlink" title="实现自己的AggregateFactory"></a>实现自己的AggregateFactory</h2><p>在某些情况下，GenericAggregateFactory不能提供你所需要的东西。例如，你可以有一个抽象的聚合类型与不同的场景的多个实现(例如，PublicUserAccount和BackOfficeAccount都扩展一个帐户)。而不是为每个聚合创建不同的存储库，你可以使用一个单独的存储库，并配置一个AggregateFactory意识到不同的实现。</p><p>聚合工厂大部分的工作是创建未初始化的聚合实例。它必须使用一个给定的聚合标识符和流中的第一个事件。通常，这个事件是一个创建事件，其中包含关于预期聚合类型的提示。你可以使用这些信息来选择一个实现并调用其构造函数。确保没有事件被应用于构造函数；聚合必须未初始化。</p><p>相对于简单的存储库直接加载聚合的实现，基于事件初始化聚合可能是一项耗时的工作,。CachingEventSourcingRepository提供一个可以从中加载聚合的缓存</p><p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/585e95e31704" target="_blank" rel="noopener">https://www.jianshu.com/p/585e95e31704</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>]]></content>
+      
+      <categories>
+          
+          <category> AxonFramework </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AxonFramework </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>AxonFramework-分发事件</title>
+      <link href="/2018/08/31/AxonFramework-%E5%88%86%E5%8F%91%E4%BA%8B%E4%BB%B6/"/>
+      <url>/2018/08/31/AxonFramework-%E5%88%86%E5%8F%91%E4%BA%8B%E4%BB%B6/</url>
+      <content type="html"><![CDATA[<p>在某些情况下，有必要发布事件到外部系统,比如消息broker。</p><a id="more"></a><h2 id="Spring-AMQP"><a href="#Spring-AMQP" class="headerlink" title="Spring AMQP"></a>Spring AMQP</h2><p>Axon提供了开箱即用的支持从一个AMQP message broker中转递事件和传递事件到broker中，比如Rabbit MQ。</p><h2 id="将事件转发到AMQP-Echange"><a href="#将事件转发到AMQP-Echange" class="headerlink" title="将事件转发到AMQP Echange"></a>将事件转发到AMQP Echange</h2><p>SpringAMQPPublisher将事件转发给一个AMQP Exchange。它使用SubscribableMessageSource初始化，一般是EventBus或EventStore。从理论上讲，这可能是发布者可以订阅的任何事件源。</p><p>要配置SpringAMQPPublisher，只需一个实例定义为Spring Bean。有一些setter方法允许你指定你预期的行为，如事务支持，publisher 确认(如果由broker支持)，和交换名称。</p><p>默认的exchange名称为’Axon.EventBus’</p><blockquote><p><b>注意</b><br>注意，exchanges不会被自动创建。你还必须声明队列、Exchanges 和你希望使用的Bindings 。检查Spring文档了解更多信息。</p></blockquote><h2 id="从AMQP-队列中读取事件"><a href="#从AMQP-队列中读取事件" class="headerlink" title="从AMQP 队列中读取事件"></a>从AMQP 队列中读取事件</h2><p>Spring已经广泛的支持从一个AMQP队列读取消息。然而,这需要与Axon“架桥”，以便这些消息可以从Axon处理，就像它们是常规事件消息一样。</p><p>SpringAMQPMessageSource允许事件处理器从队列中读取消息，而不是事件存储或事件总线。它作为一个Spring AMQP和SubscribableMessageSource之间的适配器需要这些处理器。</p><p>配置SpringAMQPMessageSource最简单的方法，是通过定义一个bean，重写默认的onMessage方法并使用@RabbitListener注解，如下:</p><pre>@Beanpublic SpringAMQPMessageSource myMessageSource(Serializer serializer) {    return new SpringAMQPMessageSource(serializer) {        @RabbitListener(queues = "myQueue")        @Override        public void onMessage(Message message, Channel channel) throws Exception {            super.onMessage(message, channel);        }    };}</pre><p>Spring的@RabbitListener注解告诉Spring，这个方法需要被给定队列上的每个消息调用(myQueue的例子)。此方法简单地调用super.onMessage()方法，执行实际事件的发布到已经订阅它的所有处理器。</p><p>订阅这个MessageSource的处理器，将正确的SpringAMQPMessageSource实例传递给订阅处理器的构造函数:</p><pre>// in an @Configuration file:@Autowiredpublic void configure(EventHandlingConfiguration ehConfig, SpringAmqpMessageSource myMessageSource) {    ehConfig.registerSubscribingEventProcessor("myProcessor", c -> myMessageSource);}</pre><p>请注意跟踪处理器与SpringAMQPMessageSource不兼容。</p><h2 id="异步事件处理"><a href="#异步事件处理" class="headerlink" title="异步事件处理"></a>异步事件处理</h2><p>异步处理事件推荐的方法是使用跟踪事件处理器。这个实现可以保证所有事件的处理，甚至在发生系统故障的情况下(假定事件已经被持久化)。</p><p>然而,也有可能在SubscribingProcessor中异步处理事件。要做到这一点，SubscribingProcessor必须用EventProcessingStrategy配置。这种策略可以用来改变事件监听器的调用应如何管理。</p><p>默认策略(DirectEventProcessingStrategy)在传递事件的线程中调用这些事件处理程序。这允许处理器使用现有的事务。</p><p>其他Axon-provided strategy是AsynchronousEventProcessingStrategy。它使用一个Executor异步调用事件侦听器。</p><p>尽管AsynchronousEventProcessingStrategy异步执行，某些事件按顺序处理仍然是可取的。SequencingPolicy定义事件是否必须按顺序处理，并行或两者的结合。策略返回给定事件的序列标识符。如果两个事件的策略返回一个相等的标识符,这意味着他们必须由事件处理程序按顺序处理。一个空序列标识符意味着事件可能与任何其他事件并行处理。</p><p>Axon提供了一些可以使用的通用策略：</p><ul><li>FullConcurrencyPolicy会告诉Axon，事件处理程序可以处理所有并发事件。这意味着需要按特定顺序处理的事件之间没有关系。</li><li>SequentialPolicy告诉Axon，所有活动必须按照顺序进行处理。处理事件的操作将在处理前一个事件完成时开始。</li><li>SequentialPerAggregatePolicy将迫使领域事件从同一聚合顺序处理。然而，事件来自不同聚合可能并发处理。这通常是一个合适的政策，用于事件侦听器更新数据库中聚合的细节。</li></ul><p>除了这些提供的策略之外，你可以定义自己的策略。所有策略都必须实现SequencingPolicy接口。这个接口定义了一个方法getSequenceIdentifierFor，返回值为一个给定的事件序列标识符。返回相等序列标识符的事件必须按顺序处理。产生不同序列标识符的事件可以同时处理。出于性能原因，如果事件可以并行处理任何其他事件，则策略实现应该返回null。这样更快，因为Axon不必检查对事件处理的任何限制条件。</p><p>当使用AsynchronousEventProcessingStrategy时建议明确定义一个ErrorHandler。默认的ErrorHandler传播异常，但在异步执行中没有什么可以传播的，除了Executor。这可能导致事件没有被处理。相反，建议使用一个ErrorHandler报告错误，并允许继续处理。ErrorHandler被配置在SubscribingEventProcessor的构造函数上，还提供了EventProcessingStrategy。</p><p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/c333f2c05239" target="_blank" rel="noopener">https://www.jianshu.com/p/c333f2c05239</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>]]></content>
+      
+      <categories>
+          
+          <category> AxonFramework </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AxonFramework </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>AxonFramework-事件发布和处理</title>
+      <link href="/2018/08/31/AxonFramework-%E4%BA%8B%E4%BB%B6%E5%8F%91%E5%B8%83%E5%92%8C%E5%A4%84%E7%90%86/"/>
+      <url>/2018/08/31/AxonFramework-%E4%BA%8B%E4%BB%B6%E5%8F%91%E5%B8%83%E5%92%8C%E5%A4%84%E7%90%86/</url>
+      <content type="html"><![CDATA[<p>由应用程序生成的事件需要被分发到更新查询数据库的组件，搜索引擎或其他需要它们的资源：事件处理程序（Event Handlers）。事件总线（Event Bus）的职责是分发事件消息到所有感兴趣的组件。接收端，事件处理器（Event Processors）负责处理这些事件，其中包括相应的事件处理程序（Event Handlers）的调用。</p><a id="more"></a><h2 id="发布事件（Publishing-Events）"><a href="#发布事件（Publishing-Events）" class="headerlink" title="发布事件（Publishing Events）"></a>发布事件（Publishing Events）</h2><p>在绝大多数情况下，聚合将通过申请（applying）它们发布事件。然而，有时候也有必要发布一个事件(可能来自另一个组件)，直接到事件总线。发布一个事件，在EventMessage中简单封装描述事件的有效负载（payload）。</p><p>GenericEventMessage.asEventMessage(Object)方法允许你将任何对象包装成EventMessage。如果传递的对象已经是EventMessage，它只是返回。</p><h2 id="事件总线（Event-Bus）"><a href="#事件总线（Event-Bus）" class="headerlink" title="事件总线（Event Bus）"></a>事件总线（Event Bus）</h2><p>EventBus是分发事件到已订阅的事件处理器的机制。Axon 提供了两个事件总线的实现：SimpleEventBus和EmbeddedEventStore。两个实现都支持订阅和跟踪处理器(processor)，EmbeddedEventStore持久化事件，它允许你在以后的阶段重放它们。SimpleEventBus有一个易失性存储器，然后一旦事件已经发布到订阅组件上，就会“忘记”它们。</p><p>当使用配置API时，默认情况下使用SimpleEventBus。配置EmbeddedEventStore则相反，需要提供一个StorageEngine的实现，它对事件进行实际存储。</p><pre>Configurer configurer = DefaultConfigurer.defaultConfiguration();configurer.configureEmbeddedEventStore(c -> new InMemoryEventStorageEngine());</pre><h2 id="Event-Processors"><a href="#Event-Processors" class="headerlink" title="Event Processors"></a>Event Processors</h2><p>事件处理程序（Event Handlers）定义了接收事件时执行的业务逻辑。事件处理器（Event Processors）负责解决该过程的技术方面的组件。它们启动一个工作单元，也可能一个事务，并且确保相关的数据在事件处理期间，可以正确附加到所有创建的消息上。</p><p>事件处理器大致有两种形式：订阅和跟踪。订阅事件处理器订阅它们自己给事件源，并由发布机制管理的线程调用。另一方面，跟踪事件处理器使用自己管理的线程从源中取出它们的消息。</p><h2 id="将处理程序分配给处理器"><a href="#将处理程序分配给处理器" class="headerlink" title="将处理程序分配给处理器"></a>将处理程序分配给处理器</h2><p>所有处理器都有一个名称，它跨JVM实例标识一个处理器实例。两个名称相同的处理器，可以被认为是同一处理器的两个实例。<br>所有事件处理程序都被附加到一个处理器，它的名字是事件处理程序类的包名。<br>例如, 下面的类：</p><ul><li>org.axonframework.example.eventhandling.MyHandler,</li><li>org.axonframework.example.eventhandling.MyOtherHandler</li><li>org.axonframework.example.eventhandling.module.MyHandler</li></ul><p>将触发两个处理器的创建：</p><ul><li>org.axonframework.example.eventhandling with 2 handlers, and</li><li>org.axonframework.example.eventhandling.module with a single handler</li></ul><p>配置API允许你为分配的类配置其他策略给处理器，甚至将特定实例分配给特定的处理器。</p><h2 id="配置处理器"><a href="#配置处理器" class="headerlink" title="配置处理器"></a>配置处理器</h2><p>默认情况下，Axon将使用订阅事件处理器。这是有可能改变处理程序是如何分配和如何使用配置API的EventHandlingConfiguration类配置处理器的。</p><p>EventHandlingConfiguration类定义了一些的方法，可用于定义处理器需要如何配置。</p><ul><li>registerEventProcessorFactory允许你定义一个默认的工厂方法，创建没有明确定义工厂的事件处理器。</li><li>registerEventProcessor(String name, EventProcessorBuilder builder)定义了用于创建一个带有给定名称的处理器的工厂方法。注意，此种处理器只有当名称被选择作为任何可用的事件处理程序bean的处理器时才会创建。</li><li>registerTrackingProcessor(String name)定义了一个带有给定名称的处理器，使用默认设置，应该被配置成一个跟踪事件处理器。它使用TransactionManager和TokenStore配置。</li><li>usingTrackingProcessors()设置默认跟踪处理器，而不是订阅处理器。</li></ul><p>跟踪处理器不像订阅处理器，需要一个令牌存储来存储它们的进程。跟踪处理器通过其事件流接收的每个消息都伴随着一个令牌。这个令牌允许处理器在任何以后的点重新打开流，并在最后一个事件中提取它。</p><p>配置API负责令牌存储，以及大多数其他组件处理器需要从全局配置实例。如果没有明确定义TokenStore ，在生产中不推荐使用InMemoryTokenStore。</p><p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/217ac0d8822d" target="_blank" rel="noopener">https://www.jianshu.com/p/217ac0d8822d</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>]]></content>
+      
+      <categories>
+          
+          <category> AxonFramework </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AxonFramework </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>AxonFramework-分布式命令总线连接器</title>
+      <link href="/2018/08/31/AxonFramework-%E5%88%86%E5%B8%83%E5%BC%8F%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BA%BF%E8%BF%9E%E6%8E%A5%E5%99%A8/"/>
+      <url>/2018/08/31/AxonFramework-%E5%88%86%E5%B8%83%E5%BC%8F%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BA%BF%E8%BF%9E%E6%8E%A5%E5%99%A8/</url>
+      <content type="html"><![CDATA[<h2 id="JGroupsConnector"><a href="#JGroupsConnector" class="headerlink" title="JGroupsConnector"></a>JGroupsConnector</h2><p>JGroupsConnector使用(正如它的名字已经说明)JGroups作为底层发现和调度机制。描述JGroups的特性有太多的参考指南,请参阅JGroups用户指南以了解更多的细节。</p><a id="more"></a><p>因为JGroups既处理节点的发现又处理它们之间的通信，所以JGroupsConnector既充当CommandBusConnector也充当CommandRouter。</p><blockquote><p><b>注意</b><br>你可以在axon-distributed-commandbus-jgroups模块中，为DistributedCommandBus找到JGroups特定组件。</p></blockquote><p>JGroupsConnector有四个强制性配置元素：</p><ul><li>第一种是JChannel，它定义了JGroups协议栈。一般来说，用JGroups配置文件的引用构造JChannel。JGroups附带的默认配置,可以用作自己配置的依据。请记住，IP多路广播一般不工作在云服务中，像亚马逊。中这种类型的环境中， TCP Gossip通常是一个好的开端。</li><li>集群名称定义了每个segment应登记到的集群的名称。具有相同的集群名称的Segment最终会探测到彼此，并在彼此间分发命令。</li><li>“本地segment”是命令总线实现，分发命令去往本地的JVM。这些命令可能已通过其他JVM或从本地的一个实例分发。</li><li>最后，序列化器是用来序列化之前通过线路发送的命令消息。</li></ul><blockquote><p><b>注意</b><br>当使用缓存时，当ConsistentHash更改以避免潜在的数据损坏时，它应该被清空（例如，当命令没有指定一个@TargetAggregateVersion和新成员快速加入和离开JGroup，修改聚合然而它还要缓存到其他地方）。</p></blockquote><p>最终，JGroupsConnector需要实际连接，按顺序分发消息到其他segment。这样做，调用connect()方法。</p><pre>JChannel channel = new JChannel("path/to/channel/config.xml");CommandBus localSegment = new SimpleCommandBus();Serializer serializer = new XStreamSerializer();JGroupsConnector connector = new JGroupsConnector(channel, "myCommandBus", localSegment, serializer);DistributedCommandBus commandBus = new DistributedCommandBus(connector, connector);// on one node:commandBus.subscribe(CommandType.class.getName(), handler);connector.connect();// on another node, with more CPU:commandBus.subscribe(CommandType.class.getName(), handler);commandBus.subscribe(AnotherCommandType.class.getName(), handler2);commandBus.updateLoadFactor(150); // defaults to 100connector.connect();// from now on, just deal with commandBus as if it is local...</pre><blockquote><p><b>注意</b><br>注意，并非所有的segment都必需具有相同类型的命令的命令处理器。你完全可以为不同的命令类型使用不同的segment。分布式命令总线总是选择一个节点分发命令到那个支持特定类型的命令。</p></blockquote><p>如果你使用Spring，你可能需要考虑使用JGroupsConnectorFactoryBean。它自动连接连接器当ApplicationContext启动后，并且在ApplicationContext关闭时完全的断开。此外,它为测试环境使用合理的默认值(但不应被视为生产准备)和自动装配配置。</p><h2 id="Spring-Cloud-Connector"><a href="#Spring-Cloud-Connector" class="headerlink" title="Spring Cloud Connector"></a>Spring Cloud Connector</h2><p>Spring Cloud连接器装置，用Spring Cloud来描述使用服务注册和发现机制来分配命令总线。因此，你可以自由选择使用哪一个Spring Cloud实现用来分发你的命令。实现的一个例子是 Eureka Discovery/Eureka 服务器组合。</p><blockquote><p><b>注意</b><br>当前版本(Axon 3.0.4)SpringCloudCommandRouter使用ServiceInstance。Metadata 字段来通知所有系统中的节点，通过CommandNameFilter它可以处理命令。这是很重要的,Spring Cloud实现选择支持ServiceInstance.Metadata字段的使用。例如Spring Cloud Consul目前不支持该字段，因此SpringCloudCommandRouter并不是一个可行的解决方案。我们正在研究一个额外的解决方案，从中检索CommandNameFilter 。</p></blockquote><p>提供每个SpringCloud实现的描述将推动本参考指南。因此，我们参考他们各自的文件以获得进一步的信息。</p><p>Spring Cloud连接器装置是一个SpringCloudCommandRouter和SpringHttpCommandBusConnector的组合，分别填充CommandRouter的地点和 DistributedCommandBus的CommandBusConnector。</p><blockquote><p><b>注意</b><br>Spring Cloud连接器特定的组件DistributedCommandBus可以在axon-distributed-commandbus-springcloud模块中找到 。</p></blockquote><p>SpringCloudCommandRouter必须由以下提供的来创建：</p><ul><li>一个DiscoveryClient类型“discovery client”。这可以通过用@EnableDiscoveryClient注解你的Spring Boot应用程序来提供,将在你的类路径中寻找Spring Cloud 的实现。</li><li>一个RoutingStrategy类型的”routing strategy”。目前axon-core模块提供了一些实现，但是一函数调用也可以满足要求。例如，如果你想路由命令基于“聚合标识符”，你可以使用AnnotationRoutingStrategy和注解有效载荷的字段，用@TargetAggregateIdentifier识别聚合。</li></ul><p>SpringHttpCommandBusConnector需要创建三个参数:</p><ul><li>一个CommandBus类型的“local command bus”。这是命令总线实现，它将分发命令到本地的JVM。这些命令可能是由其他JVM上的或本地的实例分发。</li><li>RestOperations对象来执行一个命令消息的发布到另一个实例。</li><li>最后一个Serializer类型的“序列serializer”。序列化器用于在命令发送到网络之前序列化命令消息。</li></ul><p>SpringCloudCommandRouter和SpringHttpCommandBusConnector应该都被用于创建DistributedCommandsBus。在Spring Java 配置中，看起来如下:</p><pre>// Simple Spring Boot App providing the `DiscoveryClient` bean@EnableDiscoveryClient@SpringBootApplicationpublic class MyApplication {    public static void main(String[] args) {        SpringApplication.run(MyApplication.class, args);    }    // Example function providing a Spring Cloud Connector    @Bean    public CommandRouter springCloudCommandRouter(DiscoveryClient discoveryClient) {        return new SpringCloudCommandRouter(discoveryClient, new AnnotationRoutingStrategy());    }    @Bean    public CommandBusConnector springHttpCommandBusConnector(@Qualifier("localSegment") CommandBus localSegment,                                                             RestOperations restOperations,                                                             Serializer serializer) {        return new SpringHttpCommandBusConnector(localSegment, restOperations, serializer);    }    @Primary // to make sure this CommandBus implementation is used for autowiring    @Bean    public DistributedCommandBus springCloudDistributedCommandBus(CommandRouter commandRouter,                                                                   CommandBusConnector commandBusConnector) {        return new DistributedCommandBus(commandRouter, commandBusConnector);    }}// if you don't use Spring Boot Autoconfiguration, you will need to explicitly define the local segment:@Bean@Qualifier("localSegment")public CommandBus localSegment() {    return new SimpleCommandBus();}</pre><blockquote><p><b>注意</b><br>注意，并非所有的segment都必需具有相同类型的命令的命令处理器。你完全可以为不同的命令类型使用不同的segment。分布式命令总线总是选择一个节点分发命令到那个支持特定类型的命令。</p></blockquote><p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/ccef9924f8d7" target="_blank" rel="noopener">https://www.jianshu.com/p/ccef9924f8d7</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>]]></content>
+      
+      <categories>
+          
+          <category> AxonFramework </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AxonFramework </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>AxonFramework命令拦截器</title>
+      <link href="/2018/08/31/AxonFramework%E5%91%BD%E4%BB%A4%E6%8B%A6%E6%88%AA%E5%99%A8/"/>
+      <url>/2018/08/31/AxonFramework%E5%91%BD%E4%BB%A4%E6%8B%A6%E6%88%AA%E5%99%A8/</url>
+      <content type="html"><![CDATA[<p>使用命令总线的优点之一，是能够基于所有传入的命令采取相应的行动。例子是，不论哪种命令类型，你都希望去做日志记录或身份验证。这是使用拦截器来完成的。</p><a id="more"></a><p>有不同类型的拦截器：Dispatch拦截器和Handler拦截器。前者在命令被分发到命令处理程序之前被调用。在那时，它甚至不能确定该命令有任何处理器的存在。后者在命令处理程序被调用之前调用。</p><h2 id="Message-Dispatch-Interceptors（消息分发拦截器）"><a href="#Message-Dispatch-Interceptors（消息分发拦截器）" class="headerlink" title="Message Dispatch Interceptors（消息分发拦截器）"></a>Message Dispatch Interceptors（消息分发拦截器）</h2><p>当命令在命令总线上被分发时调用消息分发拦截器。例如，它们可以通过添加元数据来更改命令消息，或通过抛出异常来阻塞命令。这些拦截器总是在分发命令的线程上被调用。</p><p>##Structural validation（结构性验证）</p><p>如果它没有包含正确格式的所有必需的信息，那么处理命令是没有意义的,。事实上，一个命令缺乏信息应该尽可能早地被阻塞，甚至最好是任何事务开始之前。因此，拦截器应该检查所有传入命令的信息的可用性。这就是所谓的结构性验证。</p><p>Axon Framework支持基于JSR 303 Bean Validation的验证。这允许你用像@NotEmpty和@Pattern这样的注解，去注解命令上的字段。你需要在你的类路径中include一个JSR 303实现(比如Hibernate-Validator)。然后，在命令总线上配置一个BeanValidationInterceptor，它会自动找到并配置你的验证器实现。虽然它使用合理的默认值，但你可以根据具体需要调整它。</p><blockquote><p><b>提示</b><br>你想在一个无效的命令上使用尽可能少的资源。因此，该拦截器通常是位于拦截器链的最前端。在某些情况下，一个日志或审计拦截器可能需要放在前面，紧跟着它的是验证拦截器。</p></blockquote><p>BeanValidationInterceptor还实现了MessageHandlerInterceptor，也允许你把它配置为一个处理程序（Handler）拦截器。</p><h2 id="Message-Handler-Interceptors（消息处理程序拦截器）"><a href="#Message-Handler-Interceptors（消息处理程序拦截器）" class="headerlink" title="Message Handler Interceptors（消息处理程序拦截器）"></a>Message Handler Interceptors（消息处理程序拦截器）</h2><p>消息处理程序拦截器可以在命令处理之前和之后执行操作。拦截器甚至可以完全阻止命令处理，例如出于安全原因。</p><p>拦截器必须实现MessageHandlerInterceptor接口。该接口声明了一个方法handle，它需要三个参数：命令消息，当前的UnitOfWork和InterceptorChain。InterceptorChain用于继续分发处理。</p><p>与分发拦截器不同，处理程序拦截器在命令处理程序上下文中被调用。这意味着它们可以根据正在处理消息的工作单元附上相关数据。然后这个相关数据将被附加到在工作单元的上下文中被创建的消息。</p><p>处理程序拦截器也通常用于管理围绕命令处理的事务。这么做，注册一个TransactionManagingInterceptor，使用TransactionManager依次配置启动和提交(或回滚)实际事务。</p><h2 id="Distributing-the-Command-Bus-分布式命令总线"><a href="#Distributing-the-Command-Bus-分布式命令总线" class="headerlink" title="Distributing the Command Bus(分布式命令总线)"></a>Distributing the Command Bus(分布式命令总线)</h2><p>CommandBus的实现在早期声称只允许命令消息在单个JVM上分发。有时候，你想把不同JVM中的命令总线的多个实例作为一个。当返回任何结果时，在一个JVM命令总线上发出的命令应该无缝地传到到另一个JVM中的命令处理程序。</p><p>这就是DistributedCommandBus（分布式命令总线）的由来。不像其他CommandBus的实现，DistributedCommandBus不调用任何处理器。它的作用是在不同的JVM的命令总线实现之间形成一座“桥”。每个JVM上的DistributedCommandBus实例称为“Segment”。</p><img src="/2018/08/31/AxonFramework命令拦截器/distributed.png" title="distributed"><blockquote><p><b>注意</b><br>虽然分布式命令总线本身是Axon Framework核心模块的一部分，但它需要的组件，你可以在其中一个以axon-distributed-commandbus -开头的模块中找到。如果你使用Maven，确保你有适当的依赖集。groupId和version与核心模块相同。</p></blockquote><p>DistributedCommandBus依赖于两个组件：一个是CommandBusConnector，实现JVM的之间的通信协议；一个是CommandRouter，为每个传入的命令选择目的地。这个路由器定义分布式总线命令的segment应该given一个命令，根据路由键计算得到路由策略。两个具有相同路由键的命令将始终路由到相同的segment，只要segment数量和配置没有改变。一般来说，用目标聚合的标识符作为路由键。</p><p>提供两个RoutingStrategy的实现：MetaDataRoutingStrategy，它使用元数据属性在命令消息中查找路由键，而AnnotationRoutingStrategy，它使用注解在命令消息有效负载上的@TargetAggregateIdentifier来提取路由键。显然，你也可以提供自己的实现。</p><p>默认情况下，当命令消息没有键能被解析时，RoutingStrategy实现将抛出一个异常时。这种行为可以改变，通过在MetaDataRoutingStrategy或AnnotationRoutingStrategy的构造函数中提供一个UnresolvedRoutingKeyPolicy。有三个可能的策略:</p><ul><li>ERROR:这是默认值，当路由键不可用时，会抛出一个异常。</li><li>RANDOM_KEY：将返回一个随机值，当一个路由键不能从命令消息解析。这实际上意味着这些命令将被路由到命令总线的随机segment。</li><li>STATIC_KEY:将返回一个静态键(现有的“未被解析的”)为未被解析的路由键。这实际上意味着所有这些命令将被路由到相同的segment，只要segment的配置不改变。</li></ul><p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/d603a00bc5cc" target="_blank" rel="noopener">https://www.jianshu.com/p/d603a00bc5cc</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>]]></content>
+      
+      <categories>
+          
+          <category> AxonFramework </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AxonFramework </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>AxonFramework命令总线</title>
+      <link href="/2018/08/31/AxonFramework%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BA%BF/"/>
+      <url>/2018/08/31/AxonFramework%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BA%BF/</url>
+      <content type="html"><![CDATA[<p>命令总线是将命令分发给各自的命令Handler的机制。每个命令总是被精确发送到一个命令Handler。如果没有可用的命令Handler为已分发的命令，将会抛出NoHandlerForCommandException异常。对同一命令类型订阅多个命令Handler将导致订阅互相取代。在这种情况下，最后一个订阅获胜。</p><a id="more"></a><h2 id="分发命令"><a href="#分发命令" class="headerlink" title="分发命令"></a>分发命令</h2><p>CommandBus提供了两个方法去分发命令到它们各自的Handler：dispatch(commandMessage,callback)和dispatch(commandMessage)。第一个参数是一个包含要发送的实际命令的消息。第二个可选的参数接收一个回调，允许在命令处理完成时通知分发组件。这个回调有两个方法:onSuccess()和onFailure()，分别会在命令处理返回后被调用，或者当它抛出一个异常时调用。</p><p>调用组件可能不采取在分发命令的同一线程中调用回调。如果调用线程在继续之前依赖于结果，你可以使用FutureCallback。这是一个Future(在java.concurrent包中定义)和Axon的CommandCallback的组合。或者，考虑使用命令网关。</p><p>如果一个应用程序不直接对命令的结果感兴趣，可以使用dispatch(commandMessage) 方法。</p><h2 id="SimpleCommandBus"><a href="#SimpleCommandBus" class="headerlink" title="SimpleCommandBus"></a>SimpleCommandBus</h2><p>SimpleCommandBus，顾名思义，最简单的实现。它在分发它们的线程中简单的处理命令。命令处理后，修改后的聚合在同一线程被保存和发布生成的事件。在大多数情况下，如web应用程序，该实现将符合你的需求。配置API中SimpleCommandBus是默认使用的实现。</p><p>像大多数CommandBus实现一样，SimpleCommandBus允许拦截器进行配置。在命令总线上分发一个命令后调用CommandDispatchInterceptors。在实际的命令handler 方法之前调用CommandHandlerInterceptors，允许你修改或阻塞命令。有关更多信息，请参考命令处理器拦截器。</p><p>因为所有命令处理都在同一线程中完成，这个实现仅限于JVM的边界。这个实现的性能是很好的，但不超凡。跨JVM边界，或使你的CPU cycles发挥最大的功效，看看其他CommandBus实现。</p><h2 id="AsynchronousCommandBus"><a href="#AsynchronousCommandBus" class="headerlink" title="AsynchronousCommandBus"></a>AsynchronousCommandBus</h2><p>顾名思义，AsynchronousCommandBus实现从分发它们的线程异步执行命令。它使用一个Executor在不同的线程来执行实际的处理逻辑。</p><p>默认情况下，AsynchronousCommandBus使用一个unbounded缓存的线程池。这意味着分发一个命令时会创建线程。完成处理命令的线程将被重新用于新命令。如果60秒线程没有处理命令，则会停止线程。</p><p>或者，Executor实例可以提供不同的线程策略配置。</p><p>注意，应用程序停止时应该关闭AsynchronousCommandBus，以确保任何等待线程正确关闭。关闭，调用shutdown()方法。这也将关闭任何Executor实例，如果它实现ExecutorService接口的话。</p><h2 id="DisruptorCommandBus"><a href="#DisruptorCommandBus" class="headerlink" title="DisruptorCommandBus"></a>DisruptorCommandBus</h2><p>SimpleCommandBus具有合理的性能特性，特别是当你经历了性能调优技巧。事实上，SimpleCommandBus需要锁来防止多个线程并发访问同一聚合，导致处理开销和锁争用。</p><p>DisruptorCommandBus采用不同的方法进行多线程处理。不是多个线程每个都执行同样的处理，而是有多个线程，每个负责一件处理。DisruptorCommandBus使用Disruptor，一个小的并发编程框架，通过不同的方法对多线程进行处理来实现更好的性能。任务不是在调用线程中进行处理，而是将任务移交给两组线程进行处理，每组线程负责一部分处理。第一组的线程将执行命令handler，更改一个聚合的状态。第二组将存储并将事件发布到事件存储。</p><p>虽然DisruptorCommandBus轻易优于SimpleCommandBus 4倍(!)，但有一些限制:</p><ul><li>DisruptorCommandBus仅支持事件溯源聚合。这个命令总线充当由Disruptor处理聚合的存储库。获取一个存储库的引用，使用createRepository(AggregateFactory)。</li><li>一个命令只能导致一个聚合实例状态变化。</li><li>当使用缓存时，它只允许给定的标识符为单个聚合。这意味着它是不可能有两个具有相同的标识符的不同类型的聚合。</li><li>命令一般不会引发需要回滚工作单元的故障。当发生回滚时，DisruptorCommandBus不能保证命令按照它们被分发的顺序进行处理。此外，它需要重试其他命令，从而造成不必要的计算。</li><li><p>在创建一个新的聚合实例时，命令更新所创建实例可能并不完全按照所提供的顺序进行。一旦创建了聚合，所有命令将按照它们被分发顺序执行。为了确保顺序，在创建命令上使用回调去等待正在创建的聚合。它不应该耗时超过几毫秒。<br>构建一个DisruptorCommandBus实例，你需要一个EventStore。该组件在Repositories and Event Stores中有解释。<br>或者，你可以提供一个DisruptorConfiguration实例，它允许你调整配置优化你的特定环境下的性能：</p></li><li><p>Buffer size:在ringBuffer上注册传入命令的槽数。更高的值可能会增加吞吐量,但也导致更高的延迟。必须是2的次方数，默认为4096。</p></li><li>ProducerType: 表示条目是由单线程或多线程生成的。默认为多线程。</li><li>WaitStrategy：当处理器线程（三个线程负责的实际处理）需要等待对方时使用的策略。最好的WaitStrategy取决于机器上可用的处理器数量，和正在运行的其他进程的数量。如果低延迟是至关重要的，DisruptorCommandBus可以自己认领内核，你可以使用BusySpinWaitStrategy。为了使命令总线索取更少的CPU并且允许其他线程处理，使用YieldingWaitStrategy。最后，你可以使用SleepingWaitStrategy和BlockingWaitStrategy允许其他进程共享CPU。如果命令总线不需要进行专职处理，则后者是合适的。默认为BlockingWaitStrategy。</li><li>Executor：设置Executor为DisruptorCommandBus提供线程。这个Executor必须能够提供至少4个线程。其中的3个线程，由DisruptorCommandBus的处理组件认领。额外的线程用于调用回调函数，并计划重试以防检测到错误的聚合状态。默认是CachedThreadPool提供线程从一个称为“DisruptorCommandBus”的线程组中。</li><li>TransactionManager：定义了事务管理器，应该确保存储和事件发布以事务的方式执行。</li><li>InvokerInterceptors:定义了在调用处理中使用的CommandHandlerInterceptors。这个处理调用实际的命令处理器方法。</li><li>PublisherInterceptors:定义了在发布处理中使用的CommandHandlerInterceptors。这个发布处理存储和发布生成的事件。</li><li>RollbackConfiguration:定义工作单元应该回滚的异常。默认配置为回滚未经检查的异常。</li><li>RescheduleCommandsOnCorruptState:指示已经执行过命令但损坏的聚合(如:因为一个工作单元是回滚)是否应该重新计划。如果为假，回调的onFailure()方法将被调用。如果为的(默认),命令将被重新计划。</li><li>CoolingDownPeriod:设置等待的秒数，以确保所有命令被处理。在冷却期间，不接受新命令，但是现有的命令仍然处理，并在必要时重新计划。冷却期间确保线程可供重新安排命令和调用回调之用。默认为1000(1秒)。</li><li>缓存:设置缓存存储从Event Store中恢复的聚合实例。缓存用disruptor存储不活跃的聚合实例。</li><li>InvokerThreadCount:给命令处理器的调用分配线程的数量。一个好的起始点是机器内核数量的一半。</li><li>PublisherThreadCount:用于发布事件的线程数量。一个好的起始点是一半的内核数量，如果IO上花费大量的时间，可以增加。</li><li>SerializerThreadCount:使用pre-serialize事件的线程数量。默认为1，但如果没有配置序列化器将被忽略。</li><li>Serializer:用于执行pre-serialization的序列化器。当配置序列化器时，DisruptorCommandBus将包装所有生成的事件在一个SerializationAware消息上。附加有效负载和元数据的序列化形式，在发布到事件存储之前。</li></ul><p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/6aee33abd7f0" target="_blank" rel="noopener">https://www.jianshu.com/p/6aee33abd7f0</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>]]></content>
+      
+      <categories>
+          
+          <category> AxonFramework </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AxonFramework </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>AxonFramework-测试带注解的Saga</title>
       <link href="/2018/08/29/AxonFramework-%E6%B5%8B%E8%AF%95%E5%B8%A6%E6%B3%A8%E8%A7%A3%E7%9A%84Saga/"/>
       <url>/2018/08/29/AxonFramework-%E6%B5%8B%E8%AF%95%E5%B8%A6%E6%B3%A8%E8%A7%A3%E7%9A%84Saga/</url>
@@ -492,17 +639,17 @@
   
     
     <entry>
-      <title>工具库</title>
-      <link href="/tools/index.html"/>
-      <url>/tools/index.html</url>
-      <content type="html"><![CDATA[]]></content>
-    </entry>
-    
-    <entry>
       <title>关于</title>
       <link href="/about/index.html"/>
       <url>/about/index.html</url>
       <content type="html"><![CDATA[<p>我是耒耒耒耒耒（张未）。欢迎来到我的个人技术博客。目前主要做Java后端开发，同时兼顾一些Vue页面的开发，对领域驱动较为感兴趣。</p>]]></content>
+    </entry>
+    
+    <entry>
+      <title>工具库</title>
+      <link href="/tools/index.html"/>
+      <url>/tools/index.html</url>
+      <content type="html"><![CDATA[]]></content>
     </entry>
     
     <entry>
