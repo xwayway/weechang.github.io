@@ -3,26 +3,20 @@
 <head>
     <meta charset="utf-8">
     
-    <title>手把手教学，教你把你的个人项目推送到maven中央仓库 | 耒耒耒耒耒</title>
+    <title>【Java学习之从头开始】Java集合-0——HashMap类 | 耒耒耒耒耒</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="前言最近闲下来了，想要自己造点小轮子用，方便自己在不同项目使用，同时想偷懒，不想每次都在项目里面copy代码。于是想到了重要仓库这个东西，把自己的代码托管到github（虽然现在的github已经不再单纯），然后发布jar包到maven中央仓库，以后每个项目都只用引入maven依赖就可以了。同时还能方便好基友们使用，万一哪一天好基友高兴就献身了呢，想想就有点小激动呢。好了废话不多说，下面正式开始手">
-<meta name="keywords" content="手把手教学,maven中央仓库">
+    <meta name="description" content="一、原理实现hashMap的本质是一个数组，数组中每一个元素称为一个Node，Node中存放的是hash值与链表（或红黑树）的键值对。hashMap的存储过程如下:根据 key 计算出它的哈希值 h。假设Node的个数为 n，那么这个键值对应该放在第 (h % n) 个Node中。">
+<meta name="keywords" content="Java学习之从头开始,Java集合,HashMap">
 <meta property="og:type" content="article">
-<meta property="og:title" content="手把手教学，教你把你的个人项目推送到maven中央仓库">
-<meta property="og:url" content="http://blog.weechang.xyz/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/index.html">
+<meta property="og:title" content="【Java学习之从头开始】Java集合-0——HashMap类">
+<meta property="og:url" content="http://blog.weechang.xyz/2018/07/30/Java集合-0——HashMap类/index.html">
 <meta property="og:site_name" content="耒耒耒耒耒">
-<meta property="og:description" content="前言最近闲下来了，想要自己造点小轮子用，方便自己在不同项目使用，同时想偷懒，不想每次都在项目里面copy代码。于是想到了重要仓库这个东西，把自己的代码托管到github（虽然现在的github已经不再单纯），然后发布jar包到maven中央仓库，以后每个项目都只用引入maven依赖就可以了。同时还能方便好基友们使用，万一哪一天好基友高兴就献身了呢，想想就有点小激动呢。好了废话不多说，下面正式开始手">
+<meta property="og:description" content="一、原理实现hashMap的本质是一个数组，数组中每一个元素称为一个Node，Node中存放的是hash值与链表（或红黑树）的键值对。hashMap的存储过程如下:根据 key 计算出它的哈希值 h。假设Node的个数为 n，那么这个键值对应该放在第 (h % n) 个Node中。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://blog.weechang.xyz/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/创建项目.png">
-<meta property="og:image" content="http://blog.weechang.xyz/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/创建完成.png">
-<meta property="og:image" content="http://blog.weechang.xyz/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/生成key.png">
-<meta property="og:image" content="http://blog.weechang.xyz/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/秘钥列表.png">
-<meta property="og:image" content="http://blog.weechang.xyz/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/部署成功.png">
-<meta property="og:updated_time" content="2018-07-31T06:05:56.893Z">
+<meta property="og:updated_time" content="2018-08-31T03:29:42.505Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="手把手教学，教你把你的个人项目推送到maven中央仓库">
-<meta name="twitter:description" content="前言最近闲下来了，想要自己造点小轮子用，方便自己在不同项目使用，同时想偷懒，不想每次都在项目里面copy代码。于是想到了重要仓库这个东西，把自己的代码托管到github（虽然现在的github已经不再单纯），然后发布jar包到maven中央仓库，以后每个项目都只用引入maven依赖就可以了。同时还能方便好基友们使用，万一哪一天好基友高兴就献身了呢，想想就有点小激动呢。好了废话不多说，下面正式开始手">
-<meta name="twitter:image" content="http://blog.weechang.xyz/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/创建项目.png">
+<meta name="twitter:title" content="【Java学习之从头开始】Java集合-0——HashMap类">
+<meta name="twitter:description" content="一、原理实现hashMap的本质是一个数组，数组中每一个元素称为一个Node，Node中存放的是hash值与链表（或红黑树）的键值对。hashMap的存储过程如下:根据 key 计算出它的哈希值 h。假设Node的个数为 n，那么这个键值对应该放在第 (h % n) 个Node中。">
     
 
     
@@ -232,7 +226,7 @@
 </aside>
 
             
-            <section id="main"><article id="post-手把手教学，教你把你的个人项目推送到maven中央仓库" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-Java集合-0——HashMap类" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -240,7 +234,7 @@
                 
     
         <h1 class="article-title" itemprop="name">
-            手把手教学，教你把你的个人项目推送到maven中央仓库
+            【Java学习之从头开始】Java集合-0——HashMap类
         </h1>
     
 
@@ -249,8 +243,8 @@
                         
     <div class="article-date">
         <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/">
-            <time datetime="2018-07-20T08:43:08.000Z" itemprop="datePublished">2018-07-20</time>
+        <a href="/2018/07/30/Java集合-0——HashMap类/">
+            <time datetime="2018-07-30T09:05:03.000Z" itemprop="datePublished">2018-07-30</time>
         </a>
     </div>
 
@@ -265,7 +259,7 @@
                         
     <div class="article-category">
     	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/开源之路/">开源之路</a>
+        <a class="article-category-link" href="/categories/Java集合/">Java集合</a>
     </div>
 
                     </div>
@@ -274,7 +268,7 @@
                              <div class="article-word-count">
 <span>
     <i class="fas fa-file-word"></i>
-    共1,108字，
+    共1,290字，
 </span>
 <span>
     <i class="fas fa-clock"></i>
@@ -295,37 +289,230 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近闲下来了，想要自己造点小轮子用，方便自己在不同项目使用，同时想偷懒，不想每次都在项目里面copy代码。于是想到了重要仓库这个东西，把自己的代码托管到github（虽然现在的github已经不再单纯），然后发布jar包到maven中央仓库，以后每个项目都只用引入maven依赖就可以了。同时还能方便好基友们使用，万一哪一天好基友高兴就献身了呢，想想就有点小激动呢。好了废话不多说，下面正式开始手把手教学活动。<br><a id="more"></a><br><b><a href="https://github.com/weechang/JUtil" target="_blank" rel="noopener">附上小轮子传送门</a>给感兴趣的小伙伴</b><br>将项目发布到maven仓库需要以下几步:<br>1.在sonatype中创建issue<br>2.使用gpg生成秘钥<br>3.配置Maven进行deploy和release</p>
-<h1 id="1-在sonatype中创建issue"><a href="#1-在sonatype中创建issue" class="headerlink" title="1 在sonatype中创建issue"></a>1 在sonatype中创建issue</h1><p>首先我们需要在<a href="https://issues.sonatype.org/secure/Dashboard.jspa" targe="_blank" target="_blank" rel="noopener">https://issues.sonatype.org/secure/Dashboard.jspa</a>中新建一个issues。如果没有sonatype账号的话，分分钟注册一个<br><img src="/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/创建项目.png" title="手把手教学，教你把你的个人项目推送到maven中央仓库"><br>创建完成后就是如下图示<br><img src="/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/创建完成.png" title="手把手教学，教你把你的个人项目推送到maven中央仓库"><br>这个时候只需要耐心等待工作人员审核就行了，因为我的domain问题，经历了二次审核，但是都很快，一般提交后两个小时内就会有结果。当issues状态变为Resolved就可以继续下一步操作了。</p>
-<h1 id="2-使用gpg生成秘钥"><a href="#2-使用gpg生成秘钥" class="headerlink" title="2 使用gpg生成秘钥"></a>2 使用gpg生成秘钥</h1><h2 id="2-1-安装"><a href="#2-1-安装" class="headerlink" title="2.1 安装"></a>2.1 安装</h2><p>选择对应的OS版本进行下载安装即可，下载地址传送门：<a href="https://www.gnupg.org/download/index.html" targe="_blank" target="_blank" rel="noopener">https://www.gnupg.org/download/index.html</a></p>
-<h2 id="2-2-生成key"><a href="#2-2-生成key" class="headerlink" title="2.2 生成key"></a>2.2 生成key</h2><p>首先查看安装成功没有 <pre>gpg –version</pre> （MAC 和 Linux系统需要 gpg2 –version）<br>通过 <pre>gpg –gen-key</pre> 生成key，也可以通过UI界面生成和管理key<br><img src="/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/生成key.png" title="手把手教学，教你把你的个人项目推送到maven中央仓库"><br>运行后gpg要求你选择加密算法，过期时间等等，这些直接选择默认值即可。通过对比发现，gpg 2.0以上的版本运行gpg –gen-key命令 会跳过这些步骤。<br>之后gpg要求你输入姓名，邮箱以及关键的Passphrase，依次输入即可。然后gpg为你生成了一对秘钥。<br>通过<pre>gpg –list-keys</pre>查看生成的key列表<br><img src="/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/秘钥列表.png" title="手把手教学，教你把你的个人项目推送到maven中央仓库"><br>这里可以看到我的公钥是：34754DFE562C10E1A09907B7F4797C9A95E36DB6，记住这个key，下面我们需要用到。</p>
-<h2 id="2-3-上传公钥"><a href="#2-3-上传公钥" class="headerlink" title="2.3 上传公钥"></a>2.3 上传公钥</h2><p>生成秘钥后，我们需要把公钥上传到服务器上。运行以下命令：<pre>gpg2 –keyserver hkp://pool.sks-keyservers.net –send-keys 34754DFE562C10E1A09907B7F4797C9A95E36DB6（刚才生成的公钥）</pre></p>
-<h1 id="3-配置Maven"><a href="#3-配置Maven" class="headerlink" title="3 配置Maven"></a>3 配置Maven</h1><h2 id="3-1-配置maven-setting-xml"><a href="#3-1-配置maven-setting-xml" class="headerlink" title="3.1 配置maven setting.xml"></a>3.1 配置maven setting.xml</h2><p>需要在本地的maven配置server 和 profile 两个地方，啰嗦的话就不多少了，直接上配置：</p>
-<pre>
-    &lt;server>
-        &lt;id>ossrh&lt;/id>
-        &lt;username>第一步注册的用户名&lt;/username>
-        &lt;password>第一步注册的密码&lt;/password>
-    &lt;/server>
-</pre>
-<pre>
-     &lt;profile>
-         &lt;id>ossrh&lt;/id>
-         &lt;activation>
-             &lt;activeByDefault>true&lt;/activeByDefault>
-         &lt;/activation>
-         &lt;properties>
-             &lt;gpg.executable>gpg(MAC 和 Linux用户使用gpg2)&lt;/gpg.executable>
-             &lt;gpg.passphrash>生成密钥时输入的密码&lt;/gpg.passphrash>
-         &lt;/properties>
-    
+            <h1 id="一、原理实现"><a href="#一、原理实现" class="headerlink" title="一、原理实现"></a>一、原理实现</h1><p>hashMap的本质是一个数组，数组中每一个元素称为一个Node，Node中存放的是hash值与链表（或红黑树）的键值对。<br>hashMap的存储过程如下:<br>根据 key 计算出它的哈希值 h。<br>假设Node的个数为 n，那么这个键值对应该放在第 (h % n) 个Node中。<br><a id="more"></a><br>如果该Node中已经有了键值对，就使用<a href="http://www.cnblogs.com/lizhanwu/p/4303410.html" target="_blank">拉链法</a>解决冲突。<br>hashMap还有一个重要的属性: 负载因子(load factor)，它用来衡量hashMap的 空/满 程度，一定程度上也可以体现查询的效率，计算公式为:</p>
+<p>负载因子 = 总键值对数 / Node个数</p>
+<p>负载因子越大，意味着哈希表越满，越容易导致冲突，性能也就越低。因此，一般来说，当负载因子大于某个常数(可能是 1，或者 0.75 等)时，hashMap将自动扩容。<br>hashMap在自动扩容时，一般会创建两倍于原来个数的Node，因此即使 key 的hashMap不变，对箱子个数取余的结果也会发生改变，因此所有键值对的存放位置都有可能发生改变，这个过程也称为重哈希(rehash)。<br>hashMap的扩容并不总是能够有效解决负载因子过大的问题。假设所有 key 的哈希值都一样，那么即使扩容以后他们的位置也不会变化。虽然负载因子会降低，但实际存储在每个Node中的链表长度并不发生改变，因此也就不能提高hashMap的查询性能。</p>
+<p>基于以上总结，细心的读者可能会发现hashMap的两个问题:</p>
+<p>如果hashMap中本来Node就比较多，扩容时需要重新哈希并移动数据，性能影响较大。<br>如果哈希函数设计不合理，hashMap在极端情况下会变成线性表，性能极低。<br>于是针对这种问题，java8中采用了红黑树与链表相互转换的方式来解决。当Node中的键值对大于8的时候，链表结构将变为树形结构。该方式能够在一定程度上解决链表的查询效率问题，但是最好的解决方案还是在hash函数的设计上，尽量减少hash冲突。</p>
+<p>根据概率论分析，理想状态下，hashMap中的Node满足泊松分布<br>当负载因子为 0.75 时，上述公式中 λ 约等于 0.5，因此箱子中元素个数和概率的关系如下:</p>
+<table>
+<thead>
+<tr>
+<th>数量</th>
+<th>概率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0.60653066</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0.30326533</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0.07581633</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0.01263606</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0.00157952</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0.00015795</td>
+</tr>
+<tr>
+<td>6</td>
+<td>0.00001316</td>
+</tr>
+<tr>
+<td>7</td>
+<td>0.00000094</td>
+</tr>
+<tr>
+<td>8</td>
+<td>0.00000006</td>
+</tr>
+</tbody>
+</table>
+<h1 id="二、简介"><a href="#二、简介" class="headerlink" title="二、简介"></a>二、简介</h1><h2 id="2-1-成员变量"><a href="#2-1-成员变量" class="headerlink" title="2.1 成员变量"></a>2.1 成员变量</h2><pre>
+    /**
+     * 默认初始容量 - 必须是2的幂。
+     * 个数不能太多或太少。如果太少，很容易触发扩容，如果太多，遍历哈希表会比较慢。
+     */
+    static final int DEFAULT_INITIAL_CAPACITY = 1 << 4; // aka 16
+
+    /**
+     *
+     * 最大容量。
+     */
+    static final int MAXIMUM_CAPACITY = 1 << 30;
+
+    /**
+     * 默认的负载因子。因此初始情况下，当键值对的数量大于 16 * 0.75 = 12 时，就会触发扩容。
+     */
+    static final float DEFAULT_LOAD_FACTOR = 0.75f;
+
+    /**
+     * 使用树而不是链表的计数阈值。
+     *如果哈希函数不合理，即使扩容也无法减少箱子中链表的长度，因此 Java 的处理方案是当链表太长时，转换成红黑树。
+     * 这个值表示当某个链表长度大于 8 时，有可能会转化成树。
+     * 备注：从JDK1.8开始，HashMap容量在大于一定值后，底层将会由链表结构转为树形结构
+     */
+    static final int TREEIFY_THRESHOLD = 8;
+
+    /**
+     * 当容量小于该值时，将由树状结构转为链表结构
+     */
+    static final int UNTREEIFY_THRESHOLD = 6;
+
+    /**
+     * 在转变成树之前，还会有一次判断，只有键值对数量大于 64 才会发生转换。
+     * 这是为了避免在哈希表建立初期，多个键值对恰好被放入了同一个链表中而导致不必要的转化。
+     */
+    static final int MIN_TREEIFY_CAPACITY = 64;
+
+    // 数组，该数组用于存储不同的hash值与链表的对应关系
+    transient Node<k,v>[] table;
+
+    // 单向链表，该链表用于处理哈希冲突
+    Set<map.entry<k,v>> entrySet;
+
+    // hashMap长度
+    int size;
+
+    // 用来实现fail-fast机制的。 
+    int modCount; 
+
+    // HashMap的阈值，用于判断是否需要调整HashMap的容量。threshold的值="容量*加载因子"，当HashMap中存储数据的数量达到threshold时，就需要将HashMap的容量加倍。 
+    int threshold; 
+
+    // 加载因子 
+    final float loadFactor;
+</map.entry<k,v></k,v></pre>
+
+<h1 id="三、常用方法"><a href="#三、常用方法" class="headerlink" title="三、常用方法"></a>三、常用方法</h1><h2 id="3-1-构造方法"><a href="#3-1-构造方法" class="headerlink" title="3.1 构造方法"></a>3.1 构造方法</h2><pre>
+    /**
+    * @param initialCapacity 初始大小
+    * @param loadFactor 扩容因子
+    */
+    public HashMap(int initialCapacity, float loadFactor)
+
+    /**
+    *@param initialCapacity 初始大小
+    */
+    public HashMap(int initialCapacity)
+
+    public HashMap()
+
+    /**
+    *@param m Map子类
+    */
+    public HashMap(Map<? extends K, ? extends V> m)
 </pre>
 
-<h2 id="3-2-配置项目的pom-xml"><a href="#3-2-配置项目的pom-xml" class="headerlink" title="3.2 配置项目的pom.xml"></a>3.2 配置项目的pom.xml</h2><p>具体的配置可以查看小轮子里面的pom设置 <a href="https://github.com/weechang/JUtil/blob/master/pom.xml" target="_blank">https://github.com/weechang/JUtil/blob/master/pom.xml</a><br>首先需要添加指向sonatype仓库的&lt;distributionManagement&gt;</p>
-<p><pre><br>    &lt;distributionManagement&gt;<br>        &lt;snapshotRepository&gt;<br>            &lt;id&gt;ossrh&lt;/id&gt;<br>            &lt;url&gt;<a href="https://oss.sonatype.org/content/repositories/snapshots&lt;/url&gt;" target="_blank" rel="noopener">https://oss.sonatype.org/content/repositories/snapshots&lt;/url&gt;</a><br>        &lt;/snapshotRepository&gt;<br>        &lt;repository&gt;<br>            &lt;id&gt;ossrh&lt;/id&gt;<br>            &lt;name&gt;Maven Central Staging Repository&lt;/name&gt;<br>            &lt;url&gt;<a href="https://oss.sonatype.org/service/local/staging/deploy/maven2/&lt;/url&gt;" target="_blank" rel="noopener">https://oss.sonatype.org/service/local/staging/deploy/maven2/&lt;/url&gt;</a><br>        &lt;/repository&gt;<br>    &lt;/distributionManagement&gt;<br></pre><br>继续配置pfofiles,添加各种推送、DOC、加密的插件</p>
-<p><pre><br>    &lt;profiles&gt;<br>        &lt;profile&gt;<br>            &lt;id&gt;release<br>            &lt;build&gt;<br>                &lt;plugins&gt;<br>                    &lt;plugin&gt;<br>                        &lt;groupId&gt;org.sonatype.plugins&lt;/groupId&gt;<br>                        &lt;artifactId&gt;nexus-staging-maven-plugin&lt;/artifactId&gt;<br>                        &lt;version&gt;1.6.8&lt;/version&gt;<br>                        &lt;extensions&gt;true&lt;/extensions&gt;<br>                        &lt;configuration&gt;<br>                            &lt;serverId&gt;ossrh&lt;/serverId&gt;<br>                            &lt;nexusUrl&gt;<a href="https://oss.sonatype.org/&lt;/nexusUrl&gt;" target="_blank" rel="noopener">https://oss.sonatype.org/&lt;/nexusUrl&gt;</a><br>                            &lt;autoReleaseAfterClose&gt;true&lt;/autoReleaseAfterClose&gt;<br>                        &lt;/configuration&gt;<br>                    &lt;/plugin&gt;<br>                    &lt;plugin&gt;<br>                        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;<br>                        &lt;artifactId&gt;maven-javadoc-plugin&lt;/artifactId&gt;<br>                        &lt;version&gt;3.0.1&lt;/version&gt;<br>                        &lt;executions&gt;<br>                            &lt;execution&gt;<br>                                &lt;id&gt;attach-javadocs&lt;/id&gt;<br>                                &lt;goals&gt;<br>                                    &lt;goal&gt;jar&lt;/goal&gt;<br>                                &lt;/goals&gt;<br>                            &lt;/execution&gt;<br>                        &lt;/executions&gt;<br>                    &lt;/plugin&gt;<br>                    &lt;plugin&gt;<br>                        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;<br>                        &lt;artifactId&gt;maven-source-plugin&lt;/artifactId&gt;<br>                        &lt;executions&gt;<br>                            &lt;execution&gt;<br>                                &lt;id&gt;attach-sources&lt;/id&gt;<br>                                &lt;goals&gt;<br>                                    &lt;goal&gt;jar-no-fork<br>                                &lt;/goals&gt;<br>                            &lt;/execution&gt;<br>                        &lt;/executions&gt;<br>                    &lt;/plugin&gt;<br>                    &lt;plugin&gt;<br>                        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;<br>                        &lt;artifactId&gt;maven-gpg-plugin&lt;/artifactId&gt;<br>                        &lt;version&gt;1.6&lt;/version&gt;<br>                        &lt;executions&gt;<br>                            &lt;execution&gt;<br>                                &lt;id&gt;sign-artifacts&lt;/id&gt;<br>                                &lt;phase&gt;verify&lt;/phase&gt;<br>                                &lt;goals&gt;<br>                                    &lt;goal&gt;sign&lt;/goal&gt;<br>                                &lt;/goals&gt;<br>                            &lt;/execution&gt;<br>                        &lt;/executions&gt;<br>                    &lt;/plugin&gt;<br>                &lt;/plugins&gt;<br>            &lt;/build&gt;<br>        &lt;/profile&gt;<br>    &lt;/profiles&gt;<br></pre><br>然后还可以添加一些开发者信息和license信息，具体的就不多说了。具体可以参考小轮子的配置</p>
-<h2 id="3-3-部署到中央仓库"><a href="#3-3-部署到中央仓库" class="headerlink" title="3.3 部署到中央仓库"></a>3.3 部署到中央仓库</h2><p>运行以下代码进行deploy</p>
-<p><pre>mvn clean deploy -P release</pre><br>如下图表示成功部署到中央仓库<br><img src="/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/部署成功.png" title="手把手教学，教你把你的个人项目推送到maven中央仓库"><br>因为我们在pom中添加了自动发布插件，所以可以不用管理，直接到中央仓库去查看就能看到你发布的项目了<br><b>PS:在部署过成功可能会遇到401的问题，具体请参考传送门 <a href="https://stackoverflow.com/questions/24830610/why-am-i-getting-a-401-unauthorized-error-in-maven" target="_blank">https://stackoverflow.com/questions/24830610/why-am-i-getting-a-401-unauthorized-error-in-maven</a></b></p>
+<h2 id="3-2-对外方法"><a href="#3-2-对外方法" class="headerlink" title="3.2 对外方法"></a>3.2 对外方法</h2><pre>
+    /**
+    * 清空hashMap
+    * 通过将所有Node置空实现
+    */
+    public void clear()
+
+    /**
+    * 是否存在键为key的键值对
+    */
+    public boolean containsKey(Object key)
+
+    /**
+    * 是否存在值为value的键值对
+    */
+    public boolean containsValue(Object value)
+
+    /**
+    * 获取所有的键值对
+    */
+    public Set<map.entry<k,v>> entrySet()
+
+    /**
+    * 获取所有键值对 值的集合
+    */
+    public Collection<v> values()
+
+    /**
+    * 获取所有键值对 键的集合
+    */
+    public Set<k> keySet()
+
+    /**
+    * 根据键值对的键获取值
+    */
+    public V get(Object key)
+
+    /**
+    * put 一个键值对
+    */
+    public V put(K key, V value)
+
+    /**
+    *将"m"的全部元素都添加到HashMap中
+    */
+    public void putAll(Map<? extends K, ? extends V> m)
+
+    /**
+    *移除键为key的元素
+    */
+    public V remove(Object key)
+</k></v></map.entry<k,v></pre>
+
+<h1 id="四、HashMap的遍历"><a href="#四、HashMap的遍历" class="headerlink" title="四、HashMap的遍历"></a>四、HashMap的遍历</h1><h2 id="4-1-遍历HashMap的键值对"><a href="#4-1-遍历HashMap的键值对" class="headerlink" title="4.1 遍历HashMap的键值对"></a>4.1 遍历HashMap的键值对</h2><p>第一步：根据entrySet()获取HashMap的“键值对”的Set集合。<br>第二步：通过Iterator迭代器遍历“第一步”得到的集合。</p>
+<pre>
+    // 假设map是HashMap对象
+    // map中的key是String类型，value是Integer类型
+    Integer integ = null;
+    Iterator iter = map.entrySet().iterator();
+    while(iter.hasNext()) {
+        Map.Entry entry = (Map.Entry)iter.next();
+        // 获取key
+        key = (String)entry.getKey();
+        // 获取value
+        integ = (Integer)entry.getValue();
+    }
+</pre>
+
+<h2 id="4-2-遍历HashMap的键"><a href="#4-2-遍历HashMap的键" class="headerlink" title="4.2 遍历HashMap的键"></a>4.2 遍历HashMap的键</h2><p>第一步：根据keySet()获取HashMap的“键”的Set集合。<br>第二步：通过Iterator迭代器遍历“第一步”得到的集合。</p>
+<pre>
+    // 假设map是HashMap对象
+    // map中的key是String类型，value是Integer类型
+    String key = null;
+    Integer integ = null;
+    Iterator iter = map.keySet().iterator();
+    while (iter.hasNext()) {
+            // 获取key
+        key = (String)iter.next();
+            // 根据key，获取value
+        integ = (Integer)map.get(key);
+    }
+</pre>
+
+<h2 id="4-3-遍历HashMap的值"><a href="#4-3-遍历HashMap的值" class="headerlink" title="4.3 遍历HashMap的值"></a>4.3 遍历HashMap的值</h2><p>第一步：根据value()获取HashMap的“值”的集合。<br>第二步：通过Iterator迭代器遍历“第一步”得到的集合。</p>
+<pre>
+    // 假设map是HashMap对象
+    // map中的key是String类型，value是Integer类型
+    Integer value = null;
+    Collection c = map.values();
+    Iterator iter= c.iterator();
+    while (iter.hasNext()) {
+        value = (Integer)iter.next();
+    }
+</pre>
+
+<p><b>PS:本文章相关代码均已上传至 GitHub <a href="https://github.com/weechang/java-zero" target="_blank">查看详情</a></b></p>
 
         
         </div>
@@ -333,7 +520,7 @@
             
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/maven中央仓库/">maven中央仓库</a>, <a class="tag-link" href="/tags/手把手教学/">手把手教学</a>
+        <a class="tag-link" href="/tags/HashMap/">HashMap</a>, <a class="tag-link" href="/tags/Java学习之从头开始/">Java学习之从头开始</a>, <a class="tag-link" href="/tags/Java集合/">Java集合</a>
     </div>
 
             <div class="share-container">
@@ -386,19 +573,19 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         
 <nav id="article-nav">
     
-        <a href="/2018/07/30/Java集合-0——HashMap类/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2018/07/31/Java集合-1——HashTable类/" id="article-nav-newer" class="article-nav-link-wrap">
             <strong class="article-nav-caption">上一篇</strong>
             <div class="article-nav-title">
                 
-                    【Java学习之从头开始】Java集合-0——HashMap类
+                    【Java学习之从头开始】Java集合-1——HashTable类
                 
             </div>
         </a>
     
     
-        <a href="/2018/06/08/java基础-1——String类/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">【Java学习之从头开始】Java基础-1——String类</div>
+            <div class="article-nav-title">手把手教学，教你把你的个人项目推送到maven中央仓库</div>
         </a>
     
 </nav>
@@ -423,7 +610,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         repo: "weechang.github.io",
         owner: "weechang",
         admin: ["weechang"],
-        id: '手把手教学，教你把你的个人项目推送到maven中央仓库',
+        id: '【Java学习之从头开始】Java集合-0——HashMap类',
     });
     gitalk.render('gitalk-container');
 </script>
@@ -555,7 +742,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
         repo: "weechang.github.io",
         owner: "weechang",
         admin: ["weechang"],
-        id: '手把手教学，教你把你的个人项目推送到maven中央仓库',
+        id: '【Java学习之从头开始】Java集合-0——HashMap类',
     });
     gitalk.render('gitalk-container');
 </script>
