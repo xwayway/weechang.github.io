@@ -171,7 +171,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                29
+                34
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -226,6 +226,556 @@
 
             
             <section id="main">
+    <article id="post-AxonFramework命令拦截器" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/08/31/AxonFramework命令拦截器/">AxonFramework命令拦截器</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fas fa-calendar-alt"></i>
+        <a href="/2018/08/31/AxonFramework命令拦截器/">
+            <time datetime="2018-08-31T02:29:32.000Z" itemprop="datePublished">2018-08-31</time>
+        </a>
+    </div>
+
+
+                        <div class="article-user">
+    <i class="fas fa-user-alt"></i>
+    
+        <span>勇赴</span>
+    
+</div>
+
+                        
+    <div class="article-category">
+    	<i class="fas fa-folder"></i>
+        <a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a>
+    </div>
+
+                    </div>
+                    <div class="article-meta">
+                         
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><p>使用命令总线的优点之一，是能够基于所有传入的命令采取相应的行动。例子是，不论哪种命令类型，你都希望去做日志记录或身份验证。这是使用拦截器来完成的。</p></p>
+            <p class="article-more-link">
+                <a href="/2018/08/31/AxonFramework命令拦截器/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/AxonFramework/">AxonFramework</a>
+    </div>
+
+            <div class="share-container">
+
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='https://blog.weechang.xyz/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+</div>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-AxonFramework命令总线" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/08/31/AxonFramework命令总线/">AxonFramework命令总线</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fas fa-calendar-alt"></i>
+        <a href="/2018/08/31/AxonFramework命令总线/">
+            <time datetime="2018-08-31T02:25:51.000Z" itemprop="datePublished">2018-08-31</time>
+        </a>
+    </div>
+
+
+                        <div class="article-user">
+    <i class="fas fa-user-alt"></i>
+    
+        <span>勇赴</span>
+    
+</div>
+
+                        
+    <div class="article-category">
+    	<i class="fas fa-folder"></i>
+        <a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a>
+    </div>
+
+                    </div>
+                    <div class="article-meta">
+                         
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><p>命令总线是将命令分发给各自的命令Handler的机制。每个命令总是被精确发送到一个命令Handler。如果没有可用的命令Handler为已分发的命令，将会抛出NoHandlerForCommandException异常。对同一命令类型订阅多个命令Handler将导致订阅互相取代。在这种情况下，最后一个订阅获胜。</p></p>
+            <p class="article-more-link">
+                <a href="/2018/08/31/AxonFramework命令总线/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/AxonFramework/">AxonFramework</a>
+    </div>
+
+            <div class="share-container">
+
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='https://blog.weechang.xyz/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+</div>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-AxonFramework-测试带注解的Saga" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/08/29/AxonFramework-测试带注解的Saga/">AxonFramework-测试带注解的Saga</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fas fa-calendar-alt"></i>
+        <a href="/2018/08/29/AxonFramework-测试带注解的Saga/">
+            <time datetime="2018-08-29T03:30:56.000Z" itemprop="datePublished">2018-08-29</time>
+        </a>
+    </div>
+
+
+                        <div class="article-user">
+    <i class="fas fa-user-alt"></i>
+    
+        <span>勇赴</span>
+    
+</div>
+
+                        
+    <div class="article-category">
+    	<i class="fas fa-folder"></i>
+        <a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a>
+    </div>
+
+                    </div>
+                    <div class="article-meta">
+                         
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><p>与命令处理组件类似，saga有一个明确定义的接口：它们只对事件作出响应。另一方面，saga通常具有时间概念，并且可以作为事件处理过程的一部分与其他组件交互。Axon Framework的测试支持模块包含帮助你编写saga测试的固件。</p></p>
+            <p class="article-more-link">
+                <a href="/2018/08/29/AxonFramework-测试带注解的Saga/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/AxonFramework/">AxonFramework</a>
+    </div>
+
+            <div class="share-container">
+
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='https://blog.weechang.xyz/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+</div>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-AxonFramework测试" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/08/29/AxonFramework测试/">AxonFramework测试</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fas fa-calendar-alt"></i>
+        <a href="/2018/08/29/AxonFramework测试/">
+            <time datetime="2018-08-29T02:30:35.000Z" itemprop="datePublished">2018-08-29</time>
+        </a>
+    </div>
+
+
+                        <div class="article-user">
+    <i class="fas fa-user-alt"></i>
+    
+        <span>勇赴</span>
+    
+</div>
+
+                        
+    <div class="article-category">
+    	<i class="fas fa-folder"></i>
+        <a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a>
+    </div>
+
+                    </div>
+                    <div class="article-meta">
+                         
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><p>CQRS最大的好处之一，尤其是事件溯源就事件和命令而言，单纯地表达测试是可能的。这两个功能组件，事件和命令对领域专家或业务所有者都有明确的含义。这不仅意味着测试表达就事件和命令而言有明确的功能含义，这也意味着他们不依靠任何实现选择。</p></p>
+            <p class="article-more-link">
+                <a href="/2018/08/29/AxonFramework测试/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/AxonFramework/">AxonFramework</a>
+    </div>
+
+            <div class="share-container">
+
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='https://blog.weechang.xyz/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+</div>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-AxonFramework-Saga的基础设施" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/08/29/AxonFramework-Saga的基础设施/">AxonFramework-Saga的基础设施</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fas fa-calendar-alt"></i>
+        <a href="/2018/08/29/AxonFramework-Saga的基础设施/">
+            <time datetime="2018-08-29T02:17:20.000Z" itemprop="datePublished">2018-08-29</time>
+        </a>
+    </div>
+
+
+                        <div class="article-user">
+    <i class="fas fa-user-alt"></i>
+    
+        <span>勇赴</span>
+    
+</div>
+
+                        
+    <div class="article-category">
+    	<i class="fas fa-folder"></i>
+        <a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a>
+    </div>
+
+                    </div>
+                    <div class="article-meta">
+                         
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><p>事件需要被重定向到适当的saga实例。为此,一些基础设施类是必需的。最重要的组件是SagaManager和SagaRepository。</p></p>
+            <p class="article-more-link">
+                <a href="/2018/08/29/AxonFramework-Saga的基础设施/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/AxonFramework/">AxonFramework</a>
+    </div>
+
+            <div class="share-container">
+
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='https://blog.weechang.xyz/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+</div>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-AxonFramework跟踪最后期限" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -776,560 +1326,8 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
 
 
 
-    <article id="post-MySql中的find-in-set、in、like的区别" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/08/23/MySql中的find-in-set、in、like的区别/">MySql中的find_in_set、in、like的区别</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/23/MySql中的find-in-set、in、like的区别/">
-            <time datetime="2018-08-23T02:33:26.000Z" itemprop="datePublished">2018-08-23</time>
-        </a>
-    </div>
-
-
-                        <div class="article-user">
-    <i class="fas fa-user-alt"></i>
-    
-        <span>张未</span>
-    
-</div>
-
-                        
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/日常记录/">日常记录</a>
-    </div>
-
-                    </div>
-                    <div class="article-meta">
-                         
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            <p><blockquote>
-<p>最近需要做项目，遇到一个需要查询表中的某一列，其数据结构为多个id间用“,”隔开的字符串。需要判断是否包含某一个id，最开始想的是用like查询，但是转念一想，like查询会存在查询id为1的时候，11、12这样的数据也会被查询出来，后来开始寻找其他方法，找到了find_in_set(str, Strs)函数。然后就对MySql中字符串查询的函数一起做一个总结。</p>
-</blockquote></p>
-            <p class="article-more-link">
-                <a href="/2018/08/23/MySql中的find-in-set、in、like的区别/#more">查看更多</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/MySql/">MySql</a>, <a class="tag-link" href="/tags/日常记录/">日常记录</a>
-    </div>
-
-            <div class="share-container">
-
-
-    <div class="bdsharebuttonbox">
-    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
-    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
-    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
-    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
-    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
-    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
-</div>
-<script>
-window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='https://blog.weechang.xyz/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-</script>
-<style>
-    .bdshare_popup_box {
-        border-radius: 4px;
-        border: #e1e1e1 solid 1px;
-    }
-    .bdshare-button-style0-16 a,
-    .bdshare-button-style0-16 .bds_more {
-        padding-left: 20px;
-        margin: 6px 10px 6px 0;
-    }
-    .bdshare_dialog_list a,
-    .bdshare_popup_list a,
-    .bdshare_popup_bottom a {
-        font-family: 'Microsoft Yahei';
-    }
-    .bdshare_popup_top {
-        display: none;
-    }
-    .bdshare_popup_bottom {
-        height: auto;
-        padding: 5px;
-    }
-</style>
-
-
-</div>
-
-            
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-AxonFramework命令模型" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/08/21/AxonFramework命令模型/">AxonFramework命令模型</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/21/AxonFramework命令模型/">
-            <time datetime="2018-08-21T06:00:06.000Z" itemprop="datePublished">2018-08-21</time>
-        </a>
-    </div>
-
-
-                        <div class="article-user">
-    <i class="fas fa-user-alt"></i>
-    
-        <span>勇赴</span>
-    
-</div>
-
-                        
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a>
-    </div>
-
-                    </div>
-                    <div class="article-meta">
-                         
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            <p><p>在一个基于CQRS的应用程序中，领域模型(由Eric Evans和Martin Fowler定义)可以是一个非常强大的机制，来驾驭在验证和执行状态的变化时所涉及的复杂性，虽然典型的领域模型提供了大量的构建块，但当在CQRS中应用命令处理时有一个构件起着主导性的作用：聚合。</p></p>
-            <p class="article-more-link">
-                <a href="/2018/08/21/AxonFramework命令模型/#more">查看更多</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/AxonFramework/">AxonFramework</a>
-    </div>
-
-            <div class="share-container">
-
-
-    <div class="bdsharebuttonbox">
-    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
-    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
-    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
-    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
-    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
-    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
-</div>
-<script>
-window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='https://blog.weechang.xyz/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-</script>
-<style>
-    .bdshare_popup_box {
-        border-radius: 4px;
-        border: #e1e1e1 solid 1px;
-    }
-    .bdshare-button-style0-16 a,
-    .bdshare-button-style0-16 .bds_more {
-        padding-left: 20px;
-        margin: 6px 10px 6px 0;
-    }
-    .bdshare_dialog_list a,
-    .bdshare_popup_list a,
-    .bdshare_popup_bottom a {
-        font-family: 'Microsoft Yahei';
-    }
-    .bdshare_popup_top {
-        display: none;
-    }
-    .bdshare_popup_bottom {
-        height: auto;
-        padding: 5px;
-    }
-</style>
-
-
-</div>
-
-            
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-AxonFramework配置" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/08/20/AxonFramework配置/">AxonFramework配置</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/20/AxonFramework配置/">
-            <time datetime="2018-08-20T10:34:05.000Z" itemprop="datePublished">2018-08-20</time>
-        </a>
-    </div>
-
-
-                        <div class="article-user">
-    <i class="fas fa-user-alt"></i>
-    
-        <span>勇赴</span>
-    
-</div>
-
-                        
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a>
-    </div>
-
-                    </div>
-                    <div class="article-meta">
-                         
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            <p><p>获得一个默认的配置是非常容易的：<br>Configuration config = DefaultConfigurer.defaultConfiguration().buildConfiguration();</p></p>
-            <p class="article-more-link">
-                <a href="/2018/08/20/AxonFramework配置/#more">查看更多</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/AxonFramework/">AxonFramework</a>
-    </div>
-
-            <div class="share-container">
-
-
-    <div class="bdsharebuttonbox">
-    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
-    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
-    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
-    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
-    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
-    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
-</div>
-<script>
-window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='https://blog.weechang.xyz/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-</script>
-<style>
-    .bdshare_popup_box {
-        border-radius: 4px;
-        border: #e1e1e1 solid 1px;
-    }
-    .bdshare-button-style0-16 a,
-    .bdshare-button-style0-16 .bds_more {
-        padding-left: 20px;
-        margin: 6px 10px 6px 0;
-    }
-    .bdshare_dialog_list a,
-    .bdshare_popup_list a,
-    .bdshare_popup_bottom a {
-        font-family: 'Microsoft Yahei';
-    }
-    .bdshare_popup_top {
-        display: none;
-    }
-    .bdshare_popup_bottom {
-        height: auto;
-        padding: 5px;
-    }
-</style>
-
-
-</div>
-
-            
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-AxonFramework工作单元" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/08/20/AxonFramework工作单元/">AxonFramework工作单元</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/20/AxonFramework工作单元/">
-            <time datetime="2018-08-20T05:17:12.000Z" itemprop="datePublished">2018-08-20</time>
-        </a>
-    </div>
-
-
-                        <div class="article-user">
-    <i class="fas fa-user-alt"></i>
-    
-        <span>勇赴</span>
-    
-</div>
-
-                        
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a>
-    </div>
-
-                    </div>
-                    <div class="article-meta">
-                         
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            <p><p>工作单元是Axon Framework的一个重要的概念,虽然在大多数情况下你可能不太直接与它交互。消息的处理被视为一个独立单元。工作单元的目的是在处理一条消息(命令或事件)期间去协调行为的执行。组件可以在工作单元每一个阶段执行注册行为,如onPrepareCommit或onCleanup。</p></p>
-            <p class="article-more-link">
-                <a href="/2018/08/20/AxonFramework工作单元/#more">查看更多</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/AxonFramework/">AxonFramework</a>
-    </div>
-
-            <div class="share-container">
-
-
-    <div class="bdsharebuttonbox">
-    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
-    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
-    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
-    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
-    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
-    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
-</div>
-<script>
-window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='https://blog.weechang.xyz/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-</script>
-<style>
-    .bdshare_popup_box {
-        border-radius: 4px;
-        border: #e1e1e1 solid 1px;
-    }
-    .bdshare-button-style0-16 a,
-    .bdshare-button-style0-16 .bds_more {
-        padding-left: 20px;
-        margin: 6px 10px 6px 0;
-    }
-    .bdshare_dialog_list a,
-    .bdshare_popup_list a,
-    .bdshare_popup_bottom a {
-        font-family: 'Microsoft Yahei';
-    }
-    .bdshare_popup_top {
-        display: none;
-    }
-    .bdshare_popup_bottom {
-        height: auto;
-        padding: 5px;
-    }
-</style>
-
-
-</div>
-
-            
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-ElasticSearch查询报错fielddata-true" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/08/17/ElasticSearch查询报错fielddata-true/">ElasticSearch查询报错fielddata=true</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/17/ElasticSearch查询报错fielddata-true/">
-            <time datetime="2018-08-17T09:01:18.000Z" itemprop="datePublished">2018-08-17</time>
-        </a>
-    </div>
-
-
-                        <div class="article-user">
-    <i class="fas fa-user-alt"></i>
-    
-        <span>张未</span>
-    
-</div>
-
-                        
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/日常记录/">日常记录</a>
-    </div>
-
-                    </div>
-                    <div class="article-meta">
-                         
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            <p><p>记录下ElasticSearch查询报错的解决方案，今天在java中查询ElasticSearch的数据发生报错。</p></p>
-            <p class="article-more-link">
-                <a href="/2018/08/17/ElasticSearch查询报错fielddata-true/#more">查看更多</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/ElasticSearch/">ElasticSearch</a>, <a class="tag-link" href="/tags/日常记录/">日常记录</a>
-    </div>
-
-            <div class="share-container">
-
-
-    <div class="bdsharebuttonbox">
-    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
-    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
-    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
-    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
-    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
-    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
-</div>
-<script>
-window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='https://blog.weechang.xyz/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-</script>
-<style>
-    .bdshare_popup_box {
-        border-radius: 4px;
-        border: #e1e1e1 solid 1px;
-    }
-    .bdshare-button-style0-16 a,
-    .bdshare-button-style0-16 .bds_more {
-        padding-left: 20px;
-        margin: 6px 10px 6px 0;
-    }
-    .bdshare_dialog_list a,
-    .bdshare_popup_list a,
-    .bdshare_popup_bottom a {
-        font-family: 'Microsoft Yahei';
-    }
-    .bdshare_popup_top {
-        display: none;
-    }
-    .bdshare_popup_bottom {
-        height: auto;
-        padding: 5px;
-    }
-</style>
-
-
-</div>
-
-            
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
+        <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
     </nav>
 </section>
             
@@ -1346,8 +1344,8 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a></p>
-                            <p class="item-title"><a href="/2018/08/31/AxonFramework-EventStore实现/" class="title">AxonFramework-EventStore实现</a></p>
-                            <p class="item-date"><time datetime="2018-08-31T02:52:45.000Z" itemprop="datePublished">2018-08-31</time></p>
+                            <p class="item-title"><a href="/2018/08/31/AxonFramework-事件序列化器调优/" class="title">AxonFramework-事件序列化器调优</a></p>
+                            <p class="item-date"><time datetime="2018-08-31T03:20:34.000Z" itemprop="datePublished">2018-08-31</time></p>
                         </div>
                     </li>
                 
@@ -1355,8 +1353,8 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a></p>
-                            <p class="item-title"><a href="/2018/08/31/AxonFramework-存储库/" class="title">AxonFramework-存储库</a></p>
-                            <p class="item-date"><time datetime="2018-08-31T02:50:48.000Z" itemprop="datePublished">2018-08-31</time></p>
+                            <p class="item-title"><a href="/2018/08/31/AxonFramework-高级定制/" class="title">AxonFramework-高级定制</a></p>
+                            <p class="item-date"><time datetime="2018-08-31T03:14:03.000Z" itemprop="datePublished">2018-08-31</time></p>
                         </div>
                     </li>
                 
@@ -1364,8 +1362,8 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a></p>
-                            <p class="item-title"><a href="/2018/08/31/AxonFramework-分发事件/" class="title">AxonFramework-分发事件</a></p>
-                            <p class="item-date"><time datetime="2018-08-31T02:47:38.000Z" itemprop="datePublished">2018-08-31</time></p>
+                            <p class="item-title"><a href="/2018/08/31/AxonFramework-SpringBoot自动配置/" class="title">AxonFramework-SpringBoot自动配置</a></p>
+                            <p class="item-date"><time datetime="2018-08-31T03:10:15.000Z" itemprop="datePublished">2018-08-31</time></p>
                         </div>
                     </li>
                 
@@ -1373,8 +1371,8 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a></p>
-                            <p class="item-title"><a href="/2018/08/31/AxonFramework-事件发布和处理/" class="title">AxonFramework-事件发布和处理</a></p>
-                            <p class="item-date"><time datetime="2018-08-31T02:44:40.000Z" itemprop="datePublished">2018-08-31</time></p>
+                            <p class="item-title"><a href="/2018/08/31/AxonFramework-Snapshotting/" class="title">AxonFramework-Snapshotting</a></p>
+                            <p class="item-date"><time datetime="2018-08-31T03:07:08.000Z" itemprop="datePublished">2018-08-31</time></p>
                         </div>
                     </li>
                 
@@ -1382,8 +1380,8 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a></p>
-                            <p class="item-title"><a href="/2018/08/31/AxonFramework-分布式命令总线连接器/" class="title">AxonFramework-分布式命令总线连接器</a></p>
-                            <p class="item-date"><time datetime="2018-08-31T02:40:27.000Z" itemprop="datePublished">2018-08-31</time></p>
+                            <p class="item-title"><a href="/2018/08/31/AxonFramework-事件向上转换/" class="title">AxonFramework-事件向上转换</a></p>
+                            <p class="item-date"><time datetime="2018-08-31T03:03:17.000Z" itemprop="datePublished">2018-08-31</time></p>
                         </div>
                     </li>
                 
@@ -1396,7 +1394,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AxonFramework/">AxonFramework</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java基础/">Java基础</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java集合/">Java集合</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/开源之路/">开源之路</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/日常记录/">日常记录</a><span class="category-list-count">2</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AxonFramework/">AxonFramework</a><span class="category-list-count">26</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java基础/">Java基础</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java集合/">Java集合</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/开源之路/">开源之路</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/日常记录/">日常记录</a><span class="category-list-count">2</span></li></ul>
         </div>
     </div>
 
