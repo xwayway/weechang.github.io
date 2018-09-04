@@ -19,6 +19,15 @@
     align-items: center;
   }
 }
+@media mq-mini {
+  .tools .tool-row {
+    flex-direction: column;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+  }
+}
 .tool-row .tool-item {
   flex: 1;
   padding: 10px 14px;
@@ -29,6 +38,11 @@
   margin-bottom: 20px;
 }
 @media mq-mobile {
+  .tool-row .tool-item {
+    max-width: 250px;
+  }
+}
+@media mq-mini {
   .tool-row .tool-item {
     max-width: 250px;
   }
