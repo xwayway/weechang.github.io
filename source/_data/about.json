@@ -1,0 +1,38 @@
+{
+    "avatar": "https://avatars0.githubusercontent.com/u/23130993",
+    "name": "耒耒耒耒耒",
+	"tag": "Java服务端/Web前端/动手达人",
+    "desc": "大道五十,天衍四九,人遁其一",
+    "skills": {
+		"Java": 8,
+		"MySql": 8,
+		"Javascript": 7,
+		"Vue": 6,
+		"PhotoShop": 3
+    },
+    "projects": [{
+		"name": "Taroco",
+		"image": "https://avatars0.githubusercontent.com/u/23130993",
+		"tags": ["DDD", "Spring Cloud"],
+		"description": "基于spring boot，spring cloud，axon framework的领域驱动设计的微服务开发框架系统。提供整套微服务架构模块：统一用户中心，用户授权、鉴权，配置中心，注册中心，服务路由，服务熔断，追踪、治理，灰度发布。后期将继续加上存储系统、微信系统。",
+		"link_text": "Github地址",
+		"link": "https://github.com/weechang/Taroco"
+	}, {
+		"name": "JUtil",
+		"image": "https://avatars0.githubusercontent.com/u/23130993",
+		"description": "Java的常用工具类包括Excel导入导出、正则表达式验证、图片处理、Http请求等，现已加入nexus仓库豪华套餐，无需下载源码，添加maven依赖即可使用 ",
+		"tags": ["Java常用工具类", "Excel"],
+		"link_text": "Github地址",
+		"link": "https://github.com/weechang/JUtil"
+	}, {
+		"name": "java-zero",
+		"image": "https://avatars0.githubusercontent.com/u/23130993",
+		"description": "本仓库用于从头开始梳理Java知识体系，梳理路线为，Java基础——Java高级——Java并发——常用框架——常用中间件——数据结构与算法——项目分享。用于个人从头学习Java的代码记录，同时也做为一种分享，提供一些自己的见解给各位看官参考。 ",
+		"tags": ["Java学习"],
+		"link_text": "Github地址",
+		"link": "https://github.com/weechang/java-zero"
+	}],
+	"reward": [
+
+	]
+}

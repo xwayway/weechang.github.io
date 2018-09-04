@@ -1,0 +1,42 @@
+<% var item = page; %>
+<% var categories = site.data.tools;%>
+
+<div class="tools">
+    <% if(categories != null && categories.length > 0) { %>
+        <% for (var i in categories) { %>
+            <% var categoryItem = categories[i]; var tools = categoryItem.tools; %>
+            <% if(categoryItem.category != null && tools != null && tools.length > 0) { %>
+                <div class="category-title"><%= __(categoryItem.category) %></div>
+                <% for(var j in tools) { %>
+                    <% if(j == 0 || j % 3 == 0) { %>
+                        <div class="tool-row">
+                    <% } %>
+                            <div class="tool-item">
+                                <div class="tool-name"><h4><%= __(tools[j].name) %></h4></div>
+                                <div class="tool-content">
+                                    <a class="tool-logo" href="<%= __(tools[j].link) %>" target="_blank" rel="nofollow" >
+                                        <img src="<%= __(tools[j].logo) %>" class="logo-img" />
+                                    </a>
+                                    <div class="tool-desc"><%= __(tools[j].desc) %></div>
+                                </div>
+                                <div class="tool-footer">
+                                    <a class="tool-btn" href="<%= __(tools[j].link) %>" target="_blank" rel="nofollow">开始使用</a>
+                                </div>
+                            </div>
+                        <% if(j == tools.length - 1 && tools.length % 3 == 1) { %>
+                            <div class="tool-item no-item"></div>
+                            <div class="tool-item no-item"></div>
+                        <% } else if(j == tools.length - 1 && tools.length % 3 == 2) { %>
+                            <div class="tool-item no-item"></div>
+                        <% } %>
+                    <% if(j % 3 == 2 || j == tools.length - 1) { %>
+                        </div>
+                    <% } %>
+                <% } %>
+            <% } %>
+        <% } %>
+    <% } %>
+</div>
+
+<%- partial('comment/scripts') %>
+

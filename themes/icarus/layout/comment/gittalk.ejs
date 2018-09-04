@@ -1,0 +1,19 @@
+<%if (theme.comment.gittalk.client_id && page.comments){ %>
+<!-- Link Gitalk 的支持文件  -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        // gitalk的主要参数
+        clientID: "<%= theme.comment.gittalk.client_id %>",
+        clientSecret: "<%= theme.comment.gittalk.client_secret %>",
+        repo: "<%= theme.comment.gittalk.repo %>",
+        owner: "<%= theme.comment.gittalk.owner %>",
+        admin: ["<%= theme.comment.gittalk.owner %>"],
+        id: '<%= page.title %>',
+    });
+    gitalk.render('gitalk-container');
+</script>
+<!-- Gitalk end -->
+<% } %>

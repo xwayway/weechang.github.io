@@ -1,0 +1,14 @@
+<div class="article-word-count">
+<span>
+    <i class="fas fa-file-word"></i>
+    共<%= wordcount(post.content) %>字，
+</span>
+<span>
+    <i class="fas fa-clock"></i>
+    大约需要<%= min2read(post.content) %>分钟
+</span>
+</div>
+<span id="busuanzi_container_page_pv">
+    <i class="fas fa-eye"></i>
+    已被阅读<span id="busuanzi_value_page_pv"></span>次
+</span>

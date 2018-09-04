@@ -1,0 +1,8 @@
+<div class="<%= class_name %>">
+    <i class="fas fa-user-alt"></i>
+    <% if (post.author) { %>
+        <span><%- post.author %></span>
+    <% } else { %>
+        <span><%- config.author %></span>
+    <% }%>
+</div>
