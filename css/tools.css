@@ -1,17 +1,26 @@
 .tools {
   margin-top: 40px;
 }
-.tools .category-title {
+.tools,
+.category-title {
   color: color-title;
   font-size: 1.1rem;
   margin-bottom: 10px;
 }
-.tools .tool-row {
+.tools,
+.tool-row {
   padding-bottom: 20px;
   display: flex;
   margin-right: -20px;
 }
-.tool-row .tool-item {
+@media mq-mobile {
+  .tools,
+  .tool-row {
+    flex-direction: column;
+  }
+}
+.tool-row,
+.tool-item {
   flex: 1;
   padding: 10px 14px;
   border: 1px solid #dedede;

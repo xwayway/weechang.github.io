@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.weechang.xyz/2018/09/03/Java%E9%9B%86%E5%90%88-1%E2%80%94%E2%80%94TreeMap%E7%B1%BB/</loc>
+    
+    <lastmod>2018-09-03T07:56:44.962Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.weechang.xyz/2018/07/31/Java%E9%9B%86%E5%90%88-1%E2%80%94%E2%80%94HashTable%E7%B1%BB/</loc>
     
     <lastmod>2018-08-31T03:30:23.901Z</lastmod>
