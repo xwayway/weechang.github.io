@@ -138,7 +138,6 @@ GitBook将读取 .gitignore，.bookignore 和 .ignore 文件，以获取要过�
 
 ## 托管到gitbook.com
 
-### 1.创建新书
 
 
 
