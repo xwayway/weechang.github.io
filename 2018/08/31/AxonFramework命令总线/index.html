@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>AxonFramework命令总线 | 耒耒耒耒耒</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="命令总线是将命令分发给各自的命令Handler的机制。每个命令总是被精确发送到一个命令Handler。如果没有可用的命令Handler为已分发的命令，将会抛出NoHandlerForCommandException异常。对同一命令类型订阅多个命令Handler将导致订阅互相取代。在这种情况下，最后一个订阅获胜。">
+<meta name="keywords" content="AxonFramework">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AxonFramework命令总线">
+<meta property="og:url" content="http://blog.weechang.xyz/2018/08/31/AxonFramework命令总线/index.html">
+<meta property="og:site_name" content="耒耒耒耒耒">
+<meta property="og:description" content="命令总线是将命令分发给各自的命令Handler的机制。每个命令总是被精确发送到一个命令Handler。如果没有可用的命令Handler为已分发的命令，将会抛出NoHandlerForCommandException异常。对同一命令类型订阅多个命令Handler将导致订阅互相取代。在这种情况下，最后一个订阅获胜。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-31T02:28:19.047Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AxonFramework命令总线">
+<meta name="twitter:description" content="命令总线是将命令分发给各自的命令Handler的机制。每个命令总是被精确发送到一个命令Handler。如果没有可用的命令Handler为已分发的命令，将会抛出NoHandlerForCommandException异常。对同一命令类型订阅多个命令Handler将导致订阅互相取代。在这种情况下，最后一个订阅获胜。">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="耒耒耒耒耒" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome5/css/fontawesome.min.css">
+    <link rel="stylesheet" href="/libs/font-awesome5/css/fa-brands.min.css">
+    <link rel="stylesheet" href="/libs/font-awesome5/css/fa-solid.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+    <link rel="stylesheet" href="/libs/google-code-prettify/prettify-tomorrow-night-eighties.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+    
+        <script>
+    var _mtac = {};
+    (function() {
+        var mta = document.createElement("script");
+        mta.src = "//pingjs.qq.com/h5/stats.js?v2.0.4";
+        mta.setAttribute("name", "MTAH5");
+        mta.setAttribute("sid", "500628840");
+
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(mta, s);
+    })();
+</script>
+    
+
+
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">耒耒耒耒耒</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">主页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/tools">工具库</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.png" />
+                            <i class="fas fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fas fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">主页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/tools">工具库</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile" class="profile-fixed">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.png" />
+            <h2 id="name">张未</h2>
+            <h3 id="title">大道五十,天衍四九,人遁其一</h3>
+            <span id="location"><i class="fas fa-map-marker-alt" style="padding-right: 5px"></i>成都,中国</span>
+            <a id="follow" target="_blank" href="https://github.com/weechang/">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                34
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                14
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/weechang/" target="_blank" title="github" class=tooltip>
+                            
+                                <i class="fab fa-github"></i>
+                            
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="mailto:zhangwei_sc@foxmail.com" target="_blank" title="envelope" class=tooltip>
+                            
+                                <i class="fa fa-envelope"></i>
+                            
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/css/images/avatar.png" target="_blank" title="weixin" class=tooltip>
+                            
+                                <i class="fab fa-weixin"></i>
+                            
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/atom.xml" target="_blank" title="rss" class=tooltip>
+                            
+                                <i class="fa fa-rss"></i>
+                            
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-AxonFramework命令总线" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            AxonFramework命令总线
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fas fa-calendar-alt"></i>
+        <a href="/2018/08/31/AxonFramework命令总线/">
+            <time datetime="2018-08-31T02:25:51.000Z" itemprop="datePublished">2018-08-31</time>
+        </a>
+    </div>
+
+
+                        <div class="article-user">
+    <i class="fas fa-user-alt"></i>
+    
+        <span>勇赴</span>
+    
+</div>
+
+                        
+    <div class="article-category">
+    	<i class="fas fa-folder"></i>
+        <a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a>
+    </div>
+
+                    </div>
+                    <div class="article-meta">
+                         
+                             <div class="article-word-count">
+<span>
+    <i class="fas fa-file-word"></i>
+    共2,123字，
+</span>
+<span>
+    <i class="fas fa-clock"></i>
+    大约需要7分钟
+</span>
+</div>
+<span id="busuanzi_container_page_pv">
+    <i class="fas fa-eye"></i>
+    已被阅读<span id="busuanzi_value_page_pv"></span>次
+</span>
+
+                         
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>命令总线是将命令分发给各自的命令Handler的机制。每个命令总是被精确发送到一个命令Handler。如果没有可用的命令Handler为已分发的命令，将会抛出NoHandlerForCommandException异常。对同一命令类型订阅多个命令Handler将导致订阅互相取代。在这种情况下，最后一个订阅获胜。</p>
+<a id="more"></a>
+<h2 id="分发命令"><a href="#分发命令" class="headerlink" title="分发命令"></a>分发命令</h2><p>CommandBus提供了两个方法去分发命令到它们各自的Handler：dispatch(commandMessage,callback)和dispatch(commandMessage)。第一个参数是一个包含要发送的实际命令的消息。第二个可选的参数接收一个回调，允许在命令处理完成时通知分发组件。这个回调有两个方法:onSuccess()和onFailure()，分别会在命令处理返回后被调用，或者当它抛出一个异常时调用。</p>
+<p>调用组件可能不采取在分发命令的同一线程中调用回调。如果调用线程在继续之前依赖于结果，你可以使用FutureCallback。这是一个Future(在java.concurrent包中定义)和Axon的CommandCallback的组合。或者，考虑使用命令网关。</p>
+<p>如果一个应用程序不直接对命令的结果感兴趣，可以使用dispatch(commandMessage) 方法。</p>
+<h2 id="SimpleCommandBus"><a href="#SimpleCommandBus" class="headerlink" title="SimpleCommandBus"></a>SimpleCommandBus</h2><p>SimpleCommandBus，顾名思义，最简单的实现。它在分发它们的线程中简单的处理命令。命令处理后，修改后的聚合在同一线程被保存和发布生成的事件。在大多数情况下，如web应用程序，该实现将符合你的需求。配置API中SimpleCommandBus是默认使用的实现。</p>
+<p>像大多数CommandBus实现一样，SimpleCommandBus允许拦截器进行配置。在命令总线上分发一个命令后调用CommandDispatchInterceptors。在实际的命令handler 方法之前调用CommandHandlerInterceptors，允许你修改或阻塞命令。有关更多信息，请参考命令处理器拦截器。</p>
+<p>因为所有命令处理都在同一线程中完成，这个实现仅限于JVM的边界。这个实现的性能是很好的，但不超凡。跨JVM边界，或使你的CPU cycles发挥最大的功效，看看其他CommandBus实现。</p>
+<h2 id="AsynchronousCommandBus"><a href="#AsynchronousCommandBus" class="headerlink" title="AsynchronousCommandBus"></a>AsynchronousCommandBus</h2><p>顾名思义，AsynchronousCommandBus实现从分发它们的线程异步执行命令。它使用一个Executor在不同的线程来执行实际的处理逻辑。</p>
+<p>默认情况下，AsynchronousCommandBus使用一个unbounded缓存的线程池。这意味着分发一个命令时会创建线程。完成处理命令的线程将被重新用于新命令。如果60秒线程没有处理命令，则会停止线程。</p>
+<p>或者，Executor实例可以提供不同的线程策略配置。</p>
+<p>注意，应用程序停止时应该关闭AsynchronousCommandBus，以确保任何等待线程正确关闭。关闭，调用shutdown()方法。这也将关闭任何Executor实例，如果它实现ExecutorService接口的话。</p>
+<h2 id="DisruptorCommandBus"><a href="#DisruptorCommandBus" class="headerlink" title="DisruptorCommandBus"></a>DisruptorCommandBus</h2><p>SimpleCommandBus具有合理的性能特性，特别是当你经历了性能调优技巧。事实上，SimpleCommandBus需要锁来防止多个线程并发访问同一聚合，导致处理开销和锁争用。</p>
+<p>DisruptorCommandBus采用不同的方法进行多线程处理。不是多个线程每个都执行同样的处理，而是有多个线程，每个负责一件处理。DisruptorCommandBus使用Disruptor，一个小的并发编程框架，通过不同的方法对多线程进行处理来实现更好的性能。任务不是在调用线程中进行处理，而是将任务移交给两组线程进行处理，每组线程负责一部分处理。第一组的线程将执行命令handler，更改一个聚合的状态。第二组将存储并将事件发布到事件存储。</p>
+<p>虽然DisruptorCommandBus轻易优于SimpleCommandBus 4倍(!)，但有一些限制:</p>
+<ul>
+<li>DisruptorCommandBus仅支持事件溯源聚合。这个命令总线充当由Disruptor处理聚合的存储库。获取一个存储库的引用，使用createRepository(AggregateFactory)。</li>
+<li>一个命令只能导致一个聚合实例状态变化。</li>
+<li>当使用缓存时，它只允许给定的标识符为单个聚合。这意味着它是不可能有两个具有相同的标识符的不同类型的聚合。</li>
+<li>命令一般不会引发需要回滚工作单元的故障。当发生回滚时，DisruptorCommandBus不能保证命令按照它们被分发的顺序进行处理。此外，它需要重试其他命令，从而造成不必要的计算。</li>
+<li><p>在创建一个新的聚合实例时，命令更新所创建实例可能并不完全按照所提供的顺序进行。一旦创建了聚合，所有命令将按照它们被分发顺序执行。为了确保顺序，在创建命令上使用回调去等待正在创建的聚合。它不应该耗时超过几毫秒。<br>构建一个DisruptorCommandBus实例，你需要一个EventStore。该组件在Repositories and Event Stores中有解释。<br>或者，你可以提供一个DisruptorConfiguration实例，它允许你调整配置优化你的特定环境下的性能：</p>
+</li>
+<li><p>Buffer size:在ringBuffer上注册传入命令的槽数。更高的值可能会增加吞吐量,但也导致更高的延迟。必须是2的次方数，默认为4096。</p>
+</li>
+<li>ProducerType: 表示条目是由单线程或多线程生成的。默认为多线程。</li>
+<li>WaitStrategy：当处理器线程（三个线程负责的实际处理）需要等待对方时使用的策略。最好的WaitStrategy取决于机器上可用的处理器数量，和正在运行的其他进程的数量。如果低延迟是至关重要的，DisruptorCommandBus可以自己认领内核，你可以使用BusySpinWaitStrategy。为了使命令总线索取更少的CPU并且允许其他线程处理，使用YieldingWaitStrategy。最后，你可以使用SleepingWaitStrategy和BlockingWaitStrategy允许其他进程共享CPU。如果命令总线不需要进行专职处理，则后者是合适的。默认为BlockingWaitStrategy。</li>
+<li>Executor：设置Executor为DisruptorCommandBus提供线程。这个Executor必须能够提供至少4个线程。其中的3个线程，由DisruptorCommandBus的处理组件认领。额外的线程用于调用回调函数，并计划重试以防检测到错误的聚合状态。默认是CachedThreadPool提供线程从一个称为“DisruptorCommandBus”的线程组中。</li>
+<li>TransactionManager：定义了事务管理器，应该确保存储和事件发布以事务的方式执行。</li>
+<li>InvokerInterceptors:定义了在调用处理中使用的CommandHandlerInterceptors。这个处理调用实际的命令处理器方法。</li>
+<li>PublisherInterceptors:定义了在发布处理中使用的CommandHandlerInterceptors。这个发布处理存储和发布生成的事件。</li>
+<li>RollbackConfiguration:定义工作单元应该回滚的异常。默认配置为回滚未经检查的异常。</li>
+<li>RescheduleCommandsOnCorruptState:指示已经执行过命令但损坏的聚合(如:因为一个工作单元是回滚)是否应该重新计划。如果为假，回调的onFailure()方法将被调用。如果为的(默认),命令将被重新计划。</li>
+<li>CoolingDownPeriod:设置等待的秒数，以确保所有命令被处理。在冷却期间，不接受新命令，但是现有的命令仍然处理，并在必要时重新计划。冷却期间确保线程可供重新安排命令和调用回调之用。默认为1000(1秒)。</li>
+<li>缓存:设置缓存存储从Event Store中恢复的聚合实例。缓存用disruptor存储不活跃的聚合实例。</li>
+<li>InvokerThreadCount:给命令处理器的调用分配线程的数量。一个好的起始点是机器内核数量的一半。</li>
+<li>PublisherThreadCount:用于发布事件的线程数量。一个好的起始点是一半的内核数量，如果IO上花费大量的时间，可以增加。</li>
+<li>SerializerThreadCount:使用pre-serialize事件的线程数量。默认为1，但如果没有配置序列化器将被忽略。</li>
+<li>Serializer:用于执行pre-serialization的序列化器。当配置序列化器时，DisruptorCommandBus将包装所有生成的事件在一个SerializationAware消息上。附加有效负载和元数据的序列化形式，在发布到事件存储之前。</li>
+</ul>
+<p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/6aee33abd7f0" target="_blank" rel="noopener">https://www.jianshu.com/p/6aee33abd7f0</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/AxonFramework/">AxonFramework</a>
+    </div>
+
+            <div class="share-container">
+
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='https://blog.weechang.xyz/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+</div>
+
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/08/31/AxonFramework命令拦截器/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    AxonFramework命令拦截器
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2018/08/29/AxonFramework-测试带注解的Saga/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">AxonFramework-测试带注解的Saga</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+<!-- Link Gitalk 的支持文件  -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        // gitalk的主要参数
+        clientID: "295b369cd27d90dc5cfc",
+        clientSecret: "23a308db213cd99742ff3e07da9021b9c5909b68",
+        repo: "weechang.github.io",
+        owner: "weechang",
+        admin: ["weechang"],
+        id: 'AxonFramework命令总线',
+    });
+    gitalk.render('gitalk-container');
+</script>
+<!-- Gitalk end -->
+</section>
+    
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="no-thumbnail">
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a></p>
+                            <p class="item-title"><a href="/2018/08/31/AxonFramework-事件序列化器调优/" class="title">AxonFramework-事件序列化器调优</a></p>
+                            <p class="item-date"><time datetime="2018-08-31T03:20:34.000Z" itemprop="datePublished">2018-08-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a></p>
+                            <p class="item-title"><a href="/2018/08/31/AxonFramework-高级定制/" class="title">AxonFramework-高级定制</a></p>
+                            <p class="item-date"><time datetime="2018-08-31T03:14:03.000Z" itemprop="datePublished">2018-08-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a></p>
+                            <p class="item-title"><a href="/2018/08/31/AxonFramework-SpringBoot自动配置/" class="title">AxonFramework-SpringBoot自动配置</a></p>
+                            <p class="item-date"><time datetime="2018-08-31T03:10:15.000Z" itemprop="datePublished">2018-08-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a></p>
+                            <p class="item-title"><a href="/2018/08/31/AxonFramework-Snapshotting/" class="title">AxonFramework-Snapshotting</a></p>
+                            <p class="item-date"><time datetime="2018-08-31T03:07:08.000Z" itemprop="datePublished">2018-08-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a></p>
+                            <p class="item-title"><a href="/2018/08/31/AxonFramework-事件向上转换/" class="title">AxonFramework-事件向上转换</a></p>
+                            <p class="item-date"><time datetime="2018-08-31T03:03:17.000Z" itemprop="datePublished">2018-08-31</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AxonFramework/">AxonFramework</a><span class="category-list-count">26</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java基础/">Java基础</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java集合/">Java集合</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/开源之路/">开源之路</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/日常记录/">日常记录</a><span class="category-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/AxonFramework/" style="font-size: 20px;">AxonFramework</a> <a href="/tags/ElasticSearch/" style="font-size: 10px;">ElasticSearch</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/HashTable/" style="font-size: 10px;">HashTable</a> <a href="/tags/Java基础/" style="font-size: 13.33px;">Java基础</a> <a href="/tags/Java学习之从头开始/" style="font-size: 16.67px;">Java学习之从头开始</a> <a href="/tags/Java集合/" style="font-size: 13.33px;">Java集合</a> <a href="/tags/MySql/" style="font-size: 10px;">MySql</a> <a href="/tags/Object/" style="font-size: 10px;">Object</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/maven中央仓库/" style="font-size: 10px;">maven中央仓库</a> <a href="/tags/手把手教学/" style="font-size: 13.33px;">手把手教学</a> <a href="/tags/日常记录/" style="font-size: 13.33px;">日常记录</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="https://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fas fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2018 张未<br>
+            Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>. Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <div>本站访问量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次 | 本站访客<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人</div>
+    </div>
+</footer>
+        
+    
+<!-- Link Gitalk 的支持文件  -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        // gitalk的主要参数
+        clientID: "295b369cd27d90dc5cfc",
+        clientSecret: "23a308db213cd99742ff3e07da9021b9c5909b68",
+        repo: "weechang.github.io",
+        owner: "weechang",
+        admin: ["weechang"],
+        id: 'AxonFramework命令总线',
+    });
+    gitalk.render('gitalk-container');
+</script>
+<!-- Gitalk end -->
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+<!--code-->
+<script src="/libs/google-code-prettify/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+    </div>
+</body>
+</html>

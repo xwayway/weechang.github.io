@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>手把手教学，教你把你的个人项目推送到maven中央仓库 | 耒耒耒耒耒</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="前言最近闲下来了，想要自己造点小轮子用，方便自己在不同项目使用，同时想偷懒，不想每次都在项目里面copy代码。于是想到了重要仓库这个东西，把自己的代码托管到github（虽然现在的github已经不再单纯），然后发布jar包到maven中央仓库，以后每个项目都只用引入maven依赖就可以了。同时还能方便好基友们使用，万一哪一天好基友高兴就献身了呢，想想就有点小激动呢。好了废话不多说，下面正式开始手">
+<meta name="keywords" content="手把手教学,maven中央仓库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手把手教学，教你把你的个人项目推送到maven中央仓库">
+<meta property="og:url" content="http://blog.weechang.xyz/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/index.html">
+<meta property="og:site_name" content="耒耒耒耒耒">
+<meta property="og:description" content="前言最近闲下来了，想要自己造点小轮子用，方便自己在不同项目使用，同时想偷懒，不想每次都在项目里面copy代码。于是想到了重要仓库这个东西，把自己的代码托管到github（虽然现在的github已经不再单纯），然后发布jar包到maven中央仓库，以后每个项目都只用引入maven依赖就可以了。同时还能方便好基友们使用，万一哪一天好基友高兴就献身了呢，想想就有点小激动呢。好了废话不多说，下面正式开始手">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://blog.weechang.xyz/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/创建项目.png">
+<meta property="og:image" content="http://blog.weechang.xyz/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/创建完成.png">
+<meta property="og:image" content="http://blog.weechang.xyz/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/生成key.png">
+<meta property="og:image" content="http://blog.weechang.xyz/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/秘钥列表.png">
+<meta property="og:image" content="http://blog.weechang.xyz/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/部署成功.png">
+<meta property="og:updated_time" content="2018-09-04T09:24:40.351Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="手把手教学，教你把你的个人项目推送到maven中央仓库">
+<meta name="twitter:description" content="前言最近闲下来了，想要自己造点小轮子用，方便自己在不同项目使用，同时想偷懒，不想每次都在项目里面copy代码。于是想到了重要仓库这个东西，把自己的代码托管到github（虽然现在的github已经不再单纯），然后发布jar包到maven中央仓库，以后每个项目都只用引入maven依赖就可以了。同时还能方便好基友们使用，万一哪一天好基友高兴就献身了呢，想想就有点小激动呢。好了废话不多说，下面正式开始手">
+<meta name="twitter:image" content="http://blog.weechang.xyz/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/创建项目.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="耒耒耒耒耒" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome5/css/fontawesome.min.css">
+    <link rel="stylesheet" href="/libs/font-awesome5/css/fa-brands.min.css">
+    <link rel="stylesheet" href="/libs/font-awesome5/css/fa-solid.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+    <link rel="stylesheet" href="/libs/google-code-prettify/prettify-tomorrow-night-eighties.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+    
+        <script>
+    var _mtac = {};
+    (function() {
+        var mta = document.createElement("script");
+        mta.src = "//pingjs.qq.com/h5/stats.js?v2.0.4";
+        mta.setAttribute("name", "MTAH5");
+        mta.setAttribute("sid", "500628840");
+
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(mta, s);
+    })();
+</script>
+    
+
+
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">耒耒耒耒耒</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">主页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/tools">工具库</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.png" />
+                            <i class="fas fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fas fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">主页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/tools">工具库</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile" class="profile-fixed">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.png" />
+            <h2 id="name">张未</h2>
+            <h3 id="title">大道五十,天衍四九,人遁其一</h3>
+            <span id="location"><i class="fas fa-map-marker-alt" style="padding-right: 5px"></i>成都,中国</span>
+            <a id="follow" target="_blank" href="https://github.com/weechang/">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                45
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                16
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/weechang/" target="_blank" title="github" class=tooltip>
+                            
+                                <i class="fab fa-github"></i>
+                            
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="mailto:zhangwei_sc@foxmail.com" target="_blank" title="envelope" class=tooltip>
+                            
+                                <i class="fa fa-envelope"></i>
+                            
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/css/images/avatar.png" target="_blank" title="weixin" class=tooltip>
+                            
+                                <i class="fab fa-weixin"></i>
+                            
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/atom.xml" target="_blank" title="rss" class=tooltip>
+                            
+                                <i class="fa fa-rss"></i>
+                            
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-手把手教学，教你把你的个人项目推送到maven中央仓库" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            手把手教学，教你把你的个人项目推送到maven中央仓库
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fas fa-calendar-alt"></i>
+        <a href="/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/">
+            <time datetime="2018-07-20T08:43:08.000Z" itemprop="datePublished">2018-07-20</time>
+        </a>
+    </div>
+
+
+                        <div class="article-user">
+    <i class="fas fa-user-alt"></i>
+    
+        <span>张未</span>
+    
+</div>
+
+                        
+    <div class="article-category">
+    	<i class="fas fa-folder"></i>
+        <a class="article-category-link" href="/categories/开源之路/">开源之路</a>
+    </div>
+
+                    </div>
+                    <div class="article-meta">
+                         
+                             <div class="article-word-count">
+<span>
+    <i class="fas fa-file-word"></i>
+    共1,108字，
+</span>
+<span>
+    <i class="fas fa-clock"></i>
+    大约需要5分钟
+</span>
+</div>
+<span id="busuanzi_container_page_pv">
+    <i class="fas fa-eye"></i>
+    已被阅读<span id="busuanzi_value_page_pv"></span>次
+</span>
+
+                         
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近闲下来了，想要自己造点小轮子用，方便自己在不同项目使用，同时想偷懒，不想每次都在项目里面copy代码。于是想到了重要仓库这个东西，把自己的代码托管到github（虽然现在的github已经不再单纯），然后发布jar包到maven中央仓库，以后每个项目都只用引入maven依赖就可以了。同时还能方便好基友们使用，万一哪一天好基友高兴就献身了呢，想想就有点小激动呢。好了废话不多说，下面正式开始手把手教学活动。<br><a id="more"></a><br><b><a href="https://github.com/weechang/JUtil" target="_blank" rel="noopener">附上小轮子传送门</a>给感兴趣的小伙伴</b><br>将项目发布到maven仓库需要以下几步:<br>1.在sonatype中创建issue<br>2.使用gpg生成秘钥<br>3.配置Maven进行deploy和release</p>
+<h1 id="1-在sonatype中创建issue"><a href="#1-在sonatype中创建issue" class="headerlink" title="1 在sonatype中创建issue"></a>1 在sonatype中创建issue</h1><p>首先我们需要在<a href="https://issues.sonatype.org/secure/Dashboard.jspa" targe="_blank" target="_blank" rel="noopener">https://issues.sonatype.org/secure/Dashboard.jspa</a>中新建一个issues。如果没有sonatype账号的话，分分钟注册一个<br><img src="/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/创建项目.png" title="手把手教学，教你把你的个人项目推送到maven中央仓库"><br>创建完成后就是如下图示<br><img src="/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/创建完成.png" title="手把手教学，教你把你的个人项目推送到maven中央仓库"><br>这个时候只需要耐心等待工作人员审核就行了，因为我的domain问题，经历了二次审核，但是都很快，一般提交后两个小时内就会有结果。当issues状态变为Resolved就可以继续下一步操作了。</p>
+<h1 id="2-使用gpg生成秘钥"><a href="#2-使用gpg生成秘钥" class="headerlink" title="2 使用gpg生成秘钥"></a>2 使用gpg生成秘钥</h1><h2 id="2-1-安装"><a href="#2-1-安装" class="headerlink" title="2.1 安装"></a>2.1 安装</h2><p>选择对应的OS版本进行下载安装即可，下载地址传送门：<a href="https://www.gnupg.org/download/index.html" targe="_blank" target="_blank" rel="noopener">https://www.gnupg.org/download/index.html</a></p>
+<h2 id="2-2-生成key"><a href="#2-2-生成key" class="headerlink" title="2.2 生成key"></a>2.2 生成key</h2><p>首先查看安装成功没有 <pre>gpg –version</pre> （MAC 和 Linux系统需要 gpg2 –version）<br>通过 <pre>gpg –gen-key</pre> 生成key，也可以通过UI界面生成和管理key<br><img src="/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/生成key.png" title="手把手教学，教你把你的个人项目推送到maven中央仓库"><br>运行后gpg要求你选择加密算法，过期时间等等，这些直接选择默认值即可。通过对比发现，gpg 2.0以上的版本运行gpg –gen-key命令 会跳过这些步骤。<br>之后gpg要求你输入姓名，邮箱以及关键的Passphrase，依次输入即可。然后gpg为你生成了一对秘钥。<br>通过<pre>gpg –list-keys</pre>查看生成的key列表<br><img src="/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/秘钥列表.png" title="手把手教学，教你把你的个人项目推送到maven中央仓库"><br>这里可以看到我的公钥是：34754DFE562C10E1A09907B7F4797C9A95E36DB6，记住这个key，下面我们需要用到。</p>
+<h2 id="2-3-上传公钥"><a href="#2-3-上传公钥" class="headerlink" title="2.3 上传公钥"></a>2.3 上传公钥</h2><p>生成秘钥后，我们需要把公钥上传到服务器上。运行以下命令：<pre>gpg2 –keyserver hkp://pool.sks-keyservers.net –send-keys 34754DFE562C10E1A09907B7F4797C9A95E36DB6（刚才生成的公钥）</pre></p>
+<h1 id="3-配置Maven"><a href="#3-配置Maven" class="headerlink" title="3 配置Maven"></a>3 配置Maven</h1><h2 id="3-1-配置maven-setting-xml"><a href="#3-1-配置maven-setting-xml" class="headerlink" title="3.1 配置maven setting.xml"></a>3.1 配置maven setting.xml</h2><p>需要在本地的maven配置server 和 profile 两个地方，啰嗦的话就不多少了，直接上配置：</p>
+<pre>
+    &lt;server>
+        &lt;id>ossrh&lt;/id>
+        &lt;username>第一步注册的用户名&lt;/username>
+        &lt;password>第一步注册的密码&lt;/password>
+    &lt;/server>
+</pre>
+<pre>
+     &lt;profile>
+         &lt;id>ossrh&lt;/id>
+         &lt;activation>
+             &lt;activeByDefault>true&lt;/activeByDefault>
+         &lt;/activation>
+         &lt;properties>
+             &lt;gpg.executable>gpg(MAC 和 Linux用户使用gpg2)&lt;/gpg.executable>
+             &lt;gpg.passphrash>生成密钥时输入的密码&lt;/gpg.passphrash>
+         &lt;/properties>
+    
+</pre>
+
+<h2 id="3-2-配置项目的pom-xml"><a href="#3-2-配置项目的pom-xml" class="headerlink" title="3.2 配置项目的pom.xml"></a>3.2 配置项目的pom.xml</h2><p>具体的配置可以查看小轮子里面的pom设置 <a href="https://github.com/weechang/JUtil/blob/master/pom.xml" target="_blank">https://github.com/weechang/JUtil/blob/master/pom.xml</a><br>首先需要添加指向sonatype仓库的&lt;distributionManagement&gt;</p>
+<p><pre><br>    &lt;distributionManagement&gt;<br>        &lt;snapshotRepository&gt;<br>            &lt;id&gt;ossrh&lt;/id&gt;<br>            &lt;url&gt;<a href="https://oss.sonatype.org/content/repositories/snapshots&lt;/url&gt;" target="_blank" rel="noopener">https://oss.sonatype.org/content/repositories/snapshots&lt;/url&gt;</a><br>        &lt;/snapshotRepository&gt;<br>        &lt;repository&gt;<br>            &lt;id&gt;ossrh&lt;/id&gt;<br>            &lt;name&gt;Maven Central Staging Repository&lt;/name&gt;<br>            &lt;url&gt;<a href="https://oss.sonatype.org/service/local/staging/deploy/maven2/&lt;/url&gt;" target="_blank" rel="noopener">https://oss.sonatype.org/service/local/staging/deploy/maven2/&lt;/url&gt;</a><br>        &lt;/repository&gt;<br>    &lt;/distributionManagement&gt;<br></pre><br>继续配置pfofiles,添加各种推送、DOC、加密的插件</p>
+<p><pre><br>    &lt;profiles&gt;<br>        &lt;profile&gt;<br>            &lt;id&gt;release<br>            &lt;build&gt;<br>                &lt;plugins&gt;<br>                    &lt;plugin&gt;<br>                        &lt;groupId&gt;org.sonatype.plugins&lt;/groupId&gt;<br>                        &lt;artifactId&gt;nexus-staging-maven-plugin&lt;/artifactId&gt;<br>                        &lt;version&gt;1.6.8&lt;/version&gt;<br>                        &lt;extensions&gt;true&lt;/extensions&gt;<br>                        &lt;configuration&gt;<br>                            &lt;serverId&gt;ossrh&lt;/serverId&gt;<br>                            &lt;nexusUrl&gt;<a href="https://oss.sonatype.org/&lt;/nexusUrl&gt;" target="_blank" rel="noopener">https://oss.sonatype.org/&lt;/nexusUrl&gt;</a><br>                            &lt;autoReleaseAfterClose&gt;true&lt;/autoReleaseAfterClose&gt;<br>                        &lt;/configuration&gt;<br>                    &lt;/plugin&gt;<br>                    &lt;plugin&gt;<br>                        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;<br>                        &lt;artifactId&gt;maven-javadoc-plugin&lt;/artifactId&gt;<br>                        &lt;version&gt;3.0.1&lt;/version&gt;<br>                        &lt;executions&gt;<br>                            &lt;execution&gt;<br>                                &lt;id&gt;attach-javadocs&lt;/id&gt;<br>                                &lt;goals&gt;<br>                                    &lt;goal&gt;jar&lt;/goal&gt;<br>                                &lt;/goals&gt;<br>                            &lt;/execution&gt;<br>                        &lt;/executions&gt;<br>                    &lt;/plugin&gt;<br>                    &lt;plugin&gt;<br>                        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;<br>                        &lt;artifactId&gt;maven-source-plugin&lt;/artifactId&gt;<br>                        &lt;executions&gt;<br>                            &lt;execution&gt;<br>                                &lt;id&gt;attach-sources&lt;/id&gt;<br>                                &lt;goals&gt;<br>                                    &lt;goal&gt;jar-no-fork<br>                                &lt;/goals&gt;<br>                            &lt;/execution&gt;<br>                        &lt;/executions&gt;<br>                    &lt;/plugin&gt;<br>                    &lt;plugin&gt;<br>                        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;<br>                        &lt;artifactId&gt;maven-gpg-plugin&lt;/artifactId&gt;<br>                        &lt;version&gt;1.6&lt;/version&gt;<br>                        &lt;executions&gt;<br>                            &lt;execution&gt;<br>                                &lt;id&gt;sign-artifacts&lt;/id&gt;<br>                                &lt;phase&gt;verify&lt;/phase&gt;<br>                                &lt;goals&gt;<br>                                    &lt;goal&gt;sign&lt;/goal&gt;<br>                                &lt;/goals&gt;<br>                            &lt;/execution&gt;<br>                        &lt;/executions&gt;<br>                    &lt;/plugin&gt;<br>                &lt;/plugins&gt;<br>            &lt;/build&gt;<br>        &lt;/profile&gt;<br>    &lt;/profiles&gt;<br></pre><br>然后还可以添加一些开发者信息和license信息，具体的就不多说了。具体可以参考小轮子的配置</p>
+<h2 id="3-3-部署到中央仓库"><a href="#3-3-部署到中央仓库" class="headerlink" title="3.3 部署到中央仓库"></a>3.3 部署到中央仓库</h2><p>运行以下代码进行deploy</p>
+<p><pre>mvn clean deploy -P release</pre><br>如下图表示成功部署到中央仓库<br><img src="/2018/07/20/手把手教学，教你把你的个人项目推送到maven中央仓库/部署成功.png" title="手把手教学，教你把你的个人项目推送到maven中央仓库"><br>因为我们在pom中添加了自动发布插件，所以可以不用管理，直接到中央仓库去查看就能看到你发布的项目了<br><b>PS:在部署过成功可能会遇到401的问题，具体请参考传送门 <a href="https://stackoverflow.com/questions/24830610/why-am-i-getting-a-401-unauthorized-error-in-maven" target="_blank">https://stackoverflow.com/questions/24830610/why-am-i-getting-a-401-unauthorized-error-in-maven</a></b></p>
+
+        
+        </div>
+        <footer class="article-footer">
+            
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/maven中央仓库/">maven中央仓库</a>, <a class="tag-link" href="/tags/手把手教学/">手把手教学</a>
+    </div>
+
+            <div class="share-container">
+
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='https://blog.weechang.xyz/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+</div>
+
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/07/30/Java集合-0——HashMap类/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    【Java学习之从头开始】Java集合-0——HashMap类
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2018/06/08/java基础-1——String类/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">【Java学习之从头开始】Java基础-1——String类</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="no-thumbnail">
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/开源之路/">开源之路</a></p>
+                            <p class="item-title"><a href="/2018/09/04/使用GitBook制作电子书/" class="title">使用GitBook制作电子书</a></p>
+                            <p class="item-date"><time datetime="2018-09-04T05:35:54.000Z" itemprop="datePublished">2018-09-04</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a></p>
+                            <p class="item-title"><a href="/2018/08/31/AxonFramework-事件序列化器调优/" class="title">AxonFramework-事件序列化器调优</a></p>
+                            <p class="item-date"><time datetime="2018-08-31T03:20:34.000Z" itemprop="datePublished">2018-08-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a></p>
+                            <p class="item-title"><a href="/2018/08/31/AxonFramework-高级定制/" class="title">AxonFramework-高级定制</a></p>
+                            <p class="item-date"><time datetime="2018-08-31T03:14:03.000Z" itemprop="datePublished">2018-08-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a></p>
+                            <p class="item-title"><a href="/2018/08/31/AxonFramework-SpringBoot自动配置/" class="title">AxonFramework-SpringBoot自动配置</a></p>
+                            <p class="item-date"><time datetime="2018-08-31T03:10:15.000Z" itemprop="datePublished">2018-08-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a></p>
+                            <p class="item-title"><a href="/2018/08/31/AxonFramework-Snapshotting/" class="title">AxonFramework-Snapshotting</a></p>
+                            <p class="item-date"><time datetime="2018-08-31T03:07:08.000Z" itemprop="datePublished">2018-08-31</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AxonFramework/">AxonFramework</a><span class="category-list-count">36</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java基础/">Java基础</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java集合/">Java集合</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/开源之路/">开源之路</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/日常记录/">日常记录</a><span class="category-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/AxonFramework/" style="font-size: 20px;">AxonFramework</a> <a href="/tags/CQRS/" style="font-size: 18px;">CQRS</a> <a href="/tags/DDD/" style="font-size: 18px;">DDD</a> <a href="/tags/ElasticSearch/" style="font-size: 10px;">ElasticSearch</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/HashTable/" style="font-size: 10px;">HashTable</a> <a href="/tags/Java基础/" style="font-size: 12px;">Java基础</a> <a href="/tags/Java学习之从头开始/" style="font-size: 16px;">Java学习之从头开始</a> <a href="/tags/Java集合/" style="font-size: 12px;">Java集合</a> <a href="/tags/MySql/" style="font-size: 10px;">MySql</a> <a href="/tags/Object/" style="font-size: 10px;">Object</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/maven中央仓库/" style="font-size: 10px;">maven中央仓库</a> <a href="/tags/手把手教学/" style="font-size: 14px;">手把手教学</a> <a href="/tags/日常记录/" style="font-size: 12px;">日常记录</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="https://blog.unknowns.info/">披着前端的皮</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fas fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2018 张未<br>
+            Hosted by <a href="https://pages.coding.me" style="font-weight: bold" rel="nofollow">Coding Pages</a>. Powered by <a href="http://hexo.io/" target="_blank" rel="nofollow">Hexo</a>. Theme by <a href="http://github.com/ppoffice" rel="nofollow">PPOffice</a>
+        </div>
+        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <div>本站访问量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次 | 本站访客<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人</div>
+    </div>
+</footer>
+        
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+<!--code-->
+<script src="/libs/google-code-prettify/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+    </div>
+</body>
+</html>
