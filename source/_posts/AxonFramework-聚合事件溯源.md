@@ -20,19 +20,14 @@ author: 勇赴
 public class MyAggregateRoot {
     @AggregateIdentifier
     private String aggregateIdentifier;
-    
     // fields containing state...
-    
     @CommandHandler
     public MyAggregateRoot(CreateMyAggregate cmd) {
         apply(new MyAggregateCreatedEvent(cmd.getId()));
     }
-    
     // constructor needed for reconstruction
-    
     protected MyAggregateRoot() {
     }
-    
     @EventSourcingHandler
     private void handleMyAggregateCreatedEvent(MyAggregateCreatedEvent event) {
         // make sure identifier is always initialized properly

@@ -8,8 +8,6 @@ author: 勇赴
 
 saga中的事件处理非常接近一个普通的事件监听器。上述的对于方法和参数解析的规则在这里是有效的。不过,有一个主要区别。虽然存在事件监听器只有单个实例处理所有传入事件，但也存在一个saga有多个实例，每个实例都对不同的事件感兴趣。例如,关于Order的id为1的管理业务Saga对Order“2”的事件不感兴趣，反之亦然。
 
-<!-- more -->
-
 Axon不会将所有事件都发布给所有saga实例（这将是对资源的完全浪费），而是只发布与saga相关联的属性的事件。这个通过使用AssociationValues完成。一个AssociationValue由key和value组成。key代表标识符使用的类型，例如“orderId”或“order”。value表示前面例子中相应“1”或“2”值。
 
 带@SagaEventHandler注解的方法被评估的顺序与带@EventHandler的相同。如果处理器方法的参数与传入的事件匹配，那么方法就匹配，如果saga有一个定义在处理器方法上的association属性。
@@ -29,34 +27,38 @@ Axon不会将所有事件都发布给所有saga实例（这将是对资源的完
 
 <pre>
 public class OrderManagementSaga {
-    private boolean paid = false;
-    private boolean delivered = false;
-    @Inject
-    private transient CommandGateway commandGateway;
-    @StartSaga
-    @SagaEventHandler(associationProperty = "orderId")
-    public void handle(OrderCreatedEvent event) {
-        // client generated identifiers
-        ShippingId shipmentId = createShipmentId();
-        InvoiceId invoiceId = createInvoiceId();
-        // associate the Saga with these values, before sending the commands
-        associateWith("shipmentId", shipmentId);
-        associateWith("invoiceId", invoiceId);
-        // send the commands
-        commandGateway.send(new PrepareShippingCommand(...));
-        commandGateway.send(new CreateInvoiceCommand(...));
-    }
-    @SagaEventHandler(associationProperty = "shipmentId")
-    public void handle(ShippingArrivedEvent event) {
-        delivered = true;
-        if (paid) { end(); }
-    }
-    @SagaEventHandler(associationProperty = "invoiceId")
-    public void handle(InvoicePaidEvent event) {
-        paid = true;
-        if (delivered) { end(); }
-    }
-    // ...
+private boolean paid = false;
+private boolean delivered = false;
+@Inject
+private transient CommandGateway commandGateway;
+
+@StartSaga
+@SagaEventHandler(associationProperty = "orderId")
+public void handle(OrderCreatedEvent event) {
+    // client generated identifiers
+    ShippingId shipmentId = createShipmentId();
+    InvoiceId invoiceId = createInvoiceId();
+    // associate the Saga with these values, before sending the commands
+    associateWith("shipmentId", shipmentId);
+    associateWith("invoiceId", invoiceId);
+    // send the commands
+    commandGateway.send(new PrepareShippingCommand(...));
+    commandGateway.send(new CreateInvoiceCommand(...));
+}
+
+@SagaEventHandler(associationProperty = "shipmentId")
+public void handle(ShippingArrivedEvent event) {
+    delivered = true;
+    if (paid) { end(); }
+}
+
+@SagaEventHandler(associationProperty = "invoiceId")
+public void handle(InvoicePaidEvent event) {
+    paid = true;
+    if (delivered) { end(); }
+}
+
+// ...
 }
 </pre>
 通过允许客户端生成标识符，可以很容易地与一个概念相关联，而不需要请求响应类型命令。在发布命令之前，我们将事件与这些概念关联起来。通过这种方式，我们也保证捕捉到作为该命令的一部分生成的事件。一旦发票付清，货物到达，saga也将结束。

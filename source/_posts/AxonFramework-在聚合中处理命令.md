@@ -120,18 +120,16 @@ public class MyEntity {
 
 <pre>
 public class MyAnnotatedHandler {
-
-    @CommandHandler
-    public void handleSomeCommand(SomeCommand command, @MetaDataValue("userId") String userId) {
-        // whatever logic here
-    }
-    
-    @CommandHandler(commandName = "myCustomCommand")
-    public void handleCustomCommand(SomeCommand command) {
-        // handling logic here
-    }
+@CommandHandler
+public void handleSomeCommand(SomeCommand command, @MetaDataValue("userId") String
+userId) {
+// whatever logic here
 }
-
+@CommandHandler(commandName = "myCustomCommand")
+public void handleCustomCommand(SomeCommand command) {
+// handling logic here
+}
+}
 // To register the annotated handlers to the command bus:
 Configurer configurer = ...
 configurer.registerCommandHandler(c -> new MyAnnotatedHandler());
