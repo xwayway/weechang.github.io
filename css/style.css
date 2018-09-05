@@ -2265,8 +2265,17 @@ a.article-title:hover {
   border: 1px solid #dedede;
   border-radius: 5px;
   background: #fff;
-  margin-right: 20px;
   margin-bottom: 20px;
+}
+@media screen and (min-width: 1200px) {
+  .tool-row .tool-item {
+    margin-right: 20px;
+  }
+}
+@media screen and (min-width: 800px) and (max-width: 1199px) {
+  .tool-row .tool-item {
+    margin-right: 20px;
+  }
 }
 @media screen and (min-width: 560px) and (max-width: 799px) {
   .tool-row .tool-item {

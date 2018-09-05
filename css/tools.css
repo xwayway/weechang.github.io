@@ -34,8 +34,17 @@
   border: 1px solid #dedede;
   border-radius: 5px;
   background: #fff;
-  margin-right: 20px;
   margin-bottom: 20px;
+}
+@media mq-normal {
+  .tool-row .tool-item {
+    margin-right: 20px;
+  }
+}
+@media mq-tablet {
+  .tool-row .tool-item {
+    margin-right: 20px;
+  }
 }
 @media mq-mobile {
   .tool-row .tool-item {
