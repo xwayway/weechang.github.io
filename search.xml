@@ -407,31 +407,6 @@
     
     <entry>
       <title>AxonFramework管理复杂的业务事务</title>
-      <link href="/2018/08/27/AxonFramework%E7%AE%A1%E7%90%86%E5%A4%8D%E6%9D%82%E7%9A%84%E4%B8%9A%E5%8A%A1%E4%BA%8B%E5%8A%A1/"/>
-      <url>/2018/08/27/AxonFramework%E7%AE%A1%E7%90%86%E5%A4%8D%E6%9D%82%E7%9A%84%E4%B8%9A%E5%8A%A1%E4%BA%8B%E5%8A%A1/</url>
-      <content type="html"><![CDATA[<p>并不是每个命令都能够在一个ACID事务中完全执行。现金转账事务是一个很常见频繁出现的例子，用来作为论据。通常认为，把钱从一个账户转移到另一个账户，绝对需要原子性和一致性。其实并非如此，相反，这是完全不可能的。如果钱从A银行的帐户转移到B银行的帐户怎么办？A银行要获得B银行数据库的锁吗？如果转账正在进行的时候，A银行已经扣除了金额,但B银行并没收到它，这不是很奇怪吗?事实上不是，这是“正在进行”。另一方面,如果在向B银行的帐户中存资金时出现错误，A银行的客户就想要他的钱回退。所以我们需要某种形式的最终一致性。</p><a id="more"></a><p>虽然ACID事务在某些情况下不是必需的甚至是不可能的，但仍然需要某种形式的事务管理。通常，这些事务称为BASE事务：基本的可用性，软性状态，最终一致性。 与ACID相反，BASE事务无法轻松回滚。 要回滚，需要采取补偿措施来恢复作为事务一部分发生的任何事情。 在汇款的例子中，如果没有把钱存入B银行，将把钱退还给A银行。<br>在CQRS中，Sagas可用于管理这些BASE事务。 他们对事件做出响应，并可能调度命令，调用外部应用程序等。在领域驱动设计的上下文中，将Sagas用作多个限界上下文之间的协调机制并不罕见。</p><h2 id="Saga"><a href="#Saga" class="headerlink" title="Saga"></a>Saga</h2><p>一个saga是一种特殊类型的事件监听器：用来管理业务事务。一些事务可能运行数天甚至数周，而另一些则在几毫秒内完成。在Axon中，saga的每个实例负责管理一个业务事务。这意味着saga维护状态必须管理事务，持续或采取补偿动作回滚已经被采取任何动作。通常情况下，与常规的事件监听器相反，saga有一个起点和终点，都由事件触发。虽然saga的起点通常是非常明确的，但可能有多种方式结束一个saga。</p><p>在Axon中,Sagas是定义了一个或多个@SagaEventHandler方法的类。与常规事件处理器不同，在任何时间可能存在多个saga的实例。Saga由一个Processor管理(跟踪或订阅)，Processor通过事件致力于处理特定saga类型。</p><h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p>一个单独的saga实例负责管理一个单独的事务。这意味着你需要能够标示一个saga生命周期的开始和结束。</p><p>在一个saga中，事件处理器用@SagaEventHandler注解。如果一个特定的事件标志着开始一个事务，在同一个方法上添加另一个注解:@StartSaga。这个注解将创建一个新的saga，并且当匹配事件后布后调用它的事件处理器方法。</p><p>默认情况下,只有在找不到匹配的saga时才能开启一个新的saga。你也可以强行创建一个新的saga实例，通过把@StartSaga注解上的forceNew属性设置为true。</p><p>结束一个saga可以以两种方式完成。如果一个特定的事件总是标示saga生命周期的结束，在saga上用@EndSaga注解事件的处理器。在调用处理器后，saga的生命周期将结束。作为一种选择,你可以调用end()从saga内部去结束生命周期。这允许你有条件地结束saga。</p><p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/9c8d7fb623a0" target="_blank" rel="noopener">https://www.jianshu.com/p/9c8d7fb623a0</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>]]></content>
-      
-      <categories>
-          
-          <category> AxonFramework </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> AxonFramework </tag>
-            
-            <tag> DDD </tag>
-            
-            <tag> CQRS </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>AxonFramework管理复杂的业务事务</title>
       <link href="/2018/08/27/AxonFramework-%E7%AE%A1%E7%90%86%E5%A4%8D%E6%9D%82%E7%9A%84%E4%B8%9A%E5%8A%A1%E4%BA%8B%E5%8A%A1/"/>
       <url>/2018/08/27/AxonFramework-%E7%AE%A1%E7%90%86%E5%A4%8D%E6%9D%82%E7%9A%84%E4%B8%9A%E5%8A%A1%E4%BA%8B%E5%8A%A1/</url>
       <content type="html"><![CDATA[<p>并不是每个命令都能够在一个ACID事务中完全执行。现金转账事务是一个很常见频繁出现的例子，用来作为论据。通常认为，把钱从一个账户转移到另一个账户，绝对需要原子性和一致性。其实并非如此，相反，这是完全不可能的。如果钱从A银行的帐户转移到B银行的帐户怎么办？A银行要获得B银行数据库的锁吗？如果转账正在进行的时候，A银行已经扣除了金额,但B银行并没收到它，这不是很奇怪吗?事实上不是，这是“正在进行”。另一方面,如果在向B银行的帐户中存资金时出现错误，A银行的客户就想要他的钱回退。所以我们需要某种形式的最终一致性。</p><a id="more"></a><p>虽然ACID事务在某些情况下不是必需的甚至是不可能的，但仍然需要某种形式的事务管理。通常，这些事务称为BASE事务：基本的可用性，软性状态，最终一致性。 与ACID相反，BASE事务无法轻松回滚。 要回滚，需要采取补偿措施来恢复作为事务一部分发生的任何事情。 在汇款的例子中，如果没有把钱存入B银行，将把钱退还给A银行。<br>在CQRS中，Sagas可用于管理这些BASE事务。 他们对事件做出响应，并可能调度命令，调用外部应用程序等。在领域驱动设计的上下文中，将Sagas用作多个限界上下文之间的协调机制并不罕见。</p><h2 id="Saga"><a href="#Saga" class="headerlink" title="Saga"></a>Saga</h2><p>一个saga是一种特殊类型的事件监听器：用来管理业务事务。一些事务可能运行数天甚至数周，而另一些则在几毫秒内完成。在Axon中，saga的每个实例负责管理一个业务事务。这意味着saga维护状态必须管理事务，持续或采取补偿动作回滚已经被采取任何动作。通常情况下，与常规的事件监听器相反，saga有一个起点和终点，都由事件触发。虽然saga的起点通常是非常明确的，但可能有多种方式结束一个saga。</p><p>在Axon中,Sagas是定义了一个或多个@SagaEventHandler方法的类。与常规事件处理器不同，在任何时间可能存在多个saga的实例。Saga由一个Processor管理(跟踪或订阅)，Processor通过事件致力于处理特定saga类型。</p><h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p>一个单独的saga实例负责管理一个单独的事务。这意味着你需要能够标示一个saga生命周期的开始和结束。</p><p>在一个saga中，事件处理器用@SagaEventHandler注解。如果一个特定的事件标志着开始一个事务，在同一个方法上添加另一个注解:@StartSaga。这个注解将创建一个新的saga，并且当匹配事件后布后调用它的事件处理器方法。</p><p>默认情况下,只有在找不到匹配的saga时才能开启一个新的saga。你也可以强行创建一个新的saga实例，通过把@StartSaga注解上的forceNew属性设置为true。</p><p>结束一个saga可以以两种方式完成。如果一个特定的事件总是标示saga生命周期的结束，在saga上用@EndSaga注解事件的处理器。在调用处理器后，saga的生命周期将结束。作为一种选择,你可以调用end()从saga内部去结束生命周期。这允许你有条件地结束saga。</p><p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/9c8d7fb623a0" target="_blank" rel="noopener">https://www.jianshu.com/p/9c8d7fb623a0</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>]]></content>
@@ -452,10 +427,10 @@
     </entry>
     
     <entry>
-      <title>AxonFramework在聚合中处理命令</title>
-      <link href="/2018/08/27/AxonFramework%E5%9C%A8%E8%81%9A%E5%90%88%E4%B8%AD%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4/"/>
-      <url>/2018/08/27/AxonFramework%E5%9C%A8%E8%81%9A%E5%90%88%E4%B8%AD%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4/</url>
-      <content type="html"><![CDATA[<p>建议在包含处理状态命令的聚合中直接定义命令处理器，因为命令处理器有可能需要该集合的状态来执行其任务。</p><a id="more"></a><p>要在一个聚合上定义一个命令处理器,只需用@CommandHandler注解命令处理方法即可。带@CommandHandler注解方法的规则和其他处理方法都是一样的。然而,命令不仅通过他们的有效载荷(payload)进行路由。命令消息携带一个名字,该名称默认为命令对象的完全限定类名。</p><p>默认情况下,带@CommandHandler注解的方法允许以下参数类型:</p><ul><li><p>第一个参数是命令消息的有效载荷。它的类型也可能是Message或CommandMessage，如果@CommandHandler 注解明确定义命令处理器的名称。默认情况下，命令名是命令的有效载荷的完全限定类名。</p></li><li><p>用@MetaDataValue注解的参数，将用注解上的键对元数据值进行解析。如果需要为false（默认值），则在元数据值不存在时传递NULL。如果需要为True，在元数据值不存在时，该解析器将不匹配并阻止该方法被调用。</p></li><li><p>参数的类型元数据将注入整个CommandMessage的元数据。</p></li><li><p>UnitOfWork类型的参数获取当前工作单元注入。这允许命令处理器注册的行为在工作单元的特定阶段执行，或获得与它注册的资源的访问。</p></li><li><p>Message或CommandMessage类型的参数，将得到完整的消息，包括有效载荷和元数据。如果方法需要多个元数据字段或包装消息的其他属性，则此方法非常有用。</p></li></ul><p>为了使Axon知道哪一个聚合类型的实例应该处理命令消息，命令对象的属性传送聚合标识符，必须用@TargetAggregateIdentifier注解。注解可以放置在任何字段或访问器方法上（例如getter）。</p><p>创建聚合实例的命令不需要标识目标聚合标识符，虽然建议标注聚合标识符。</p><p>如果你喜欢使用另一个机制路由命令，这种行为可以通过提供一个自定义CommandTargetResolver来重写。这个类应该返回聚合标识符和预期的版本(如果有的话)基于给定的命令。</p><blockquote><p><b>注意</b><br>当@CommandHandler注解放在一个聚合的构造函数上时，相应的命令将创建一个新的聚合实例，并将它添加到存储库。这些命令不需要针对特的定聚合实例。因此，这些命令不需要任何@TargetAggregateIdentifier或@TargetAggregateVersion注解，也不会调用自定义CommandTargetResolver。<br>当一个命令创建一个聚合实例时，该命令的回调函数在命令执行成功执行后，将得到聚合标识符。</p></blockquote><pre>public class MyAggregate {    @AggregateIdentifier    private String id;    @CommandHandler    public MyAggregate(CreateMyAggregateCommand command) {        apply(new MyAggregateCreatedEvent(IdentifierFactory.getInstance().generateIdentifier()));    }    // no-arg constructor for Axon    MyAggregate() {    }    @CommandHandler    public void doSomething(DoSomethingCommand command) {    // do something...    }    // code omitted for brevity. The event handler for MyAggregateCreatedEvent must set the id field}public class DoSomethingCommand {    @TargetAggregateIdentifier    private String aggregateId;    // code omitted for brevity}</pre><p>Axon的配置API可用于配置聚合。例如:</p><pre>Configurer configurer = ...// to use defaults:configurer.configureAggreate(MyAggregate.class);// allowing customizations:configurer.configureAggregate(AggregateConfigurer.defaultConfiguration(MyAggregate.class).configureCommandTargetResolver(c -> new CustomCommandTargetResolver()));</pre><p>@CommandHandler注释并不局限于聚合根。把所有命令处理器放在根里，有时会导致聚合根中存在大量的方法,而它们中的许多只简单地调用转发给底层实体之一。如果是这样,你可以把@CommandHandler注解在一个底层的实体的方法上。Axon找到这些带注释的方法,聚合根中声明的实体字段必须用@AggregateMember标明。注意,命令处理器只检查带注解的字段的声明类型。如果一个字段值为空时传入命令到实体,就会抛出一个异常。</p><pre>public class MyAggregate {    @AggregateIdentifier    private String id;    @AggregateMember    private MyEntity entity;    @CommandHandler    public MyAggregate(CreateMyAggregateCommand command) {        apply(new MyAggregateCreatedEvent(...);    }    // no-arg constructor for Axon    MyAggregate() {    }    @CommandHandler    public void doSomething(DoSomethingCommand command) {        // do something...    }    // code omitted for brevity. The event handler for MyAggregateCreatedEvent must set the id field    // and somewhere in the lifecycle, a value for "entity" must be assigned to be able to accept    // DoSomethingInEntityCommand commands.}public class MyEntity {    @CommandHandler    public void handleSomeCommand(DoSomethingInEntityCommand command) {        // do something    }}</pre><p>请注意，在聚合中每个命令必须只对应一个处理器。这意味着你不能用@CommandHandler标注多个实体(either root nor not，包含是根和不是根的所有实体)来处理相同的命令类型。如果你需要有条件地路由命令到一个实体,这些实体的父类应该处理命令,并根据apply的条件转发该命令。</p><p>字段的运行时类型不需要精确地声明类型。然而，@CommandHandle方法只检查被@AggregateMember标记的字段的声明类型。</p><p>也可以用@AggregateMember去注释包含实体的集合和Map。在后一种情况下，map的值有望包含实体，而键包含一个用作它们引用的值。</p><p>作为一个命令需要被路由到正确的实例，这些实例必须被正确地标识。它们的“ID”字段必须用@ EntityId标记。命令的属性将用于查找该消息应被路由到的实体，默认为被标识的字段的名称。例如，当标记一个名为“myentityid”字段，命令必须具有相同名称的属性。这意味着必须提供个getmyentityid或myentityid()方法。如果字段的名称和路由属性不同，你可以提供一个值显式使用 @EntityId(routingKey = “customRoutingProperty”)。</p><p>如果在带注解的集合和Map中没有实体能被找到，Axon会抛出一个IllegalStateException异常。显然,聚合不能够在那个时间点上处理命令。</p><blockquote><p><b>注意</b><br>字段声明的集合或Map应该包含适当的泛型,允许Axon识别实体的类型包含在集合或Map中。如果不可能添加泛型在声明中(例如因为你已经使用了一个自定义泛型类型的实现),你必须指定实体的类型，用于entityType属性@AggregateMember注解。</p></blockquote><h2 id="外部命令处理器"><a href="#外部命令处理器" class="headerlink" title="外部命令处理器"></a>外部命令处理器</h2><p>在某些情况下,想要直接向一个聚合实例路由命令是不可能。在这种情况下,可以注册一个命令处理器对象。命令处理器对象是一个简单的(常规的)对象，是带@CommandHandle注解的方法。与集合的情况不同，命令处理器对象只有单个实例，该对象处理其方法中声明的所有命令类型。</p><pre>public class MyAnnotatedHandler {@CommandHandlerpublic void handleSomeCommand(SomeCommand command, @MetaDataValue("userId") StringuserId) {// whatever logic here}@CommandHandler(commandName = "myCustomCommand")public void handleCustomCommand(SomeCommand command) {// handling logic here}}// To register the annotated handlers to the command bus:Configurer configurer = ...configurer.registerCommandHandler(c -> new MyAnnotatedHandler());</pre><p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/64ddd5a8f517" target="_blank" rel="noopener">https://www.jianshu.com/p/64ddd5a8f517</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>]]></content>
+      <title>AxonFramework管理复杂的业务事务</title>
+      <link href="/2018/08/27/AxonFramework%E7%AE%A1%E7%90%86%E5%A4%8D%E6%9D%82%E7%9A%84%E4%B8%9A%E5%8A%A1%E4%BA%8B%E5%8A%A1/"/>
+      <url>/2018/08/27/AxonFramework%E7%AE%A1%E7%90%86%E5%A4%8D%E6%9D%82%E7%9A%84%E4%B8%9A%E5%8A%A1%E4%BA%8B%E5%8A%A1/</url>
+      <content type="html"><![CDATA[<p>并不是每个命令都能够在一个ACID事务中完全执行。现金转账事务是一个很常见频繁出现的例子，用来作为论据。通常认为，把钱从一个账户转移到另一个账户，绝对需要原子性和一致性。其实并非如此，相反，这是完全不可能的。如果钱从A银行的帐户转移到B银行的帐户怎么办？A银行要获得B银行数据库的锁吗？如果转账正在进行的时候，A银行已经扣除了金额,但B银行并没收到它，这不是很奇怪吗?事实上不是，这是“正在进行”。另一方面,如果在向B银行的帐户中存资金时出现错误，A银行的客户就想要他的钱回退。所以我们需要某种形式的最终一致性。</p><a id="more"></a><p>虽然ACID事务在某些情况下不是必需的甚至是不可能的，但仍然需要某种形式的事务管理。通常，这些事务称为BASE事务：基本的可用性，软性状态，最终一致性。 与ACID相反，BASE事务无法轻松回滚。 要回滚，需要采取补偿措施来恢复作为事务一部分发生的任何事情。 在汇款的例子中，如果没有把钱存入B银行，将把钱退还给A银行。<br>在CQRS中，Sagas可用于管理这些BASE事务。 他们对事件做出响应，并可能调度命令，调用外部应用程序等。在领域驱动设计的上下文中，将Sagas用作多个限界上下文之间的协调机制并不罕见。</p><h2 id="Saga"><a href="#Saga" class="headerlink" title="Saga"></a>Saga</h2><p>一个saga是一种特殊类型的事件监听器：用来管理业务事务。一些事务可能运行数天甚至数周，而另一些则在几毫秒内完成。在Axon中，saga的每个实例负责管理一个业务事务。这意味着saga维护状态必须管理事务，持续或采取补偿动作回滚已经被采取任何动作。通常情况下，与常规的事件监听器相反，saga有一个起点和终点，都由事件触发。虽然saga的起点通常是非常明确的，但可能有多种方式结束一个saga。</p><p>在Axon中,Sagas是定义了一个或多个@SagaEventHandler方法的类。与常规事件处理器不同，在任何时间可能存在多个saga的实例。Saga由一个Processor管理(跟踪或订阅)，Processor通过事件致力于处理特定saga类型。</p><h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p>一个单独的saga实例负责管理一个单独的事务。这意味着你需要能够标示一个saga生命周期的开始和结束。</p><p>在一个saga中，事件处理器用@SagaEventHandler注解。如果一个特定的事件标志着开始一个事务，在同一个方法上添加另一个注解:@StartSaga。这个注解将创建一个新的saga，并且当匹配事件后布后调用它的事件处理器方法。</p><p>默认情况下,只有在找不到匹配的saga时才能开启一个新的saga。你也可以强行创建一个新的saga实例，通过把@StartSaga注解上的forceNew属性设置为true。</p><p>结束一个saga可以以两种方式完成。如果一个特定的事件总是标示saga生命周期的结束，在saga上用@EndSaga注解事件的处理器。在调用处理器后，saga的生命周期将结束。作为一种选择,你可以调用end()从saga内部去结束生命周期。这允许你有条件地结束saga。</p><p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/9c8d7fb623a0" target="_blank" rel="noopener">https://www.jianshu.com/p/9c8d7fb623a0</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>]]></content>
       
       <categories>
           
@@ -492,6 +467,31 @@
         <tags>
             
             <tag> AxonFramework </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>AxonFramework在聚合中处理命令</title>
+      <link href="/2018/08/27/AxonFramework%E5%9C%A8%E8%81%9A%E5%90%88%E4%B8%AD%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4/"/>
+      <url>/2018/08/27/AxonFramework%E5%9C%A8%E8%81%9A%E5%90%88%E4%B8%AD%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4/</url>
+      <content type="html"><![CDATA[<p>建议在包含处理状态命令的聚合中直接定义命令处理器，因为命令处理器有可能需要该集合的状态来执行其任务。</p><a id="more"></a><p>要在一个聚合上定义一个命令处理器,只需用@CommandHandler注解命令处理方法即可。带@CommandHandler注解方法的规则和其他处理方法都是一样的。然而,命令不仅通过他们的有效载荷(payload)进行路由。命令消息携带一个名字,该名称默认为命令对象的完全限定类名。</p><p>默认情况下,带@CommandHandler注解的方法允许以下参数类型:</p><ul><li><p>第一个参数是命令消息的有效载荷。它的类型也可能是Message或CommandMessage，如果@CommandHandler 注解明确定义命令处理器的名称。默认情况下，命令名是命令的有效载荷的完全限定类名。</p></li><li><p>用@MetaDataValue注解的参数，将用注解上的键对元数据值进行解析。如果需要为false（默认值），则在元数据值不存在时传递NULL。如果需要为True，在元数据值不存在时，该解析器将不匹配并阻止该方法被调用。</p></li><li><p>参数的类型元数据将注入整个CommandMessage的元数据。</p></li><li><p>UnitOfWork类型的参数获取当前工作单元注入。这允许命令处理器注册的行为在工作单元的特定阶段执行，或获得与它注册的资源的访问。</p></li><li><p>Message或CommandMessage类型的参数，将得到完整的消息，包括有效载荷和元数据。如果方法需要多个元数据字段或包装消息的其他属性，则此方法非常有用。</p></li></ul><p>为了使Axon知道哪一个聚合类型的实例应该处理命令消息，命令对象的属性传送聚合标识符，必须用@TargetAggregateIdentifier注解。注解可以放置在任何字段或访问器方法上（例如getter）。</p><p>创建聚合实例的命令不需要标识目标聚合标识符，虽然建议标注聚合标识符。</p><p>如果你喜欢使用另一个机制路由命令，这种行为可以通过提供一个自定义CommandTargetResolver来重写。这个类应该返回聚合标识符和预期的版本(如果有的话)基于给定的命令。</p><blockquote><p><b>注意</b><br>当@CommandHandler注解放在一个聚合的构造函数上时，相应的命令将创建一个新的聚合实例，并将它添加到存储库。这些命令不需要针对特的定聚合实例。因此，这些命令不需要任何@TargetAggregateIdentifier或@TargetAggregateVersion注解，也不会调用自定义CommandTargetResolver。<br>当一个命令创建一个聚合实例时，该命令的回调函数在命令执行成功执行后，将得到聚合标识符。</p></blockquote><pre>public class MyAggregate {    @AggregateIdentifier    private String id;    @CommandHandler    public MyAggregate(CreateMyAggregateCommand command) {        apply(new MyAggregateCreatedEvent(IdentifierFactory.getInstance().generateIdentifier()));    }    // no-arg constructor for Axon    MyAggregate() {    }    @CommandHandler    public void doSomething(DoSomethingCommand command) {    // do something...    }    // code omitted for brevity. The event handler for MyAggregateCreatedEvent must set the id field}public class DoSomethingCommand {    @TargetAggregateIdentifier    private String aggregateId;    // code omitted for brevity}</pre><p>Axon的配置API可用于配置聚合。例如:</p><pre>Configurer configurer = ...// to use defaults:configurer.configureAggreate(MyAggregate.class);// allowing customizations:configurer.configureAggregate(AggregateConfigurer.defaultConfiguration(MyAggregate.class).configureCommandTargetResolver(c -> new CustomCommandTargetResolver()));</pre><p>@CommandHandler注释并不局限于聚合根。把所有命令处理器放在根里，有时会导致聚合根中存在大量的方法,而它们中的许多只简单地调用转发给底层实体之一。如果是这样,你可以把@CommandHandler注解在一个底层的实体的方法上。Axon找到这些带注释的方法,聚合根中声明的实体字段必须用@AggregateMember标明。注意,命令处理器只检查带注解的字段的声明类型。如果一个字段值为空时传入命令到实体,就会抛出一个异常。</p><pre>public class MyAggregate {    @AggregateIdentifier    private String id;    @AggregateMember    private MyEntity entity;    @CommandHandler    public MyAggregate(CreateMyAggregateCommand command) {        apply(new MyAggregateCreatedEvent(...);    }    // no-arg constructor for Axon    MyAggregate() {    }    @CommandHandler    public void doSomething(DoSomethingCommand command) {        // do something...    }    // code omitted for brevity. The event handler for MyAggregateCreatedEvent must set the id field    // and somewhere in the lifecycle, a value for "entity" must be assigned to be able to accept    // DoSomethingInEntityCommand commands.}public class MyEntity {    @CommandHandler    public void handleSomeCommand(DoSomethingInEntityCommand command) {        // do something    }}</pre><p>请注意，在聚合中每个命令必须只对应一个处理器。这意味着你不能用@CommandHandler标注多个实体(either root nor not，包含是根和不是根的所有实体)来处理相同的命令类型。如果你需要有条件地路由命令到一个实体,这些实体的父类应该处理命令,并根据apply的条件转发该命令。</p><p>字段的运行时类型不需要精确地声明类型。然而，@CommandHandle方法只检查被@AggregateMember标记的字段的声明类型。</p><p>也可以用@AggregateMember去注释包含实体的集合和Map。在后一种情况下，map的值有望包含实体，而键包含一个用作它们引用的值。</p><p>作为一个命令需要被路由到正确的实例，这些实例必须被正确地标识。它们的“ID”字段必须用@ EntityId标记。命令的属性将用于查找该消息应被路由到的实体，默认为被标识的字段的名称。例如，当标记一个名为“myentityid”字段，命令必须具有相同名称的属性。这意味着必须提供个getmyentityid或myentityid()方法。如果字段的名称和路由属性不同，你可以提供一个值显式使用 @EntityId(routingKey = “customRoutingProperty”)。</p><p>如果在带注解的集合和Map中没有实体能被找到，Axon会抛出一个IllegalStateException异常。显然,聚合不能够在那个时间点上处理命令。</p><blockquote><p><b>注意</b><br>字段声明的集合或Map应该包含适当的泛型,允许Axon识别实体的类型包含在集合或Map中。如果不可能添加泛型在声明中(例如因为你已经使用了一个自定义泛型类型的实现),你必须指定实体的类型，用于entityType属性@AggregateMember注解。</p></blockquote><h2 id="外部命令处理器"><a href="#外部命令处理器" class="headerlink" title="外部命令处理器"></a>外部命令处理器</h2><p>在某些情况下,想要直接向一个聚合实例路由命令是不可能。在这种情况下,可以注册一个命令处理器对象。命令处理器对象是一个简单的(常规的)对象，是带@CommandHandle注解的方法。与集合的情况不同，命令处理器对象只有单个实例，该对象处理其方法中声明的所有命令类型。</p><pre>public class MyAnnotatedHandler {@CommandHandlerpublic void handleSomeCommand(SomeCommand command, @MetaDataValue("userId") StringuserId) {// whatever logic here}@CommandHandler(commandName = "myCustomCommand")public void handleCustomCommand(SomeCommand command) {// handling logic here}}// To register the annotated handlers to the command bus:Configurer configurer = ...configurer.registerCommandHandler(c -> new MyAnnotatedHandler());</pre><p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/64ddd5a8f517" target="_blank" rel="noopener">https://www.jianshu.com/p/64ddd5a8f517</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>]]></content>
+      
+      <categories>
+          
+          <category> AxonFramework </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AxonFramework </tag>
+            
+            <tag> DDD </tag>
+            
+            <tag> CQRS </tag>
             
         </tags>
       
@@ -568,6 +568,31 @@
     
     <entry>
       <title>AxonFramework命令模型</title>
+      <link href="/2018/08/21/AxonFramework%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%9E%8B/"/>
+      <url>/2018/08/21/AxonFramework%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%9E%8B/</url>
+      <content type="html"><![CDATA[<p>在一个基于CQRS的应用程序中，领域模型(由Eric Evans和Martin Fowler定义)可以是一个非常强大的机制，来驾驭在验证和执行状态的变化时所涉及的复杂性，虽然典型的领域模型提供了大量的构建块，但当在CQRS中应用命令处理时有一个构件起着主导性的作用：聚合。</p><a id="more"></a><p>应用程序中的一个状态的改变，始于一个命令。命令不但是表达意图(描述你想要做什么)的组合，而且是基于这一意图采取行动所需的信息。命令模型用于处理传入的命令，以验证并定义它的结果。在这个模型中，一个命令处理器负责处理某种类型的命令，并根据它包含的信息采取行动。</p><h2 id="聚合"><a href="#聚合" class="headerlink" title="聚合"></a>聚合</h2><p>聚合是一个总是保持一致性状态的实体或一组实体。聚合根是聚合树顶部负责维护这个一致性状态的对象。这使得聚合主要构件在任何基于CQRS应用中实现命令模型。</p><blockquote><p><b>注意</b><br>“聚合”指的是埃文斯在领域驱动设计中所定义的聚合:<br>”作为数据变更的一个单元来处理的一组相关联的对象。在外部只能引用聚合的聚合根对象。在聚合边界内使用一组一致性规则。”</p></blockquote><p>例如，“联系人”聚合可以包含两个实体：联系人和地址。若要保持整个聚合处于一致性状态，向联系人添加地址时应通过联系人实体完成。在这种情况下，联系人实体是约定的聚合根。</p><p>在Axon中，聚合由聚合标识符标识。这可能是任何对象，但也有一些标识符良好实现的指导原则。<br>标识符必须:</p><p>实现equals和hashCode来保证与其他实例进行相等比较，<br>实现一个提供一致结果的toString()方法(相等的标识符，toString()方法的结果也应该相等),<br>并且最好是可序列化的。<br>当聚合使用不兼容标识符时，测试固件（见测试）将验证这些条件并使测试失败。 字符串类型的标识符，UUID和数值类型都适用。 不要使用原始类型作为标识符，因为它们不允许进行延迟初始化。在某些情况下，Axon可能会错误地假设原始类型的默认值是标识符的值。</p><p>注意<br>一个经过深思熟虑的好实践是使用随机生成的标识符，而不是使用序列。使用序列会大大降低应用程序的可伸缩性，因为机器需要保持彼此最后一次使用的最新的序列号。UUID冲突的机率非常地小(假如你生成8.2乘以10的11次方个UUID，冲突的机率也只有10的负15次方)。</p><p>此外，聚合应小心地使用函数式标识符。因为它们有变化的倾向，使得它很难适应相应的应用程序。</p><h2 id="聚合的实现"><a href="#聚合的实现" class="headerlink" title="聚合的实现"></a>聚合的实现</h2><p>聚合总是通过一个称为聚合根的实体访问。通常，这个实体的名称和聚合完全一样。例如,Order聚合可能由Order实体引用几个Orderline实体组合而成。Order 和Orderline一起形成聚合。</p><p>一个聚合是一个合乎规范的对象,其中包含状态和和改变这个状态的方法。虽然根据CQRS原则并不完全正确，也可能通过访问器方法暴露出聚合的状态。</p><p>聚合根必须声明一个包含聚合标识符的字段。这个标识符字段必须最迟在第一个事件发布时初始化。这个标识符字段必须由@AggregateIdentifier来注解。如果你在聚合上使用JPA注解，Axon也可以使用由JPA提供的@Id注解。</p><p>聚合可以使用AggregateLifecycle.apply()方法来注册发布的事件。与EventBus不同，这些信息需要被包装在一个EventMessage中，apply()允许你直接传递负载对象。</p><pre>@Entity // Mark this aggregate as a JPA Entitypublic class MyAggregate {    @Id // When annotating with JPA @Id, the @AggregateIdentifier annotation is not necessary    private String id;    // fields containing state...    @CommandHandler    public MyAggregate(CreateMyAggregateCommand command) {        // ... update state        apply(new MyAggregateCreatedEvent(...));    }    // constructor needed by JPA    protected MyAggregate() {    }}</pre><p>通过定义一个带@EventHandler注解的方法，聚合内的实体能监听聚合发布的事件。当一个EventMessage发布时这些方法将被调用（在任何外部处理器被发布之前）。</p><p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/6cfc9ab399b2" target="_blank" rel="noopener">https://www.jianshu.com/p/6cfc9ab399b2</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>]]></content>
+      
+      <categories>
+          
+          <category> AxonFramework </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AxonFramework </tag>
+            
+            <tag> DDD </tag>
+            
+            <tag> CQRS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>AxonFramework命令模型</title>
       <link href="/2018/08/21/AxonFramework-%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%9E%8B/"/>
       <url>/2018/08/21/AxonFramework-%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%9E%8B/</url>
       <content type="html"><![CDATA[<p>在一个基于CQRS的应用程序中，领域模型(由Eric Evans和Martin Fowler定义)可以是一个非常强大的机制，来驾驭在验证和执行状态的变化时所涉及的复杂性，虽然典型的领域模型提供了大量的构建块，但当在CQRS中应用命令处理时有一个构件起着主导性的作用：聚合。</p><a id="more"></a><p>应用程序中的一个状态的改变，始于一个命令。命令不但是表达意图(描述你想要做什么)的组合，而且是基于这一意图采取行动所需的信息。命令模型用于处理传入的命令，以验证并定义它的结果。在这个模型中，一个命令处理器负责处理某种类型的命令，并根据它包含的信息采取行动。</p><h2 id="聚合"><a href="#聚合" class="headerlink" title="聚合"></a>聚合</h2><p>聚合是一个总是保持一致性状态的实体或一组实体。聚合根是聚合树顶部负责维护这个一致性状态的对象。这使得聚合主要构件在任何基于CQRS应用中实现命令模型。</p><blockquote><p><b>注意</b><br>“聚合”指的是埃文斯在领域驱动设计中所定义的聚合:<br>”作为数据变更的一个单元来处理的一组相关联的对象。在外部只能引用聚合的聚合根对象。在聚合边界内使用一组一致性规则。”</p></blockquote><p>例如，“联系人”聚合可以包含两个实体：联系人和地址。若要保持整个聚合处于一致性状态，向联系人添加地址时应通过联系人实体完成。在这种情况下，联系人实体是约定的聚合根。</p><p>在Axon中，聚合由聚合标识符标识。这可能是任何对象，但也有一些标识符良好实现的指导原则。<br>标识符必须:</p><p>实现equals和hashCode来保证与其他实例进行相等比较，<br>实现一个提供一致结果的toString()方法(相等的标识符，toString()方法的结果也应该相等),<br>并且最好是可序列化的。<br>当聚合使用不兼容标识符时，测试固件（见测试）将验证这些条件并使测试失败。 字符串类型的标识符，UUID和数值类型都适用。 不要使用原始类型作为标识符，因为它们不允许进行延迟初始化。在某些情况下，Axon可能会错误地假设原始类型的默认值是标识符的值。</p><p>注意<br>一个经过深思熟虑的好实践是使用随机生成的标识符，而不是使用序列。使用序列会大大降低应用程序的可伸缩性，因为机器需要保持彼此最后一次使用的最新的序列号。UUID冲突的机率非常地小(假如你生成8.2乘以10的11次方个UUID，冲突的机率也只有10的负15次方)。</p><p>此外，聚合应小心地使用函数式标识符。因为它们有变化的倾向，使得它很难适应相应的应用程序。</p><h2 id="聚合的实现"><a href="#聚合的实现" class="headerlink" title="聚合的实现"></a>聚合的实现</h2><p>聚合总是通过一个称为聚合根的实体访问。通常，这个实体的名称和聚合完全一样。例如,Order聚合可能由Order实体引用几个Orderline实体组合而成。Order 和Orderline一起形成聚合。</p><p>一个聚合是一个合乎规范的对象,其中包含状态和和改变这个状态的方法。虽然根据CQRS原则并不完全正确，也可能通过访问器方法暴露出聚合的状态。</p><p>聚合根必须声明一个包含聚合标识符的字段。这个标识符字段必须最迟在第一个事件发布时初始化。这个标识符字段必须由@AggregateIdentifier来注解。如果你在聚合上使用JPA注解，Axon也可以使用由JPA提供的@Id注解。</p><p>聚合可以使用AggregateLifecycle.apply()方法来注册发布的事件。与EventBus不同，这些信息需要被包装在一个EventMessage中，apply()允许你直接传递负载对象。</p><pre>@Entity // Mark this aggregate as a JPA Entitypublic class MyAggregate {    @Id // When annotating with JPA @Id, the @AggregateIdentifier annotation is not necessary    private String id;    // fields containing state...    @CommandHandler    public MyAggregate(CreateMyAggregateCommand command) {        // ... update state        apply(new MyAggregateCreatedEvent(...));    }    // constructor needed by JPA    protected MyAggregate() {    }}</pre><p>通过定义一个带@EventHandler注解的方法，聚合内的实体能监听聚合发布的事件。当一个EventMessage发布时这些方法将被调用（在任何外部处理器被发布之前）。</p><p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/6cfc9ab399b2" target="_blank" rel="noopener">https://www.jianshu.com/p/6cfc9ab399b2</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>]]></content>
@@ -588,10 +613,10 @@
     </entry>
     
     <entry>
-      <title>AxonFramework命令模型</title>
-      <link href="/2018/08/21/AxonFramework%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%9E%8B/"/>
-      <url>/2018/08/21/AxonFramework%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%9E%8B/</url>
-      <content type="html"><![CDATA[<p>在一个基于CQRS的应用程序中，领域模型(由Eric Evans和Martin Fowler定义)可以是一个非常强大的机制，来驾驭在验证和执行状态的变化时所涉及的复杂性，虽然典型的领域模型提供了大量的构建块，但当在CQRS中应用命令处理时有一个构件起着主导性的作用：聚合。</p><a id="more"></a><p>应用程序中的一个状态的改变，始于一个命令。命令不但是表达意图(描述你想要做什么)的组合，而且是基于这一意图采取行动所需的信息。命令模型用于处理传入的命令，以验证并定义它的结果。在这个模型中，一个命令处理器负责处理某种类型的命令，并根据它包含的信息采取行动。</p><h2 id="聚合"><a href="#聚合" class="headerlink" title="聚合"></a>聚合</h2><p>聚合是一个总是保持一致性状态的实体或一组实体。聚合根是聚合树顶部负责维护这个一致性状态的对象。这使得聚合主要构件在任何基于CQRS应用中实现命令模型。</p><blockquote><p><b>注意</b><br>“聚合”指的是埃文斯在领域驱动设计中所定义的聚合:<br>”作为数据变更的一个单元来处理的一组相关联的对象。在外部只能引用聚合的聚合根对象。在聚合边界内使用一组一致性规则。”</p></blockquote><p>例如，“联系人”聚合可以包含两个实体：联系人和地址。若要保持整个聚合处于一致性状态，向联系人添加地址时应通过联系人实体完成。在这种情况下，联系人实体是约定的聚合根。</p><p>在Axon中，聚合由聚合标识符标识。这可能是任何对象，但也有一些标识符良好实现的指导原则。<br>标识符必须:</p><p>实现equals和hashCode来保证与其他实例进行相等比较，<br>实现一个提供一致结果的toString()方法(相等的标识符，toString()方法的结果也应该相等),<br>并且最好是可序列化的。<br>当聚合使用不兼容标识符时，测试固件（见测试）将验证这些条件并使测试失败。 字符串类型的标识符，UUID和数值类型都适用。 不要使用原始类型作为标识符，因为它们不允许进行延迟初始化。在某些情况下，Axon可能会错误地假设原始类型的默认值是标识符的值。</p><p>注意<br>一个经过深思熟虑的好实践是使用随机生成的标识符，而不是使用序列。使用序列会大大降低应用程序的可伸缩性，因为机器需要保持彼此最后一次使用的最新的序列号。UUID冲突的机率非常地小(假如你生成8.2乘以10的11次方个UUID，冲突的机率也只有10的负15次方)。</p><p>此外，聚合应小心地使用函数式标识符。因为它们有变化的倾向，使得它很难适应相应的应用程序。</p><h2 id="聚合的实现"><a href="#聚合的实现" class="headerlink" title="聚合的实现"></a>聚合的实现</h2><p>聚合总是通过一个称为聚合根的实体访问。通常，这个实体的名称和聚合完全一样。例如,Order聚合可能由Order实体引用几个Orderline实体组合而成。Order 和Orderline一起形成聚合。</p><p>一个聚合是一个合乎规范的对象,其中包含状态和和改变这个状态的方法。虽然根据CQRS原则并不完全正确，也可能通过访问器方法暴露出聚合的状态。</p><p>聚合根必须声明一个包含聚合标识符的字段。这个标识符字段必须最迟在第一个事件发布时初始化。这个标识符字段必须由@AggregateIdentifier来注解。如果你在聚合上使用JPA注解，Axon也可以使用由JPA提供的@Id注解。</p><p>聚合可以使用AggregateLifecycle.apply()方法来注册发布的事件。与EventBus不同，这些信息需要被包装在一个EventMessage中，apply()允许你直接传递负载对象。</p><pre>@Entity // Mark this aggregate as a JPA Entitypublic class MyAggregate {    @Id // When annotating with JPA @Id, the @AggregateIdentifier annotation is not necessary    private String id;    // fields containing state...    @CommandHandler    public MyAggregate(CreateMyAggregateCommand command) {        // ... update state        apply(new MyAggregateCreatedEvent(...));    }    // constructor needed by JPA    protected MyAggregate() {    }}</pre><p>通过定义一个带@EventHandler注解的方法，聚合内的实体能监听聚合发布的事件。当一个EventMessage发布时这些方法将被调用（在任何外部处理器被发布之前）。</p><p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/6cfc9ab399b2" target="_blank" rel="noopener">https://www.jianshu.com/p/6cfc9ab399b2</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>]]></content>
+      <title>AxonFramework配置</title>
+      <link href="/2018/08/20/AxonFramework-%E9%85%8D%E7%BD%AE/"/>
+      <url>/2018/08/20/AxonFramework-%E9%85%8D%E7%BD%AE/</url>
+      <content type="html"><![CDATA[<p>获得一个默认的配置是非常容易的：<br>Configuration config = DefaultConfigurer.defaultConfiguration().buildConfiguration();</p><a id="more"></a><p>这个配置为分发消息提供了在线程上处理消息、分发它们的实现。显然，这种配置不会很有用。你必须将你的命令模型对象和事件处理器注册到该配置中。</p><p>为此,通过.defaultConfiguration()方法返回配置实例。<br>Configurer configurer = DefaultConfigurer.defaultConfiguration();</p><p>配置提供了多种允许你注册这些组件的方法。在每个组件的相应章节有如何配置这些组件的详细描述。</p><p>组件一般形式的注册,如下:<br>Configurer configurer = DefaultConfigurer.defaultConfiguration();<br>configurer.registerCommandHandler(c -&gt; doCreateComponent());<br>注意registerCommandBus中lambda表达式的调用。这个表达式的参数c是描述完整配置的配置对象。如果组件需要其他组件正常运行，则可以使用此配置来检索它们。</p><p>例如,注册一个需要序列化器的命令处理程序<br>configurer.registerCommandHandler(c -&gt; new MyCommandHandler(c.serializer());</p><p>不是所有的组件都有其明确的accesor方法。检索一个配置中的组件,使用：<br>configurer.registerCommandHandler(c -&gt; new MyCommandHandler(c.getComponent(MyOtherComp<br>onent.class));</p><p>该组件必须和配置一起注册,使用<br>configurer.registerComponent(componentType, builderFunction) .builder函数将接受配置对象作为输入参数。</p><p>使用Spring设置配置<br>使用Spring时,不需要显式地使用配置。相反,你可以简单地把@EnableAxon设置到一个Spring @configuration类上。</p><p>Axon将使用Spring应用程序上下文来定位构件的特定实现，并为那些不存在的提供默认值。因此,取代在配置中注册构件,你只需要在Spring应用程序上下文中让@Bean可用即可。</p><p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/7fcbc0dcc39c" target="_blank" rel="noopener">https://www.jianshu.com/p/7fcbc0dcc39c</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>]]></content>
       
       <categories>
           
@@ -603,10 +628,6 @@
         <tags>
             
             <tag> AxonFramework </tag>
-            
-            <tag> DDD </tag>
-            
-            <tag> CQRS </tag>
             
         </tags>
       
@@ -632,27 +653,6 @@
             <tag> DDD </tag>
             
             <tag> CQRS </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>AxonFramework配置</title>
-      <link href="/2018/08/20/AxonFramework-%E9%85%8D%E7%BD%AE/"/>
-      <url>/2018/08/20/AxonFramework-%E9%85%8D%E7%BD%AE/</url>
-      <content type="html"><![CDATA[<p>获得一个默认的配置是非常容易的：<br>Configuration config = DefaultConfigurer.defaultConfiguration().buildConfiguration();</p><a id="more"></a><p>这个配置为分发消息提供了在线程上处理消息、分发它们的实现。显然，这种配置不会很有用。你必须将你的命令模型对象和事件处理器注册到该配置中。</p><p>为此,通过.defaultConfiguration()方法返回配置实例。<br>Configurer configurer = DefaultConfigurer.defaultConfiguration();</p><p>配置提供了多种允许你注册这些组件的方法。在每个组件的相应章节有如何配置这些组件的详细描述。</p><p>组件一般形式的注册,如下:<br>Configurer configurer = DefaultConfigurer.defaultConfiguration();<br>configurer.registerCommandHandler(c -&gt; doCreateComponent());<br>注意registerCommandBus中lambda表达式的调用。这个表达式的参数c是描述完整配置的配置对象。如果组件需要其他组件正常运行，则可以使用此配置来检索它们。</p><p>例如,注册一个需要序列化器的命令处理程序<br>configurer.registerCommandHandler(c -&gt; new MyCommandHandler(c.serializer());</p><p>不是所有的组件都有其明确的accesor方法。检索一个配置中的组件,使用：<br>configurer.registerCommandHandler(c -&gt; new MyCommandHandler(c.getComponent(MyOtherComp<br>onent.class));</p><p>该组件必须和配置一起注册,使用<br>configurer.registerComponent(componentType, builderFunction) .builder函数将接受配置对象作为输入参数。</p><p>使用Spring设置配置<br>使用Spring时,不需要显式地使用配置。相反,你可以简单地把@EnableAxon设置到一个Spring @configuration类上。</p><p>Axon将使用Spring应用程序上下文来定位构件的特定实现，并为那些不存在的提供默认值。因此,取代在配置中注册构件,你只需要在Spring应用程序上下文中让@Bean可用即可。</p><p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/7fcbc0dcc39c" target="_blank" rel="noopener">https://www.jianshu.com/p/7fcbc0dcc39c</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>]]></content>
-      
-      <categories>
-          
-          <category> AxonFramework </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> AxonFramework </tag>
             
         </tags>
       
@@ -729,27 +729,6 @@
     
     <entry>
       <title>AxonFramework消息、命令和事件</title>
-      <link href="/2018/08/17/AxonFramework-%E6%B6%88%E6%81%AF%E3%80%81%E5%91%BD%E4%BB%A4%E5%92%8C%E4%BA%8B%E4%BB%B6/"/>
-      <url>/2018/08/17/AxonFramework-%E6%B6%88%E6%81%AF%E3%80%81%E5%91%BD%E4%BB%A4%E5%92%8C%E4%BA%8B%E4%BB%B6/</url>
-      <content type="html"><![CDATA[<h2 id="消息传送的概念"><a href="#消息传送的概念" class="headerlink" title="消息传送的概念"></a>消息传送的概念</h2><p>消息是Axon的核心概念之一。组件之间的所有通信都使用消息对象完成。这为这些组件提供了位置透明性，在必要时需要能够进行扩展和分发这些组件。</p><p>尽管所有这些消息都实现了消息接口，但不同类型的消息及其处理方式之间有明显的区别。所有消息包含payload、元数据和唯一标识符。消息的payload是消息的功能说明。该对象的类名组合与它所携带的数据，描述了消息的应用程序的含义。元数据允许你描述正在发送消息的上下文。例如，你可以存储跟踪信息，以允许跟踪消息的来源或原因。你还可以存储信息以描述正在执行命令的安全上下文。</p><a id="more"></a><blockquote><p><b>注意</b><br>注意所有消息都是不可变的。将数据存储在一个消息中，实际上意味着在前一个消息的基础上，创建一个添加了额外信息的新消息。这保证了消息在多线程和分布式环境中使用是安全的。</p></blockquote><h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><p>命令描述改变应用程序状态的意图。命令用一个CommandMessage来包装POJO（最好是只读的）来实现。</p><p>命令总是有一个确切的目的地。虽然发送者并不关心由哪个组件来处理命令或该组件驻留在哪里，但它可能对它的结果感兴趣。这就是命令总线上发送命令消息后，允许返回结果的原因。</p><h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><p>事件是描述应用程序中已经发生的事情的对象。聚合是事件的典型来源。当聚合中发生重要的事情时，它将引发一个事件。在Axon Framework中，事件可以是任何对象。非常希望你能确保所有的事件都是可序列化的。</p><p>当事件被分发时，Axon把他们包装在一个EventMessage中。实际使用的消息类型取决于事件的来源。当一个事件是由一个聚合引发时，它被包装在DomainEventMessage（继承自EventMessage）中。所有其他事件都被包装在一个EventMessage中。除了像唯一标识这种常见的消息属性，EventMessage还包含一个时间戳。DomainEventMessage额外包含类型和聚合的标识符，它还在聚合的事件流中包含事件的序号,以允许重现事件的顺序。</p><blockquote><p><b>注意</b><br>尽管DomainEventMessage总包含一个对聚合标识符的引用,你也应该包括实际事件本身的标识符。EventStore通过DomainEventMessage中的标识符来存储事件，标识符可能并不总是会提供一个可靠值用于其他目标。</p></blockquote><p>原始事件对象存储为EventMessage的payload。紧挨着的payload,你可以将信息存储在一个事件消息的元数据中。元数据的目的是存储关于事件的额外信息,而不是业务信息。审计信息就是一个典型的例子。它可以让你看到在哪些情况下，一个事件会被引发，比如用户帐户触发进程，或处理事件的机器名称。</p><blockquote><p><b>注意</b><br>一般来说，你不应该基于事件消息的元数据中的信息进行业务决策。如果是这样的话，你可能有附加的信息，而不是事件本身的一部分信息。元数据通常用于报告、审计和跟踪。</p></blockquote><p>虽然不是强制性的，但让领域事件不可变是一种很好的做法，最好是将所有字段声明为final并在构造函数中初始化。如果事件构造太麻烦可考虑使用建造者模式(Builder pattern )。</p><blockquote><p><b>注意</b><br>虽然领域事件在技术上表示状态的变化,你也应该试图在事件中捕捉状态意图。一个好的实践是使用一个抽象的领域事件实现来捕获某些状态已经改变了这一事实,并使用一个抽象类具体的sub-implementation来表示变化的意图。例如,你可以有一个AddressChangedEvent抽象类，并用实现ContactMovedEvent和AddressCorrectedEvent这两个子类来达到捕获状态变化的意图。一些监听器不关心这些意图(例如,数据库更新事件监听器)，将监听抽象类型。其他关心这些意图监听器，它们将监听具体的子类(例如发送一个地址变更确认电子邮件给消费者)。<br></p></blockquote><p>当在事件总线分发事件时,你需要把它包装在一个事件消息中。GenericEventMessage是一个允许你将你的事件包装到一个消息的实现。你可以使用构造函数,或静态方法：asEventMessage()。 后者检查给出的参数是否已经实现了消息接口，如果是这样，它直接返回（如果它实现了EventMessage），或者返回一个使用给定消息的payload和元数据来实例化的GenericEventMessage。如果一个事件通过聚合发布，Axon将自动把事件包装在一个DomainEventMessage中，包含聚合的标识符,类型和序列号。</p><p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/e7abb5a228e9" target="_blank" rel="noopener">https://www.jianshu.com/p/e7abb5a228e9</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>]]></content>
-      
-      <categories>
-          
-          <category> AxonFramework </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> AxonFramework </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>AxonFramework消息、命令和事件</title>
       <link href="/2018/08/17/AxonFramework%E6%B6%88%E6%81%AF%E3%80%81%E5%91%BD%E4%BB%A4%E5%92%8C%E4%BA%8B%E4%BB%B6/"/>
       <url>/2018/08/17/AxonFramework%E6%B6%88%E6%81%AF%E3%80%81%E5%91%BD%E4%BB%A4%E5%92%8C%E4%BA%8B%E4%BB%B6/</url>
       <content type="html"><![CDATA[<h2 id="消息传送的概念"><a href="#消息传送的概念" class="headerlink" title="消息传送的概念"></a>消息传送的概念</h2><p>消息是Axon的核心概念之一。组件之间的所有通信都使用消息对象完成。这为这些组件提供了位置透明性，在必要时需要能够进行扩展和分发这些组件。</p><p>尽管所有这些消息都实现了消息接口，但不同类型的消息及其处理方式之间有明显的区别。所有消息包含payload、元数据和唯一标识符。消息的payload是消息的功能说明。该对象的类名组合与它所携带的数据，描述了消息的应用程序的含义。元数据允许你描述正在发送消息的上下文。例如，你可以存储跟踪信息，以允许跟踪消息的来源或原因。你还可以存储信息以描述正在执行命令的安全上下文。</p><a id="more"></a><blockquote><p><b>注意</b><br>注意所有消息都是不可变的。将数据存储在一个消息中，实际上意味着在前一个消息的基础上，创建一个添加了额外信息的新消息。这保证了消息在多线程和分布式环境中使用是安全的。</p></blockquote><h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><p>命令描述改变应用程序状态的意图。命令用一个CommandMessage来包装POJO（最好是只读的）来实现。</p><p>命令总是有一个确切的目的地。虽然发送者并不关心由哪个组件来处理命令或该组件驻留在哪里，但它可能对它的结果感兴趣。这就是命令总线上发送命令消息后，允许返回结果的原因。</p><h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><p>事件是描述应用程序中已经发生的事情的对象。聚合是事件的典型来源。当聚合中发生重要的事情时，它将引发一个事件。在Axon Framework中，事件可以是任何对象。非常希望你能确保所有的事件都是可序列化的。</p><p>当事件被分发时，Axon把他们包装在一个EventMessage中。实际使用的消息类型取决于事件的来源。当一个事件是由一个聚合引发时，它被包装在DomainEventMessage（继承自EventMessage）中。所有其他事件都被包装在一个EventMessage中。除了像唯一标识这种常见的消息属性，EventMessage还包含一个时间戳。DomainEventMessage额外包含类型和聚合的标识符，它还在聚合的事件流中包含事件的序号,以允许重现事件的顺序。</p><blockquote><p><b>注意</b><br>尽管DomainEventMessage总包含一个对聚合标识符的引用,你也应该包括实际事件本身的标识符。EventStore通过DomainEventMessage中的标识符来存储事件，标识符可能并不总是会提供一个可靠值用于其他目标。</p></blockquote><p>原始事件对象存储为EventMessage的payload。紧挨着的payload,你可以将信息存储在一个事件消息的元数据中。元数据的目的是存储关于事件的额外信息,而不是业务信息。审计信息就是一个典型的例子。它可以让你看到在哪些情况下，一个事件会被引发，比如用户帐户触发进程，或处理事件的机器名称。</p><blockquote><p><b>注意</b><br>一般来说，你不应该基于事件消息的元数据中的信息进行业务决策。如果是这样的话，你可能有附加的信息，而不是事件本身的一部分信息。元数据通常用于报告、审计和跟踪。</p></blockquote><p>虽然不是强制性的，但让领域事件不可变是一种很好的做法，最好是将所有字段声明为final并在构造函数中初始化。如果事件构造太麻烦可考虑使用建造者模式(Builder pattern )。</p><blockquote><p><b>注意</b><br>虽然领域事件在技术上表示状态的变化,你也应该试图在事件中捕捉状态意图。一个好的实践是使用一个抽象的领域事件实现来捕获某些状态已经改变了这一事实,并使用一个抽象类具体的sub-implementation来表示变化的意图。例如,你可以有一个AddressChangedEvent抽象类，并用实现ContactMovedEvent和AddressCorrectedEvent这两个子类来达到捕获状态变化的意图。一些监听器不关心这些意图(例如,数据库更新事件监听器)，将监听抽象类型。其他关心这些意图监听器，它们将监听具体的子类(例如发送一个地址变更确认电子邮件给消费者)。<br><img src="/2018/08/17/AxonFramework消息、命令和事件/state_change.jpg" title="State change"></p></blockquote><p>当在事件总线分发事件时,你需要把它包装在一个事件消息中。GenericEventMessage是一个允许你将你的事件包装到一个消息的实现。你可以使用构造函数,或静态方法：asEventMessage()。 后者检查给出的参数是否已经实现了消息接口，如果是这样，它直接返回（如果它实现了EventMessage），或者返回一个使用给定消息的payload和元数据来实例化的GenericEventMessage。如果一个事件通过聚合发布，Axon将自动把事件包装在一个DomainEventMessage中，包含聚合的标识符,类型和序列号。</p><p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/e7abb5a228e9" target="_blank" rel="noopener">https://www.jianshu.com/p/e7abb5a228e9</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>]]></content>
@@ -774,10 +753,10 @@
     </entry>
     
     <entry>
-      <title>AxonFramework架构概述</title>
-      <link href="/2018/08/17/AxonFramework-%E6%9E%B6%E6%9E%84%E6%A6%82%E8%BF%B0/"/>
-      <url>/2018/08/17/AxonFramework-%E6%9E%B6%E6%9E%84%E6%A6%82%E8%BF%B0/</url>
-      <content type="html"><![CDATA[<p>CQRS本身是一个非常简单的模式。它只规定了处理命令的应用程序的组件应该与处理查询 的组件分离。 虽然这种分离本身非常简单，但它与其他模式结合时提供了许多非常强大的功能。Axon 提供的构件更容易实现不同的模式与CQRS的结合。</p><a id="more"></a><p>下图显示了一个示例，一个基于CQRS的事件驱动的架构图示。 左侧显示的是UI组件, 通过 两种方式与应用程序的其余部分进行交互：它向应用程序发送命令 (显示在顶端的部分), 并从应用程序中查询信息 (显示在底端的部分)。</p><p>Command(命令)通常用简单的对象表示，这些对象包含命令处理器执行所需的所有数据。一个命令通过它的名字来表达它的意图。在Java术语中，这意味着使用类名来确定需要做什么，命令的字段提供了执行该操作所需的信息。</p><p>Command Bus接受命令并路由它们到命令处理器(Command handler) 。每个命令处理器响应特定类型的命令，并根据命令的内容执行逻辑。 然而，在某些情况下，你也希望不顾实际的命令类型去执行逻辑，如验证、日志或权限。</p><p>Command handler(命令处理器)从仓储中恢复领域对象(聚合)并执行方法来改变它们的状态。这些聚合通常包含真实的业务逻辑并负责维护自身的不变性。聚合的状态变化导致了领域事件的产生,领域事件和聚合都从领域模型中来。</p><p>repositories(仓储)负责提供访问聚合。通常情况下，这些仓储的优化设计是仅通过其唯一标识符来查找聚合。一些仓储将存储聚合自身的状态(例如，使用对象关系映射，ORM)， 而另一些则存储聚合的状态的更改到Event Store中，仓储还负责对其备份数据库中的聚合进行更改。</p><p>Axon提供了直接持久化聚合（使用对象关系映射，ORM）和事件溯源(event sourcing)两种方式.</p><p>Event bus(事件总线)分派事件到所有感兴趣的事件监听器(Event listener)中。可以同步或异 步完成。异步事件调度允许命令执行返回和移交控制给用户，这些事件在后台被分派和处理，不必等待事件处理完成，这样应用程序就会响应得更快。同步事件处理，另一方面，更简单，是 一个合适的默认选项。 默认情况下,同步处理将在同一事务中处理事件监听器和命令处理 器。</p><p>Event listener(事件监听器)接收并处理事件。一些处理器将更新用于查询的数据源，而其他处理器则将消息发送到外部系统。你可能会注意到了,命令处理器只对组件所做的更改感兴趣，却完全察觉不到它们的存在。这意味着它可以非侵入地扩展应用程序的新功能， 你需要做的就只是添加一个事件监听器。事件让应用程序中的所有组件松散耦合。</p><p>在某些情况下,事件处理需要把新的命令发送到应用程序。这方面例子，例如，当接收到一 个订单，这可能意味着客户的账户应当扣除购买商品所需的金额，并必须通知装运方准备打包这批商品。在许多应用中，逻辑将变得更加复杂:如果客户没有及时支付呢?你会马上发货还是等待付款？saga(长事务处理)是CQRS的概念，它负责管理这些复杂的商业事务。</p><p>在用户界面和数据源之间的瘦数据层，为实际的查询实现提供了一个明确定义的接口。这个数据层通常返回包含查询结果的只读DTO对象。这些DTO的内容通常是由用户界面的需求驱 动的。在大多数情况下,他们直接映射到用户界面的一个特定的视图(也称为table-per-view)。</p><p>Axon不提供任何应用程序这部分的构件。主要的原因是这非常简单，并且与分层架构并没有太大的区别。</p><h2 id="Axon模块结构"><a href="#Axon模块结构" class="headerlink" title="Axon模块结构"></a>Axon模块结构</h2><p>Axon Framework由多个针对CQRS特定问题域的模块组成。根据项目的具体需求，你需要包括一个或多个这些模块。<br>从Axon2.1起,所有模块兼容OSGi。这意味着它们在manifest文件包含所需的头文件,并声明它们导入和导出的包。目前,只有Slf4J bundle(1.7.0 &lt;= 版本&lt; 2.0.0)是必需的。所有其他导入的都被标记为可选,尽管你很可能需要这些。</p><h2 id="主模块"><a href="#主模块" class="headerlink" title="主模块"></a>主模块</h2><p>Axon的主要模块已经过完全的测试，强大到足以在苛刻的生产环境中使用。所有这些模 块的maven groupId都是org.axonframework。</p><p>核心模块顾名思义是Axon的核心组件。如果你使用single-node设置,这个模块可能会提供给你需要的所有组件。其他所有的Axon模块依赖这个模块，所以它必须在classpath中可用。</p><p>测试模块包含有你可以使用的测试固件来测试基于Axon的组件，比如你的命令处理器、聚 合和Sagas。你通常在运行时不需要这个模块，只需在测试过程中添加到classpath。</p><p>分布式CommandBus包含了可用于在多个节点发送命令的实现。它配备了JGroups和Spring Cloud连接器，来连接这些节点。</p><p>AMQP模块提供的组件，允许你打造一个基于AMQP的EventBus，并使用message broker作为分配机制。这允许保证事件送达，即使事件处理器节点暂时不可用。</p><p>Spring模块允许Axon组件在Spring程序上下文中配置。它还提供了一些针对Spring框架的构件的实现，例如用于在Spring消息信道上发布和检索Axon事件的适配器。</p><p>MongoDB是一个基于文档的NoSQL数据库，Mongo模块实现事件和saga的存储，并用MongoDB数据库存储事件流和saga。</p><p>几个AxonFramework组件提供监控信息。Metrics模块提供基于Codehale的基本实现来收集监控信息。</p><h2 id="与Axon-API一起工作"><a href="#与Axon-API一起工作" class="headerlink" title="与Axon API一起工作"></a>与Axon API一起工作</h2><p>QRS是一种架构模式，它不可能提供一个适合所有项目的单一解决方案。显然，Axon Framework并不试图提供这样的解决方案。相反，Axon提供了遵循最佳实践的实现和将每一个实现都调整到符合你的特定需求的手段。</p><p>几乎所有基础设施构件都提供检查点(如拦截器,解析器等)，允许你向这些构件添 加application-specific行为。大多数情况下，Axon将为那些适合大多数用例的检查点提供实现，如果需要，你可以简单地实现自己的。</p><p>非基础设施对象，如消息，通常是不可变的。这确保了这些对象在多线程环境中是安全的， 没有副作用的。</p><p>为了确保定制的最大化，所有Axon组件都使用接口定义。抽象类和具体的实现类提供了帮助你的方式，但框架对你没有任何要求，它总是允许使用该接口构建任何完全自定义实现的构件。</p><h2 id="Spring的支持"><a href="#Spring的支持" class="headerlink" title="Spring的支持"></a>Spring的支持</h2><p>Axon Framework对Spring提供了广泛的支持，但不强制你使用Spring来使用Axon。所有的组件都可以以编程方式配置，并且不需要把Spring放在classpath中。然而，如果你使用Spring、使 用Spring的annotation，很多的配置会变得更加容易。</p><p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/943f5b3ab139" target="_blank" rel="noopener">https://www.jianshu.com/p/943f5b3ab139</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>]]></content>
+      <title>AxonFramework消息、命令和事件</title>
+      <link href="/2018/08/17/AxonFramework-%E6%B6%88%E6%81%AF%E3%80%81%E5%91%BD%E4%BB%A4%E5%92%8C%E4%BA%8B%E4%BB%B6/"/>
+      <url>/2018/08/17/AxonFramework-%E6%B6%88%E6%81%AF%E3%80%81%E5%91%BD%E4%BB%A4%E5%92%8C%E4%BA%8B%E4%BB%B6/</url>
+      <content type="html"><![CDATA[<h2 id="消息传送的概念"><a href="#消息传送的概念" class="headerlink" title="消息传送的概念"></a>消息传送的概念</h2><p>消息是Axon的核心概念之一。组件之间的所有通信都使用消息对象完成。这为这些组件提供了位置透明性，在必要时需要能够进行扩展和分发这些组件。</p><p>尽管所有这些消息都实现了消息接口，但不同类型的消息及其处理方式之间有明显的区别。所有消息包含payload、元数据和唯一标识符。消息的payload是消息的功能说明。该对象的类名组合与它所携带的数据，描述了消息的应用程序的含义。元数据允许你描述正在发送消息的上下文。例如，你可以存储跟踪信息，以允许跟踪消息的来源或原因。你还可以存储信息以描述正在执行命令的安全上下文。</p><a id="more"></a><blockquote><p><b>注意</b><br>注意所有消息都是不可变的。将数据存储在一个消息中，实际上意味着在前一个消息的基础上，创建一个添加了额外信息的新消息。这保证了消息在多线程和分布式环境中使用是安全的。</p></blockquote><h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><p>命令描述改变应用程序状态的意图。命令用一个CommandMessage来包装POJO（最好是只读的）来实现。</p><p>命令总是有一个确切的目的地。虽然发送者并不关心由哪个组件来处理命令或该组件驻留在哪里，但它可能对它的结果感兴趣。这就是命令总线上发送命令消息后，允许返回结果的原因。</p><h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><p>事件是描述应用程序中已经发生的事情的对象。聚合是事件的典型来源。当聚合中发生重要的事情时，它将引发一个事件。在Axon Framework中，事件可以是任何对象。非常希望你能确保所有的事件都是可序列化的。</p><p>当事件被分发时，Axon把他们包装在一个EventMessage中。实际使用的消息类型取决于事件的来源。当一个事件是由一个聚合引发时，它被包装在DomainEventMessage（继承自EventMessage）中。所有其他事件都被包装在一个EventMessage中。除了像唯一标识这种常见的消息属性，EventMessage还包含一个时间戳。DomainEventMessage额外包含类型和聚合的标识符，它还在聚合的事件流中包含事件的序号,以允许重现事件的顺序。</p><blockquote><p><b>注意</b><br>尽管DomainEventMessage总包含一个对聚合标识符的引用,你也应该包括实际事件本身的标识符。EventStore通过DomainEventMessage中的标识符来存储事件，标识符可能并不总是会提供一个可靠值用于其他目标。</p></blockquote><p>原始事件对象存储为EventMessage的payload。紧挨着的payload,你可以将信息存储在一个事件消息的元数据中。元数据的目的是存储关于事件的额外信息,而不是业务信息。审计信息就是一个典型的例子。它可以让你看到在哪些情况下，一个事件会被引发，比如用户帐户触发进程，或处理事件的机器名称。</p><blockquote><p><b>注意</b><br>一般来说，你不应该基于事件消息的元数据中的信息进行业务决策。如果是这样的话，你可能有附加的信息，而不是事件本身的一部分信息。元数据通常用于报告、审计和跟踪。</p></blockquote><p>虽然不是强制性的，但让领域事件不可变是一种很好的做法，最好是将所有字段声明为final并在构造函数中初始化。如果事件构造太麻烦可考虑使用建造者模式(Builder pattern )。</p><blockquote><p><b>注意</b><br>虽然领域事件在技术上表示状态的变化,你也应该试图在事件中捕捉状态意图。一个好的实践是使用一个抽象的领域事件实现来捕获某些状态已经改变了这一事实,并使用一个抽象类具体的sub-implementation来表示变化的意图。例如,你可以有一个AddressChangedEvent抽象类，并用实现ContactMovedEvent和AddressCorrectedEvent这两个子类来达到捕获状态变化的意图。一些监听器不关心这些意图(例如,数据库更新事件监听器)，将监听抽象类型。其他关心这些意图监听器，它们将监听具体的子类(例如发送一个地址变更确认电子邮件给消费者)。<br></p></blockquote><p>当在事件总线分发事件时,你需要把它包装在一个事件消息中。GenericEventMessage是一个允许你将你的事件包装到一个消息的实现。你可以使用构造函数,或静态方法：asEventMessage()。 后者检查给出的参数是否已经实现了消息接口，如果是这样，它直接返回（如果它实现了EventMessage），或者返回一个使用给定消息的payload和元数据来实例化的GenericEventMessage。如果一个事件通过聚合发布，Axon将自动把事件包装在一个DomainEventMessage中，包含聚合的标识符,类型和序列号。</p><p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/e7abb5a228e9" target="_blank" rel="noopener">https://www.jianshu.com/p/e7abb5a228e9</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>]]></content>
       
       <categories>
           
@@ -814,6 +793,27 @@
             <tag> DDD </tag>
             
             <tag> CQRS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>AxonFramework架构概述</title>
+      <link href="/2018/08/17/AxonFramework-%E6%9E%B6%E6%9E%84%E6%A6%82%E8%BF%B0/"/>
+      <url>/2018/08/17/AxonFramework-%E6%9E%B6%E6%9E%84%E6%A6%82%E8%BF%B0/</url>
+      <content type="html"><![CDATA[<p>CQRS本身是一个非常简单的模式。它只规定了处理命令的应用程序的组件应该与处理查询 的组件分离。 虽然这种分离本身非常简单，但它与其他模式结合时提供了许多非常强大的功能。Axon 提供的构件更容易实现不同的模式与CQRS的结合。</p><a id="more"></a><p>下图显示了一个示例，一个基于CQRS的事件驱动的架构图示。 左侧显示的是UI组件, 通过 两种方式与应用程序的其余部分进行交互：它向应用程序发送命令 (显示在顶端的部分), 并从应用程序中查询信息 (显示在底端的部分)。</p><p>Command(命令)通常用简单的对象表示，这些对象包含命令处理器执行所需的所有数据。一个命令通过它的名字来表达它的意图。在Java术语中，这意味着使用类名来确定需要做什么，命令的字段提供了执行该操作所需的信息。</p><p>Command Bus接受命令并路由它们到命令处理器(Command handler) 。每个命令处理器响应特定类型的命令，并根据命令的内容执行逻辑。 然而，在某些情况下，你也希望不顾实际的命令类型去执行逻辑，如验证、日志或权限。</p><p>Command handler(命令处理器)从仓储中恢复领域对象(聚合)并执行方法来改变它们的状态。这些聚合通常包含真实的业务逻辑并负责维护自身的不变性。聚合的状态变化导致了领域事件的产生,领域事件和聚合都从领域模型中来。</p><p>repositories(仓储)负责提供访问聚合。通常情况下，这些仓储的优化设计是仅通过其唯一标识符来查找聚合。一些仓储将存储聚合自身的状态(例如，使用对象关系映射，ORM)， 而另一些则存储聚合的状态的更改到Event Store中，仓储还负责对其备份数据库中的聚合进行更改。</p><p>Axon提供了直接持久化聚合（使用对象关系映射，ORM）和事件溯源(event sourcing)两种方式.</p><p>Event bus(事件总线)分派事件到所有感兴趣的事件监听器(Event listener)中。可以同步或异 步完成。异步事件调度允许命令执行返回和移交控制给用户，这些事件在后台被分派和处理，不必等待事件处理完成，这样应用程序就会响应得更快。同步事件处理，另一方面，更简单，是 一个合适的默认选项。 默认情况下,同步处理将在同一事务中处理事件监听器和命令处理 器。</p><p>Event listener(事件监听器)接收并处理事件。一些处理器将更新用于查询的数据源，而其他处理器则将消息发送到外部系统。你可能会注意到了,命令处理器只对组件所做的更改感兴趣，却完全察觉不到它们的存在。这意味着它可以非侵入地扩展应用程序的新功能， 你需要做的就只是添加一个事件监听器。事件让应用程序中的所有组件松散耦合。</p><p>在某些情况下,事件处理需要把新的命令发送到应用程序。这方面例子，例如，当接收到一 个订单，这可能意味着客户的账户应当扣除购买商品所需的金额，并必须通知装运方准备打包这批商品。在许多应用中，逻辑将变得更加复杂:如果客户没有及时支付呢?你会马上发货还是等待付款？saga(长事务处理)是CQRS的概念，它负责管理这些复杂的商业事务。</p><p>在用户界面和数据源之间的瘦数据层，为实际的查询实现提供了一个明确定义的接口。这个数据层通常返回包含查询结果的只读DTO对象。这些DTO的内容通常是由用户界面的需求驱 动的。在大多数情况下,他们直接映射到用户界面的一个特定的视图(也称为table-per-view)。</p><p>Axon不提供任何应用程序这部分的构件。主要的原因是这非常简单，并且与分层架构并没有太大的区别。</p><h2 id="Axon模块结构"><a href="#Axon模块结构" class="headerlink" title="Axon模块结构"></a>Axon模块结构</h2><p>Axon Framework由多个针对CQRS特定问题域的模块组成。根据项目的具体需求，你需要包括一个或多个这些模块。<br>从Axon2.1起,所有模块兼容OSGi。这意味着它们在manifest文件包含所需的头文件,并声明它们导入和导出的包。目前,只有Slf4J bundle(1.7.0 &lt;= 版本&lt; 2.0.0)是必需的。所有其他导入的都被标记为可选,尽管你很可能需要这些。</p><h2 id="主模块"><a href="#主模块" class="headerlink" title="主模块"></a>主模块</h2><p>Axon的主要模块已经过完全的测试，强大到足以在苛刻的生产环境中使用。所有这些模 块的maven groupId都是org.axonframework。</p><p>核心模块顾名思义是Axon的核心组件。如果你使用single-node设置,这个模块可能会提供给你需要的所有组件。其他所有的Axon模块依赖这个模块，所以它必须在classpath中可用。</p><p>测试模块包含有你可以使用的测试固件来测试基于Axon的组件，比如你的命令处理器、聚 合和Sagas。你通常在运行时不需要这个模块，只需在测试过程中添加到classpath。</p><p>分布式CommandBus包含了可用于在多个节点发送命令的实现。它配备了JGroups和Spring Cloud连接器，来连接这些节点。</p><p>AMQP模块提供的组件，允许你打造一个基于AMQP的EventBus，并使用message broker作为分配机制。这允许保证事件送达，即使事件处理器节点暂时不可用。</p><p>Spring模块允许Axon组件在Spring程序上下文中配置。它还提供了一些针对Spring框架的构件的实现，例如用于在Spring消息信道上发布和检索Axon事件的适配器。</p><p>MongoDB是一个基于文档的NoSQL数据库，Mongo模块实现事件和saga的存储，并用MongoDB数据库存储事件流和saga。</p><p>几个AxonFramework组件提供监控信息。Metrics模块提供基于Codehale的基本实现来收集监控信息。</p><h2 id="与Axon-API一起工作"><a href="#与Axon-API一起工作" class="headerlink" title="与Axon API一起工作"></a>与Axon API一起工作</h2><p>QRS是一种架构模式，它不可能提供一个适合所有项目的单一解决方案。显然，Axon Framework并不试图提供这样的解决方案。相反，Axon提供了遵循最佳实践的实现和将每一个实现都调整到符合你的特定需求的手段。</p><p>几乎所有基础设施构件都提供检查点(如拦截器,解析器等)，允许你向这些构件添 加application-specific行为。大多数情况下，Axon将为那些适合大多数用例的检查点提供实现，如果需要，你可以简单地实现自己的。</p><p>非基础设施对象，如消息，通常是不可变的。这确保了这些对象在多线程环境中是安全的， 没有副作用的。</p><p>为了确保定制的最大化，所有Axon组件都使用接口定义。抽象类和具体的实现类提供了帮助你的方式，但框架对你没有任何要求，它总是允许使用该接口构建任何完全自定义实现的构件。</p><h2 id="Spring的支持"><a href="#Spring的支持" class="headerlink" title="Spring的支持"></a>Spring的支持</h2><p>Axon Framework对Spring提供了广泛的支持，但不强制你使用Spring来使用Axon。所有的组件都可以以编程方式配置，并且不需要把Spring放在classpath中。然而，如果你使用Spring、使 用Spring的annotation，很多的配置会变得更加容易。</p><p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/943f5b3ab139" target="_blank" rel="noopener">https://www.jianshu.com/p/943f5b3ab139</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>]]></content>
+      
+      <categories>
+          
+          <category> AxonFramework </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AxonFramework </tag>
             
         </tags>
       
@@ -1015,9 +1015,9 @@
   
     
     <entry>
-      <title>读书</title>
-      <link href="/reading/index.html"/>
-      <url>/reading/index.html</url>
+      <title>工具库</title>
+      <link href="/tools/index.html"/>
+      <url>/tools/index.html</url>
       <content type="html"><![CDATA[]]></content>
     </entry>
     
@@ -1026,13 +1026,6 @@
       <link href="/about/index.html"/>
       <url>/about/index.html</url>
       <content type="html"><![CDATA[<p>我是耒耒耒耒耒（张未）。欢迎来到我的个人技术博客。目前主要做Java后端开发，同时兼顾一些Vue页面的开发，对领域驱动较为感兴趣。</p>]]></content>
-    </entry>
-    
-    <entry>
-      <title>工具库</title>
-      <link href="/tools/index.html"/>
-      <url>/tools/index.html</url>
-      <content type="html"><![CDATA[]]></content>
     </entry>
     
   
