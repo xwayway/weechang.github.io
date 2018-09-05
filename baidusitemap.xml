@@ -3,6 +3,206 @@
 
 
     
+  <url>
+    <loc>http://blog.weechang.xyz/2018/08/27/AxonFramework-%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/</loc>
+    <lastmod>2018-09-05T02:21:46.375Z</lastmod>
+    <data>
+        <display>
+        <title>AxonFramework事件处理</title>
+        <pubTime>2018-08-27T06:47:54.000Z</pubTime>
+        
+        <tag>AxonFramework</tag>
+         
+         
+           
+             
+              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.weechang.xyz/2018/08/20/AxonFramework-%E9%85%8D%E7%BD%AE/</loc>
+    <lastmod>2018-09-05T02:21:46.357Z</lastmod>
+    <data>
+        <display>
+        <title>AxonFramework配置</title>
+        <pubTime>2018-08-20T10:34:05.000Z</pubTime>
+        
+        <tag>AxonFramework</tag>
+         
+         
+           
+             
+              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.weechang.xyz/2018/08/27/AxonFramework-%E5%9C%A8%E8%81%9A%E5%90%88%E4%B8%AD%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4/</loc>
+    <lastmod>2018-09-05T02:21:46.324Z</lastmod>
+    <data>
+        <display>
+        <title>AxonFramework在聚合中处理命令</title>
+        <pubTime>2018-08-27T06:04:52.000Z</pubTime>
+        
+        <tag>AxonFramework</tag>
+         
+         
+           
+             
+              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.weechang.xyz/2018/08/27/AxonFramework-%E7%AE%A1%E7%90%86%E5%A4%8D%E6%9D%82%E7%9A%84%E4%B8%9A%E5%8A%A1%E4%BA%8B%E5%8A%A1/</loc>
+    <lastmod>2018-09-05T02:21:46.300Z</lastmod>
+    <data>
+        <display>
+        <title>AxonFramework管理复杂的业务事务</title>
+        <pubTime>2018-08-27T06:43:56.000Z</pubTime>
+        
+        <tag>AxonFramework</tag>
+         
+         
+           
+             
+              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.weechang.xyz/2018/08/21/AxonFramework-%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%9E%8B/</loc>
+    <lastmod>2018-09-05T02:21:46.263Z</lastmod>
+    <data>
+        <display>
+        <title>AxonFramework命令模型</title>
+        <pubTime>2018-08-21T06:00:06.000Z</pubTime>
+        
+        <tag>AxonFramework</tag>
+         
+         
+           
+             
+              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.weechang.xyz/2018/08/27/AxonFramework-%E8%81%9A%E5%90%88%E4%BA%8B%E4%BB%B6%E6%BA%AF%E6%BA%90/</loc>
+    <lastmod>2018-09-05T02:21:46.238Z</lastmod>
+    <data>
+        <display>
+        <title>AxonFramework聚合事件溯源</title>
+        <pubTime>2018-08-27T05:56:57.000Z</pubTime>
+        
+        <tag>AxonFramework</tag>
+         
+         
+           
+             
+              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.weechang.xyz/2018/08/20/AxonFramework-%E5%B7%A5%E4%BD%9C%E5%8D%95%E5%85%83/</loc>
+    <lastmod>2018-09-05T02:21:46.207Z</lastmod>
+    <data>
+        <display>
+        <title>AxonFramework工作单元</title>
+        <pubTime>2018-08-20T05:17:12.000Z</pubTime>
+        
+        <tag>AxonFramework</tag>
+         
+         
+           
+             
+              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.weechang.xyz/2018/08/17/AxonFramework-%E6%9E%B6%E6%9E%84%E6%A6%82%E8%BF%B0/</loc>
+    <lastmod>2018-09-05T02:21:46.154Z</lastmod>
+    <data>
+        <display>
+        <title>AxonFramework架构概述</title>
+        <pubTime>2018-08-17T08:33:12.000Z</pubTime>
+        
+        <tag>AxonFramework</tag>
+         
+         
+           
+             
+              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.weechang.xyz/2018/08/17/AxonFramework-%E6%B6%88%E6%81%AF%E3%80%81%E5%91%BD%E4%BB%A4%E5%92%8C%E4%BA%8B%E4%BB%B6/</loc>
+    <lastmod>2018-09-05T02:21:46.057Z</lastmod>
+    <data>
+        <display>
+        <title>AxonFramework消息、命令和事件</title>
+        <pubTime>2018-08-17T08:38:47.000Z</pubTime>
+        
+        <tag>AxonFramework</tag>
+         
+         
+           
+             
+              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.weechang.xyz/2018/08/17/AxonFramework-%E7%AE%80%E4%BB%8B/</loc>
+    <lastmod>2018-09-05T02:21:46.020Z</lastmod>
+    <data>
+        <display>
+        <title>AxonFramework简介</title>
+        <pubTime>2018-08-17T08:19:19.000Z</pubTime>
+        
+        <tag>AxonFramework</tag>
+         
+         
+           
+             
+              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
     
   <url>
@@ -210,246 +410,6 @@
 
     
   <url>
-    <loc>http://blog.weechang.xyz/2018/08/20/AxonFramework%E9%85%8D%E7%BD%AE/</loc>
-    <lastmod>2018-09-04T09:24:40.321Z</lastmod>
-    <data>
-        <display>
-        <title>AxonFramework配置</title>
-        <pubTime>2018-08-20T10:34:05.000Z</pubTime>
-        
-        <tag>AxonFramework</tag>
-         
-        <tag>DDD</tag>
-         
-        <tag>CQRS</tag>
-         
-         
-           
-             
-              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.weechang.xyz/2018/08/27/AxonFramework%E8%81%9A%E5%90%88%E4%BA%8B%E4%BB%B6%E6%BA%AF%E6%BA%90/</loc>
-    <lastmod>2018-09-04T09:24:40.318Z</lastmod>
-    <data>
-        <display>
-        <title>AxonFramework聚合事件溯源</title>
-        <pubTime>2018-08-27T05:56:57.000Z</pubTime>
-        
-        <tag>AxonFramework</tag>
-         
-        <tag>DDD</tag>
-         
-        <tag>CQRS</tag>
-         
-         
-           
-             
-              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.weechang.xyz/2018/08/27/AxonFramework%E7%AE%A1%E7%90%86%E5%A4%8D%E6%9D%82%E7%9A%84%E4%B8%9A%E5%8A%A1%E4%BA%8B%E5%8A%A1/</loc>
-    <lastmod>2018-09-04T09:24:40.314Z</lastmod>
-    <data>
-        <display>
-        <title>AxonFramework管理复杂的业务事务</title>
-        <pubTime>2018-08-27T06:43:56.000Z</pubTime>
-        
-        <tag>AxonFramework</tag>
-         
-        <tag>DDD</tag>
-         
-        <tag>CQRS</tag>
-         
-         
-           
-             
-              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.weechang.xyz/2018/08/17/AxonFramework%E7%AE%80%E4%BB%8B/</loc>
-    <lastmod>2018-09-04T09:24:40.311Z</lastmod>
-    <data>
-        <display>
-        <title>AxonFramework简介</title>
-        <pubTime>2018-08-17T08:19:19.000Z</pubTime>
-        
-        <tag>AxonFramework</tag>
-         
-        <tag>DDD</tag>
-         
-        <tag>CQRS</tag>
-         
-         
-           
-             
-              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.weechang.xyz/2018/08/17/AxonFramework%E6%B6%88%E6%81%AF%E3%80%81%E5%91%BD%E4%BB%A4%E5%92%8C%E4%BA%8B%E4%BB%B6/</loc>
-    <lastmod>2018-09-04T09:24:40.304Z</lastmod>
-    <data>
-        <display>
-        <title>AxonFramework消息、命令和事件</title>
-        <pubTime>2018-08-17T08:38:47.000Z</pubTime>
-        
-        <tag>AxonFramework</tag>
-         
-        <tag>DDD</tag>
-         
-        <tag>CQRS</tag>
-         
-         
-           
-             
-              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.weechang.xyz/2018/08/17/AxonFramework%E6%9E%B6%E6%9E%84%E6%A6%82%E8%BF%B0/</loc>
-    <lastmod>2018-09-04T09:24:40.298Z</lastmod>
-    <data>
-        <display>
-        <title>AxonFramework架构概述</title>
-        <pubTime>2018-08-17T08:33:12.000Z</pubTime>
-        
-        <tag>AxonFramework</tag>
-         
-        <tag>DDD</tag>
-         
-        <tag>CQRS</tag>
-         
-         
-           
-             
-              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.weechang.xyz/2018/08/20/AxonFramework%E5%B7%A5%E4%BD%9C%E5%8D%95%E5%85%83/</loc>
-    <lastmod>2018-09-04T09:24:40.292Z</lastmod>
-    <data>
-        <display>
-        <title>AxonFramework工作单元</title>
-        <pubTime>2018-08-20T05:17:12.000Z</pubTime>
-        
-        <tag>AxonFramework</tag>
-         
-        <tag>DDD</tag>
-         
-        <tag>CQRS</tag>
-         
-         
-           
-             
-              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.weechang.xyz/2018/08/27/AxonFramework%E5%9C%A8%E8%81%9A%E5%90%88%E4%B8%AD%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4/</loc>
-    <lastmod>2018-09-04T09:24:40.288Z</lastmod>
-    <data>
-        <display>
-        <title>AxonFramework在聚合中处理命令</title>
-        <pubTime>2018-08-27T06:04:52.000Z</pubTime>
-        
-        <tag>AxonFramework</tag>
-         
-        <tag>DDD</tag>
-         
-        <tag>CQRS</tag>
-         
-         
-           
-             
-              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.weechang.xyz/2018/08/21/AxonFramework%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%9E%8B/</loc>
-    <lastmod>2018-09-04T09:24:40.286Z</lastmod>
-    <data>
-        <display>
-        <title>AxonFramework命令模型</title>
-        <pubTime>2018-08-21T06:00:06.000Z</pubTime>
-        
-        <tag>AxonFramework</tag>
-         
-        <tag>DDD</tag>
-         
-        <tag>CQRS</tag>
-         
-         
-           
-             
-              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.weechang.xyz/2018/08/27/AxonFramework%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/</loc>
-    <lastmod>2018-09-04T09:24:40.279Z</lastmod>
-    <data>
-        <display>
-        <title>AxonFramework事件处理</title>
-        <pubTime>2018-08-27T06:47:54.000Z</pubTime>
-        
-        <tag>AxonFramework</tag>
-         
-        <tag>DDD</tag>
-         
-        <tag>CQRS</tag>
-         
-         
-           
-             
-              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://blog.weechang.xyz/2018/08/31/AxonFramework-%E9%AB%98%E7%BA%A7%E5%AE%9A%E5%88%B6/</loc>
     <lastmod>2018-09-04T09:24:40.277Z</lastmod>
     <data>
@@ -470,112 +430,12 @@
 
     
   <url>
-    <loc>http://blog.weechang.xyz/2018/08/20/AxonFramework-%E9%85%8D%E7%BD%AE/</loc>
-    <lastmod>2018-09-04T09:24:40.274Z</lastmod>
-    <data>
-        <display>
-        <title>AxonFramework配置</title>
-        <pubTime>2018-08-20T10:34:05.000Z</pubTime>
-        
-        <tag>AxonFramework</tag>
-         
-         
-           
-             
-              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://blog.weechang.xyz/2018/08/29/AxonFramework-%E8%B7%9F%E8%B8%AA%E6%9C%80%E5%90%8E%E6%9C%9F%E9%99%90/</loc>
     <lastmod>2018-09-04T09:24:40.268Z</lastmod>
     <data>
         <display>
         <title>AxonFramework跟踪最后期限</title>
         <pubTime>2018-08-29T02:11:46.000Z</pubTime>
-        
-        <tag>AxonFramework</tag>
-         
-         
-           
-             
-              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.weechang.xyz/2018/08/27/AxonFramework-%E8%81%9A%E5%90%88%E4%BA%8B%E4%BB%B6%E6%BA%AF%E6%BA%90/</loc>
-    <lastmod>2018-09-04T09:24:40.266Z</lastmod>
-    <data>
-        <display>
-        <title>AxonFramework聚合事件溯源</title>
-        <pubTime>2018-08-27T05:56:57.000Z</pubTime>
-        
-        <tag>AxonFramework</tag>
-         
-         
-           
-             
-              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.weechang.xyz/2018/08/27/AxonFramework-%E7%AE%A1%E7%90%86%E5%A4%8D%E6%9D%82%E7%9A%84%E4%B8%9A%E5%8A%A1%E4%BA%8B%E5%8A%A1/</loc>
-    <lastmod>2018-09-04T09:24:40.263Z</lastmod>
-    <data>
-        <display>
-        <title>AxonFramework管理复杂的业务事务</title>
-        <pubTime>2018-08-27T06:43:56.000Z</pubTime>
-        
-        <tag>AxonFramework</tag>
-         
-         
-           
-             
-              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.weechang.xyz/2018/08/17/AxonFramework-%E7%AE%80%E4%BB%8B/</loc>
-    <lastmod>2018-09-04T09:24:40.261Z</lastmod>
-    <data>
-        <display>
-        <title>AxonFramework简介</title>
-        <pubTime>2018-08-17T08:19:19.000Z</pubTime>
-        
-        <tag>AxonFramework</tag>
-         
-         
-           
-             
-              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.weechang.xyz/2018/08/17/AxonFramework-%E6%B6%88%E6%81%AF%E3%80%81%E5%91%BD%E4%BB%A4%E5%92%8C%E4%BA%8B%E4%BB%B6/</loc>
-    <lastmod>2018-09-04T09:24:40.255Z</lastmod>
-    <data>
-        <display>
-        <title>AxonFramework消息、命令和事件</title>
-        <pubTime>2018-08-17T08:38:47.000Z</pubTime>
         
         <tag>AxonFramework</tag>
          
@@ -630,92 +490,12 @@
 
     
   <url>
-    <loc>http://blog.weechang.xyz/2018/08/17/AxonFramework-%E6%9E%B6%E6%9E%84%E6%A6%82%E8%BF%B0/</loc>
-    <lastmod>2018-09-04T09:24:40.246Z</lastmod>
-    <data>
-        <display>
-        <title>AxonFramework架构概述</title>
-        <pubTime>2018-08-17T08:33:12.000Z</pubTime>
-        
-        <tag>AxonFramework</tag>
-         
-         
-           
-             
-              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.weechang.xyz/2018/08/20/AxonFramework-%E5%B7%A5%E4%BD%9C%E5%8D%95%E5%85%83/</loc>
-    <lastmod>2018-09-04T09:24:40.244Z</lastmod>
-    <data>
-        <display>
-        <title>AxonFramework工作单元</title>
-        <pubTime>2018-08-20T05:17:12.000Z</pubTime>
-        
-        <tag>AxonFramework</tag>
-         
-         
-           
-             
-              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://blog.weechang.xyz/2018/08/31/AxonFramework-%E5%AD%98%E5%82%A8%E5%BA%93/</loc>
     <lastmod>2018-09-04T09:24:40.241Z</lastmod>
     <data>
         <display>
         <title>AxonFramework-存储库</title>
         <pubTime>2018-08-31T02:50:48.000Z</pubTime>
-        
-        <tag>AxonFramework</tag>
-         
-         
-           
-             
-              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.weechang.xyz/2018/08/27/AxonFramework-%E5%9C%A8%E8%81%9A%E5%90%88%E4%B8%AD%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4/</loc>
-    <lastmod>2018-09-04T09:24:40.239Z</lastmod>
-    <data>
-        <display>
-        <title>AxonFramework在聚合中处理命令</title>
-        <pubTime>2018-08-27T06:04:52.000Z</pubTime>
-        
-        <tag>AxonFramework</tag>
-         
-         
-           
-             
-              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.weechang.xyz/2018/08/21/AxonFramework-%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%9E%8B/</loc>
-    <lastmod>2018-09-04T09:24:40.236Z</lastmod>
-    <data>
-        <display>
-        <title>AxonFramework命令模型</title>
-        <pubTime>2018-08-21T06:00:06.000Z</pubTime>
         
         <tag>AxonFramework</tag>
          
@@ -816,26 +596,6 @@
         <display>
         <title>AxonFramework-事件序列化器调优</title>
         <pubTime>2018-08-31T03:20:34.000Z</pubTime>
-        
-        <tag>AxonFramework</tag>
-         
-         
-           
-             
-              <breadCrumb title="AxonFramework" url="http://blog.weechang.xyz/categories/AxonFramework/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.weechang.xyz/2018/08/27/AxonFramework-%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/</loc>
-    <lastmod>2018-09-04T09:24:40.221Z</lastmod>
-    <data>
-        <display>
-        <title>AxonFramework事件处理</title>
-        <pubTime>2018-08-27T06:47:54.000Z</pubTime>
         
         <tag>AxonFramework</tag>
          
