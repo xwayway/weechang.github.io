@@ -2,7 +2,7 @@
 title: 【Java学习之从头开始】Java基础-1——String类
 date: 2018-06-08 13:59:02
 categories: Java基础
-tags: [Java学习之从头开始, Java基础, String]
+tags: [Java基础, String]
 ---
 
 # 一、简介

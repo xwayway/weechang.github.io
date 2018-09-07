@@ -9,13 +9,13 @@ tags: [日常记录, MySql]
 
 <!-- more -->
 
-## in
+## IN
  <b>in相当于多个or条件查询</b>
  
  例如：
- 
+<pre>
  select * from user where id in(1,2,3)
-
+</pre>
   
 ## NOT IN
 

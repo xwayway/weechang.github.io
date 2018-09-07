@@ -17,6 +17,7 @@ widget:
     links: '链接'
     tags: '标签'
     tag_cloud: '标签云'
+    topics: '专题内容'
 article:
     more: '查看更多'
     comments: '评论'

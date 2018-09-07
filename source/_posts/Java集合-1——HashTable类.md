@@ -2,7 +2,7 @@
 title: 【Java学习之从头开始】Java集合-1——HashTable类
 date: 2018-07-31 14:00:29
 categories: Java集合
-tags: [Java学习之从头开始, Java集合, HashTable]
+tags: [Java集合, HashTable]
 ---
 
 # 一、简介

@@ -1,0 +1,18 @@
+<% var item = page; %>
+<% var topics = site.data.topic;%>
+
+<% if (topics.length) { %>
+<div class="widget-wrap">
+    <h3 class="widget-title"><%= __('widget.topics') %></h3>
+    <div class="widget">
+        <ul id="topics">
+            <% for (var i in topics) { %>
+            <li>
+                <% var topic = topics[i] %>
+                <a href="<%- topic.href %>"><%= topic.name %></a>
+            </li>
+            <% } %>
+        </ul>
+    </div>
+</div>
+<% } %>

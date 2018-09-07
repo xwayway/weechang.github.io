@@ -2,7 +2,7 @@
 title: 【Java学习之从头开始】Java基础-0——Object类
 date: 2018-06-07 18:39:22
 categories: Java基础
-tags: [Java学习之从头开始, Java基础, Object]
+tags: [Java基础, Object]
 ---
 
 从这篇文章起就正式开始Java学习之旅了。java中，万物皆对象，所以第一篇先学习Java的Object类，循序渐进。
