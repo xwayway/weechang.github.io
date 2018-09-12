@@ -3,50 +3,6 @@
   
     
     <entry>
-      <title>【Java学习之从头开始】Java集合-2——TreeMap类</title>
-      <link href="/2018/09/05/Java%E9%9B%86%E5%90%88-2%E2%80%94%E2%80%94TreeMap%E7%B1%BB/"/>
-      <url>/2018/09/05/Java%E9%9B%86%E5%90%88-2%E2%80%94%E2%80%94TreeMap%E7%B1%BB/</url>
-      <content type="html"><![CDATA[<h1 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h1><p>TreeMap 是一个有序的key-value集合，通过红黑树实现。<br>TreeMap 实现了NavigableMap接口，意味着它支持一系列的导航方法。比如返回有序的key集合。<br>TreeMap 基于红黑树（Red-Black tree）实现。该映射根据其键的自然顺序进行排序，或者根据创建映射时提供的 Comparator 进行排序，具体取决于使用的构造方法。<br>TreeMap 的基本操作 containsKey、get、put 和 remove 的时间复杂度是 log(n) 。<br>另外，TreeMap是非同步的。 它的iterator 方法返回的迭代器是fail-fastl的。</p><a id="more"></a>]]></content>
-      
-      <categories>
-          
-          <category> Java集合 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Java集合 </tag>
-            
-            <tag> TreeMap </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>使用GitBook制作电子书</title>
-      <link href="/2018/09/04/%E4%BD%BF%E7%94%A8GitBook%E5%88%B6%E4%BD%9C%E7%94%B5%E5%AD%90%E4%B9%A6/"/>
-      <url>/2018/09/04/%E4%BD%BF%E7%94%A8GitBook%E5%88%B6%E4%BD%9C%E7%94%B5%E5%AD%90%E4%B9%A6/</url>
-      <content type="html"><![CDATA[<blockquote><p>由于最近想要将AxonFrameWork的官方英文文档翻译成中文。为了方便自己及广大爱好者浏览，决定制作成在线电子书的形式。于是想到了GitBook，在此将自己的GitBook制作之路记录下来，留给有需要的朋友。</p></blockquote><a id="more"></a><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>由于文笔有限，简介就直接扒度娘的吧。<br>GitBook 是一个基于 Node.js 的命令行工具，可使用 Github/Git 和 Markdown 来制作精美的电子书，GitBook 并非关于 Git 的教程。<br>GitBook支持输出多种文档格式：</p><ul><li>静态站点：GitBook默认输出该种格式，生成的静态站点可直接托管搭载Github Pages服务上；</li><li>PDF：需要安装gitbook-pdf依赖；</li><li>eBook：需要安装ebook-convert；</li><li>单HTML网页：支持将内容输出为单页的HTML，不过一般用在将电子书格式转换为PDF或eBook的中间过程；</li><li>JSON：一般用于电子书的调试或元数据提取。</li></ul><h1 id="环境依赖"><a href="#环境依赖" class="headerlink" title="环境依赖"></a>环境依赖</h1><ul><li>Node.js（推荐使用v4.0.0及以上版本）<br>  由于GitBook是基于Node.js的命令行工具，所以Node.js的环境依赖是必须的。具体的Node.js搭建环境，请各位自行度娘，不再啰嗦。</li><li>Windows，Linux，Unix 或 Mac OS X（各大主流操作系统均可）</li></ul><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>GitBook最简单的安装方法便是通过npm命安装，在命令行输入以下命令即可安装</p><pre>$ npm install gitbook-cli -g</pre><p>安装完成后可用过，以下命令查看GitBook版本</p><pre>$ gitbook -V</pre><blockquote><p><b>注意</b><br>此处V一定是大写，至少windows环境下是，其他环境还未证实</p></blockquote><h1 id="创建你的第一本书"><a href="#创建你的第一本书" class="headerlink" title="创建你的第一本书"></a>创建你的第一本书</h1><p>以下将具体介如何创建并部署属于你的电子书</p><h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><pre>$ gitbook init {directory} </pre><p>{directory} 表示具体目录，通过该命令，你可以在指定目录下初始化你的GitBook。</p><h2 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h2><pre>$ gitbook build</pre><p>通过运行该命令，会在项目的目录下生成一个 _book 目录，里面的内容为静态站点的资源文件，你可结合git管理工具等，将该文件推送到GitHub、码云、Coding等git平台上，通过gitPages的方式展示你的电子书。后面将会对该方式做具体介绍。</p><h2 id="本地预览"><a href="#本地预览" class="headerlink" title="本地预览"></a>本地预览</h2><pre>$ gitbook server</pre><p>通过运行该命令，将在本地启动一个静态服务器，通过本地浏览器，你可预览你的gitbook内容。默认端口为4000 。本地访问地址为 <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a></p><h1 id="GitBook目录"><a href="#GitBook目录" class="headerlink" title="GitBook目录"></a>GitBook目录</h1><h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><p>GitBook的目录结构很简单。在 SUMMARY （即 SUMMARY.md 文件）中列出的所有 Markdown 文件都将被转换为 HTML。</p><p>一个基本的 GitBook 电子书结构通常如下：</p><pre>.├── book.json├── README.md├── SUMMARY.md├── chapter-1/|   ├── README.md|   └── coentent.md└── chapter-2/    ├── README.md    └── coentent.md</pre><p>特殊文件介绍：</p><table><thead><tr><th>文件</th><th>介绍</th></tr></thead><tbody><tr><td>book.json</td><td>配置数据 (optional)</td></tr><tr><td>README.md</td><td>电子书的前言或简介 (required)</td></tr><tr><td>SUMMARY.md</td><td>电子书目录 (optional)</td></tr><tr><td>GLOSSARY.md</td><td>词汇/注释术语列表 (optional)</td></tr></tbody></table><h2 id="静态资源目录"><a href="#静态资源目录" class="headerlink" title="静态资源目录"></a>静态资源目录</h2><p>静态文件是在 SUMMARY.md 中未列出的文件。除非被忽略，否则所有静态文件都将复制到输出路径。</p><h2 id="忽略文件与文件夹"><a href="#忽略文件与文件夹" class="headerlink" title="忽略文件与文件夹"></a>忽略文件与文件夹</h2><p>GitBook将读取 .gitignore，.bookignore 和 .ignore 文件，以获取要过滤的文件和文件夹。这些文件中的格式遵循 .gitignore 的规则：</p><pre>    ## 忽略以下文件    test.md    a.md    ## 忽略该文件夹下所有文件    test/*    target/*   </pre><h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><h2 id="常见配置"><a href="#常见配置" class="headerlink" title="常见配置"></a>常见配置</h2><table><thead><tr><th>文件</th><th>介绍</th></tr></thead><tbody><tr><td>root</td><td>包含所有图书文件的根文件夹的路径，除了 book.json</td></tr><tr><td>structure</td><td>指定自述文件，摘要，词汇表等的路径，参考 Structure paragraph.</td></tr><tr><td>title</td><td>您的书名，默认值是从 README 中提取出来的。在 GitBook.com 上，这个字段是预填的。</td></tr><tr><td>description</td><td>您的书籍的描述，默认值是从 README 中提取出来的。在 GitBook.com 上，这个字段是预填的。</td></tr><tr><td>author</td><td>作者名。在GitBook.com上，这个字段是预填的。</td></tr><tr><td>isbn</td><td>国际标准书号 ISBN</td></tr><tr><td>language</td><td>本书的语言类型 —— ISO code 。默认值是 en</td></tr><tr><td>direction</td><td>文本阅读顺序。可以是 rtl （从右向左）或 ltr （从左向右），默认值依赖于 language 的值。</td></tr><tr><td>gitbook</td><td>应该使用的GitBook版本。使用 SemVer 规范，并接受类似于 “&gt; = 3.0.0” 的条件。</td></tr></tbody></table><h1 id="GitBook-部署"><a href="#GitBook-部署" class="headerlink" title="GitBook 部署"></a>GitBook 部署</h1><h2 id="托管到gitbook-com"><a href="#托管到gitbook-com" class="headerlink" title="托管到gitbook.com"></a>托管到gitbook.com</h2>]]></content>
-      
-      <categories>
-          
-          <category> 开源之路 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 手把手教学 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
       <title>AxonFramework-事件序列化器调优</title>
       <link href="/2018/08/31/AxonFramework-%E4%BA%8B%E4%BB%B6%E5%BA%8F%E5%88%97%E5%8C%96%E5%99%A8%E8%B0%83%E4%BC%98/"/>
       <url>/2018/08/31/AxonFramework-%E4%BA%8B%E4%BB%B6%E5%BA%8F%E5%88%97%E5%8C%96%E5%99%A8%E8%B0%83%E4%BC%98/</url>
@@ -467,29 +423,6 @@
     </entry>
     
     <entry>
-      <title>MySql中的find_in_set、in、like的区别</title>
-      <link href="/2018/08/23/MySql%E4%B8%AD%E7%9A%84find-in-set%E3%80%81in%E3%80%81like%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
-      <url>/2018/08/23/MySql%E4%B8%AD%E7%9A%84find-in-set%E3%80%81in%E3%80%81like%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
-      <content type="html"><![CDATA[<blockquote><p>最近需要做项目，遇到一个需要查询表中的某一列，其数据结构为多个id间用“,”隔开的字符串。需要判断是否包含某一个id，最开始想的是用like查询，但是转念一想，like查询会存在查询id为1的时候，11、12这样的数据也会被查询出来，后来开始寻找其他方法，找到了find_in_set(str, Strs)函数。然后就对MySql中字符串查询的函数一起做一个总结。</p></blockquote><a id="more"></a><h2 id="IN"><a href="#IN" class="headerlink" title="IN"></a>IN</h2><p> <b>in相当于多个or条件查询</b></p><p> 例如：</p><pre> select * from user where id in(1,2,3)</pre><h2 id="NOT-IN"><a href="#NOT-IN" class="headerlink" title="NOT IN"></a>NOT IN</h2><h2 id="LIKE"><a href="#LIKE" class="headerlink" title="LIKE"></a>LIKE</h2><h2 id="SUBSTR"><a href="#SUBSTR" class="headerlink" title="SUBSTR()"></a>SUBSTR()</h2><h2 id="FIND-IN-SET"><a href="#FIND-IN-SET" class="headerlink" title="FIND_IN_SET()"></a>FIND_IN_SET()</h2>]]></content>
-      
-      <categories>
-          
-          <category> 日常记录 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 日常记录 </tag>
-            
-            <tag> MySql </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
       <title>AxonFramework命令模型</title>
       <link href="/2018/08/21/AxonFramework-%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%9E%8B/"/>
       <url>/2018/08/21/AxonFramework-%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%9E%8B/</url>
@@ -639,29 +572,6 @@
     </entry>
     
     <entry>
-      <title>六元一个的私有博客系统，了解一下？</title>
-      <link href="/2018/08/02/%E5%85%AD%E5%85%83%E4%B8%80%E4%B8%AA%E7%9A%84%E7%A7%81%E6%9C%89%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%EF%BC%8C%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B%EF%BC%9F/"/>
-      <url>/2018/08/02/%E5%85%AD%E5%85%83%E4%B8%80%E4%B8%AA%E7%9A%84%E7%A7%81%E6%9C%89%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%EF%BC%8C%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B%EF%BC%9F/</url>
-      <content type="html"><![CDATA[<h1 id="神说要有光，于是便有了光"><a href="#神说要有光，于是便有了光" class="headerlink" title="神说要有光，于是便有了光"></a>神说要有光，于是便有了光</h1><p>写代码的，偶尔都想装点逼，想要自己写点博客。刚开始还能在各大社区写，比如说CSDN，开源中国，博客园什么的。但是越写就会越觉得，那些博客平台都不是自己想要的，虽然大平台，能够提高在搜索引擎的收录，但是我看着别人的博客，我也想要有一个自建的博客系统。于是开始了自建博客的入坑之旅，在这儿给大伙分享一下我的自建博客历程。</p><a id="more"></a><h1 id="本文包括一下步骤"><a href="#本文包括一下步骤" class="headerlink" title="本文包括一下步骤"></a>本文包括一下步骤</h1><h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>因为自己不是很懂，网上找的资料也很分散。所以整个历程大概经历了四天左右才把自己的博客系统搞好。首先需要准备以下资源</p><ol><li>github账号（应该都有吧，没有的自己去注册一个）<a href="https://www.github.com" target="_blank">传送门</a></li><li>选择一个你喜欢的hexo主题，这个网上太多了。可以去<a href="http://hexo.io/themes/" target="_blank">hexo官网</a>，或者<a href="https://github.com/search?q=hexo" target="_blank">github</a>上看看</li><li>准备一个nodeJS环境，具体怎么搞，可以度娘一下 <a href="https://www.cnblogs.com/zhouyu2017/p/6485265.html" target="_blank">windows传送门</a>，<a herf="https://www.cnblogs.com/BinXu/p/6050850.html" target="_blank">Mac 传送门</a></li><li>一个阿里云账号（如果使用github提供的域名的话，这个可以省了）</li></ol><p># </p>]]></content>
-      
-      <categories>
-          
-          <category> 开源之路 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 手把手教学 </tag>
-            
-            <tag> GitHub Pages </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
       <title>【Java学习之从头开始】Java集合-1——HashTable类</title>
       <link href="/2018/07/31/Java%E9%9B%86%E5%90%88-1%E2%80%94%E2%80%94HashTable%E7%B1%BB/"/>
       <url>/2018/07/31/Java%E9%9B%86%E5%90%88-1%E2%80%94%E2%80%94HashTable%E7%B1%BB/</url>
@@ -794,17 +704,17 @@
     </entry>
     
     <entry>
-      <title>AxonFramework-内容汇总</title>
-      <link href="/topic/AxonFramework-%E5%86%85%E5%AE%B9%E6%B1%87%E6%80%BB/index.html"/>
-      <url>/topic/AxonFramework-%E5%86%85%E5%AE%B9%E6%B1%87%E6%80%BB/index.html</url>
-      <content type="html"><![CDATA[<blockquote><p>该系列文章为AxonFrameWork内容汇总，主要用于汇总AxonFrameWork方面的内容，会不定时更新。</p></blockquote><a id="more"></a><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul><li><a href="/2018/08/17/AxonFramework简介/">AxonFramework简介</a></li></ul><h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><ul><li><a href="/2018/08/17/AxonFramework架构概述/">AxonFramework架构概述</a></li><li><a href="/2018/08/17/AxonFramework消息、命令和事件/">AxonFramework消息、命令和事件</a></li><li><a href="/2018/08/20/AxonFramework工作单元/">AxonFramework工作单元</a></li></ul>]]></content>
-    </entry>
-    
-    <entry>
       <title>Java学习之从头开始</title>
       <link href="/topic/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/index.html"/>
       <url>/topic/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/index.html</url>
       <content type="html"><![CDATA[<blockquote><p>毕业两年了，一直做Java相关的开发工作。感觉自己做过的项目也不少，大的、小的都有，传统的，互联网的都不缺。同时也看过不少博客文章，订阅了不少公众号。但是始终感觉自己提升有限，于是决定从基础开始，进行一遍系统的学习。通过博客的方式记录自己的学习计划、进度及心得总结。希望能够提升自己。</p></blockquote><a id="more"></a><h2 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h2><ul><li><a href="/2018/06/07/java基础-0——Object类/">java基础-0——Object类</a></li><li><a href="/2018/06/08/java基础-1——String类/">java基础-1——String类</a></li></ul><h2 id="Java集合"><a href="#Java集合" class="headerlink" title="Java集合"></a>Java集合</h2><ul><li><a href="/2018/07/30/Java集合-0——HashMap类/">Java集合-0——HashMap类</a></li><li><a href="/2018/07/31/Java集合-1——HashTable类/">Java集合-1——HashTable类</a></li></ul>]]></content>
+    </entry>
+    
+    <entry>
+      <title>AxonFramework-内容汇总</title>
+      <link href="/topic/AxonFramework-%E5%86%85%E5%AE%B9%E6%B1%87%E6%80%BB/index.html"/>
+      <url>/topic/AxonFramework-%E5%86%85%E5%AE%B9%E6%B1%87%E6%80%BB/index.html</url>
+      <content type="html"><![CDATA[<blockquote><p>该系列文章为AxonFrameWork内容汇总，主要用于汇总AxonFrameWork方面的内容，会不定时更新。</p></blockquote><a id="more"></a><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul><li><a href="/2018/08/17/AxonFramework简介/">AxonFramework简介</a></li></ul><h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><ul><li><a href="/2018/08/17/AxonFramework架构概述/">AxonFramework架构概述</a></li><li><a href="/2018/08/17/AxonFramework消息、命令和事件/">AxonFramework消息、命令和事件</a></li><li><a href="/2018/08/20/AxonFramework工作单元/">AxonFramework工作单元</a></li></ul>]]></content>
     </entry>
     
   

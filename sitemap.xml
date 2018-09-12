@@ -2,13 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://blog.weechang.xyz/2018/09/05/Java%E9%9B%86%E5%90%88-2%E2%80%94%E2%80%94TreeMap%E7%B1%BB/</loc>
-    
-    <lastmod>2018-09-05T09:04:45.562Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://blog.weechang.xyz/2018/07/31/Java%E9%9B%86%E5%90%88-1%E2%80%94%E2%80%94HashTable%E7%B1%BB/</loc>
     
     <lastmod>2018-09-05T08:23:34.913Z</lastmod>
@@ -47,13 +40,6 @@
     <loc>http://blog.weechang.xyz/topic/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/index.html</loc>
     
     <lastmod>2018-09-05T06:53:21.921Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.weechang.xyz/2018/08/23/MySql%E4%B8%AD%E7%9A%84find-in-set%E3%80%81in%E3%80%81like%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
-    
-    <lastmod>2018-09-05T05:35:19.588Z</lastmod>
     
   </url>
   
@@ -145,20 +131,6 @@
     <loc>http://blog.weechang.xyz/2018/07/20/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E5%AD%A6%EF%BC%8C%E6%95%99%E4%BD%A0%E6%8A%8A%E4%BD%A0%E7%9A%84%E4%B8%AA%E4%BA%BA%E9%A1%B9%E7%9B%AE%E6%8E%A8%E9%80%81%E5%88%B0maven%E4%B8%AD%E5%A4%AE%E4%BB%93%E5%BA%93/</loc>
     
     <lastmod>2018-09-04T09:24:40.351Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.weechang.xyz/2018/08/02/%E5%85%AD%E5%85%83%E4%B8%80%E4%B8%AA%E7%9A%84%E7%A7%81%E6%9C%89%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%EF%BC%8C%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B%EF%BC%9F/</loc>
-    
-    <lastmod>2018-09-04T09:24:40.348Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.weechang.xyz/2018/09/04/%E4%BD%BF%E7%94%A8GitBook%E5%88%B6%E4%BD%9C%E7%94%B5%E5%AD%90%E4%B9%A6/</loc>
-    
-    <lastmod>2018-09-04T09:24:40.346Z</lastmod>
     
   </url>
   
