@@ -1,1 +1,1 @@
-http://blog.weechang.xyz/2018/08/31/AxonFramework-事件序列化器调优/
+http://blog.weechang.xyz/2018/09/19/六元一个的私有博客系统，了解一下？/
