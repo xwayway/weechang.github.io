@@ -10,17 +10,21 @@ tags: [日常记录, MySql]
 <!-- more -->
 
 ## IN
- <b>in相当于多个or条件查询</b>
+<b>in相当于多个or条件查询</b>
  
- 例如：
+例如：
+
 <pre>
- select * from user where id in(1,2,3)
+select * from user where id in(1,2,3)
 </pre>
-  
-## NOT IN
+
+在一定情况下等价于
+<pre>
+select * from user where id=1 or id=2 or id=3
+</pre>
 
 ## LIKE
 
-## SUBSTR()
 
 ## FIND_IN_SET()
+find
