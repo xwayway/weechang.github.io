@@ -265,22 +265,6 @@
                     </div>
                     <div class="article-meta">
                          
-                             <div class="article-word-count">
-<span>
-    <i class="fas fa-file-word"></i>
-    共712字，
-</span>
-<span>
-    <i class="fas fa-clock"></i>
-    大约需要3分钟
-</span>
-</div>
-<span id="busuanzi_container_page_pv">
-    <i class="fas fa-eye"></i>
-    已被阅读<span id="busuanzi_value_page_pv"></span>次
-</span>
-
-                         
                     </div>
                 
             </header>
@@ -288,62 +272,12 @@
         
         <div class="article-entry" itemprop="articleBody">
         
-            
-            <blockquote>
+            <p><blockquote>
 <p>今天早上一大早打开IDEA发现激活已过期，遂开始寻找激活码。但是一直不成功，后来终于找到一种比较靠谱的激活方式。在此记录下来，以备不时之需。</p>
-</blockquote>
-<p>目前网上现有的激活方式大概有这么三种</p>
-<h1 id="激活码"><a href="#激活码" class="headerlink" title="激活码"></a>激活码</h1><p>这种方式一般是给出一段激活码，然后有些还需要改host。目前这种方式，很多激活码都不能使用了，就算能使用可能到了某一天你会发现他用不了了。所以不太推荐这种方式。</p>
-<h1 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h1><p>这种方式一般是填写一个服务器地址就行了，但是现在很多服务器都被官方封了。没被封的也在被封的路上。</p>
-<h1 id="自建服务器"><a href="#自建服务器" class="headerlink" title="自建服务器"></a>自建服务器</h1><p>这种方式比较靠谱，自己搭建一个认证服务器。但是对于没有服务器的穷人来说，也是一个巨大的挑战。所以不是特别推荐。</p>
-<p>接下来就推荐一种比较靠谱的方式。</p>
-<h1 id="插件激活"><a href="#插件激活" class="headerlink" title="插件激活"></a>插件激活</h1><p>这种方式呢目前而言比较靠谱，由于插件在本地，不存在官方封域名及IP的说法，但是不排除被后期修复的问题。至少目前而言是没问题的，亲自验证过IDEA2017.3.5与2018.2是没有任何问题的。</p>
-<p>下面将具体介绍这种方式的操作方法。</p>
-<h2 id="下载插件"><a href="#下载插件" class="headerlink" title="下载插件"></a>下载插件</h2><p>首先下载插件jar包 <a href="http://idea.lanyus.com/jar/JetbrainsCrack-3.1-release-enc.jar" target="_blank" rel="noopener">http://idea.lanyus.com/jar/JetbrainsCrack-3.1-release-enc.jar</a></p>
-<h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><p>然后将插件移动到 IDEA 安装目录的bin下。如我的目录 D:\idea\IntelliJ IDEA 2018.2.4\bin</p>
-<h2 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h2><p>修改 IDEA 安装bin目录下的 idea64.exe.vmoptions 或者 idea.exe.vmoptions 具体修改哪一个看自己操作系统是64 位还是32位。64位修改 idea64.exe.vmoptions ， 32位修改 idea.exe.vmoptions。</p>
-<img src="/2018/09/21/IDEA、WebStorm最新永久激活方式/配置文件.png" title="配置文件">
-<p>然后在文件末尾添加上</p>
-<pre>
-
--javaagent:D:\idea\IntelliJ IDEA 2018.2.4\bin\JetbrainsCrack-3.1-release-enc.jar
-
-</pre>
-
-<p>其中 D:\idea\IntelliJ IDEA 2018.2.4\bin\JetbrainsCrack-3.1-release-enc.jar 为插件的安装路径和文件名。注意，目录和文件名一定要一直，不然IDEA不能启动</p>
-<img src="/2018/09/21/IDEA、WebStorm最新永久激活方式/修改配置.png" title="修改配置">
-<h2 id="重启IDEA、填写CODE"><a href="#重启IDEA、填写CODE" class="headerlink" title="重启IDEA、填写CODE"></a>重启IDEA、填写CODE</h2><p>重启IDEA，选择Activation Code填写激活码</p>
-<pre>
-    ThisCrackLicenseId-{
-    "licenseId":"ThisCrackLicenseId",
-    "licenseeName":"你想填的用户名",
-    "assigneeName":"",
-    "assigneeEmail":"你想填的邮箱",
-    "licenseRestriction":"For This Crack, Only Test! Please support genuine!!!",
-    "checkConcurrentUse":false,
-    "products":[
-    {"code":"II","paidUpTo":"2099-12-31"},
-    {"code":"DM","paidUpTo":"2099-12-31"},
-    {"code":"AC","paidUpTo":"2099-12-31"},
-    {"code":"RS0","paidUpTo":"2099-12-31"},
-    {"code":"WS","paidUpTo":"2099-12-31"},
-    {"code":"DPN","paidUpTo":"2099-12-31"},
-    {"code":"RC","paidUpTo":"2099-12-31"},
-    {"code":"PS","paidUpTo":"2099-12-31"},
-    {"code":"DC","paidUpTo":"2099-12-31"},
-    {"code":"RM","paidUpTo":"2099-12-31"},
-    {"code":"CL","paidUpTo":"2099-12-31"},
-    {"code":"PC","paidUpTo":"2099-12-31"}
-    ],
-    "hash":"2911276/0",
-    "gracePeriodDays":7,
-    "autoProlongated":false}
-</pre>
-
-<img src="/2018/09/21/IDEA、WebStorm最新永久激活方式/激活码.png" title="激活码">
-<h1 id="激活"><a href="#激活" class="headerlink" title="激活"></a>激活</h1><p>OK，至此为止，你的IDEA 就激活成功，又可以继续浪了。</p>
-<p><strong> Web Storm 激活步骤与此相同 </strong></p>
-
+</blockquote></p>
+            <p class="article-more-link">
+                <a href="/2018/09/21/IDEA、WebStorm最新永久激活方式/#more">查看更多</a>
+            </p>
         
         </div>
         <footer class="article-footer">
