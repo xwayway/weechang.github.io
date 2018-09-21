@@ -24,13 +24,6 @@
 		"tags": ["Java常用工具类", "Excel"],
 		"link_text": "Github地址",
 		"link": "https://github.com/weechang/JUtil"
-	}, {
-		"name": "java-zero",
-		"image": "https://avatars0.githubusercontent.com/u/23130993",
-		"description": "本仓库用于从头开始梳理Java知识体系，梳理路线为，Java基础——Java高级——Java并发——常用框架——常用中间件——数据结构与算法——项目分享。用于个人从头学习Java的代码记录，同时也做为一种分享，提供一些自己的见解给各位看官参考。 ",
-		"tags": ["Java学习"],
-		"link_text": "Github地址",
-		"link": "https://github.com/weechang/java-zero"
 	}],
 	"reward": [
 
