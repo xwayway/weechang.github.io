@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.weechang.xyz/"/>
-  <updated>2018-09-25T01:40:05.418Z</updated>
+  <updated>2018-09-25T06:39:00.226Z</updated>
   <id>http://blog.weechang.xyz/</id>
   
   <author>
@@ -21,17 +21,15 @@
     <link href="http://blog.weechang.xyz/2018/09/21/%E8%AE%BA%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E5%9C%B0%E4%BD%BF%E7%94%A8%E7%88%AC%E8%99%AB%E6%91%B8%E9%B1%BC/"/>
     <id>http://blog.weechang.xyz/2018/09/21/论如何优雅地使用爬虫摸鱼/</id>
     <published>2018-09-21T08:05:11.000Z</published>
-    <updated>2018-09-25T01:40:05.418Z</updated>
+    <updated>2018-09-25T06:39:00.226Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>最近手上项目空了下来，没什么事做。博客博客不想写，文章文章不想看。于是干脆看点小说吧，但是上班时间，大家都在认认真真敲代码，自己拿出手机看小说又不是很好（其实主要是数据线坏了，在公司没发充电），电脑上浏览器看，更是不行。于是想了想，干脆就自己爬着看吧，把内容打印在IDE的控制台，想一想这波操作就很骚，于是说动就动。</p></blockquote><h1 id="爬虫选择"><a href="#爬虫选择" class="headerlink" title="爬虫选择"></a>爬虫选择</h1><p>由于本人是一枚正经的Javaer，所以爬虫当然也要用Java咯。Java下也有几款比较好的爬虫软件，如nutch、crawler4j 等。但是我只是爬个网页，看个小说而已啊。于是就选了个Jsoup，直接解析Html信息，从中提取小说内容。</p><p>其实选择Jsoup还有个原因就是我好歹写过一阵子jQuery，对jQuery语法比较熟悉。因为Jsoup语法与jQuery语法非常一致。</p><h1 id="开始动工"><a href="#开始动工" class="headerlink" title="开始动工"></a>开始动工</h1><p>添加maven依赖</p><pre>&lt;dependency>    &lt;groupId> org.jsoup &lt;/groupId>    &lt;artifactId> jsoup &lt;/artifactId>    &lt;version> 1.9.2 &lt;/version>&lt;/dependency></pre><h1 id="爬取页面信息"><a href="#爬取页面信息" class="headerlink" title="爬取页面信息"></a>爬取页面信息</h1><p>Jsoup的爬取方式十分简单，是通过获取html文档到本地，然后再用jQuery的解析方式做的DOM解析。</p><h1 id="设置翻页及退出"><a href="#设置翻页及退出" class="headerlink" title="设置翻页及退出"></a>设置翻页及退出</h1><h1 id="Run一下"><a href="#Run一下" class="headerlink" title="Run一下"></a>Run一下</h1><h1 id="后续支持"><a href="#后续支持" class="headerlink" title="后续支持"></a>后续支持</h1><p>OK，到此爬虫已经能够正常爬取小说内容了。并且已经实现翻页、退出等基本功能。后续将支持更多小说来源如 <strong>纵横综合网</strong> 等网站。以及更多的功能如 <strong>日志混淆</strong>、 <strong>日志格式化</strong> 等功能。</p><p><strong>本文章涉及的代码已托管到github，欢迎各位客官使用<a href="https://github.com/weechang/ReadingCrawler" target="_blank" rel="noopener">https://github.com/weechang/ReadingCrawler</a></strong></p>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>最近手上项目空了下来，没什么事做。博客博客不想写，文章文章不想看。于是干脆看点小说吧，但是上班时间，大家都在认认真真敲代码，自己拿出手机看小说又不是很好（其实主要是数据线坏了，在公司没发充电），电脑上浏览器看，更是不行。于是想了想，干脆就自己爬着看吧，把内容打印在IDE的控制台，想一想这波操作就很骚，于是说动就动。</p></blockquote><a id="more"></a><h1 id="爬虫选择"><a href="#爬虫选择" class="headerlink" title="爬虫选择"></a>爬虫选择</h1><p>由于本人是一枚正经的Javaer，所以爬虫当然也要用Java咯。Java下也有几款比较好的爬虫软件，如nutch、crawler4j 等。但是我只是爬个网页，看个小说而已啊。于是就选了个Jsoup，直接解析Html信息，从中提取小说内容。</p><p>其实选择Jsoup还有个原因就是我好歹写过一阵子jQuery，对jQuery语法比较熟悉。因为Jsoup语法与jQuery语法非常一致。</p><h1 id="开始动工"><a href="#开始动工" class="headerlink" title="开始动工"></a>开始动工</h1><p>添加maven依赖</p><pre>&lt;dependency>    &lt;groupId> org.jsoup &lt;/groupId>    &lt;artifactId> jsoup &lt;/artifactId>    &lt;version> 1.9.2 &lt;/version>&lt;/dependency></pre><h1 id="爬取页面信息"><a href="#爬取页面信息" class="headerlink" title="爬取页面信息"></a>爬取页面信息</h1><p>Jsoup的爬取方式十分简单，是通过获取html文档到本地，然后再用jQuery的解析方式做的DOM解析。</p><h1 id="设置翻页及退出"><a href="#设置翻页及退出" class="headerlink" title="设置翻页及退出"></a>设置翻页及退出</h1><h1 id="Run一下"><a href="#Run一下" class="headerlink" title="Run一下"></a>Run一下</h1><h1 id="后续支持"><a href="#后续支持" class="headerlink" title="后续支持"></a>后续支持</h1><p>OK，到此爬虫已经能够正常爬取小说内容了。并且已经实现翻页、退出等基本功能。后续将支持更多小说来源如 <strong>纵横综合网</strong> 等网站。以及更多的功能如 <strong>日志混淆</strong>、 <strong>日志格式化</strong> 等功能。</p><p><strong>本文章涉及的代码已托管到github，欢迎各位客官使用<a href="https://github.com/weechang/ReadingCrawler" target="_blank" rel="noopener">https://github.com/weechang/ReadingCrawler</a></strong></p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;最近手上项目空了下来，没什么事做。博客博客不想写，文章文章不想看。于是干脆看点小说吧，但是上班时间，大家都在认认真真敲代码，自己拿出手机看小说又不是很好（其实主要是数据线坏了，在公司没发充电），电脑上浏览器看，更是不行。于是想了想，干脆就自己爬着看
-      
+      &lt;blockquote&gt;
+&lt;p&gt;最近手上项目空了下来，没什么事做。博客博客不想写，文章文章不想看。于是干脆看点小说吧，但是上班时间，大家都在认认真真敲代码，自己拿出手机看小说又不是很好（其实主要是数据线坏了，在公司没发充电），电脑上浏览器看，更是不行。于是想了想，干脆就自己爬着看吧，把内容打印在IDE的控制台，想一想这波操作就很骚，于是说动就动。&lt;/p&gt;
+&lt;/blockquote&gt;
     
     </summary>
     
