@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.weechang.xyz/"/>
-  <updated>2018-09-21T06:02:37.143Z</updated>
+  <updated>2018-09-25T01:40:05.418Z</updated>
   <id>http://blog.weechang.xyz/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>论如何优雅地使用爬虫摸鱼</title>
+    <link href="http://blog.weechang.xyz/2018/09/21/%E8%AE%BA%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E5%9C%B0%E4%BD%BF%E7%94%A8%E7%88%AC%E8%99%AB%E6%91%B8%E9%B1%BC/"/>
+    <id>http://blog.weechang.xyz/2018/09/21/论如何优雅地使用爬虫摸鱼/</id>
+    <published>2018-09-21T08:05:11.000Z</published>
+    <updated>2018-09-25T01:40:05.418Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>最近手上项目空了下来，没什么事做。博客博客不想写，文章文章不想看。于是干脆看点小说吧，但是上班时间，大家都在认认真真敲代码，自己拿出手机看小说又不是很好（其实主要是数据线坏了，在公司没发充电），电脑上浏览器看，更是不行。于是想了想，干脆就自己爬着看吧，把内容打印在IDE的控制台，想一想这波操作就很骚，于是说动就动。</p></blockquote><h1 id="爬虫选择"><a href="#爬虫选择" class="headerlink" title="爬虫选择"></a>爬虫选择</h1><p>由于本人是一枚正经的Javaer，所以爬虫当然也要用Java咯。Java下也有几款比较好的爬虫软件，如nutch、crawler4j 等。但是我只是爬个网页，看个小说而已啊。于是就选了个Jsoup，直接解析Html信息，从中提取小说内容。</p><p>其实选择Jsoup还有个原因就是我好歹写过一阵子jQuery，对jQuery语法比较熟悉。因为Jsoup语法与jQuery语法非常一致。</p><h1 id="开始动工"><a href="#开始动工" class="headerlink" title="开始动工"></a>开始动工</h1><p>添加maven依赖</p><pre>&lt;dependency>    &lt;groupId> org.jsoup &lt;/groupId>    &lt;artifactId> jsoup &lt;/artifactId>    &lt;version> 1.9.2 &lt;/version>&lt;/dependency></pre><h1 id="爬取页面信息"><a href="#爬取页面信息" class="headerlink" title="爬取页面信息"></a>爬取页面信息</h1><p>Jsoup的爬取方式十分简单，是通过获取html文档到本地，然后再用jQuery的解析方式做的DOM解析。</p><h1 id="设置翻页及退出"><a href="#设置翻页及退出" class="headerlink" title="设置翻页及退出"></a>设置翻页及退出</h1><h1 id="Run一下"><a href="#Run一下" class="headerlink" title="Run一下"></a>Run一下</h1><h1 id="后续支持"><a href="#后续支持" class="headerlink" title="后续支持"></a>后续支持</h1><p>OK，到此爬虫已经能够正常爬取小说内容了。并且已经实现翻页、退出等基本功能。后续将支持更多小说来源如 <strong>纵横综合网</strong> 等网站。以及更多的功能如 <strong>日志混淆</strong>、 <strong>日志格式化</strong> 等功能。</p><p><strong>本文章涉及的代码已托管到github，欢迎各位客官使用<a href="https://github.com/weechang/ReadingCrawler" target="_blank" rel="noopener">https://github.com/weechang/ReadingCrawler</a></strong></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;最近手上项目空了下来，没什么事做。博客博客不想写，文章文章不想看。于是干脆看点小说吧，但是上班时间，大家都在认认真真敲代码，自己拿出手机看小说又不是很好（其实主要是数据线坏了，在公司没发充电），电脑上浏览器看，更是不行。于是想了想，干脆就自己爬着看
+      
+    
+    </summary>
+    
+      <category term="日常抽风" scheme="http://blog.weechang.xyz/categories/%E6%97%A5%E5%B8%B8%E6%8A%BD%E9%A3%8E/"/>
+    
+    
+      <category term="爬虫" scheme="http://blog.weechang.xyz/tags/%E7%88%AC%E8%99%AB/"/>
+    
+      <category term="Jsoup" scheme="http://blog.weechang.xyz/tags/Jsoup/"/>
+    
+  </entry>
   
   <entry>
     <title>IDEA、WebStorm最新永久激活方式</title>
@@ -435,28 +463,6 @@
       
         &lt;p&gt;saga中的事件处理非常接近一个普通的事件监听器。上述的对于方法和参数解析的规则在这里是有效的。不过,有一个主要区别。虽然存在事件监听器只有单个实例处理所有传入事件，但也存在一个saga有多个实例，每个实例都对不同的事件感兴趣。例如,关于Order的id为1的管理业务Sag
       
-    
-    </summary>
-    
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/categories/AxonFramework/"/>
-    
-    
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/tags/AxonFramework/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>AxonFramework管理复杂的业务事务</title>
-    <link href="http://blog.weechang.xyz/2018/08/27/AxonFramework-%E7%AE%A1%E7%90%86%E5%A4%8D%E6%9D%82%E7%9A%84%E4%B8%9A%E5%8A%A1%E4%BA%8B%E5%8A%A1/"/>
-    <id>http://blog.weechang.xyz/2018/08/27/AxonFramework-管理复杂的业务事务/</id>
-    <published>2018-08-27T06:43:56.000Z</published>
-    <updated>2018-09-05T02:21:46.300Z</updated>
-    
-    <content type="html"><![CDATA[<p>并不是每个命令都能够在一个ACID事务中完全执行。现金转账事务是一个很常见频繁出现的例子，用来作为论据。通常认为，把钱从一个账户转移到另一个账户，绝对需要原子性和一致性。其实并非如此，相反，这是完全不可能的。如果钱从A银行的帐户转移到B银行的帐户怎么办？A银行要获得B银行数据库的锁吗？如果转账正在进行的时候，A银行已经扣除了金额,但B银行并没收到它，这不是很奇怪吗?事实上不是，这是“正在进行”。另一方面,如果在向B银行的帐户中存资金时出现错误，A银行的客户就想要他的钱回退。所以我们需要某种形式的最终一致性。</p><a id="more"></a><p>虽然ACID事务在某些情况下不是必需的甚至是不可能的，但仍然需要某种形式的事务管理。通常，这些事务称为BASE事务：基本的可用性，软性状态，最终一致性。 与ACID相反，BASE事务无法轻松回滚。 要回滚，需要采取补偿措施来恢复作为事务一部分发生的任何事情。 在汇款的例子中，如果没有把钱存入B银行，将把钱退还给A银行。<br>在CQRS中，Sagas可用于管理这些BASE事务。 他们对事件做出响应，并可能调度命令，调用外部应用程序等。在领域驱动设计的上下文中，将Sagas用作多个限界上下文之间的协调机制并不罕见。</p><h2 id="Saga"><a href="#Saga" class="headerlink" title="Saga"></a>Saga</h2><p>一个saga是一种特殊类型的事件监听器：用来管理业务事务。一些事务可能运行数天甚至数周，而另一些则在几毫秒内完成。在Axon中，saga的每个实例负责管理一个业务事务。这意味着saga维护状态必须管理事务，持续或采取补偿动作回滚已经被采取任何动作。通常情况下，与常规的事件监听器相反，saga有一个起点和终点，都由事件触发。虽然saga的起点通常是非常明确的，但可能有多种方式结束一个saga。</p><p>在Axon中,Sagas是定义了一个或多个@SagaEventHandler方法的类。与常规事件处理器不同，在任何时间可能存在多个saga的实例。Saga由一个Processor管理(跟踪或订阅)，Processor通过事件致力于处理特定saga类型。</p><h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p>一个单独的saga实例负责管理一个单独的事务。这意味着你需要能够标示一个saga生命周期的开始和结束。</p><p>在一个saga中，事件处理器用@SagaEventHandler注解。如果一个特定的事件标志着开始一个事务，在同一个方法上添加另一个注解:@StartSaga。这个注解将创建一个新的saga，并且当匹配事件后布后调用它的事件处理器方法。</p><p>默认情况下,只有在找不到匹配的saga时才能开启一个新的saga。你也可以强行创建一个新的saga实例，通过把@StartSaga注解上的forceNew属性设置为true。</p><p>结束一个saga可以以两种方式完成。如果一个特定的事件总是标示saga生命周期的结束，在saga上用@EndSaga注解事件的处理器。在调用处理器后，saga的生命周期将结束。作为一种选择,你可以调用end()从saga内部去结束生命周期。这允许你有条件地结束saga。</p><p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/9c8d7fb623a0" target="_blank" rel="noopener">https://www.jianshu.com/p/9c8d7fb623a0</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;并不是每个命令都能够在一个ACID事务中完全执行。现金转账事务是一个很常见频繁出现的例子，用来作为论据。通常认为，把钱从一个账户转移到另一个账户，绝对需要原子性和一致性。其实并非如此，相反，这是完全不可能的。如果钱从A银行的帐户转移到B银行的帐户怎么办？A银行要获得B银行数据库的锁吗？如果转账正在进行的时候，A银行已经扣除了金额,但B银行并没收到它，这不是很奇怪吗?事实上不是，这是“正在进行”。另一方面,如果在向B银行的帐户中存资金时出现错误，A银行的客户就想要他的钱回退。所以我们需要某种形式的最终一致性。&lt;/p&gt;
     
     </summary>
     

@@ -3,6 +3,29 @@
   
     
     <entry>
+      <title>论如何优雅地使用爬虫摸鱼</title>
+      <link href="/2018/09/21/%E8%AE%BA%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E5%9C%B0%E4%BD%BF%E7%94%A8%E7%88%AC%E8%99%AB%E6%91%B8%E9%B1%BC/"/>
+      <url>/2018/09/21/%E8%AE%BA%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E5%9C%B0%E4%BD%BF%E7%94%A8%E7%88%AC%E8%99%AB%E6%91%B8%E9%B1%BC/</url>
+      <content type="html"><![CDATA[<blockquote><p>最近手上项目空了下来，没什么事做。博客博客不想写，文章文章不想看。于是干脆看点小说吧，但是上班时间，大家都在认认真真敲代码，自己拿出手机看小说又不是很好（其实主要是数据线坏了，在公司没发充电），电脑上浏览器看，更是不行。于是想了想，干脆就自己爬着看吧，把内容打印在IDE的控制台，想一想这波操作就很骚，于是说动就动。</p></blockquote><h1 id="爬虫选择"><a href="#爬虫选择" class="headerlink" title="爬虫选择"></a>爬虫选择</h1><p>由于本人是一枚正经的Javaer，所以爬虫当然也要用Java咯。Java下也有几款比较好的爬虫软件，如nutch、crawler4j 等。但是我只是爬个网页，看个小说而已啊。于是就选了个Jsoup，直接解析Html信息，从中提取小说内容。</p><p>其实选择Jsoup还有个原因就是我好歹写过一阵子jQuery，对jQuery语法比较熟悉。因为Jsoup语法与jQuery语法非常一致。</p><h1 id="开始动工"><a href="#开始动工" class="headerlink" title="开始动工"></a>开始动工</h1><p>添加maven依赖</p><pre>&lt;dependency>    &lt;groupId> org.jsoup &lt;/groupId>    &lt;artifactId> jsoup &lt;/artifactId>    &lt;version> 1.9.2 &lt;/version>&lt;/dependency></pre><h1 id="爬取页面信息"><a href="#爬取页面信息" class="headerlink" title="爬取页面信息"></a>爬取页面信息</h1><p>Jsoup的爬取方式十分简单，是通过获取html文档到本地，然后再用jQuery的解析方式做的DOM解析。</p><h1 id="设置翻页及退出"><a href="#设置翻页及退出" class="headerlink" title="设置翻页及退出"></a>设置翻页及退出</h1><h1 id="Run一下"><a href="#Run一下" class="headerlink" title="Run一下"></a>Run一下</h1><h1 id="后续支持"><a href="#后续支持" class="headerlink" title="后续支持"></a>后续支持</h1><p>OK，到此爬虫已经能够正常爬取小说内容了。并且已经实现翻页、退出等基本功能。后续将支持更多小说来源如 <strong>纵横综合网</strong> 等网站。以及更多的功能如 <strong>日志混淆</strong>、 <strong>日志格式化</strong> 等功能。</p><p><strong>本文章涉及的代码已托管到github，欢迎各位客官使用<a href="https://github.com/weechang/ReadingCrawler" target="_blank" rel="noopener">https://github.com/weechang/ReadingCrawler</a></strong></p>]]></content>
+      
+      <categories>
+          
+          <category> 日常抽风 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 爬虫 </tag>
+            
+            <tag> Jsoup </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>IDEA、WebStorm最新永久激活方式</title>
       <link href="/2018/09/21/IDEA%E3%80%81WebStorm%E6%9C%80%E6%96%B0%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BB%E6%96%B9%E5%BC%8F/"/>
       <url>/2018/09/21/IDEA%E3%80%81WebStorm%E6%9C%80%E6%96%B0%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BB%E6%96%B9%E5%BC%8F/</url>
@@ -752,6 +775,13 @@
     </entry>
     
     <entry>
+      <title>Java学习之从头开始</title>
+      <link href="/topic/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/index.html"/>
+      <url>/topic/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/index.html</url>
+      <content type="html"><![CDATA[<blockquote><p>毕业两年了，一直做Java相关的开发工作。感觉自己做过的项目也不少，大的、小的都有，传统的，互联网的都不缺。同时也看过不少博客文章，订阅了不少公众号。但是始终感觉自己提升有限，于是决定从基础开始，进行一遍系统的学习。通过博客的方式记录自己的学习计划、进度及心得总结。希望能够提升自己。</p></blockquote><a id="more"></a><h2 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h2><ul><li><a href="/2018/06/07/java基础-0——Object类/">java基础-0——Object类</a></li><li><a href="/2018/06/08/java基础-1——String类/">java基础-1——String类</a></li></ul><h2 id="Java集合"><a href="#Java集合" class="headerlink" title="Java集合"></a>Java集合</h2><ul><li><a href="/2018/07/30/Java集合-0——HashMap类/">Java集合-0——HashMap类</a></li><li><a href="/2018/07/31/Java集合-1——HashTable类/">Java集合-1——HashTable类</a></li></ul>]]></content>
+    </entry>
+    
+    <entry>
       <title>AxonFramework-内容汇总</title>
       <link href="/topic/AxonFramework-%E5%86%85%E5%AE%B9%E6%B1%87%E6%80%BB/index.html"/>
       <url>/topic/AxonFramework-%E5%86%85%E5%AE%B9%E6%B1%87%E6%80%BB/index.html</url>
@@ -763,13 +793,6 @@
       <link href="/topic/Hexo%E5%8D%9A%E5%AE%A2/index.html"/>
       <url>/topic/Hexo%E5%8D%9A%E5%AE%A2/index.html</url>
       <content type="html"><![CDATA[<blockquote><p>用过了较多博客系统，如CSDN，开源中国，博客园等，一直不太满意。CSDN的巨慢，而且现在开始要求绑定各种信息，感觉有些无力吐槽吧。开源中国一直还不错，动弹挺好的，但是大家都在上面划水了，博客流量确实很一般。博客园呢，个人感觉目前还比较纯粹吧。但是还是有点丑，界面有些跟不上时代的步伐了。<br>所以思来想去为了装逼，还是要搞一个自己的博客系统（其实还是为了装逼，没有个自己的博客系统，总感觉逼格不够）。于是开始选择用hexo + github方式搞自己的博客系统。开此专题，和大家一起分享一下自己搞博客的心得与遇到的坑。</p></blockquote><a id="more"></a><h2 id="Hexo系列"><a href="#Hexo系列" class="headerlink" title="Hexo系列"></a>Hexo系列</h2><ul><li><a href="/2018/09/19/六元一个的私有博客系统，了解一下？/">六元一个的私有博客系统，了解一下？</a></li></ul><h2 id="SEO系列"><a href="#SEO系列" class="headerlink" title="SEO系列"></a>SEO系列</h2>]]></content>
-    </entry>
-    
-    <entry>
-      <title>Java学习之从头开始</title>
-      <link href="/topic/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/index.html"/>
-      <url>/topic/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/index.html</url>
-      <content type="html"><![CDATA[<blockquote><p>毕业两年了，一直做Java相关的开发工作。感觉自己做过的项目也不少，大的、小的都有，传统的，互联网的都不缺。同时也看过不少博客文章，订阅了不少公众号。但是始终感觉自己提升有限，于是决定从基础开始，进行一遍系统的学习。通过博客的方式记录自己的学习计划、进度及心得总结。希望能够提升自己。</p></blockquote><a id="more"></a><h2 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h2><ul><li><a href="/2018/06/07/java基础-0——Object类/">java基础-0——Object类</a></li><li><a href="/2018/06/08/java基础-1——String类/">java基础-1——String类</a></li></ul><h2 id="Java集合"><a href="#Java集合" class="headerlink" title="Java集合"></a>Java集合</h2><ul><li><a href="/2018/07/30/Java集合-0——HashMap类/">Java集合-0——HashMap类</a></li><li><a href="/2018/07/31/Java集合-1——HashTable类/">Java集合-1——HashTable类</a></li></ul>]]></content>
     </entry>
     
   
