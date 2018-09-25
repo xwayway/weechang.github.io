@@ -1,0 +1,96 @@
+# Menus
+menu:
+  主页: .
+  归档: archives
+  工具库: tools
+  关于: about
+
+# Customize
+customize:
+    logo:
+        enabled: true
+        width: 40
+        height: 40
+        url: images/logo.png
+    profile:
+        enabled: true # Whether to show profile bar
+        fixed: true
+        avatar: css/images/avatar.png
+        gravatar: # Gravatar email address, if you enable Gravatar, your avatar config will be overriden
+        author: 张未
+        author_title: 大道五十,天衍四九,人遁其一
+        location: 成都,中国
+        follow: https://github.com/weechang/
+    highlight: monokai
+    sidebar: right # sidebar position, options: left, right or leave it empty
+    thumbnail: false # enable posts thumbnail, options: true, false
+    favicon: # path to favicon
+    social_links:
+        github: https://github.com/weechang/
+        envelope: mailto:zhangwei_sc@foxmail.com
+        weixin: /css/images/avatar.png
+        rss: /atom.xml
+    social_link_tooltip: true # enable the social link tooltip, options: true, false
+
+# Widgets
+widgets:
+    - topic
+    - category
+    - tagcloud
+    - links
+
+# Search
+search:
+    insight: true # you need to install `hexo-generator-json-content` before using Insight Search
+    swiftype: # enter swiftype install key here
+    baidu: false # you need to disable other search engines to use Baidu search, options: true, false
+
+# Comment
+comment:
+    disqus:  # enter disqus shortname here
+    duoshuo: # enter duoshuo shortname here
+    youyan: # enter youyan uid here
+    facebook: # enter true to enable
+    isso: # enter the domain name of your own comment isso server eg. comments.example.com
+    changyan: # please fill in `appid` and `conf` to enable
+        appid:
+        conf:
+    gittalk:
+        owner: weechang
+        repo: weechang.github.io
+        #Register an OAuth application, and you will get a client ID and a client secret.
+        client_id: 295b369cd27d90dc5cfc
+        client_secret: 23a308db213cd99742ff3e07da9021b9c5909b68
+    livere: # enter livere uid here
+    valine: # Valine Comment System https://github.com/xCss/Valine
+        on:  # enter true to enable
+        appId:  # enter the leancloud application appId here
+        appKey: # enter the leancloud application appKey here
+        notify: # enter true to enable <Mail notifier> https://github.com/xCss/Valine/wiki/Valine-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%82%AE%E4%BB%B6%E6%8F%90%E9%86%92%E8%AE%BE%E7%BD%AE
+        verify: # enter true to enable <Validation code>
+        placeholder: Just Do It # enter the comment box placeholder
+    
+
+# Share
+share: bdshare # options: jiathis, bdshare, addtoany, default
+
+# Plugins
+plugins:
+    lightgallery: true # options: true, false
+    justifiedgallery: true # options: true, false
+    google_analytics: # enter the tracking ID for your Google Analytics
+    google_site_verification: # enter Google site verification code
+    baidu_analytics: # enter Baidu Analytics hash key
+    tencent_analytics: 500628840 # enter tencent Analytics hash key
+    mathjax: false # options: true, false
+
+# Miscellaneous
+miscellaneous:
+    open_graph: # see http://ogp.me
+        fb_app_id:
+        fb_admins:
+        twitter_id:
+        google_plus:
+    links:
+        披着前端的皮: https://blog.unknowns.info/
+        颜海镜: https://yanhaijing.com
