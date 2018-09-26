@@ -13,10 +13,12 @@
 <meta property="og:site_name" content="耒耒耒耒耒">
 <meta property="og:description" content="最近手上项目空了下来，没什么事做。博客博客不想写，文章文章不想看。于是干脆看点小说吧，但是上班时间，大家都在认认真真敲代码，自己拿出手机看小说又不是很好（其实主要是数据线坏了，在公司没发充电），电脑上浏览器看，更是不行。于是想了想，干脆就自己爬着看吧，把内容打印在IDE的控制台，想一想这波操作就很骚，于是说动就动。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-25T06:39:00.226Z">
+<meta property="og:image" content="http://blog.weechang.xyz/2018/09/21/论如何优雅地使用爬虫摸鱼/Run.png">
+<meta property="og:updated_time" content="2018-09-26T05:42:22.816Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论如何优雅地使用爬虫摸鱼">
 <meta name="twitter:description" content="最近手上项目空了下来，没什么事做。博客博客不想写，文章文章不想看。于是干脆看点小说吧，但是上班时间，大家都在认认真真敲代码，自己拿出手机看小说又不是很好（其实主要是数据线坏了，在公司没发充电），电脑上浏览器看，更是不行。于是想了想，干脆就自己爬着看吧，把内容打印在IDE的控制台，想一想这波操作就很骚，于是说动就动。">
+<meta name="twitter:image" content="http://blog.weechang.xyz/2018/09/21/论如何优雅地使用爬虫摸鱼/Run.png">
     
 
     
@@ -259,7 +261,7 @@
                         
     <div class="article-category">
     	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/日常抽风/">日常抽风</a>
+        <a class="article-category-link" href="/categories/日常记录/">日常记录</a>
     </div>
 
                     </div>
@@ -268,11 +270,11 @@
                              <div class="article-word-count">
 <span>
     <i class="fas fa-file-word"></i>
-    共437字，
+    共774字，
 </span>
 <span>
     <i class="fas fa-clock"></i>
-    大约需要2分钟
+    大约需要3分钟
 </span>
 </div>
 <span id="busuanzi_container_page_pv">
@@ -307,9 +309,94 @@
 </pre>
 
 <h1 id="爬取页面信息"><a href="#爬取页面信息" class="headerlink" title="爬取页面信息"></a>爬取页面信息</h1><p>Jsoup的爬取方式十分简单，是通过获取html文档到本地，然后再用jQuery的解析方式做的DOM解析。</p>
-<h1 id="设置翻页及退出"><a href="#设置翻页及退出" class="headerlink" title="设置翻页及退出"></a>设置翻页及退出</h1><h1 id="Run一下"><a href="#Run一下" class="headerlink" title="Run一下"></a>Run一下</h1><h1 id="后续支持"><a href="#后续支持" class="headerlink" title="后续支持"></a>后续支持</h1><p>OK，到此爬虫已经能够正常爬取小说内容了。并且已经实现翻页、退出等基本功能。后续将支持更多小说来源如 <strong>纵横综合网</strong> 等网站。以及更多的功能如 <strong>日志混淆</strong>、 <strong>日志格式化</strong> 等功能。</p>
-<p><strong>本文章涉及的代码已托管到github，欢迎各位客官使用<a href="https://github.com/weechang/ReadingCrawler" target="_blank" rel="noopener">https://github.com/weechang/ReadingCrawler</a></strong></p>
+<pre>
+public class BiQuGeCrawler extends AbstractCrawler {
 
+    @Override
+    public String getPage(String url) {
+        try {
+            page = Jsoup.connect(url).get();
+
+            this.getNext();
+            this.getLast();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return this.getContent();
+    }
+
+    @Override
+    protected String getContent(){
+        Element cntEl = page.getElementById("content");
+        // 八个空格，（制表符号）
+        return cntEl.text().replaceAll("        ", "\n");
+    }
+
+    protected void getNext() {
+        Element ul = page.getElementsByClass("page_chapter").get(0).child(0);
+        Element nextHref = ul.child(2).child(0);
+        nextUrl = nextHref.attr("abs:href");
+    }
+
+    protected void getLast() {
+        Element ul = page.getElementsByClass("page_chapter").get(0).child(0);
+        Element lastHref = ul.child(0).child(0);
+        lastUrl = lastHref.attr("abs:href");
+    }
+}
+</pre>
+
+<p>获取小说正文内容及前一页、后一页链接等关键信息。</p>
+<h1 id="设置翻页及退出"><a href="#设置翻页及退出" class="headerlink" title="设置翻页及退出"></a>设置翻页及退出</h1><p>每次抓取完页面后，监听控制台输入值，进行翻页、退出操作。</p>
+<pre>
+
+<p>public class Function {</p>
+<pre><code>// app配置
+private AppConfig config;
+// 爬虫类
+private AbstractCrawler crawler;
+
+public Function(String firstUrl){
+    config = new AppConfig();
+    crawler =  CrawlerFactory.build(config.sourceType);
+    startView(firstUrl);
+}
+
+// 页面浏览
+private void startView(String pageUrl){
+    String content = crawler.getPage(pageUrl);
+    System.out.println(content);
+    this.inputListener();
+}
+
+// 开始浏览
+private void inputListener(){
+    System.out.println(&quot;*************&quot;);
+    System.out.println(&quot;* L 上一页   *&quot;);
+    System.out.println(&quot;* Q 退出     *&quot;);
+    System.out.println(&quot;* 其他 下一页 *&quot;);
+    System.out.println(&quot;*************&quot;);
+    Scanner sc = new Scanner(System.in);
+    String input = sc.nextLine();
+    if (&quot;l&quot;.equalsIgnoreCase(input)){
+        // 上一页
+        startView(crawler.lastUrl);
+    } else if (&quot;q&quot;.equalsIgnoreCase(input)){
+        // 退出
+    } else {
+        // 下一页
+        startView(crawler.nextUrl);
+    }
+}
+</code></pre><p>}</p>
+<pre>
+
+<p>如上，整个摸鱼神器的关键代码就已经完成了，具体的完整代码，可以查看<a href="https://github.com/weechang/ReadingCrawler" target="_blank" rel="noopener">我的github项目</a></p>
+<h1 id="Run一下"><a href="#Run一下" class="headerlink" title="Run一下"></a>Run一下</h1><p>首先配置需要看的小说网页信息及个人操作习惯设置。然后通过运行main方法。即可运行。</p>
+<img src="/2018/09/21/论如何优雅地使用爬虫摸鱼/Run.png" title="效果预览">
+<h1 id="后续支持"><a href="#后续支持" class="headerlink" title="后续支持"></a>后续支持</h1><p>OK，到此爬虫已经能够正常爬取小说内容了。并且已经实现翻页、退出等基本功能。后续将支持更多小说来源如 <strong>纵横综合网</strong> 等网站。以及更多的功能如 <strong>日志混淆</strong>、 <strong>日志格式化</strong> 、<strong>断点续看</strong> 等功能。</p>
+<p><strong>本文章涉及的代码已托管到github，欢迎各位客官使用<a href="https://github.com/weechang/ReadingCrawler" target="_blank" rel="noopener">https://github.com/weechang/ReadingCrawler</a></strong></p>
+</pre></pre>
         
         </div>
         <footer class="article-footer">
@@ -445,7 +532,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AxonFramework/">AxonFramework</a><span class="category-list-count">26</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java基础/">Java基础</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java集合/">Java集合</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/开源之路/">开源之路</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/日常抽风/">日常抽风</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/日常记录/">日常记录</a><span class="category-list-count">2</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AxonFramework/">AxonFramework</a><span class="category-list-count">26</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java基础/">Java基础</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java集合/">Java集合</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/开源之路/">开源之路</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/日常记录/">日常记录</a><span class="category-list-count">3</span></li></ul>
         </div>
     </div>
 
