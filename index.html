@@ -171,11 +171,11 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                35
+                36
                 <span>文章</span>
             </div>
             <div class="article-info-block">
-                16
+                18
                 <span>标签</span>
             </div>
         </div>
@@ -226,6 +226,238 @@
 
             
             <section id="main">
+    <article id="post-记一次SQL优化" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/09/27/记一次SQL优化/">记一次SQL优化</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fas fa-calendar-alt"></i>
+        <a href="/2018/09/27/记一次SQL优化/">
+            <time datetime="2018-09-27T06:31:52.000Z" itemprop="datePublished">2018-09-27</time>
+        </a>
+    </div>
+
+
+                        <div class="article-user">
+    <i class="fas fa-user-alt"></i>
+    
+        <span>张未</span>
+    
+</div>
+
+                        
+    <div class="article-category">
+    	<i class="fas fa-folder"></i>
+        <a class="article-category-link" href="/categories/日常记录/">日常记录</a>
+    </div>
+
+                    </div>
+                    <div class="article-meta">
+                         
+                             <div class="article-word-count">
+<span>
+    <i class="fas fa-file-word"></i>
+    共627字，
+</span>
+<span>
+    <i class="fas fa-clock"></i>
+    大约需要2分钟
+</span>
+</div>
+<span id="busuanzi_container_page_pv">
+    <i class="fas fa-eye"></i>
+    已被阅读<span id="busuanzi_value_page_pv"></span>次
+</span>
+
+                         
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <blockquote>
+<p>最近收到项目的慢查询报警，刚好手上空下来了，就准备做一些优化。特开此贴记录一下此次的优化详情。</p>
+</blockquote>
+<h1 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h1><p>由于项目保密原因，因此很多字段采取保密写法，望各位看官见谅。</p>
+<p>其实呢，整个表的数据量其实也不大，也就170W+。字段大概在65个左右，除了几个单号，几个内容这种稍大一点的字段外，其他的基本都是状态和关联id的字段。所以行大小也不大。</p>
+<p>但是，上个月的时候，产品提出一个需要根据单号模糊查询的功能，就是这个功能，导致了慢查询。优化前，根据现有逻辑以及模糊查询的需求，大概的sql是这样的</p>
+<pre>
+
+SELECT
+    id,
+    work_order_num AS workOrderNum,
+    content,
+    OTHERS_COLUMNS...
+FROM
+    work_order
+WHERE
+    work_order_num LIKE '%201808221644820%'
+AND sender_id = 11768
+AND status IN (2, 1, 0)
+AND record_status IN (4, 2)
+AND (locked = 0 OR locked = 2)
+AND yn = 1
+ORDER BY
+    create_time DESC
+LIMIT 0, 10
+
+</pre>
+
+<h1 id="数据分析"><a href="#数据分析" class="headerlink" title="数据分析"></a>数据分析</h1><p>其中，上述Sql中，条件中的字段  work_order_num、sender_id 都是建了索引的，以下是慢查询统计情况</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>total_count</td>
+<td>19</td>
+</tr>
+<tr>
+<td>total_time</td>
+<td>133.23</td>
+</tr>
+<tr>
+<td>avg_time</td>
+<td>7.01</td>
+</tr>
+<tr>
+<td>max_time</td>
+<td>7.6426</td>
+</tr>
+<tr>
+<td>avg_return_rows</td>
+<td>0.79</td>
+</tr>
+<tr>
+<td>max_return_rows</td>
+<td>1</td>
+</tr>
+<tr>
+<td>avg_examined_rows</td>
+<td>1695975.47</td>
+</tr>
+<tr>
+<td>max_examined_rows</td>
+<td>1734740</td>
+</tr>
+</tbody>
+</table>
+<p>可以看见的是，慢查询基本都是全表扫描。为什么会这样呢，我具体执行了一下Sql发现，以上条件根本就查不出数据啊。然后修改条件发现，是工单号有问题。该工单号不存在，，，不存在啊。所以导致了全表扫描。</p>
+<h1 id="调优进行时"><a href="#调优进行时" class="headerlink" title="调优进行时"></a>调优进行时</h1><p>首先想的是去掉like 特别是like的左匹配，试了一下，去掉左匹配，速度能减少到50%。虽然有效，但是业务不允许这样做。</p>
+<p>然后考虑的是用instr函数代替like，测试了一下，能够减少1S的时间，但是对于7S的查询来说，这TM有什么效果。还是不行。</p>
+<p>最后想到了一次案例分享中的，先用子查询查询出符合条件的id，再用id作为筛选条件，去获取所有的列。最后修改后的sql如下</p>
+<pre>
+
+SELECT
+    id,
+    work_order_num AS workOrderNum,
+    content,
+    OTHERS_COLUMNS...
+FROM
+    work_order
+WHERE
+    id IN (
+        SELECT
+            id
+        FROM
+            ws_work_order
+        WHERE
+            work_order_num LIKE '%201808221644820%'
+        AND sender_id = 11768
+        AND STATUS IN (2, 1, 0)
+        AND record_status IN (4, 2)
+        AND (locked = 0 OR locked = 2)
+        AND yn = 1
+    )
+ORDER BY
+    create_time DESC
+LIMIT 0, 10
+
+</pre>
+
+<p>运行一下试试，，，果然，时间减少到了 0.03xxS。看着就有点小激动啊。</p>
+<h1 id="原理剖析"><a href="#原理剖析" class="headerlink" title="原理剖析"></a>原理剖析</h1><p>原理呢，暂时忘了，先挖一个坑，等我想起了，再回来填坑。</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/MySql/">MySql</a>, <a class="tag-link" href="/tags/Sql/">Sql</a>, <a class="tag-link" href="/tags/日常记录/">日常记录</a>
+    </div>
+
+            <div class="share-container">
+
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='https://blog.weechang.xyz/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+</div>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+
+
     <article id="post-论如何优雅地使用爬虫摸鱼" class="article article-type-post" itemscope="" itemprop="blogPost">
     <div class="article-inner">
         
@@ -1238,118 +1470,6 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
 
 
 
-    <article id="post-AxonFramework-存储库" class="article article-type-post" itemscope="" itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/08/31/AxonFramework-存储库/">AxonFramework-存储库</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fas fa-calendar-alt"></i>
-        <a href="/2018/08/31/AxonFramework-存储库/">
-            <time datetime="2018-08-31T02:50:48.000Z" itemprop="datePublished">2018-08-31</time>
-        </a>
-    </div>
-
-
-                        <div class="article-user">
-    <i class="fas fa-user-alt"></i>
-    
-        <span>勇赴</span>
-    
-</div>
-
-                        
-    <div class="article-category">
-    	<i class="fas fa-folder"></i>
-        <a class="article-category-link" href="/categories/AxonFramework/">AxonFramework</a>
-    </div>
-
-                    </div>
-                    <div class="article-meta">
-                         
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            <p></p><p>存储库是提供对聚合访问的机制。存储库充当了用于保存数据的实际存储机制的网关。在CQRS中，存储库只需要能够根据他们的惟一标识符找到聚合。任何其他类型的查询，应该在查询数据库中执行。</p><p></p>
-            <p class="article-more-link">
-                <a href="/2018/08/31/AxonFramework-存储库/#more">查看更多</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/AxonFramework/">AxonFramework</a>
-    </div>
-
-            <div class="share-container">
-
-
-    <div class="bdsharebuttonbox">
-    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
-    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
-    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
-    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
-    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
-    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
-</div>
-<script>
-window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='https://blog.weechang.xyz/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-</script>
-<style>
-    .bdshare_popup_box {
-        border-radius: 4px;
-        border: #e1e1e1 solid 1px;
-    }
-    .bdshare-button-style0-16 a,
-    .bdshare-button-style0-16 .bds_more {
-        padding-left: 20px;
-        margin: 6px 10px 6px 0;
-    }
-    .bdshare_dialog_list a,
-    .bdshare_popup_list a,
-    .bdshare_popup_bottom a {
-        font-family: 'Microsoft Yahei';
-    }
-    .bdshare_popup_top {
-        display: none;
-    }
-    .bdshare_popup_bottom {
-        height: auto;
-        padding: 5px;
-    }
-</style>
-
-
-</div>
-
-            
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-
-
     <nav id="page-nav">
         <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
     </nav>
@@ -1391,7 +1511,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AxonFramework/">AxonFramework</a><span class="category-list-count">26</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java基础/">Java基础</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java集合/">Java集合</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/开源之路/">开源之路</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/日常记录/">日常记录</a><span class="category-list-count">3</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AxonFramework/">AxonFramework</a><span class="category-list-count">26</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java基础/">Java基础</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java集合/">Java集合</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/开源之路/">开源之路</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/日常记录/">日常记录</a><span class="category-list-count">4</span></li></ul>
         </div>
     </div>
 
@@ -1400,7 +1520,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/AxonFramework/" style="font-size: 20px;">AxonFramework</a> <a href="/tags/ElasticSearch/" style="font-size: 10px;">ElasticSearch</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/HashTable/" style="font-size: 10px;">HashTable</a> <a href="/tags/IDEA永久激活/" style="font-size: 10px;">IDEA永久激活</a> <a href="/tags/Java基础/" style="font-size: 15px;">Java基础</a> <a href="/tags/Java集合/" style="font-size: 15px;">Java集合</a> <a href="/tags/Jsoup/" style="font-size: 10px;">Jsoup</a> <a href="/tags/Object/" style="font-size: 10px;">Object</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/WebStorm永久激活/" style="font-size: 10px;">WebStorm永久激活</a> <a href="/tags/maven中央仓库/" style="font-size: 10px;">maven中央仓库</a> <a href="/tags/手把手教学/" style="font-size: 15px;">手把手教学</a> <a href="/tags/日常记录/" style="font-size: 15px;">日常记录</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a>
+            <a href="/tags/AxonFramework/" style="font-size: 20px;">AxonFramework</a> <a href="/tags/ElasticSearch/" style="font-size: 10px;">ElasticSearch</a> <a href="/tags/GitHub-Pages/" style="font-size: 10px;">GitHub Pages</a> <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/HashTable/" style="font-size: 10px;">HashTable</a> <a href="/tags/IDEA永久激活/" style="font-size: 10px;">IDEA永久激活</a> <a href="/tags/Java基础/" style="font-size: 13.33px;">Java基础</a> <a href="/tags/Java集合/" style="font-size: 13.33px;">Java集合</a> <a href="/tags/Jsoup/" style="font-size: 10px;">Jsoup</a> <a href="/tags/MySql/" style="font-size: 10px;">MySql</a> <a href="/tags/Object/" style="font-size: 10px;">Object</a> <a href="/tags/Sql/" style="font-size: 10px;">Sql</a> <a href="/tags/String/" style="font-size: 10px;">String</a> <a href="/tags/WebStorm永久激活/" style="font-size: 10px;">WebStorm永久激活</a> <a href="/tags/maven中央仓库/" style="font-size: 10px;">maven中央仓库</a> <a href="/tags/手把手教学/" style="font-size: 13.33px;">手把手教学</a> <a href="/tags/日常记录/" style="font-size: 16.67px;">日常记录</a> <a href="/tags/爬虫/" style="font-size: 10px;">爬虫</a>
         </div>
     </div>
 
