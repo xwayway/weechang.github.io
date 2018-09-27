@@ -1,0 +1,10 @@
+# welcome to : blog.weechang.xyz
+User-agent: *
+Allow: /
+
+Disallow: /js/
+Disallow: /css/
+Disallow: /fonts/
+Disallow: /libs/
+Disallow: /static/
+Sitemap: https://blog.weechang.xyz/sitemap.xml
