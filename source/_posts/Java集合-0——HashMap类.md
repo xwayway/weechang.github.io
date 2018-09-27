@@ -11,7 +11,7 @@ hashMap的存储过程如下:
 根据 key 计算出它的哈希值 h。
 假设Node的个数为 n，那么这个键值对应该放在第 (h % n) 个Node中。
 <!-- more -->
-如果该Node中已经有了键值对，就使用<a href="http://www.cnblogs.com/lizhanwu/p/4303410.html" target="_blank">拉链法</a>解决冲突。
+如果该Node中已经有了键值对，就使用<a href="http://www.cnblogs.com/lizhanwu/p/4303410.html" target="_blank" rel="noopener noreferrer">拉链法</a>解决冲突。
 hashMap还有一个重要的属性: 负载因子(load factor)，它用来衡量hashMap的 空/满 程度，一定程度上也可以体现查询的效率，计算公式为:
 
 负载因子 = 总键值对数 / Node个数

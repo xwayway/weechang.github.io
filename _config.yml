@@ -116,3 +116,10 @@ baidu_url_submit:
   host: blog.weechang.xyz
   token: 0dIARTecXqio3U5a
   path: baidu_urls.txt
+
+#nofollow not include
+nofollow:
+  enable: true
+  exclude:
+  - blog.unknowns.info
+  - yanhaijing.com
