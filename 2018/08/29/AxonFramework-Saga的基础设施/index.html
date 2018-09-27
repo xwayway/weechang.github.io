@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang=zh>
+<html lang="zh">
 <head>
     <meta charset="utf-8">
     
     <title>AxonFramework-Saga的基础设施 | 耒耒耒耒耒</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="事件需要被重定向到适当的saga实例。为此,一些基础设施类是必需的。最重要的组件是SagaManager和SagaRepository。">
 <meta name="keywords" content="AxonFramework">
 <meta property="og:type" content="article">
@@ -13,14 +13,14 @@
 <meta property="og:site_name" content="耒耒耒耒耒">
 <meta property="og:description" content="事件需要被重定向到适当的saga实例。为此,一些基础设施类是必需的。最重要的组件是SagaManager和SagaRepository。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-04T09:24:40.206Z">
+<meta property="og:updated_time" content="2018-09-27T02:29:56.577Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AxonFramework-Saga的基础设施">
 <meta name="twitter:description" content="事件需要被重定向到适当的saga实例。为此,一些基础设施类是必需的。最重要的组件是SagaManager和SagaRepository。">
     
 
     
-        <link rel="alternate" href="/atom.xml" title="耒耒耒耒耒" type="application/atom+xml" />
+        <link rel="alternate" href="/atom.xml" title="耒耒耒耒耒" type="application/atom+xml">
     
 
     
@@ -62,7 +62,7 @@
 
 
 </head>
-
+</html>
 <body>
     <div id="container">
         <header id="header">
@@ -88,7 +88,7 @@
                 <nav id="sub-nav">
                     <div class="profile" id="profile-nav">
                         <a id="profile-anchor" href="javascript:;">
-                            <img class="avatar" src="/css/images/avatar.png" />
+                            <img class="avatar" src="/css/images/avatar.png">
                             <i class="fas fa-caret-down"></i>
                         </a>
                     </div>
@@ -97,14 +97,14 @@
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
     <div class="ins-search-mask"></div>
     <div class="ins-search-container">
         <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
             <span class="ins-close ins-selectable"><i class="fas fa-times-circle"></i></span>
         </div>
         <div class="ins-section-wrapper">
@@ -148,7 +148,7 @@
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
     </div>
 
                 </td>
@@ -164,11 +164,11 @@
 <aside id="profile" class="profile-fixed">
     <div class="inner profile-inner">
         <div class="base-info profile-block">
-            <img id="avatar" src="/css/images/avatar.png" />
+            <img id="avatar" src="/css/images/avatar.png">
             <h2 id="name">张未</h2>
             <h3 id="title">大道五十,天衍四九,人遁其一</h3>
             <span id="location"><i class="fas fa-map-marker-alt" style="padding-right: 5px"></i>成都,中国</span>
-            <a id="follow" target="_blank" href="https://github.com/weechang/">关注我</a>
+            <a id="follow" target="_blank" href="https://github.com/weechang/" rel="external nofollow noopener noreferrer">关注我</a>
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
@@ -187,7 +187,7 @@
                     
                     
                     <td>
-                        <a href="https://github.com/weechang/" target="_blank" title="github" class=tooltip>
+                        <a href="https://github.com/weechang/" target="_blank" title="github" class="tooltip" rel="external nofollow noopener noreferrer">
                             
                                 <i class="fab fa-github"></i>
                             
@@ -195,7 +195,7 @@
                     </td>
                     
                     <td>
-                        <a href="mailto:zhangwei_sc@foxmail.com" target="_blank" title="envelope" class=tooltip>
+                        <a href="mailto:zhangwei_sc@foxmail.com" target="_blank" title="envelope" class="tooltip" rel="external nofollow noopener noreferrer">
                             
                                 <i class="fa fa-envelope"></i>
                             
@@ -203,7 +203,7 @@
                     </td>
                     
                     <td>
-                        <a href="/css/images/avatar.png" target="_blank" title="weixin" class=tooltip>
+                        <a href="/css/images/avatar.png" target="_blank" title="weixin" class="tooltip">
                             
                                 <i class="fab fa-weixin"></i>
                             
@@ -211,7 +211,7 @@
                     </td>
                     
                     <td>
-                        <a href="/atom.xml" target="_blank" title="rss" class=tooltip>
+                        <a href="/atom.xml" target="_blank" title="rss" class="tooltip">
                             
                                 <i class="fa fa-rss"></i>
                             
@@ -226,7 +226,7 @@
 </aside>
 
             
-            <section id="main"><article id="post-AxonFramework-Saga的基础设施" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-AxonFramework-Saga的基础设施" class="article article-type-post" itemscope="" itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -320,7 +320,7 @@ configurer.registerComponent(SagaStore.class, c -> new JpaSagaStore(...));
 <h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h2><p>如果使用一个支持的saga存储的数据库，保存和加载Saga 实例可能是相对昂贵的操作。特别是在很短的时间段内多次调用同一个saga实例的情况下，缓存对应用程序的性能是有利的。</p>
 <p>Axon 提供了CachingSagaStore实现。这个SagaStore包装实际的存储。加载saga或关联值时，CachingSagaStore将首先查阅其缓存，优于委托给包装的存储库。当存储信息时，所有调用总是被委托，以确保后备存储器总是有一个与saga的状态一致的视图。</p>
 <p>配置缓存,简单包装任何SagaStore到CachingSagaStore中。CachingSagaStore的构造函数接受三个参数:分别是，包装的存储库、用于关联值的缓存和saga的实例。后两个参数可以引用相同或不同的缓存。这取决于你的具体的程序的逐出需求。</p>
-<p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/57bd121412fa" target="_blank" rel="noopener">https://www.jianshu.com/p/57bd121412fa</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
+<p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/57bd121412fa" rel="external nofollow noopener noreferrer" target="_blank">https://www.jianshu.com/p/57bd121412fa</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
 
         
         </div>
@@ -509,7 +509,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
     <div class="outer">
         <div id="footer-info" class="inner">
             &copy; 2018 张未<br>
-            Hosted by <a href="https://pages.coding.me" style="font-weight: bold" rel="nofollow">Coding Pages</a>. Powered by <a href="http://hexo.io/" target="_blank" rel="nofollow">Hexo</a>. Theme by <a href="http://github.com/ppoffice" rel="nofollow">PPOffice</a>
+            Hosted by <a target="_blank" href="https://pages.coding.me" style="font-weight: bold" rel="external nofollow noopener noreferrer">Coding Pages</a>. Powered by <a href="http://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a>. Theme by <a target="_blank" href="http://github.com/ppoffice" rel="external nofollow noopener noreferrer">PPOffice</a>
         </div>
         <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         <div>本站访问量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次 | 本站访客<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人</div>
@@ -547,4 +547,3 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
 
     </div>
 </body>
-</html>
