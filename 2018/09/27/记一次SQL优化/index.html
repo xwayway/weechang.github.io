@@ -5,18 +5,18 @@
     
     <title>记一次SQL优化 | 耒耒耒耒耒</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="最近收到项目的慢查询报警，刚好手上空下来了，就准备做一些优化。特开此贴记录一下此次的优化详情。  背景介绍由于项目保密原因，因此很多字段采取保密写法，望各位看官见谅。 其实呢，整个表的数据量其实也不大，也就170W+。字段大概在65个左右，除了几个单号，几个内容这种稍大一点的字段外，其他的基本都是状态和关联id的字段。所以行大小也不大。 但是，上个月的时候，产品提出一个需要根据单号模糊查询的功能">
+    <meta name="description" content="最近收到项目的慢查询报警，刚好手上空下来了，就准备做一些优化。特开此贴记录一下此次的优化详情。">
 <meta name="keywords" content="日常记录,MySql,Sql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记一次SQL优化">
 <meta property="og:url" content="http://blog.weechang.xyz/2018/09/27/记一次SQL优化/index.html">
 <meta property="og:site_name" content="耒耒耒耒耒">
-<meta property="og:description" content="最近收到项目的慢查询报警，刚好手上空下来了，就准备做一些优化。特开此贴记录一下此次的优化详情。  背景介绍由于项目保密原因，因此很多字段采取保密写法，望各位看官见谅。 其实呢，整个表的数据量其实也不大，也就170W+。字段大概在65个左右，除了几个单号，几个内容这种稍大一点的字段外，其他的基本都是状态和关联id的字段。所以行大小也不大。 但是，上个月的时候，产品提出一个需要根据单号模糊查询的功能">
+<meta property="og:description" content="最近收到项目的慢查询报警，刚好手上空下来了，就准备做一些优化。特开此贴记录一下此次的优化详情。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-27T09:14:52.091Z">
+<meta property="og:updated_time" content="2018-09-27T09:16:24.148Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记一次SQL优化">
-<meta name="twitter:description" content="最近收到项目的慢查询报警，刚好手上空下来了，就准备做一些优化。特开此贴记录一下此次的优化详情。  背景介绍由于项目保密原因，因此很多字段采取保密写法，望各位看官见谅。 其实呢，整个表的数据量其实也不大，也就170W+。字段大概在65个左右，除了几个单号，几个内容这种稍大一点的字段外，其他的基本都是状态和关联id的字段。所以行大小也不大。 但是，上个月的时候，产品提出一个需要根据单号模糊查询的功能">
+<meta name="twitter:description" content="最近收到项目的慢查询报警，刚好手上空下来了，就准备做一些优化。特开此贴记录一下此次的优化详情。">
     
 
     
@@ -292,6 +292,7 @@
             <blockquote>
 <p>最近收到项目的慢查询报警，刚好手上空下来了，就准备做一些优化。特开此贴记录一下此次的优化详情。</p>
 </blockquote>
+<a id="more"></a>
 <h1 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h1><p>由于项目保密原因，因此很多字段采取保密写法，望各位看官见谅。</p>
 <p>其实呢，整个表的数据量其实也不大，也就170W+。字段大概在65个左右，除了几个单号，几个内容这种稍大一点的字段外，其他的基本都是状态和关联id的字段。所以行大小也不大。</p>
 <p>但是，上个月的时候，产品提出一个需要根据单号模糊查询的功能，就是这个功能，导致了慢查询。优化前，根据现有逻辑以及模糊查询的需求，大概的sql是这样的</p>

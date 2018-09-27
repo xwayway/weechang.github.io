@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.weechang.xyz/"/>
-  <updated>2018-09-27T09:14:52.091Z</updated>
+  <updated>2018-09-27T09:16:24.148Z</updated>
   <id>http://blog.weechang.xyz/</id>
   
   <author>
@@ -21,19 +21,15 @@
     <link href="http://blog.weechang.xyz/2018/09/27/%E8%AE%B0%E4%B8%80%E6%AC%A1SQL%E4%BC%98%E5%8C%96/"/>
     <id>http://blog.weechang.xyz/2018/09/27/记一次SQL优化/</id>
     <published>2018-09-27T06:31:52.000Z</published>
-    <updated>2018-09-27T09:14:52.091Z</updated>
+    <updated>2018-09-27T09:16:24.148Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>最近收到项目的慢查询报警，刚好手上空下来了，就准备做一些优化。特开此贴记录一下此次的优化详情。</p></blockquote><h1 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h1><p>由于项目保密原因，因此很多字段采取保密写法，望各位看官见谅。</p><p>其实呢，整个表的数据量其实也不大，也就170W+。字段大概在65个左右，除了几个单号，几个内容这种稍大一点的字段外，其他的基本都是状态和关联id的字段。所以行大小也不大。</p><p>但是，上个月的时候，产品提出一个需要根据单号模糊查询的功能，就是这个功能，导致了慢查询。优化前，根据现有逻辑以及模糊查询的需求，大概的sql是这样的</p><pre>SELECT    id,    work_order_num AS workOrderNum,    content,    OTHERS_COLUMNS...FROM    work_orderWHERE    work_order_num LIKE '%201808221644820%'AND sender_id = 11768AND status IN (2, 1, 0)AND record_status IN (4, 2)AND (locked = 0 OR locked = 2)AND yn = 1ORDER BY    create_time DESCLIMIT 0, 10</pre><h1 id="数据分析"><a href="#数据分析" class="headerlink" title="数据分析"></a>数据分析</h1><p>其中，上述Sql中，条件中的字段  work_order_num、sender_id 都是建了索引的，以下是慢查询统计情况</p><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td>total_count</td><td>19</td></tr><tr><td>total_time</td><td>133.23</td></tr><tr><td>avg_time</td><td>7.01</td></tr><tr><td>max_time</td><td>7.6426</td></tr><tr><td>avg_return_rows</td><td>0.79</td></tr><tr><td>max_return_rows</td><td>1</td></tr><tr><td>avg_examined_rows</td><td>1695975.47</td></tr><tr><td>max_examined_rows</td><td>1734740</td></tr></tbody></table><p>可以看见的是，慢查询基本都是全表扫描。为什么会这样呢，我具体执行了一下Sql发现，以上条件根本就查不出数据啊。然后修改条件发现，是工单号有问题。该工单号不存在，，，不存在啊。所以导致了全表扫描。</p><h1 id="调优进行时"><a href="#调优进行时" class="headerlink" title="调优进行时"></a>调优进行时</h1><p>首先想的是去掉like 特别是like的左匹配，试了一下，去掉左匹配，速度能减少到50%。虽然有效，但是业务不允许这样做。</p><p>然后考虑的是用instr函数代替like，测试了一下，能够减少1S的时间，但是对于7S的查询来说，这TM有什么效果。还是不行。</p><p>最后想到了一次案例分享中的，先用子查询查询出符合条件的id，再用id作为筛选条件，去获取所有的列。最后修改后的sql如下</p><pre>SELECT    id,    work_order_num AS workOrderNum,    content,    OTHERS_COLUMNS...FROM    work_orderWHERE    id IN (        SELECT            id        FROM            ws_work_order        WHERE            work_order_num LIKE '%201808221644820%'        AND sender_id = 11768        AND STATUS IN (2, 1, 0)        AND record_status IN (4, 2)        AND (locked = 0 OR locked = 2)        AND yn = 1    )ORDER BY    create_time DESCLIMIT 0, 10</pre><p>运行一下试试，，，果然，时间减少到了 0.03xxS。看着就有点小激动啊。</p><h1 id="原理剖析"><a href="#原理剖析" class="headerlink" title="原理剖析"></a>原理剖析</h1><p>原理呢，暂时忘了，先挖一个坑，等我想起了，再回来填坑。</p>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>最近收到项目的慢查询报警，刚好手上空下来了，就准备做一些优化。特开此贴记录一下此次的优化详情。</p></blockquote><a id="more"></a><h1 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h1><p>由于项目保密原因，因此很多字段采取保密写法，望各位看官见谅。</p><p>其实呢，整个表的数据量其实也不大，也就170W+。字段大概在65个左右，除了几个单号，几个内容这种稍大一点的字段外，其他的基本都是状态和关联id的字段。所以行大小也不大。</p><p>但是，上个月的时候，产品提出一个需要根据单号模糊查询的功能，就是这个功能，导致了慢查询。优化前，根据现有逻辑以及模糊查询的需求，大概的sql是这样的</p><pre>SELECT    id,    work_order_num AS workOrderNum,    content,    OTHERS_COLUMNS...FROM    work_orderWHERE    work_order_num LIKE '%201808221644820%'AND sender_id = 11768AND status IN (2, 1, 0)AND record_status IN (4, 2)AND (locked = 0 OR locked = 2)AND yn = 1ORDER BY    create_time DESCLIMIT 0, 10</pre><h1 id="数据分析"><a href="#数据分析" class="headerlink" title="数据分析"></a>数据分析</h1><p>其中，上述Sql中，条件中的字段  work_order_num、sender_id 都是建了索引的，以下是慢查询统计情况</p><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td>total_count</td><td>19</td></tr><tr><td>total_time</td><td>133.23</td></tr><tr><td>avg_time</td><td>7.01</td></tr><tr><td>max_time</td><td>7.6426</td></tr><tr><td>avg_return_rows</td><td>0.79</td></tr><tr><td>max_return_rows</td><td>1</td></tr><tr><td>avg_examined_rows</td><td>1695975.47</td></tr><tr><td>max_examined_rows</td><td>1734740</td></tr></tbody></table><p>可以看见的是，慢查询基本都是全表扫描。为什么会这样呢，我具体执行了一下Sql发现，以上条件根本就查不出数据啊。然后修改条件发现，是工单号有问题。该工单号不存在，，，不存在啊。所以导致了全表扫描。</p><h1 id="调优进行时"><a href="#调优进行时" class="headerlink" title="调优进行时"></a>调优进行时</h1><p>首先想的是去掉like 特别是like的左匹配，试了一下，去掉左匹配，速度能减少到50%。虽然有效，但是业务不允许这样做。</p><p>然后考虑的是用instr函数代替like，测试了一下，能够减少1S的时间，但是对于7S的查询来说，这TM有什么效果。还是不行。</p><p>最后想到了一次案例分享中的，先用子查询查询出符合条件的id，再用id作为筛选条件，去获取所有的列。最后修改后的sql如下</p><pre>SELECT    id,    work_order_num AS workOrderNum,    content,    OTHERS_COLUMNS...FROM    work_orderWHERE    id IN (        SELECT            id        FROM            ws_work_order        WHERE            work_order_num LIKE '%201808221644820%'        AND sender_id = 11768        AND STATUS IN (2, 1, 0)        AND record_status IN (4, 2)        AND (locked = 0 OR locked = 2)        AND yn = 1    )ORDER BY    create_time DESCLIMIT 0, 10</pre><p>运行一下试试，，，果然，时间减少到了 0.03xxS。看着就有点小激动啊。</p><h1 id="原理剖析"><a href="#原理剖析" class="headerlink" title="原理剖析"></a>原理剖析</h1><p>原理呢，暂时忘了，先挖一个坑，等我想起了，再回来填坑。</p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;blockquote&gt;
+      &lt;blockquote&gt;
 &lt;p&gt;最近收到项目的慢查询报警，刚好手上空下来了，就准备做一些优化。特开此贴记录一下此次的优化详情。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h1 id=&quot;背景介绍&quot;&gt;&lt;a href=&quot;#背景介绍&quot; class=&quot;headerlink&quot; title=&quot;背景
-      
     
     </summary>
     
