@@ -5,9 +5,9 @@
   <subtitle>张未的技术博客</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://blog.weechang.xyz/"/>
-  <updated>2018-09-27T09:16:24.148Z</updated>
-  <id>http://blog.weechang.xyz/</id>
+  <link href="https://blog.weechang.xyz/"/>
+  <updated>2018-09-28T08:14:51.254Z</updated>
+  <id>https://blog.weechang.xyz/</id>
   
   <author>
     <name>张未</name>
@@ -17,9 +17,33 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>为你的博客添加版权</title>
+    <link href="https://blog.weechang.xyz/2018/09/28/%E4%B8%BA%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E7%89%88%E6%9D%83/"/>
+    <id>https://blog.weechang.xyz/2018/09/28/为你的博客添加版权/</id>
+    <published>2018-09-28T06:48:37.000Z</published>
+    <updated>2018-09-28T08:14:51.254Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>自己做自建博客也有一段时间了，有转载别人的博客，也有自己动手写博客。在没做独立博客之前，对版权意识并不是那么重视，也没了解过自己文章的收录情况。</p></blockquote><a id="more"></a><p>最近为了提高网站的收录量，开始将一些自己原创的博客放到oschina 等博客平台上去。但是发现自己的文章很快就被收录了，然后被别的权重较高的网站转载。结果就是自己辛辛苦苦写的文章为他人做了嫁衣，还没有自己的署名新。</p><p>于是开始研究为自己文章加上版权信息。人家的hexo博客主题都要自带的版权申明，奈何我的没有，于是只能自己写咯，谁让我要选择这个博客主题呢，谁让我要自己搞独立博客呢。</p><p>因为之前有过自己在博客主题里面添加信息的经历，所以此次添加就比较简单了。因为我的博客主题页面用的是Ejs模板写的，所以需要先写一个Ejs模板，模板主要写的就是版权的布局内容。</p><p>copyright.ejs</p><pre> &lt;% if (!index || !post.excerpt) { %>     &lt;div class="post-copyright">         &lt;div class="author">             &lt;b>本文作者： &lt;/b>            post.author         &lt;/div>         &lt;div class="link">             &lt;b>本文链接： &lt;/b>             &lt;a href=" &lt;%= post.permalink %>" target="_blank"> &lt;%= post.permalink %> &lt;/a>         &lt;/div>         &lt;div class="copyright">             &lt;b> 版权声明： &lt;/b>            本博客所有文章除特别声明外，均采用  &lt;a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 &lt;/a> 许可协议。转载请注明出处！         &lt;/div>     &lt;/div> &lt;% } %></pre><p>然后找到文章的布局模板,我是用的模板，文章布局模板文件是 article.ejs ，将 copyright.ejs 在你想要显示的地方插入。我是添加在文末，标签及分享按钮之前。所以插入位置如下</p><img src="/2018/09/28/为你的博客添加版权/插入.png" title="模板插入"><p>然后通过js文件调试自己的版权布局样式</p><pre>.post-copyright  padding: 20px  background: #F6F6F6  border-left: 4px solid #DDDDDD  line-height: 1.6rem</pre><p>Ok，大功告成。启动预览，点击文章。可以发现文章已经加入了版权信息，好开心啊。</p><p>这样人家的爬虫爬取你的文章的时候，就会加入你的定制版权信息了。就算转载了你的文章，也能在一定程度上增加你网站的外链。</p><p>另外，在自己原创文章发布后，可以立即向百度等搜索引擎提交自己的链接，这样对于收录也是有一定的好处的。</p><p><strong> 另外，转载文章不留出处的方式，真的很恶心，希望大家都能尊重人家的劳动成果，加上署名及出处 </strong></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;自己做自建博客也有一段时间了，有转载别人的博客，也有自己动手写博客。在没做独立博客之前，对版权意识并不是那么重视，也没了解过自己文章的收录情况。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="开源之路" scheme="https://blog.weechang.xyz/categories/%E5%BC%80%E6%BA%90%E4%B9%8B%E8%B7%AF/"/>
+    
+    
+      <category term="Hexo" scheme="https://blog.weechang.xyz/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
     <title>记一次SQL优化</title>
-    <link href="http://blog.weechang.xyz/2018/09/27/%E8%AE%B0%E4%B8%80%E6%AC%A1SQL%E4%BC%98%E5%8C%96/"/>
-    <id>http://blog.weechang.xyz/2018/09/27/记一次SQL优化/</id>
+    <link href="https://blog.weechang.xyz/2018/09/27/%E8%AE%B0%E4%B8%80%E6%AC%A1SQL%E4%BC%98%E5%8C%96/"/>
+    <id>https://blog.weechang.xyz/2018/09/27/记一次SQL优化/</id>
     <published>2018-09-27T06:31:52.000Z</published>
     <updated>2018-09-27T09:16:24.148Z</updated>
     
@@ -33,21 +57,21 @@
     
     </summary>
     
-      <category term="日常记录" scheme="http://blog.weechang.xyz/categories/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/"/>
+      <category term="日常记录" scheme="https://blog.weechang.xyz/categories/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/"/>
     
     
-      <category term="日常记录" scheme="http://blog.weechang.xyz/tags/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/"/>
+      <category term="日常记录" scheme="https://blog.weechang.xyz/tags/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/"/>
     
-      <category term="MySql" scheme="http://blog.weechang.xyz/tags/MySql/"/>
+      <category term="MySql" scheme="https://blog.weechang.xyz/tags/MySql/"/>
     
-      <category term="Sql" scheme="http://blog.weechang.xyz/tags/Sql/"/>
+      <category term="Sql" scheme="https://blog.weechang.xyz/tags/Sql/"/>
     
   </entry>
   
   <entry>
     <title>论如何优雅地使用爬虫摸鱼</title>
-    <link href="http://blog.weechang.xyz/2018/09/21/%E8%AE%BA%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E5%9C%B0%E4%BD%BF%E7%94%A8%E7%88%AC%E8%99%AB%E6%91%B8%E9%B1%BC/"/>
-    <id>http://blog.weechang.xyz/2018/09/21/论如何优雅地使用爬虫摸鱼/</id>
+    <link href="https://blog.weechang.xyz/2018/09/21/%E8%AE%BA%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E5%9C%B0%E4%BD%BF%E7%94%A8%E7%88%AC%E8%99%AB%E6%91%B8%E9%B1%BC/"/>
+    <id>https://blog.weechang.xyz/2018/09/21/论如何优雅地使用爬虫摸鱼/</id>
     <published>2018-09-21T08:05:11.000Z</published>
     <updated>2018-09-27T06:22:48.055Z</updated>
     
@@ -61,19 +85,19 @@
     
     </summary>
     
-      <category term="日常记录" scheme="http://blog.weechang.xyz/categories/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/"/>
+      <category term="日常记录" scheme="https://blog.weechang.xyz/categories/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/"/>
     
     
-      <category term="爬虫" scheme="http://blog.weechang.xyz/tags/%E7%88%AC%E8%99%AB/"/>
+      <category term="爬虫" scheme="https://blog.weechang.xyz/tags/%E7%88%AC%E8%99%AB/"/>
     
-      <category term="Jsoup" scheme="http://blog.weechang.xyz/tags/Jsoup/"/>
+      <category term="Jsoup" scheme="https://blog.weechang.xyz/tags/Jsoup/"/>
     
   </entry>
   
   <entry>
     <title>IDEA、WebStorm最新永久激活方式</title>
-    <link href="http://blog.weechang.xyz/2018/09/21/IDEA%E3%80%81WebStorm%E6%9C%80%E6%96%B0%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BB%E6%96%B9%E5%BC%8F/"/>
-    <id>http://blog.weechang.xyz/2018/09/21/IDEA、WebStorm最新永久激活方式/</id>
+    <link href="https://blog.weechang.xyz/2018/09/21/IDEA%E3%80%81WebStorm%E6%9C%80%E6%96%B0%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BB%E6%96%B9%E5%BC%8F/"/>
+    <id>https://blog.weechang.xyz/2018/09/21/IDEA、WebStorm最新永久激活方式/</id>
     <published>2018-09-21T05:22:40.000Z</published>
     <updated>2018-09-27T06:22:48.071Z</updated>
     
@@ -87,21 +111,21 @@
     
     </summary>
     
-      <category term="日常记录" scheme="http://blog.weechang.xyz/categories/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/"/>
+      <category term="日常记录" scheme="https://blog.weechang.xyz/categories/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/"/>
     
     
-      <category term="日常记录" scheme="http://blog.weechang.xyz/tags/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/"/>
+      <category term="日常记录" scheme="https://blog.weechang.xyz/tags/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/"/>
     
-      <category term="IDEA永久激活" scheme="http://blog.weechang.xyz/tags/IDEA%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BB/"/>
+      <category term="IDEA永久激活" scheme="https://blog.weechang.xyz/tags/IDEA%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BB/"/>
     
-      <category term="WebStorm永久激活" scheme="http://blog.weechang.xyz/tags/WebStorm%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BB/"/>
+      <category term="WebStorm永久激活" scheme="https://blog.weechang.xyz/tags/WebStorm%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BB/"/>
     
   </entry>
   
   <entry>
     <title>六元一个的私有博客系统，了解一下？</title>
-    <link href="http://blog.weechang.xyz/2018/09/19/%E5%85%AD%E5%85%83%E4%B8%80%E4%B8%AA%E7%9A%84%E7%A7%81%E6%9C%89%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%EF%BC%8C%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B%EF%BC%9F/"/>
-    <id>http://blog.weechang.xyz/2018/09/19/六元一个的私有博客系统，了解一下？/</id>
+    <link href="https://blog.weechang.xyz/2018/09/19/%E5%85%AD%E5%85%83%E4%B8%80%E4%B8%AA%E7%9A%84%E7%A7%81%E6%9C%89%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%EF%BC%8C%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B%EF%BC%9F/"/>
+    <id>https://blog.weechang.xyz/2018/09/19/六元一个的私有博客系统，了解一下？/</id>
     <published>2018-09-19T06:33:09.000Z</published>
     <updated>2018-09-27T06:22:48.055Z</updated>
     
@@ -113,19 +137,19 @@
     
     </summary>
     
-      <category term="开源之路" scheme="http://blog.weechang.xyz/categories/%E5%BC%80%E6%BA%90%E4%B9%8B%E8%B7%AF/"/>
+      <category term="开源之路" scheme="https://blog.weechang.xyz/categories/%E5%BC%80%E6%BA%90%E4%B9%8B%E8%B7%AF/"/>
     
     
-      <category term="手把手教学" scheme="http://blog.weechang.xyz/tags/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E5%AD%A6/"/>
+      <category term="手把手教学" scheme="https://blog.weechang.xyz/tags/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E5%AD%A6/"/>
     
-      <category term="GitHub Pages" scheme="http://blog.weechang.xyz/tags/GitHub-Pages/"/>
+      <category term="GitHub Pages" scheme="https://blog.weechang.xyz/tags/GitHub-Pages/"/>
     
   </entry>
   
   <entry>
     <title>AxonFramework-事件序列化器调优</title>
-    <link href="http://blog.weechang.xyz/2018/08/31/AxonFramework-%E4%BA%8B%E4%BB%B6%E5%BA%8F%E5%88%97%E5%8C%96%E5%99%A8%E8%B0%83%E4%BC%98/"/>
-    <id>http://blog.weechang.xyz/2018/08/31/AxonFramework-事件序列化器调优/</id>
+    <link href="https://blog.weechang.xyz/2018/08/31/AxonFramework-%E4%BA%8B%E4%BB%B6%E5%BA%8F%E5%88%97%E5%8C%96%E5%99%A8%E8%B0%83%E4%BC%98/"/>
+    <id>https://blog.weechang.xyz/2018/08/31/AxonFramework-事件序列化器调优/</id>
     <published>2018-08-31T03:20:34.000Z</published>
     <updated>2018-09-27T06:22:48.071Z</updated>
     
@@ -137,17 +161,17 @@
     
     </summary>
     
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/categories/AxonFramework/"/>
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/categories/AxonFramework/"/>
     
     
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/tags/AxonFramework/"/>
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/tags/AxonFramework/"/>
     
   </entry>
   
   <entry>
     <title>AxonFramework-高级定制</title>
-    <link href="http://blog.weechang.xyz/2018/08/31/AxonFramework-%E9%AB%98%E7%BA%A7%E5%AE%9A%E5%88%B6/"/>
-    <id>http://blog.weechang.xyz/2018/08/31/AxonFramework-高级定制/</id>
+    <link href="https://blog.weechang.xyz/2018/08/31/AxonFramework-%E9%AB%98%E7%BA%A7%E5%AE%9A%E5%88%B6/"/>
+    <id>https://blog.weechang.xyz/2018/08/31/AxonFramework-高级定制/</id>
     <published>2018-08-31T03:14:03.000Z</published>
     <updated>2018-09-27T06:22:48.055Z</updated>
     
@@ -159,17 +183,17 @@
     
     </summary>
     
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/categories/AxonFramework/"/>
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/categories/AxonFramework/"/>
     
     
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/tags/AxonFramework/"/>
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/tags/AxonFramework/"/>
     
   </entry>
   
   <entry>
     <title>AxonFramework-SpringBoot自动配置</title>
-    <link href="http://blog.weechang.xyz/2018/08/31/AxonFramework-SpringBoot%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE/"/>
-    <id>http://blog.weechang.xyz/2018/08/31/AxonFramework-SpringBoot自动配置/</id>
+    <link href="https://blog.weechang.xyz/2018/08/31/AxonFramework-SpringBoot%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE/"/>
+    <id>https://blog.weechang.xyz/2018/08/31/AxonFramework-SpringBoot自动配置/</id>
     <published>2018-08-31T03:10:15.000Z</published>
     <updated>2018-09-27T06:22:48.071Z</updated>
     
@@ -181,17 +205,17 @@
     
     </summary>
     
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/categories/AxonFramework/"/>
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/categories/AxonFramework/"/>
     
     
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/tags/AxonFramework/"/>
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/tags/AxonFramework/"/>
     
   </entry>
   
   <entry>
     <title>AxonFramework-Snapshotting</title>
-    <link href="http://blog.weechang.xyz/2018/08/31/AxonFramework-Snapshotting/"/>
-    <id>http://blog.weechang.xyz/2018/08/31/AxonFramework-Snapshotting/</id>
+    <link href="https://blog.weechang.xyz/2018/08/31/AxonFramework-Snapshotting/"/>
+    <id>https://blog.weechang.xyz/2018/08/31/AxonFramework-Snapshotting/</id>
     <published>2018-08-31T03:07:08.000Z</published>
     <updated>2018-09-27T06:22:48.024Z</updated>
     
@@ -203,17 +227,17 @@
     
     </summary>
     
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/categories/AxonFramework/"/>
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/categories/AxonFramework/"/>
     
     
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/tags/AxonFramework/"/>
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/tags/AxonFramework/"/>
     
   </entry>
   
   <entry>
     <title>AxonFramework-事件向上转换</title>
-    <link href="http://blog.weechang.xyz/2018/08/31/AxonFramework-%E4%BA%8B%E4%BB%B6%E5%90%91%E4%B8%8A%E8%BD%AC%E6%8D%A2/"/>
-    <id>http://blog.weechang.xyz/2018/08/31/AxonFramework-事件向上转换/</id>
+    <link href="https://blog.weechang.xyz/2018/08/31/AxonFramework-%E4%BA%8B%E4%BB%B6%E5%90%91%E4%B8%8A%E8%BD%AC%E6%8D%A2/"/>
+    <id>https://blog.weechang.xyz/2018/08/31/AxonFramework-事件向上转换/</id>
     <published>2018-08-31T03:03:17.000Z</published>
     <updated>2018-09-27T06:22:48.055Z</updated>
     
@@ -225,17 +249,17 @@
     
     </summary>
     
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/categories/AxonFramework/"/>
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/categories/AxonFramework/"/>
     
     
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/tags/AxonFramework/"/>
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/tags/AxonFramework/"/>
     
   </entry>
   
   <entry>
     <title>AxonFramework-EventStore实现</title>
-    <link href="http://blog.weechang.xyz/2018/08/31/AxonFramework-EventStore%E5%AE%9E%E7%8E%B0/"/>
-    <id>http://blog.weechang.xyz/2018/08/31/AxonFramework-EventStore实现/</id>
+    <link href="https://blog.weechang.xyz/2018/08/31/AxonFramework-EventStore%E5%AE%9E%E7%8E%B0/"/>
+    <id>https://blog.weechang.xyz/2018/08/31/AxonFramework-EventStore实现/</id>
     <published>2018-08-31T02:52:45.000Z</published>
     <updated>2018-09-27T06:22:48.008Z</updated>
     
@@ -247,17 +271,17 @@
     
     </summary>
     
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/categories/AxonFramework/"/>
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/categories/AxonFramework/"/>
     
     
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/tags/AxonFramework/"/>
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/tags/AxonFramework/"/>
     
   </entry>
   
   <entry>
     <title>AxonFramework-存储库</title>
-    <link href="http://blog.weechang.xyz/2018/08/31/AxonFramework-%E5%AD%98%E5%82%A8%E5%BA%93/"/>
-    <id>http://blog.weechang.xyz/2018/08/31/AxonFramework-存储库/</id>
+    <link href="https://blog.weechang.xyz/2018/08/31/AxonFramework-%E5%AD%98%E5%82%A8%E5%BA%93/"/>
+    <id>https://blog.weechang.xyz/2018/08/31/AxonFramework-存储库/</id>
     <published>2018-08-31T02:50:48.000Z</published>
     <updated>2018-09-27T06:22:48.071Z</updated>
     
@@ -269,17 +293,17 @@
     
     </summary>
     
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/categories/AxonFramework/"/>
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/categories/AxonFramework/"/>
     
     
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/tags/AxonFramework/"/>
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/tags/AxonFramework/"/>
     
   </entry>
   
   <entry>
     <title>AxonFramework-分发事件</title>
-    <link href="http://blog.weechang.xyz/2018/08/31/AxonFramework-%E5%88%86%E5%8F%91%E4%BA%8B%E4%BB%B6/"/>
-    <id>http://blog.weechang.xyz/2018/08/31/AxonFramework-分发事件/</id>
+    <link href="https://blog.weechang.xyz/2018/08/31/AxonFramework-%E5%88%86%E5%8F%91%E4%BA%8B%E4%BB%B6/"/>
+    <id>https://blog.weechang.xyz/2018/08/31/AxonFramework-分发事件/</id>
     <published>2018-08-31T02:47:38.000Z</published>
     <updated>2018-09-27T06:22:48.040Z</updated>
     
@@ -291,17 +315,17 @@
     
     </summary>
     
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/categories/AxonFramework/"/>
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/categories/AxonFramework/"/>
     
     
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/tags/AxonFramework/"/>
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/tags/AxonFramework/"/>
     
   </entry>
   
   <entry>
     <title>AxonFramework-事件发布和处理</title>
-    <link href="http://blog.weechang.xyz/2018/08/31/AxonFramework-%E4%BA%8B%E4%BB%B6%E5%8F%91%E5%B8%83%E5%92%8C%E5%A4%84%E7%90%86/"/>
-    <id>http://blog.weechang.xyz/2018/08/31/AxonFramework-事件发布和处理/</id>
+    <link href="https://blog.weechang.xyz/2018/08/31/AxonFramework-%E4%BA%8B%E4%BB%B6%E5%8F%91%E5%B8%83%E5%92%8C%E5%A4%84%E7%90%86/"/>
+    <id>https://blog.weechang.xyz/2018/08/31/AxonFramework-事件发布和处理/</id>
     <published>2018-08-31T02:44:40.000Z</published>
     <updated>2018-09-27T06:22:48.024Z</updated>
     
@@ -313,17 +337,17 @@
     
     </summary>
     
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/categories/AxonFramework/"/>
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/categories/AxonFramework/"/>
     
     
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/tags/AxonFramework/"/>
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/tags/AxonFramework/"/>
     
   </entry>
   
   <entry>
     <title>AxonFramework-分布式命令总线连接器</title>
-    <link href="http://blog.weechang.xyz/2018/08/31/AxonFramework-%E5%88%86%E5%B8%83%E5%BC%8F%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BA%BF%E8%BF%9E%E6%8E%A5%E5%99%A8/"/>
-    <id>http://blog.weechang.xyz/2018/08/31/AxonFramework-分布式命令总线连接器/</id>
+    <link href="https://blog.weechang.xyz/2018/08/31/AxonFramework-%E5%88%86%E5%B8%83%E5%BC%8F%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BA%BF%E8%BF%9E%E6%8E%A5%E5%99%A8/"/>
+    <id>https://blog.weechang.xyz/2018/08/31/AxonFramework-分布式命令总线连接器/</id>
     <published>2018-08-31T02:40:27.000Z</published>
     <updated>2018-09-27T06:22:48.008Z</updated>
     
@@ -335,17 +359,17 @@
     
     </summary>
     
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/categories/AxonFramework/"/>
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/categories/AxonFramework/"/>
     
     
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/tags/AxonFramework/"/>
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/tags/AxonFramework/"/>
     
   </entry>
   
   <entry>
     <title>AxonFramework命令拦截器</title>
-    <link href="http://blog.weechang.xyz/2018/08/31/AxonFramework-%E5%91%BD%E4%BB%A4%E6%8B%A6%E6%88%AA%E5%99%A8/"/>
-    <id>http://blog.weechang.xyz/2018/08/31/AxonFramework-命令拦截器/</id>
+    <link href="https://blog.weechang.xyz/2018/08/31/AxonFramework-%E5%91%BD%E4%BB%A4%E6%8B%A6%E6%88%AA%E5%99%A8/"/>
+    <id>https://blog.weechang.xyz/2018/08/31/AxonFramework-命令拦截器/</id>
     <published>2018-08-31T02:29:32.000Z</published>
     <updated>2018-09-27T06:22:48.055Z</updated>
     
@@ -357,17 +381,17 @@
     
     </summary>
     
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/categories/AxonFramework/"/>
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/categories/AxonFramework/"/>
     
     
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/tags/AxonFramework/"/>
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/tags/AxonFramework/"/>
     
   </entry>
   
   <entry>
     <title>AxonFramework命令总线</title>
-    <link href="http://blog.weechang.xyz/2018/08/31/AxonFramework-%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BA%BF/"/>
-    <id>http://blog.weechang.xyz/2018/08/31/AxonFramework-命令总线/</id>
+    <link href="https://blog.weechang.xyz/2018/08/31/AxonFramework-%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BA%BF/"/>
+    <id>https://blog.weechang.xyz/2018/08/31/AxonFramework-命令总线/</id>
     <published>2018-08-31T02:25:51.000Z</published>
     <updated>2018-09-27T06:22:48.008Z</updated>
     
@@ -379,17 +403,17 @@
     
     </summary>
     
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/categories/AxonFramework/"/>
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/categories/AxonFramework/"/>
     
     
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/tags/AxonFramework/"/>
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/tags/AxonFramework/"/>
     
   </entry>
   
   <entry>
     <title>AxonFramework-测试带注解的Saga</title>
-    <link href="http://blog.weechang.xyz/2018/08/29/AxonFramework-%E6%B5%8B%E8%AF%95%E5%B8%A6%E6%B3%A8%E8%A7%A3%E7%9A%84Saga/"/>
-    <id>http://blog.weechang.xyz/2018/08/29/AxonFramework-测试带注解的Saga/</id>
+    <link href="https://blog.weechang.xyz/2018/08/29/AxonFramework-%E6%B5%8B%E8%AF%95%E5%B8%A6%E6%B3%A8%E8%A7%A3%E7%9A%84Saga/"/>
+    <id>https://blog.weechang.xyz/2018/08/29/AxonFramework-测试带注解的Saga/</id>
     <published>2018-08-29T03:30:56.000Z</published>
     <updated>2018-09-27T06:22:48.024Z</updated>
     
@@ -401,17 +425,17 @@
     
     </summary>
     
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/categories/AxonFramework/"/>
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/categories/AxonFramework/"/>
     
     
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/tags/AxonFramework/"/>
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/tags/AxonFramework/"/>
     
   </entry>
   
   <entry>
     <title>AxonFramework测试</title>
-    <link href="http://blog.weechang.xyz/2018/08/29/AxonFramework-%E6%B5%8B%E8%AF%95/"/>
-    <id>http://blog.weechang.xyz/2018/08/29/AxonFramework-测试/</id>
+    <link href="https://blog.weechang.xyz/2018/08/29/AxonFramework-%E6%B5%8B%E8%AF%95/"/>
+    <id>https://blog.weechang.xyz/2018/08/29/AxonFramework-测试/</id>
     <published>2018-08-29T02:30:35.000Z</published>
     <updated>2018-09-27T06:22:48.040Z</updated>
     
@@ -423,17 +447,17 @@
     
     </summary>
     
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/categories/AxonFramework/"/>
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/categories/AxonFramework/"/>
     
     
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/tags/AxonFramework/"/>
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/tags/AxonFramework/"/>
     
   </entry>
   
   <entry>
     <title>AxonFramework-Saga的基础设施</title>
-    <link href="http://blog.weechang.xyz/2018/08/29/AxonFramework-Saga%E7%9A%84%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/"/>
-    <id>http://blog.weechang.xyz/2018/08/29/AxonFramework-Saga的基础设施/</id>
+    <link href="https://blog.weechang.xyz/2018/08/29/AxonFramework-Saga%E7%9A%84%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/"/>
+    <id>https://blog.weechang.xyz/2018/08/29/AxonFramework-Saga的基础设施/</id>
     <published>2018-08-29T02:17:20.000Z</published>
     <updated>2018-09-27T06:22:48.024Z</updated>
     
@@ -445,32 +469,10 @@
     
     </summary>
     
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/categories/AxonFramework/"/>
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/categories/AxonFramework/"/>
     
     
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/tags/AxonFramework/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>AxonFramework跟踪最后期限</title>
-    <link href="http://blog.weechang.xyz/2018/08/29/AxonFramework-%E8%B7%9F%E8%B8%AA%E6%9C%80%E5%90%8E%E6%9C%9F%E9%99%90/"/>
-    <id>http://blog.weechang.xyz/2018/08/29/AxonFramework-跟踪最后期限/</id>
-    <published>2018-08-29T02:11:46.000Z</published>
-    <updated>2018-09-27T06:22:48.040Z</updated>
-    
-    <content type="html"><![CDATA[<p>当有事发生时，很容易使一个saga采取行动。毕竟，有一个事件要通知saga。但是如果你想让你的saga，在什么事情都没发生的情况下做些什么呢？这就是最后期限。在发票中，通常是几周，而信用卡支付的确认可能在几秒钟内。</p><a id="more"></a><p>在Axon中，你可以使用一个EventScheduler计划发布一个事件。在发票的例子中，你希望发票在30内付清。saga将在发送CreateInvoiceCommand后，安排一个InvoicePaymentDeadlineExpiredEvent在30天后发布。计划一个事件后EventScheduler返回ScheduleToken。这个令牌可以用来取消计划，例如已收到发票的付款。</p><p>Axon提供了两种EventScheduler实现:一个纯Java和一个使用Quartz 2作为调度机制支持。</p><p>这个纯java实现的EventScheduler使用ScheduledExecutorService去计划事件发布。虽然这个计划器的定时非常可靠，但它是一个纯内存实现。一旦JVM关闭，所有的计划都将丢失。这使得这种实现不适合长期限的计划。</p><p>SimpleEventScheduler 需要配置一个EventBus和一个SchedulingExecutorService（看java.util.concurrent.Executors类的静态方法的helper方法）。</p><p>QuartzEventScheduler是一个更可靠，企业信得过的实现。使用Quartz 作为底层调度机制，它提供了更强大的功能，如持久性、集群和失败的管理。这意味着事件发布将被保证。可能会晚一点，但会发布。</p><p>需要配置一个Quartz调度器和EventBus。另外，你可以设置以组的名称进行计划，默认为”AxonFramework-Events”</p><p>一个或多个组件将监听计划的事件。这些组件可能依赖于绑定到调用它们的线程的事务。计划的事件由EventScheduler管理的线程发布。管理事务在这些线程上，你可以配置一个TransactionManager或UnitOfWorkFactory创建一个事务绑定工作单元。</p><blockquote><p><b>注意</b><br>Spring用户可以使用quartzeventschedulerfactorybean或simpleeventschedulerfactorybean进行更简单的配置。它允许你直接设置PlatformTransactionManager。</p></blockquote><h2 id="注入资源"><a href="#注入资源" class="headerlink" title="注入资源"></a>注入资源</h2><p>saga一般做的不仅仅是维护基于事件的状态。它们与外部的组件进行交互。要做到这一点，他们需要访问处理组件所需的资源。通常，这些资源实际上并不是saga状态的一部分，也不应该持久化。但是，一旦重新构建一个saga，在事件被路由到该实例之前，必须注入这些资源。</p><p>为了这个目的有了ResourceInjector。它使用SagaRepository将资源注入到一个saga。Axon提供了SpringResourceInjector用应用程序上下文中的资源注入带注解的字段和方法，和一个SimpleResourceInjector，注册已经注册的资源到用@Inject注解的方法和字段。</p><blockquote><p><b>提示</b><br>由于资源与saga不应该被持久化，所以务必向这些字段添加临时关键字。这将防止序列化机制尝试将这些字段的内容写入存储库。存储库将在saga被反序列化之后自动重新注入所需的资源。</p></blockquote><p>Simpleresourceinjector允许一个预先指定的资源集合被注射。它扫描saga的(setter)方法和字段，以找到被@Inject注解的那个。</p><p>当使用配置API，Axon将默认为the ConfigurationResourceInjector。它将注入配置中可用的任何资源。组件像EventBus、EventStore CommandBus和CommandGateway默认情况下是可用的,但你也可以使用configurer.registerComponent()注册自己的组件。</p><p>Springresourceinjector使用Spring的依赖注入机制注入资源聚合。这意味着，如果需要，可以使用setter注入或直接字段注入。要注入的方法或字段需要注解，以便Spring识别它为依赖项。例如@Autowired。</p><p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/02e3636fc735" rel="external nofollow noopener noreferrer" target="_blank">https://www.jianshu.com/p/02e3636fc735</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;当有事发生时，很容易使一个saga采取行动。毕竟，有一个事件要通知saga。但是如果你想让你的saga，在什么事情都没发生的情况下做些什么呢？这就是最后期限。在发票中，通常是几周，而信用卡支付的确认可能在几秒钟内。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/categories/AxonFramework/"/>
-    
-    
-      <category term="AxonFramework" scheme="http://blog.weechang.xyz/tags/AxonFramework/"/>
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/tags/AxonFramework/"/>
     
   </entry>
   
