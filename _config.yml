@@ -13,7 +13,7 @@ timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://blog.weechang.xyz
+url: https://blog.weechang.xyz
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -123,3 +123,8 @@ nofollow:
   exclude:
   - blog.unknowns.info
   - yanhaijing.com
+
+post_copyright:
+  enable: true
+  author: 张未
+  copyright_text: 作者拥有版权，请注明出处转载。

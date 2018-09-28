@@ -37,6 +37,7 @@
             <%- post.content %>
         <% } %>
         </div>
+            <%- partial('plugin/copyright', { post: post }) %>
         <footer class="article-footer">
             <%- partial('post/tag') %>
             <%- partial('share/index', { post: post }) %>
