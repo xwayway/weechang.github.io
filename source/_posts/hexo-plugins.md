@@ -105,6 +105,7 @@ npm install hexo-baidu-url-submit
 
 ```
 baidu_url_submit:
+  # count表示一次提交几条最新的url
   count: 1
   host: 网站域名
   token: 百度站长主动提交处得token
@@ -114,6 +115,21 @@ baidu_url_submit:
 token具体查看地址的，百度站长平台-用户中心-站点管理-数据引入-链接提交，token为图中token参数后面的值
 
 {% asset_img baiduurl.png  token%}
+
+另外需要，在修改 _config.yml 的deploy配置选项
+
+```
+deploy:
+  type: baidu_url_submitter
+#  type: git
+  branch: master
+  repo:
+    coding: https://git.coding.net/weechang93/weechang93.coding.me.git
+    github: https://github.com/weechang/weechang.github.io.git
+  bucket: blog.weechang.xyz
+```
+
+**其中deploy的type只能同时存在一个，这就需要在部署与提交url之间相互切换了。**
 
 # 静态资源压缩插件
 
