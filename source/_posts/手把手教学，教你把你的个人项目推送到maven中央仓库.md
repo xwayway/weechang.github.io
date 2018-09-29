@@ -42,102 +42,102 @@ tags: [手把手教学, maven中央仓库]
 ## 3.1 配置maven setting.xml
 需要在本地的maven配置server 和 profile 两个地方，啰嗦的话就不多少了，直接上配置：
 ```
-    &lt;server>
-        &lt;id>ossrh&lt;/id>
-        &lt;username>第一步注册的用户名&lt;/username>
-        &lt;password>第一步注册的密码&lt;/password>
-    &lt;/server>
+    <server>
+        <id>ossrh</id>
+        <username>第一步注册的用户名</username>
+        <password>第一步注册的密码</password>
+    </server>
 ```
 ```
-     &lt;profile>
-         &lt;id>ossrh&lt;/id>
-         &lt;activation>
-             &lt;activeByDefault>true&lt;/activeByDefault>
-         &lt;/activation>
-         &lt;properties>
-             &lt;gpg.executable>gpg(MAC 和 Linux用户使用gpg2)&lt;/gpg.executable>
-             &lt;gpg.passphrash>生成密钥时输入的密码&lt;/gpg.passphrash>
-         &lt;/properties>
+     <profile>
+         <id>ossrh</id>
+         <activation>
+             <activeByDefault>true</activeByDefault>
+         </activation>
+         <properties>
+             <gpg.executable>gpg(MAC 和 Linux用户使用gpg2)</gpg.executable>
+             <gpg.passphrash>生成密钥时输入的密码</gpg.passphrash>
+         </properties>
     </profile>
 ```
 
 ## 3.2 配置项目的pom.xml
 具体的配置可以查看小轮子里面的pom设置 <a href="https://github.com/weechang/JUtil/blob/master/pom.xml" target="_blank">https://github.com/weechang/JUtil/blob/master/pom.xml</a>
-首先需要添加指向sonatype仓库的&lt;distributionManagement>
+首先需要添加指向sonatype仓库的<distributionManagement>
 ```
-    &lt;distributionManagement>
-        &lt;snapshotRepository>
-            &lt;id>ossrh&lt;/id>
-            &lt;url>https://oss.sonatype.org/content/repositories/snapshots&lt;/url>
-        &lt;/snapshotRepository>
-        &lt;repository>
-            &lt;id>ossrh&lt;/id>
-            &lt;name>Maven Central Staging Repository&lt;/name>
-            &lt;url>https://oss.sonatype.org/service/local/staging/deploy/maven2/&lt;/url>
-        &lt;/repository>
-    &lt;/distributionManagement>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <name>Maven Central Staging Repository</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 ```
 继续配置pfofiles,添加各种推送、DOC、加密的插件
 ```
-    &lt;profiles>
-        &lt;profile>
-            &lt;id>release</id>
-            &lt;build>
-                &lt;plugins>
-                    &lt;plugin>
-                        &lt;groupId>org.sonatype.plugins&lt;/groupId>
-                        &lt;artifactId>nexus-staging-maven-plugin&lt;/artifactId>
-                        &lt;version>1.6.8&lt;/version>
-                        &lt;extensions>true&lt;/extensions>
-                        &lt;configuration>
-                            &lt;serverId>ossrh&lt;/serverId>
-                            &lt;nexusUrl>https://oss.sonatype.org/&lt;/nexusUrl>
-                            &lt;autoReleaseAfterClose>true&lt;/autoReleaseAfterClose>
-                        &lt;/configuration>
-                    &lt;/plugin>
-                    &lt;plugin>
-                        &lt;groupId>org.apache.maven.plugins&lt;/groupId>
-                        &lt;artifactId>maven-javadoc-plugin&lt;/artifactId>
-                        &lt;version>3.0.1&lt;/version>
-                        &lt;executions>
-                            &lt;execution>
-                                &lt;id>attach-javadocs&lt;/id>
-                                &lt;goals>
-                                    &lt;goal>jar&lt;/goal>
-                                &lt;/goals>
-                            &lt;/execution>
-                        &lt;/executions>
-                    &lt;/plugin>
-                    &lt;plugin>
-                        &lt;groupId>org.apache.maven.plugins&lt;/groupId>
-                        &lt;artifactId>maven-source-plugin&lt;/artifactId>
-                        &lt;executions>
-                            &lt;execution>
-                                &lt;id>attach-sources&lt;/id>
-                                &lt;goals>
-                                    &lt;goal>jar-no-fork</goal>
-                                &lt;/goals>
-                            &lt;/execution>
-                        &lt;/executions>
-                    &lt;/plugin>
-                    &lt;plugin>
-                        &lt;groupId>org.apache.maven.plugins&lt;/groupId>
-                        &lt;artifactId>maven-gpg-plugin&lt;/artifactId>
-                        &lt;version>1.6&lt;/version>
-                        &lt;executions>
-                            &lt;execution>
-                                &lt;id>sign-artifacts&lt;/id>
-                                &lt;phase>verify&lt;/phase>
-                                &lt;goals>
-                                    &lt;goal>sign&lt;/goal>
-                                &lt;/goals>
-                            &lt;/execution>
-                        &lt;/executions>
-                    &lt;/plugin>
-                &lt;/plugins>
-            &lt;/build>
-        &lt;/profile>
-    &lt;/profiles>
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.8</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>3.0.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.6</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 ```
 然后还可以添加一些开发者信息和license信息，具体的就不多说了。具体可以参考小轮子的配置
 

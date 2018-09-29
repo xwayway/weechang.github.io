@@ -120,7 +120,7 @@ hashMap的扩容并不总是能够有效解决负载因子过大的问题。假�
     /**
     *@param m Map子类
     */
-    public HashMap(Map &lt; ? extends K, ? extends V> m)
+    public HashMap(Map < ? extends K, ? extends V> m)
 ```
 
 ## 3.2 对外方法
