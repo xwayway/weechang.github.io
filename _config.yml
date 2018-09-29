@@ -129,28 +129,3 @@ post_copyright:
   enable: true
   author: 张未
   copyright_text: 作者拥有版权，请注明出处转载。
-
-# hexo-neat
-# 博文压缩
-neat_enable: true
-# 压缩html
-neat_html:
-  enable: true
-  exclude:
-    - '**/Java集合-0——HashMap类.*'
-    - '**/Java集合-1——HashTable类.*'
-# 压缩css
-neat_css:
-  enable: true
-  exclude:
-  - '**/*.min.css'
-# 压缩js
-neat_js:
-  enable: true
-  mangle: true
-  output:
-  compress:
-  exclude:
-  - '**/*.min.js'
-  - '**/jquery.fancybox.pack.js'
-  - '**/index.js'
