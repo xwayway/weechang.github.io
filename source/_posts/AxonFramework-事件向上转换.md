@@ -27,7 +27,7 @@ Maven用户可以使用MavenArtifactRevisionResolver自动使用项目的版本�
 
 事件的老版本:
 
-<pre>
+```
 @Revision("1.0")
 public class ComplaintEvent {
     private String id;
@@ -35,11 +35,11 @@ public class ComplaintEvent {
 
     // Constructor, getter, setter...
 }
-</pre>
+```
 
 新版本的事件:
 
-<pre>
+```
 @Revision("2.0")
 public class ComplaintEvent {
     private String id;
@@ -48,11 +48,11 @@ public class ComplaintEvent {
 
     // Constructor, getter, setter...
 }
-</pre>
+```
 
 Upcaster:
 
-<pre>
+```
 // Upcaster from 1.0 revision to 2.0 revision
 public class ComplaintEventUpcaster extends SingleEventUpcaster {
     private static SimpleSerializedType targetType = new SimpleSerializedType(ComplainEvent.class.getTypeName(), "1.0");
@@ -75,11 +75,11 @@ public class ComplaintEventUpcaster extends SingleEventUpcaster {
         );
     }
 }
-</pre>
+```
 
 Spring boot configuration:
 
-<pre>
+```
 @Configuration
 public class AxonConfiguration {
 
@@ -101,7 +101,7 @@ public class AxonConfiguration {
                 transactionManager);
     }
 }
-</pre>
+```
 
 TODO - Describe
 

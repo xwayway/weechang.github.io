@@ -28,7 +28,7 @@ Axon Framework提供了一个测试固件，使你能够做到这一点。Aggreg
 
 下面的示例展示了用JUnit 4对given-when-then测试固件的使用：
 
-<pre>
+```
 public class MyCommandComponentTest {
  private FixtureConfiguration fixture;
  @Before
@@ -56,7 +56,7 @@ public class MyCommandComponentTest {
      /*
  }
 }
-</pre>
+```
 
 given-when-then测试固件定义了三个阶段：配置、执行和验证。每个阶段由不同的接口表示：分别是，FixtureConfiguration, TestExecutor 和 ResultValidator。固件类的静态newGivenWhenThenFixture()方法提供了对第一个的引用，进而可能提供验证，等等。
 
@@ -120,7 +120,7 @@ given-when-then测试固件定义了三个阶段：配置、执行和验证。�
 
 下面是一个简单的代码示例，以显示这些匹配器的使用。在这个例子中,我们预期共有两个事件发布。第一个事件必须是一个“ThirdEvent”，第二个是“aFourthEventWithSomeSpecialThings”。可能没有第三个事件，因为那样"andNoMore"匹配器会失败。
 
-<pre>
+```
 fixture.given(new FirstEvent(), new SecondEvent())
        .when(new DoSomethingCommand("aggregateId"))
        .expectEventsMatching(exactSequenceOf(
@@ -143,7 +143,7 @@ fixture.given(new FirstEvent(), new SecondEvent())
                    andNoMore()
                )
        ));
-</pre>
+```
 
 作者：勇赴
 链接：https://www.jianshu.com/p/2e893c9d48bf

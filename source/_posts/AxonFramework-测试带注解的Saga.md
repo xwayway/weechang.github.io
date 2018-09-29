@@ -18,14 +18,14 @@ author: 勇赴
 
 “given ”和“when”阶段都接受事件作为它们交互的一部分。在“given”阶段，可能会忽略所有副作用，如生成的命令。在“when”阶段，另一方面，从被记录和被验证的saga生成事件和命令。
 
-<pre>
+```
 FixtureConfiguration fixture = new SagaTestFixture(InvoicingSaga.class);
 fixture.givenAggregate(invoiceId).published(new InvoiceCreatedEvent()) 
        .whenTimeElapses(Duration.ofDays(31)) 
        .expectDispatchedCommandsMatching(Matchers.listWithAllOf(aMarkAsOverdueCommand())); 
        // or, to match against the payload of a Command Message only 
        .expectDispatchedCommandsMatching(Matchers.payloadsMatching(Matchers.listWithAllOf(aMarkAsOverdueCommand())));
-</pre>
+```
 
 saga可以分发命令使用一个回调函数通知命令处理的结果。由于在测试中没有实际的命令处理完成，该行为使用CallbackBehavior对象定义。这个对象使用setCallbackBehavior()在固件上注册，并定义当一个命令被分发后，是否和如何必须调用回调函数。
 

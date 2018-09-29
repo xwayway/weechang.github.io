@@ -34,7 +34,7 @@ author: 勇赴
 当@CommandHandler注解放在一个聚合的构造函数上时，相应的命令将创建一个新的聚合实例，并将它添加到存储库。这些命令不需要针对特的定聚合实例。因此，这些命令不需要任何@TargetAggregateIdentifier或@TargetAggregateVersion注解，也不会调用自定义CommandTargetResolver。
 当一个命令创建一个聚合实例时，该命令的回调函数在命令执行成功执行后，将得到聚合标识符。
 
-<pre>
+```
 public class MyAggregate {
     @AggregateIdentifier
     private String id;
@@ -57,11 +57,11 @@ public class DoSomethingCommand {
     private String aggregateId;
     // code omitted for brevity
 }
-</pre>
+```
 
 Axon的配置API可用于配置聚合。例如:
 
-<pre>
+```
 Configurer configurer = ...
 // to use defaults:
 configurer.configureAggreate(MyAggregate.class);
@@ -69,11 +69,11 @@ configurer.configureAggreate(MyAggregate.class);
 configurer.configureAggregate(
 AggregateConfigurer.defaultConfiguration(MyAggregate.class)
 .configureCommandTargetResolver(c -> new CustomCommandTargetResolver()));
-</pre>
+```
 
 @CommandHandler注释并不局限于聚合根。把所有命令处理器放在根里，有时会导致聚合根中存在大量的方法,而它们中的许多只简单地调用转发给底层实体之一。如果是这样,你可以把@CommandHandler注解在一个底层的实体的方法上。Axon找到这些带注释的方法,聚合根中声明的实体字段必须用@AggregateMember标明。注意,命令处理器只检查带注解的字段的声明类型。如果一个字段值为空时传入命令到实体,就会抛出一个异常。
 
-<pre>
+```
 public class MyAggregate {
     @AggregateIdentifier
     private String id;
@@ -100,7 +100,7 @@ public class MyEntity {
         // do something
     }
 }
-</pre>
+```
 
 请注意，在聚合中每个命令必须只对应一个处理器。这意味着你不能用@CommandHandler标注多个实体(either root nor not，包含是根和不是根的所有实体)来处理相同的命令类型。如果你需要有条件地路由命令到一个实体,这些实体的父类应该处理命令,并根据apply的条件转发该命令。
 
@@ -118,7 +118,7 @@ public class MyEntity {
 ## 外部命令处理器
 在某些情况下,想要直接向一个聚合实例路由命令是不可能。在这种情况下,可以注册一个命令处理器对象。命令处理器对象是一个简单的(常规的)对象，是带@CommandHandle注解的方法。与集合的情况不同，命令处理器对象只有单个实例，该对象处理其方法中声明的所有命令类型。
 
-<pre>
+```
 public class MyAnnotatedHandler {
 @CommandHandler
 public void handleSomeCommand(SomeCommand command, @MetaDataValue("userId") String
@@ -133,7 +133,7 @@ public void handleCustomCommand(SomeCommand command) {
 // To register the annotated handlers to the command bus:
 Configurer configurer = ...
 configurer.registerCommandHandler(c -> new MyAnnotatedHandler());
-</pre>
+```
 
 作者：勇赴
 链接：https://www.jianshu.com/p/64ddd5a8f517

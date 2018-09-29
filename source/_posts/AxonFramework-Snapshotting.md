@@ -55,7 +55,7 @@ Axon提供了一种特殊类型的快照事件：AggregateSnapshot,它将整个�
 ## 根据快照事件初始化聚合
 快照事件是一个和其他事件一样的事件。这意味着一个快照事件就像任何其他领域事件一样被处理。当使用注解来划分事件处理程序(@EventHandler)时，你可以注解一个方法，基于快照事件初始化全部的聚合状态。下面的代码示例演示了，如何像对待任何其他聚合中的领域事件一样对待快照事件。
 
-<pre>
+```
 public class MyAggregate extends AbstractAnnotatedAggregateRoot {
 
     // ... code omitted for brevity
@@ -72,7 +72,7 @@ public class MyAggregate extends AbstractAnnotatedAggregateRoot {
         this.otherState = event.otherState;
     }
 }
-</pre>
+```
 
 有一种类型的快照事件处理方式不同:AggregateSnapshot。这种类型的快照事件包含实际的聚合。聚合工厂识别这种类型的事件并从快照中提取聚合。然后，将所有其他事件重新应用到提取的快照。这意味着聚合从不需要能够处理AggregateSnapshot实例自身。
 

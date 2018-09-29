@@ -12,7 +12,8 @@ HashTable 的函数都是同步的，这意味着它是线程安全的。它的k
 <!-- more -->
 
 ## 1.1 成员变量
-<pre>
+
+```
     // 是一个Entry[]数组类型，而Entry实际上就是一个单向链表。哈希表的"key-value键值对"都是存储在Entry数组中的。 
     private transient Entry<?,?>[] table;
 
@@ -27,10 +28,11 @@ HashTable 的函数都是同步的，这意味着它是线程安全的。它的k
 
     // 是用来实现fail-fast机制的
     private transient int modCount = 0;
-</pre>
+```
 
 ## 1.2 构造函数
-<pre>
+
+```
     // 默认构造函数。
     public Hashtable() 
     
@@ -42,10 +44,11 @@ HashTable 的函数都是同步的，这意味着它是线程安全的。它的k
     
     // 包含“子Map”的构造函数
     public Hashtable(Map<? extends K, ? extends V> t)
-</pre>
+```
 
 ## 1.3 常用API
-<pre>
+
+```
     // 将此哈希表清空，使其不包含任何键。 
     synchronized void                clear()
     
@@ -90,7 +93,7 @@ HashTable 的函数都是同步的，这意味着它是线程安全的。它的k
     
     // 增加此哈希表的容量并在内部对其进行重组，以便更有效地容纳和访问其元素。 
     protected  void rehash() 
-</pre>
+```
 
 # 二、HashTable遍历方式
 
@@ -98,7 +101,7 @@ HashTable 的函数都是同步的，这意味着它是线程安全的。它的k
 <b>第一步：根据entrySet()获取HashTable的“键值对”的Set集合。</b>
 <b>第二步：通过Iterator迭代器遍历“第一步”得到的集合。</b>
 
-<pre>
+```
     // 假设table是Hashtable对象
     // table中的key是String类型，value是Integer类型
     Integer integ = null;
@@ -110,13 +113,13 @@ HashTable 的函数都是同步的，这意味着它是线程安全的。它的k
         // 获取value
         integ = (Integer)entry.getValue();
     }
-</pre>
- 
+```
 
 ## 2.2 通过Iterator遍历HashTable的键
 <b>第一步：根据keySet()获取HashTable的“键”的Set集合。</b>
 <b>第二步：通过Iterator迭代器遍历“第一步”得到的集合。</b>
-<pre>
+
+```
     // 假设table是Hashtable对象
     // table中的key是String类型，value是Integer类型
     String key = null;
@@ -128,12 +131,13 @@ HashTable 的函数都是同步的，这意味着它是线程安全的。它的k
             // 根据key，获取value
         integ = (Integer)table.get(key);
     }
-</pre>
+```
  
 ## 2.3 通过Iterator遍历HashTable的值
 <b>第一步：根据value()获取HashTable的“值”的集合。</b>
 <b>第二步：通过Iterator迭代器遍历“第一步”得到的集合。</b>
-<pre>
+
+```
     // 假设table是HashTable对象
     // table中的key是String类型，value是Integer类型
     Integer value = null;
@@ -142,26 +146,28 @@ HashTable 的函数都是同步的，这意味着它是线程安全的。它的k
     while (iter.hasNext()) {
         value = (Integer)iter.next();
     }
-</pre>
+```
  
 ## 2.4 通过Enumeration遍历HashTable的键
 <b>第一步：根据keys()获取HashTable的集合。</b>
 <b>第二步：通过Enumeration遍历“第一步”得到的集合。</b>
-<pre>
+
+```
     Enumeration enu = table.keys();
     while(enu.hasMoreElements()) {
         System.out.println(enu.nextElement());
     } 
-</pre>  
+```
  
 ## 2.5 通过Enumeration遍历HashTable的值
 <b>第一步：根据elements()获取HashTable的集合。</b>
 <b>第二步：通过Enumeration遍历“第一步”得到的集合。</b>
-<pre>
+
+```
     Enumeration enu = table.elements();
     while(enu.hasMoreElements()) {
         System.out.println(enu.nextElement());
     }
-</pre>
+```
 
 <b>PS:本文章相关代码均已上传至 GitHub <a href="https://github.com/weechang/java-zero" target="_blank">查看详情</a></b>

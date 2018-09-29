@@ -22,10 +22,10 @@ EventBus是分发事件到已订阅的事件处理器的机制。Axon 提供了�
 
 当使用配置API时，默认情况下使用SimpleEventBus。配置EmbeddedEventStore则相反，需要提供一个StorageEngine的实现，它对事件进行实际存储。
 
-<pre>
+```
 Configurer configurer = DefaultConfigurer.defaultConfiguration();
 configurer.configureEmbeddedEventStore(c -> new InMemoryEventStorageEngine());
-</pre>
+```
 
 ## Event Processors
 

@@ -5,7 +5,7 @@
 # Site
 title: 耒耒耒耒耒
 subtitle: 张未的技术博客
-description: 本站是耒耒耒耒耒（张未）的个人技术博客。内容涵盖微服务架构、DDD、Java后端技术、领域驱动等相关的研究与知识分享。
+description: 本站是耒耒耒耒耒（张未）的个人技术博客。内容涵盖微服务架构、DDD、Java后端技术、领域驱动、hexo博客、hexo插件等相关的研究与知识分享。
 keywords: 微服务, DDD, Java
 author: 张未
 language: zh-CN
@@ -124,7 +124,33 @@ nofollow:
   - blog.unknowns.info
   - yanhaijing.com
 
+# 自定义版权标记
 post_copyright:
   enable: true
   author: 张未
   copyright_text: 作者拥有版权，请注明出处转载。
+
+# hexo-neat
+# 博文压缩
+neat_enable: true
+# 压缩html
+neat_html:
+  enable: true
+  exclude:
+    - '**/Java集合-0——HashMap类.*'
+    - '**/Java集合-1——HashTable类.*'
+# 压缩css
+neat_css:
+  enable: true
+  exclude:
+  - '**/*.min.css'
+# 压缩js
+neat_js:
+  enable: true
+  mangle: true
+  output:
+  compress:
+  exclude:
+  - '**/*.min.js'
+  - '**/jquery.fancybox.pack.js'
+  - '**/index.js'

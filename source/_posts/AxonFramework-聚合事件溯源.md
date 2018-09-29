@@ -16,7 +16,7 @@ author: 勇赴
 
 事件溯源聚合的聚合根还必须包含一个无参的构造函数，Axon Framework使用这个构造函数创建一个空的聚合实例，在使用过去的事件之前初始化它。没有提供这种构造函数加载聚合时将导致异常。
 
-<pre>
+```
 public class MyAggregateRoot {
     @AggregateIdentifier
     private String aggregateIdentifier;
@@ -35,7 +35,7 @@ public class MyAggregateRoot {
         // ... update state
     }
 }
-</pre>
+```
 
 带@EventSourcingHandler注解的方法使用特定的规则来解析。这些规则对于带@EventHandler注解的方法也同样适合，并在Defining Event Handlers这一章节中彻底解释。
 

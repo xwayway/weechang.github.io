@@ -29,13 +29,13 @@ GitBook支持输出多种文档格式：
 GitBook最简单的安装方法便是通过npm命安装，在命令行输入以下命令即可安装
 
 <pre>
-$ npm install gitbook-cli -g
+ npm install gitbook-cli -g
 </pre>
 
 安装完成后可用过，以下命令查看GitBook版本
 
 <pre>
-$ gitbook -V
+ gitbook -V
 </pre>
 
 ><b>注意</b>
@@ -48,7 +48,7 @@ $ gitbook -V
 ## 初始化
 
 <pre>
-$ gitbook init {directory} 
+ gitbook init {directory}
 </pre>
 
 {directory} 表示具体目录，通过该命令，你可以在指定目录下初始化你的GitBook。
@@ -56,7 +56,7 @@ $ gitbook init {directory}
 ## 构建
 
 <pre>
-$ gitbook build
+ gitbook build
 </pre>
 
 通过运行该命令，会在项目的目录下生成一个 _book 目录，里面的内容为静态站点的资源文件，你可结合git管理工具等，将该文件推送到GitHub、码云、Coding等git平台上，通过gitPages的方式展示你的电子书。后面将会对该方式做具体介绍。
@@ -64,7 +64,7 @@ $ gitbook build
 ## 本地预览
 
 <pre>
-$ gitbook server
+ gitbook server
 </pre>
 
 通过运行该命令，将在本地启动一个静态服务器，通过本地浏览器，你可预览你的gitbook内容。默认端口为4000 。本地访问地址为 http://localhost:4000/

@@ -30,7 +30,7 @@ Axon 提供了一些开箱即用的回滚策略:
 
 在大多数情况下，DefaultUnitOfWork将为你提供你所需要的功能。它在单线程中处理进程。在一个工作单元上下文中执行一个任务，可以new一个DefaultUnitOfWork并简单地调用UnitOfWork.execute(Runnable)或UnitOfWork.executeWithResult(Callable)函数。典型的用法如下:
 
-<pre>
+```
 // then, either use the autocommit approach: 
 uow.executeWithResult(() -> ... logic here);
 // or manually commit or rollback:
@@ -42,7 +42,7 @@ uow.executeWithResult(() -> ... logic here);
     // maybe rethrow...
 }`
 ``
-</pre> 
+```
 
 一个工作单元了解各个阶段。每当它进展到不同的阶段时，就会通知UnitOfWork监听器。
 

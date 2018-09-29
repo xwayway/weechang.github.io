@@ -48,11 +48,11 @@ tags: [日常记录, IDEA永久激活, WebStorm永久激活]
 
 然后在文件末尾添加上
 
-<pre>
+```
 
 -javaagent:D:\idea\IntelliJ IDEA 2018.2.4\bin\JetbrainsCrack-3.1-release-enc.jar
 
-</pre>
+```
 
 其中 D:\idea\IntelliJ IDEA 2018.2.4\bin\JetbrainsCrack-3.1-release-enc.jar 为插件的安装路径和文件名。注意，目录和文件名一定要一直，不然IDEA不能启动
 
@@ -62,7 +62,7 @@ tags: [日常记录, IDEA永久激活, WebStorm永久激活]
 
 重启IDEA，选择Activation Code填写激活码
 
-<pre>
+```
     ThisCrackLicenseId-{
     "licenseId":"ThisCrackLicenseId",
     "licenseeName":"你想填的用户名",
@@ -87,7 +87,7 @@ tags: [日常记录, IDEA永久激活, WebStorm永久激活]
     "hash":"2911276/0",
     "gracePeriodDays":7,
     "autoProlongated":false}
-</pre>
+```
 
 {% asset_img 激活码.png 激活码 %}
 

@@ -28,7 +28,7 @@ JGroupsConnector有四个强制性配置元素：
 
 最终，JGroupsConnector需要实际连接，按顺序分发消息到其他segment。这样做，调用connect()方法。
 
-<pre>
+```
 JChannel channel = new JChannel("path/to/channel/config.xml");
 CommandBus localSegment = new SimpleCommandBus();
 Serializer serializer = new XStreamSerializer();
@@ -47,7 +47,7 @@ commandBus.updateLoadFactor(150); // defaults to 100
 connector.connect();
 
 // from now on, just deal with commandBus as if it is local...
-</pre>
+```
 
 ><b>注意</b>
 注意，并非所有的segment都必需具有相同类型的命令的命令处理器。你完全可以为不同的命令类型使用不同的segment。分布式命令总线总是选择一个节点分发命令到那个支持特定类型的命令。
@@ -81,7 +81,7 @@ SpringHttpCommandBusConnector需要创建三个参数:
 
 SpringCloudCommandRouter和SpringHttpCommandBusConnector应该都被用于创建DistributedCommandsBus。在Spring Java 配置中，看起来如下:
 
-<pre>
+```
 // Simple Spring Boot App providing the `DiscoveryClient` bean
 @EnableDiscoveryClient
 @SpringBootApplication
@@ -119,7 +119,7 @@ public class MyApplication {
 public CommandBus localSegment() {
     return new SimpleCommandBus();
 }
-</pre>
+```
 
 ><b>注意</b>
 注意，并非所有的segment都必需具有相同类型的命令的命令处理器。你完全可以为不同的命令类型使用不同的segment。分布式命令总线总是选择一个节点分发命令到那个支持特定类型的命令。

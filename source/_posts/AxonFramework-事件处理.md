@@ -25,7 +25,7 @@ Axon不会将所有事件都发布给所有saga实例（这将是对资源的完
 想象一下为一个围绕着订单的事务而已经被创建的一个saga。saga自动关联订单，方法被@StartSaga注解。saga是负责创建该订单的发票，并告诉航运创建一个载货量。一旦货物到达和发票支付,交易完成后,saga被关闭。
 这是一个saga的代码：
 
-<pre>
+```
 public class OrderManagementSaga {
 private boolean paid = false;
 private boolean delivered = false;
@@ -60,7 +60,7 @@ public void handle(InvoicePaidEvent event) {
 
 // ...
 }
-</pre>
+```
 通过允许客户端生成标识符，可以很容易地与一个概念相关联，而不需要请求响应类型命令。在发布命令之前，我们将事件与这些概念关联起来。通过这种方式，我们也保证捕捉到作为该命令的一部分生成的事件。一旦发票付清，货物到达，saga也将结束。
 
 作者：勇赴

@@ -33,7 +33,7 @@ SpringAMQPMessageSource允许事件处理器从队列中读取消息，而不是
 
 配置SpringAMQPMessageSource最简单的方法，是通过定义一个bean，重写默认的onMessage方法并使用@RabbitListener注解，如下:
 
-<pre>
+```
 @Bean
 public SpringAMQPMessageSource myMessageSource(Serializer serializer) {
     return new SpringAMQPMessageSource(serializer) {
@@ -44,19 +44,19 @@ public SpringAMQPMessageSource myMessageSource(Serializer serializer) {
         }
     };
 }
-</pre>
+```
 
 Spring的@RabbitListener注解告诉Spring，这个方法需要被给定队列上的每个消息调用(myQueue的例子)。此方法简单地调用super.onMessage()方法，执行实际事件的发布到已经订阅它的所有处理器。
 
 订阅这个MessageSource的处理器，将正确的SpringAMQPMessageSource实例传递给订阅处理器的构造函数:
 
-<pre>
+```
 // in an @Configuration file:
 @Autowired
 public void configure(EventHandlingConfiguration ehConfig, SpringAmqpMessageSource myMessageSource) {
     ehConfig.registerSubscribingEventProcessor("myProcessor", c -> myMessageSource);
 }
-</pre>
+```
 
 请注意跟踪处理器与SpringAMQPMessageSource不兼容。
 

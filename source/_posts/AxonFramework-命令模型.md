@@ -43,7 +43,7 @@ author: 勇赴
 
 聚合可以使用AggregateLifecycle.apply()方法来注册发布的事件。与EventBus不同，这些信息需要被包装在一个EventMessage中，apply()允许你直接传递负载对象。
 
-<pre>
+```
 @Entity // Mark this aggregate as a JPA Entity
 public class MyAggregate {
 
@@ -62,7 +62,7 @@ public class MyAggregate {
     protected MyAggregate() {
     }
 }
-</pre>
+```
 
 通过定义一个带@EventHandler注解的方法，聚合内的实体能监听聚合发布的事件。当一个EventMessage发布时这些方法将被调用（在任何外部处理器被发布之前）。
 

@@ -18,7 +18,7 @@ Axon通过AnnotatedSagaManager来支持生命周期管理，这是提供给一�
 
 当使用配置API时，Axon将对大多数组件使用合理的默认设置。不管怎样，强烈建议定义一个SagaStore的实现使用。SagaStore是在某处物理存储saga实例的机制，AnnotatedSagaRepository(默认)要求它们使用SagaStore去存储和检索saga实例。
 
-<pre>
+```
 Configurer configurer = DefaultConfigurer.defaultConfiguration();
 configurer.registerModule(
         SagaConfiguration.subscribingSagaManager(MySagaType.class)
@@ -27,7 +27,7 @@ configurer.registerModule(
 
 // alternatively, it is possible to register a single SagaStore for all Saga types:
 configurer.registerComponent(SagaStore.class, c -> new JpaSagaStore(...));
-</pre>
+```
 
 ## saga存储库和saga存储
 

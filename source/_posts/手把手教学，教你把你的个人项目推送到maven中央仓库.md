@@ -26,29 +26,29 @@ tags: [手把手教学, maven中央仓库]
 选择对应的OS版本进行下载安装即可，下载地址传送门：<a href="https://www.gnupg.org/download/index.html" targe="_blank">https://www.gnupg.org/download/index.html</a>
 
 ## 2.2 生成key
-首先查看安装成功没有 <pre>gpg --version</pre> （MAC 和 Linux系统需要 gpg2 --version）
-通过 <pre>gpg --gen-key</pre> 生成key，也可以通过UI界面生成和管理key
+首先查看安装成功没有 ```gpg --version``` （MAC 和 Linux系统需要 gpg2 --version）
+通过 ```gpg --gen-key``` 生成key，也可以通过UI界面生成和管理key
 {% asset_img 生成key.png 手把手教学，教你把你的个人项目推送到maven中央仓库 %}
 运行后gpg要求你选择加密算法，过期时间等等，这些直接选择默认值即可。通过对比发现，gpg 2.0以上的版本运行gpg --gen-key命令 会跳过这些步骤。
 之后gpg要求你输入姓名，邮箱以及关键的Passphrase，依次输入即可。然后gpg为你生成了一对秘钥。
-通过<pre>gpg --list-keys</pre>查看生成的key列表
+通过```gpg --list-keys```查看生成的key列表
 {% asset_img 秘钥列表.png 手把手教学，教你把你的个人项目推送到maven中央仓库 %}
 这里可以看到我的公钥是：34754DFE562C10E1A09907B7F4797C9A95E36DB6，记住这个key，下面我们需要用到。
 
 ## 2.3 上传公钥
-生成秘钥后，我们需要把公钥上传到服务器上。运行以下命令：<pre>gpg2 --keyserver hkp://pool.sks-keyservers.net --send-keys 34754DFE562C10E1A09907B7F4797C9A95E36DB6（刚才生成的公钥）</pre>
+生成秘钥后，我们需要把公钥上传到服务器上。运行以下命令：```gpg2 --keyserver hkp://pool.sks-keyservers.net --send-keys 34754DFE562C10E1A09907B7F4797C9A95E36DB6（刚才生成的公钥）```
 
 # 3 配置Maven
 ## 3.1 配置maven setting.xml
 需要在本地的maven配置server 和 profile 两个地方，啰嗦的话就不多少了，直接上配置：
-<pre>
+```
     &lt;server>
         &lt;id>ossrh&lt;/id>
         &lt;username>第一步注册的用户名&lt;/username>
         &lt;password>第一步注册的密码&lt;/password>
     &lt;/server>
-</pre>
-<pre>
+```
+```
      &lt;profile>
          &lt;id>ossrh&lt;/id>
          &lt;activation>
@@ -59,12 +59,12 @@ tags: [手把手教学, maven中央仓库]
              &lt;gpg.passphrash>生成密钥时输入的密码&lt;/gpg.passphrash>
          &lt;/properties>
     </profile>
-</pre>
+```
 
 ## 3.2 配置项目的pom.xml
 具体的配置可以查看小轮子里面的pom设置 <a href="https://github.com/weechang/JUtil/blob/master/pom.xml" target="_blank">https://github.com/weechang/JUtil/blob/master/pom.xml</a>
 首先需要添加指向sonatype仓库的&lt;distributionManagement>
-<pre>
+```
     &lt;distributionManagement>
         &lt;snapshotRepository>
             &lt;id>ossrh&lt;/id>
@@ -76,9 +76,9 @@ tags: [手把手教学, maven中央仓库]
             &lt;url>https://oss.sonatype.org/service/local/staging/deploy/maven2/&lt;/url>
         &lt;/repository>
     &lt;/distributionManagement>
-</pre>
+```
 继续配置pfofiles,添加各种推送、DOC、加密的插件
-<pre>
+```
     &lt;profiles>
         &lt;profile>
             &lt;id>release</id>
@@ -138,12 +138,12 @@ tags: [手把手教学, maven中央仓库]
             &lt;/build>
         &lt;/profile>
     &lt;/profiles>
-</pre>
+```
 然后还可以添加一些开发者信息和license信息，具体的就不多说了。具体可以参考小轮子的配置
 
 ## 3.3 部署到中央仓库
 运行以下代码进行deploy
-<pre>mvn clean deploy -P release</pre>
+```mvn clean deploy -P release```
 如下图表示成功部署到中央仓库
 {% asset_img 部署成功.png 手把手教学，教你把你的个人项目推送到maven中央仓库 %}
 因为我们在pom中添加了自动发布插件，所以可以不用管理，直接到中央仓库去查看就能看到你发布的项目了

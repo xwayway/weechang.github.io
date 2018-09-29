@@ -43,30 +43,30 @@ EventHandlingConfiguration bean，在应用程序上下文可用，有方法来�
 
 更新事件处理（EventHandling）配置，创建一个autowired方法,设置你想要的配置:
 
-<pre>
+```
 @Autowired
 public void configure(EventHandlingConfiguration config) {
     config.usingTrackingProcessors(); // default all processors to tracking mode.
 }
-</pre>
+```
 
 事件处理器(（Event Processors）的某些方面也可以在application.properties中配置。
 
-<pre>
+```
 axon.eventhandling.processors["name"].mode=tracking
 axon.eventhandling.processors["name"].source=eventBus
-</pre>
+```
 
 使用application.yml:
 
-<pre>
+```
 axon:
     eventhandling:
         processors:
             name:
                 mode: tracking
                 source: eventBus
-</pre>
+```
 
 源文件属性指的是bean的名称实现了SubscribableMessageSource或StreamableMessageSource，名称应该被用来做上述处理器的事件源。源文件默认事件总线或事件存储在应用程序上下文中定义。
 
@@ -74,9 +74,9 @@ axon:
 启用AMQP支持，确保axon-amqp模块在类路径上，并且在应用程序上下文中AMQP ConnectionFactory是可用的(例如通过引用spring-boot-starter-amqp)。
 在应用程序中转发生成的事件到一个AMQP Channel，一行application.properties配置就够了：
 
-<pre>
+```
 axon.amqp.exchange=ExchangeName
-</pre>
+```
 
 这将以给定的名称自动发送所有已经发布的事件到AMQP Channel。
 
@@ -84,7 +84,7 @@ axon.amqp.exchange=ExchangeName
 
 从队列中接收事件，并在Axon应用程序内处理它们，你需要配置一个SpringAMQPMessageSource：
 
-<pre>
+```
 @Bean
 public SpringAMQPMessageSource myQueueMessageSource(AMQPMessageConverter messageConverter) {
     return new SpringAMQPMessageSource(messageConverter) {
@@ -96,13 +96,13 @@ public SpringAMQPMessageSource myQueueMessageSource(AMQPMessageConverter message
         }
     };
 }
-</pre>
+```
 
 然后配置一个处理器，使用这个bean作为其消息来源:
 
-<pre>
+```
 axon.eventhandling.processors["name"].source=myQueueMessageSource
-</pre>
+```
 
 ## 使用JGroups分发命令
 进行中…如果你不能等，添加一个依赖项到axon-spring-boot-starter-jgroups模块。

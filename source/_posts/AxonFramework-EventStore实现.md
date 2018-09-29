@@ -20,14 +20,14 @@ JpaEventStorageEngine存储事件在JPA-compatible数据源中。JPA事件存储
 默认情况下，事件存储需要你配置你的持久化上下文(如在META-INF/persistence.xml中定义)包含DomainEventEntry和SnapshotEventEntry（两者都在org.axonframework.eventsourcing.eventstore.jpa包中)。
 下面是一个持久化上下文配置的示例配置：
 
-<pre>
+```
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
     <persistence-unit name="eventStore" transaction-type="RESOURCE_LOCAL"> (1)
         <class>org...eventstore.jpa.DomainEventEntry</class> (2)
         <class>org...eventstore.jpa.SnapshotEventEntry</class>
     </persistence-unit>
 </persistence>
-</pre>
+```
 
 在这个示例中，事件存储有一个特定的持久化单元。然而，你可能会选择将第三行添加到任何其他持久化单元的配置中。
 本行注册DomainEventEntry(由JpaEventStore使用的类)到持久化上下文。
@@ -42,7 +42,7 @@ JpaEventStorageEngine可以检测这个错误并把它转换成ConcurrencyExcept
 有几个EntityManagerProvider的实现可用，各有不同的需求。SimpleEntityManagerProvider仅在构建时返回EntityManager实例给它。这使得实现成为容器管理上下文一个简单的选择。ContainerManagedEntityManagerProvider作为一种选择，返回默认的持久化上下文，并且它的使用默认通过JPA事件存储。
 如果你有一个持久化单元称为“myPersistenceUnit”，你希望在JpaEventStore中使用，这就是EntityManagerProvider实现，可能看起来像:
 
-<pre>
+```
 public class MyEntityManagerProvider implements EntityManagerProvider {
 
     private EntityManager entityManager;
@@ -57,7 +57,7 @@ public class MyEntityManagerProvider implements EntityManagerProvider {
         this.entityManager = entityManager;
     }
 }
-</pre>   
+```
  
 默认情况下，JPA事件存储把条目存储在DomainEventEntry和SnapshotEventEntry实体中。虽然在许多情况下这就足够了，你可能会遇到这些实体提供的元数据不够的情况。或者你可能想将不同的聚合类型的事件存储在不同的表。
 如果是这样,你可以扩展JpaEventStorageEngine。它包含了一些protected方法，你可以重写来调整其行为。
