@@ -49,7 +49,6 @@ tags: [日常记录, IDEA永久激活, WebStorm永久激活]
 然后在文件末尾添加上
 
 ```
-
 -javaagent:D:\idea\IntelliJ IDEA 2018.2.4\bin\JetbrainsCrack-3.1-release-enc.jar
 
 ```
