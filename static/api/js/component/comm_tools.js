@@ -1,1 +1,3 @@
-!window._bd_share_is_recently_loaded&&window._bd_share_main.F.module("component/comm_tools",function(e,t){var n=function(){var e=window.location||document.location||{};return e.href||""},r=function(e,t){var n=e.length,r="";for(var i=1;i<=t;i++){var s=Math.floor(n*Math.random());r+=e.charAt(s)}return r},i=function(){var e=(+(new Date)).toString(36),t=r("0123456789abcdefghijklmnopqrstuvwxyz",3);return e+t};t.getLinkId=i,t.getPageUrl=n});
+// build time:Sat Sep 29 2018 15:27:54 GMT+0800 (中国标准时间)
+!window._bd_share_is_recently_loaded&&window._bd_share_main.F.module("component/comm_tools",function(n,o){var r=function(){var n=window.location||document.location||{};return n.href||""},t=function(n,o){var r=n.length,t="";for(var a=1;a<=o;a++){var e=Math.floor(r*Math.random());t+=n.charAt(e)}return t},a=function(){var n=(+new Date).toString(36),o=t("0123456789abcdefghijklmnopqrstuvwxyz",3);return n+o};o.getLinkId=a,o.getPageUrl=r});
+//rebuild by neat 

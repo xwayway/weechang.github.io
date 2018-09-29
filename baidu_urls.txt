@@ -1,1 +1,1 @@
-https://blog.weechang.xyz/2018/09/28/为你的博客添加版权/
+https://blog.weechang.xyz/2018/09/29/hexo-plugins/
