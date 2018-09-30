@@ -4,9 +4,9 @@
     
     <entry>
       <title>【Java学习之从头开始】Java多线程-0——基础概念</title>
-      <link href="/2018/09/30/java-thread-01-base/"/>
-      <url>/2018/09/30/java-thread-01-base/</url>
-      <content type="html"><![CDATA[<blockquote><p>Java多线程，一直是Java里面一个绕不去的坎，对程序员的要求比较高。同时，得益于Java社区的日益强健，Java框架也随之丰富起来了，特别是Web框架。所以大多数做Web的程序员，都是拿来就用，我就是其中一员。Web中几乎不用程序员自身去操作多线程，所以这也就导致了大多数的Java Web程序员多线程方面较为薄弱。为了解决这一问题，下定决心学习Java多线程，同时记录自己的学习过程，以供日后翻阅。</p></blockquote><a id="more"></a><h1 id="线程与进程"><a href="#线程与进程" class="headerlink" title="线程与进程"></a>线程与进程</h1><p>线程与进程一直是相互关联，而又完全不同的两个概念。</p><p>其不同在于：</p><ul><li><p><strong>线程</strong>：同一类线程共享代码和数据空间，每个线程有独立的运行栈和程序计数器(PC)，线程切换开销小。（线程是cpu调度的最小单位）</p></li><li><p><strong>进程</strong>：每个进程都有独立的代码和数据空间（进程上下文），进程间的切换会有较大的开销，一个进程包含1–n个线程。（进程是资源分配的最小单位）</p></li></ul><p>其关联性在于：</p><p>1、一个进程可以有多个线程，但至少有一个线程；而一个线程只能在一个进程的地址空间内活动。</p><p>2、资源分配给进程，同一个进程的所有线程共享该进程所有资源。</p><p>3、CPU分配给线程，即真正在处理器运行的是线程。</p><p>4、线程在执行过程中需要协作同步，不同进程的线程间要利用消息通信的办法实现同步。</p><h1 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h1><p>Java中线程的状态分为五个阶段：</p><p>1、新建状态(New)： 线程对象被创建后，就进入了新建状态。例如，Thread thread = new Thread()。</p><p>2、就绪状态(Runnable)： 也被称为“可执行状态”。线程对象被创建后，其它线程调用了该对象的start()方法，从而来启动该线程。例如，thread.start()。处于就绪状态的线程，随时可能被CPU调度执行。</p><p>3、运行状态(Running)： 线程获取CPU权限进行执行。需要注意的是，线程只能从就绪状态进入到运行状态。</p><p>4、阻塞状态(Blocked)： 阻塞状态是线程因为某种原因放弃CPU使用权，暂时停止运行。直到线程进入就绪状态，才有机会转到运行状态。阻塞的情况分三种：</p><p>01) 等待阻塞 – 通过调用线程的wait()方法，让线程等待某工作的完成。</p><p>02) 同步阻塞 – 线程在获取synchronized同步锁失败(因为锁被其它线程所占用)，它会进入同步阻塞状态。</p><p>03) 其他阻塞 – 通过调用线程的sleep()或join()或发出了I/O请求时，线程会进入到阻塞状态。当sleep()状态超时、join()等待线程终止或者超时、或者I/O处理完毕时，线程重新转入就绪状态。</p><p>5、死亡状态(Dead)： 线程执行完了或者因异常退出了run()方法，该线程结束生命周期。</p><p>五种状态的转换关系如下：</p><img src="/2018/09/30/java-thread-01-base/status.png" title="线程状态转换关系图"><p>更多关于线程的知识将在后续章节中，详细介绍，敬请期待……</p>]]></content>
+      <link href="/2018/09/30/java-thread-00-base/"/>
+      <url>/2018/09/30/java-thread-00-base/</url>
+      <content type="html"><![CDATA[<blockquote><p>Java多线程，一直是Java里面一个绕不去的坎，对程序员的要求比较高。同时，得益于Java社区的日益强健，Java框架也随之丰富起来了，特别是Web框架。所以大多数做Web的程序员，都是拿来就用，我就是其中一员。Web中几乎不用程序员自身去操作多线程，所以这也就导致了大多数的Java Web程序员多线程方面较为薄弱。为了解决这一问题，下定决心学习Java多线程，同时记录自己的学习过程，以供日后翻阅。</p></blockquote><a id="more"></a><h1 id="线程与进程"><a href="#线程与进程" class="headerlink" title="线程与进程"></a>线程与进程</h1><p>线程与进程一直是相互关联，而又完全不同的两个概念。</p><p>其不同在于：</p><ul><li><p><strong>线程</strong>：同一类线程共享代码和数据空间，每个线程有独立的运行栈和程序计数器(PC)，线程切换开销小。（线程是cpu调度的最小单位）</p></li><li><p><strong>进程</strong>：每个进程都有独立的代码和数据空间（进程上下文），进程间的切换会有较大的开销，一个进程包含1–n个线程。（进程是资源分配的最小单位）</p></li></ul><p>其关联性在于：</p><p>1、一个进程可以有多个线程，但至少有一个线程；而一个线程只能在一个进程的地址空间内活动。</p><p>2、资源分配给进程，同一个进程的所有线程共享该进程所有资源。</p><p>3、CPU分配给线程，即真正在处理器运行的是线程。</p><p>4、线程在执行过程中需要协作同步，不同进程的线程间要利用消息通信的办法实现同步。</p><h1 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h1><p>Java中线程的状态分为五个阶段：</p><p>1、新建状态(New)： 线程对象被创建后，就进入了新建状态。例如，Thread thread = new Thread()。</p><p>2、就绪状态(Runnable)： 也被称为“可执行状态”。线程对象被创建后，其它线程调用了该对象的start()方法，从而来启动该线程。例如，thread.start()。处于就绪状态的线程，随时可能被CPU调度执行。</p><p>3、运行状态(Running)： 线程获取CPU权限进行执行。需要注意的是，线程只能从就绪状态进入到运行状态。</p><p>4、阻塞状态(Blocked)： 阻塞状态是线程因为某种原因放弃CPU使用权，暂时停止运行。直到线程进入就绪状态，才有机会转到运行状态。阻塞的情况分三种：</p><p>01) 等待阻塞 – 通过调用线程的wait()方法，让线程等待某工作的完成。</p><p>02) 同步阻塞 – 线程在获取synchronized同步锁失败(因为锁被其它线程所占用)，它会进入同步阻塞状态。</p><p>03) 其他阻塞 – 通过调用线程的sleep()或join()或发出了I/O请求时，线程会进入到阻塞状态。当sleep()状态超时、join()等待线程终止或者超时、或者I/O处理完毕时，线程重新转入就绪状态。</p><p>5、死亡状态(Dead)： 线程执行完了或者因异常退出了run()方法，该线程结束生命周期。</p><p>五种状态的转换关系如下：</p><p>更多关于线程的知识将在后续章节中，详细介绍，敬请期待……</p>]]></content>
       
       <categories>
           
@@ -901,17 +901,17 @@
     </entry>
     
     <entry>
-      <title>Hexo博客</title>
-      <link href="/topic/Hexo%E5%8D%9A%E5%AE%A2/index.html"/>
-      <url>/topic/Hexo%E5%8D%9A%E5%AE%A2/index.html</url>
-      <content type="html"><![CDATA[<blockquote><p>用过了较多博客系统，如CSDN，开源中国，博客园等，一直不太满意。CSDN的巨慢，而且现在开始要求绑定各种信息，感觉有些无力吐槽吧。开源中国一直还不错，动弹挺好的，但是大家都在上面划水了，博客流量确实很一般。博客园呢，个人感觉目前还比较纯粹吧。但是还是有点丑，界面有些跟不上时代的步伐了。<br>所以思来想去为了装逼，还是要搞一个自己的博客系统（其实还是为了装逼，没有个自己的博客系统，总感觉逼格不够）。于是开始选择用hexo + github方式搞自己的博客系统。开此专题，和大家一起分享一下自己搞博客的心得与遇到的坑。</p></blockquote><a id="more"></a><h2 id="Hexo系列"><a href="#Hexo系列" class="headerlink" title="Hexo系列"></a>Hexo系列</h2><ul><li><p><a href="/2018/09/19/六元一个的私有博客系统，了解一下？/">六元一个的私有博客系统，了解一下？</a></p></li><li><p><a href="/2018/09/28/为你的博客添加版权/">为你的博客添加版权</a></p></li><li><p><a href="/2018/09/29/hexo-plugins/">说一说我所用到的hexo插件</a></p></li></ul><h2 id="SEO系列"><a href="#SEO系列" class="headerlink" title="SEO系列"></a>SEO系列</h2>]]></content>
-    </entry>
-    
-    <entry>
       <title>Java学习之从头开始</title>
       <link href="/topic/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/index.html"/>
       <url>/topic/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/index.html</url>
       <content type="html"><![CDATA[<blockquote><p>毕业两年了，一直做Java相关的开发工作。感觉自己做过的项目也不少，大的、小的都有，传统的，互联网的都不缺。同时也看过不少博客文章，订阅了不少公众号。但是始终感觉自己提升有限，于是决定从基础开始，进行一遍系统的学习。通过博客的方式记录自己的学习计划、进度及心得总结。希望能够提升自己。</p></blockquote><a id="more"></a><h2 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h2><ul><li><a href="/2018/06/07/java基础-0——Object类/">java基础-0——Object类</a></li><li><a href="/2018/06/08/java基础-1——String类/">java基础-1——String类</a></li></ul><h2 id="Java集合"><a href="#Java集合" class="headerlink" title="Java集合"></a>Java集合</h2><ul><li><a href="/2018/07/30/Java集合-0——HashMap类/">Java集合-0——HashMap类</a></li><li><a href="/2018/07/31/Java集合-1——HashTable类/">Java集合-1——HashTable类</a></li></ul>]]></content>
+    </entry>
+    
+    <entry>
+      <title>Hexo博客</title>
+      <link href="/topic/Hexo%E5%8D%9A%E5%AE%A2/index.html"/>
+      <url>/topic/Hexo%E5%8D%9A%E5%AE%A2/index.html</url>
+      <content type="html"><![CDATA[<blockquote><p>用过了较多博客系统，如CSDN，开源中国，博客园等，一直不太满意。CSDN的巨慢，而且现在开始要求绑定各种信息，感觉有些无力吐槽吧。开源中国一直还不错，动弹挺好的，但是大家都在上面划水了，博客流量确实很一般。博客园呢，个人感觉目前还比较纯粹吧。但是还是有点丑，界面有些跟不上时代的步伐了。<br>所以思来想去为了装逼，还是要搞一个自己的博客系统（其实还是为了装逼，没有个自己的博客系统，总感觉逼格不够）。于是开始选择用hexo + github方式搞自己的博客系统。开此专题，和大家一起分享一下自己搞博客的心得与遇到的坑。</p></blockquote><a id="more"></a><h2 id="Hexo系列"><a href="#Hexo系列" class="headerlink" title="Hexo系列"></a>Hexo系列</h2><ul><li><p><a href="/2018/09/19/六元一个的私有博客系统，了解一下？/">六元一个的私有博客系统，了解一下？</a></p></li><li><p><a href="/2018/09/28/为你的博客添加版权/">为你的博客添加版权</a></p></li><li><p><a href="/2018/09/29/hexo-plugins/">说一说我所用到的hexo插件</a></p></li></ul><h2 id="SEO系列"><a href="#SEO系列" class="headerlink" title="SEO系列"></a>SEO系列</h2>]]></content>
     </entry>
     
   
