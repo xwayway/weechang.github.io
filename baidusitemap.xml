@@ -3,6 +3,28 @@
 
 
     
+  <url>
+    <loc>https://blog.weechang.xyz/2018/09/30/java-thread-01-base/</loc>
+    <lastmod>2018-09-30T09:31:59.507Z</lastmod>
+    <data>
+        <display>
+        <title>【Java学习之从头开始】Java多线程-0——基础概念</title>
+        <pubTime>2018-09-30T08:59:22.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+        <tag>Java多线程</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java多线程" url="https://blog.weechang.xyz/categories/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>https://blog.weechang.xyz/2018/09/21/%E8%AE%BA%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E5%9C%B0%E4%BD%BF%E7%94%A8%E7%88%AC%E8%99%AB%E6%91%B8%E9%B1%BC/</loc>
@@ -660,6 +682,26 @@
 
     
   <url>
+    <loc>https://blog.weechang.xyz/2018/08/31/AxonFramework-%E9%AB%98%E7%BA%A7%E5%AE%9A%E5%88%B6/</loc>
+    <lastmod>2018-09-27T06:22:48.055Z</lastmod>
+    <data>
+        <display>
+        <title>AxonFramework-高级定制</title>
+        <pubTime>2018-08-31T03:14:03.000Z</pubTime>
+        
+        <tag>AxonFramework</tag>
+         
+         
+           
+             
+              <breadCrumb title="AxonFramework" url="https://blog.weechang.xyz/categories/AxonFramework/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://blog.weechang.xyz/2018/08/17/AxonFramework-%E6%B6%88%E6%81%AF%E3%80%81%E5%91%BD%E4%BB%A4%E5%92%8C%E4%BA%8B%E4%BB%B6/</loc>
     <lastmod>2018-09-27T06:22:48.055Z</lastmod>
     <data>
@@ -686,26 +728,6 @@
         <display>
         <title>AxonFramework命令拦截器</title>
         <pubTime>2018-08-31T02:29:32.000Z</pubTime>
-        
-        <tag>AxonFramework</tag>
-         
-         
-           
-             
-              <breadCrumb title="AxonFramework" url="https://blog.weechang.xyz/categories/AxonFramework/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.weechang.xyz/2018/08/31/AxonFramework-%E9%AB%98%E7%BA%A7%E5%AE%9A%E5%88%B6/</loc>
-    <lastmod>2018-09-27T06:22:48.055Z</lastmod>
-    <data>
-        <display>
-        <title>AxonFramework-高级定制</title>
-        <pubTime>2018-08-31T03:14:03.000Z</pubTime>
         
         <tag>AxonFramework</tag>
          
