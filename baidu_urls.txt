@@ -1,1 +1,1 @@
-https://blog.weechang.xyz/2018/09/29/hexo-plugins/
+https://blog.weechang.xyz/2018/09/30/fastjson-bug/

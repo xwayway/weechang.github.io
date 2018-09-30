@@ -3,6 +3,29 @@
   
     
     <entry>
+      <title>一个关于FastJson的高危漏洞</title>
+      <link href="/2018/09/30/fastjson-bug/"/>
+      <url>/2018/09/30/fastjson-bug/</url>
+      <content type="html"><![CDATA[<blockquote><p>最近了解到一个关于FastJson的高危漏洞，在此列出来，给各位开发者提个醒。希望有用到该版本的开发者，及时升级版本，避免受到影响。</p></blockquote><a id="more"></a><p>具体漏洞情况如下，当FastJson版本低于1.2.49时，将json字符串泛解析为java对象的时候，在某些特定值的情况下。会导致长时间的阻塞（根据具体的CPU计算性能决定，时间长达几分钟）cup占用率飙升。</p><p>涉及到的地方包括：</p><ul><li>1.调用JSON.parseObject()方法。</li><li>2.使用@RequestBody 并且 HttpMessageConverter 为FastJson 的时候。</li></ul><p>且导致这一现象的代价微乎其微，效果堪比DDOS，由于该漏洞的具体细节，目前只是在小范围内传播，而且涉及范围过广，所以在此我也就不公布具体的漏洞细节了。</p><p>官方已在1.2.49及以后的版本中修复这一漏洞。</p><p><strong>希望有用到1.2.49以下版本的同学尽快升级</strong></p>]]></content>
+      
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
+            
+            <tag> FastJson高危漏洞 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>说一说我所用到的hexo插件</title>
       <link href="/2018/09/29/hexo-plugins/"/>
       <url>/2018/09/29/hexo-plugins/</url>
@@ -834,17 +857,17 @@
   
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
-      <content type="html"><![CDATA[<p>我是耒耒耒耒耒（张未）。欢迎来到我的个人技术博客。目前主要做Java后端开发，同时兼顾一些Vue页面的开发，对领域驱动较为感兴趣。</p>]]></content>
-    </entry>
-    
-    <entry>
       <title>工具库</title>
       <link href="/tools/index.html"/>
       <url>/tools/index.html</url>
       <content type="html"><![CDATA[<blockquote><p>该页面乃我浪迹网络多年，搜集整理而出的，感觉比较有用的一些工具集合。留给自己，也献给需要用到的朋友，希望能够对各位有所帮助。另外有任何好的网站或工具，也可以在评论区下方留言，供其他朋友使用。</p></blockquote>]]></content>
+    </entry>
+    
+    <entry>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
+      <content type="html"><![CDATA[<p>我是耒耒耒耒耒（张未）。欢迎来到我的个人技术博客。目前主要做Java后端开发，同时兼顾一些Vue页面的开发，对领域驱动较为感兴趣。</p>]]></content>
     </entry>
     
     <entry>
