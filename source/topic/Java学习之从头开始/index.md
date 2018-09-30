@@ -17,4 +17,8 @@ title: Java学习之从头开始
 * [Java集合-0——HashMap类](/2018/07/30/Java集合-0——HashMap类/)
 * [Java集合-1——HashTable类](/2018/07/31/Java集合-1——HashTable类/)
 
+## Java多线程
+
+* [Java多线程-0——基础概念](/2018/09/30/java-thread-00-base/)
+* [Java多线程-1——Java中如何实现多线程](/2018/09/30/java-thread-01-implements-thread/)
 
