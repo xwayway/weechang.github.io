@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.weechang.xyz/"/>
-  <updated>2018-10-09T07:01:40.627Z</updated>
+  <updated>2018-10-08T02:48:56.975Z</updated>
   <id>https://blog.weechang.xyz/</id>
   
   <author>
@@ -15,35 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>MySql8.0.11 修改默认my.cnf 后出现的错误</title>
-    <link href="https://blog.weechang.xyz/2018/10/09/mysql-error-log/"/>
-    <id>https://blog.weechang.xyz/2018/10/09/mysql-error-log/</id>
-    <published>2018-10-09T06:33:08.000Z</published>
-    <updated>2018-10-09T07:01:40.627Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>昨天发现我1G的腾讯云服务器，在装了MySql后，启动spring boot项目的时候后。居然把MySql进程挤掉了，没错就是挤掉了。估计是内存不够用，后台杀掉了MySql进程。于是我就想到调整MySql的默认空间大小，于是就出现了一系列的蛋疼问题。特此记录。</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;&lt;p&gt;昨天发现我1G的腾讯云服务器，在装了MySql后，启动spring boot项目的时候后。居然把MySql进程挤掉了，没错就是挤掉了。估计是内存不够用，后台杀掉了MySql进程。于是我就想到调整MySql的默认空间大小，于是就出现了一系列的蛋疼问题。
-      
-    
-    </summary>
-    
-      <category term="日常记录" scheme="https://blog.weechang.xyz/categories/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/"/>
-    
-    
-      <category term="日常记录" scheme="https://blog.weechang.xyz/tags/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/"/>
-    
-      <category term="MySql" scheme="https://blog.weechang.xyz/tags/MySql/"/>
-    
-      <category term="Sql" scheme="https://blog.weechang.xyz/tags/Sql/"/>
-    
-  </entry>
   
   <entry>
     <title>【Java学习之从头开始】Java多线程-3——synchronized是如何工作的</title>
@@ -481,6 +452,28 @@
     <summary type="html">
     
       &lt;p&gt;在某些情况下，有必要发布事件到外部系统,比如消息broker。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/categories/AxonFramework/"/>
+    
+    
+      <category term="AxonFramework" scheme="https://blog.weechang.xyz/tags/AxonFramework/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>AxonFramework-事件发布和处理</title>
+    <link href="https://blog.weechang.xyz/2018/08/31/AxonFramework-%E4%BA%8B%E4%BB%B6%E5%8F%91%E5%B8%83%E5%92%8C%E5%A4%84%E7%90%86/"/>
+    <id>https://blog.weechang.xyz/2018/08/31/AxonFramework-事件发布和处理/</id>
+    <published>2018-08-31T02:44:40.000Z</published>
+    <updated>2018-09-29T07:47:10.910Z</updated>
+    
+    <content type="html"><![CDATA[<p>由应用程序生成的事件需要被分发到更新查询数据库的组件，搜索引擎或其他需要它们的资源：事件处理程序（Event Handlers）。事件总线（Event Bus）的职责是分发事件消息到所有感兴趣的组件。接收端，事件处理器（Event Processors）负责处理这些事件，其中包括相应的事件处理程序（Event Handlers）的调用。</p><a id="more"></a><h2 id="发布事件（Publishing-Events）"><a href="#发布事件（Publishing-Events）" class="headerlink" title="发布事件（Publishing Events）"></a>发布事件（Publishing Events）</h2><p>在绝大多数情况下，聚合将通过申请（applying）它们发布事件。然而，有时候也有必要发布一个事件(可能来自另一个组件)，直接到事件总线。发布一个事件，在EventMessage中简单封装描述事件的有效负载（payload）。</p><p>GenericEventMessage.asEventMessage(Object)方法允许你将任何对象包装成EventMessage。如果传递的对象已经是EventMessage，它只是返回。</p><h2 id="事件总线（Event-Bus）"><a href="#事件总线（Event-Bus）" class="headerlink" title="事件总线（Event Bus）"></a>事件总线（Event Bus）</h2><p>EventBus是分发事件到已订阅的事件处理器的机制。Axon 提供了两个事件总线的实现：SimpleEventBus和EmbeddedEventStore。两个实现都支持订阅和跟踪处理器(processor)，EmbeddedEventStore持久化事件，它允许你在以后的阶段重放它们。SimpleEventBus有一个易失性存储器，然后一旦事件已经发布到订阅组件上，就会“忘记”它们。</p><p>当使用配置API时，默认情况下使用SimpleEventBus。配置EmbeddedEventStore则相反，需要提供一个StorageEngine的实现，它对事件进行实际存储。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Configurer configurer = DefaultConfigurer.defaultConfiguration();</span><br><span class="line">configurer.configureEmbeddedEventStore(c -&gt; new InMemoryEventStorageEngine());</span><br></pre></td></tr></table></figure><h2 id="Event-Processors"><a href="#Event-Processors" class="headerlink" title="Event Processors"></a>Event Processors</h2><p>事件处理程序（Event Handlers）定义了接收事件时执行的业务逻辑。事件处理器（Event Processors）负责解决该过程的技术方面的组件。它们启动一个工作单元，也可能一个事务，并且确保相关的数据在事件处理期间，可以正确附加到所有创建的消息上。</p><p>事件处理器大致有两种形式：订阅和跟踪。订阅事件处理器订阅它们自己给事件源，并由发布机制管理的线程调用。另一方面，跟踪事件处理器使用自己管理的线程从源中取出它们的消息。</p><h2 id="将处理程序分配给处理器"><a href="#将处理程序分配给处理器" class="headerlink" title="将处理程序分配给处理器"></a>将处理程序分配给处理器</h2><p>所有处理器都有一个名称，它跨JVM实例标识一个处理器实例。两个名称相同的处理器，可以被认为是同一处理器的两个实例。<br>所有事件处理程序都被附加到一个处理器，它的名字是事件处理程序类的包名。<br>例如, 下面的类：</p><ul><li>org.axonframework.example.eventhandling.MyHandler,</li><li>org.axonframework.example.eventhandling.MyOtherHandler</li><li>org.axonframework.example.eventhandling.module.MyHandler</li></ul><p>将触发两个处理器的创建：</p><ul><li>org.axonframework.example.eventhandling with 2 handlers, and</li><li>org.axonframework.example.eventhandling.module with a single handler</li></ul><p>配置API允许你为分配的类配置其他策略给处理器，甚至将特定实例分配给特定的处理器。</p><h2 id="配置处理器"><a href="#配置处理器" class="headerlink" title="配置处理器"></a>配置处理器</h2><p>默认情况下，Axon将使用订阅事件处理器。这是有可能改变处理程序是如何分配和如何使用配置API的EventHandlingConfiguration类配置处理器的。</p><p>EventHandlingConfiguration类定义了一些的方法，可用于定义处理器需要如何配置。</p><ul><li>registerEventProcessorFactory允许你定义一个默认的工厂方法，创建没有明确定义工厂的事件处理器。</li><li>registerEventProcessor(String name, EventProcessorBuilder builder)定义了用于创建一个带有给定名称的处理器的工厂方法。注意，此种处理器只有当名称被选择作为任何可用的事件处理程序bean的处理器时才会创建。</li><li>registerTrackingProcessor(String name)定义了一个带有给定名称的处理器，使用默认设置，应该被配置成一个跟踪事件处理器。它使用TransactionManager和TokenStore配置。</li><li>usingTrackingProcessors()设置默认跟踪处理器，而不是订阅处理器。</li></ul><p>跟踪处理器不像订阅处理器，需要一个令牌存储来存储它们的进程。跟踪处理器通过其事件流接收的每个消息都伴随着一个令牌。这个令牌允许处理器在任何以后的点重新打开流，并在最后一个事件中提取它。</p><p>配置API负责令牌存储，以及大多数其他组件处理器需要从全局配置实例。如果没有明确定义TokenStore ，在生产中不推荐使用InMemoryTokenStore。</p><p>作者：勇赴<br>链接：<a href="https://www.jianshu.com/p/217ac0d8822d" rel="external nofollow noopener noreferrer" target="_blank">https://www.jianshu.com/p/217ac0d8822d</a><br>來源：简书<br>简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;由应用程序生成的事件需要被分发到更新查询数据库的组件，搜索引擎或其他需要它们的资源：事件处理程序（Event Handlers）。事件总线（Event Bus）的职责是分发事件消息到所有感兴趣的组件。接收端，事件处理器（Event Processors）负责处理这些事件，其中包括相应的事件处理程序（Event Handlers）的调用。&lt;/p&gt;
     
     </summary>
     
