@@ -1,1 +1,1 @@
-https://blog.weechang.xyz/2018/10/03/java-thread-03-synchronized/
+https://blog.weechang.xyz/2018/10/09/mysql-error-log/

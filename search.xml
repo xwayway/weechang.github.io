@@ -3,6 +3,31 @@
   
     
     <entry>
+      <title>MySql8.0.11 修改默认my.cnf 后出现的错误</title>
+      <link href="/2018/10/09/mysql-error-log/"/>
+      <url>/2018/10/09/mysql-error-log/</url>
+      <content type="html"><![CDATA[<blockquote><p>昨天发现我1G的腾讯云服务器，在装了MySql后，启动spring boot项目的时候后。居然把MySql进程挤掉了，没错就是挤掉了。估计是内存不够用，后台杀掉了MySql进程。于是我就想到调整MySql的默认空间大小，于是就出现了一系列的蛋疼问题。特此记录。</p></blockquote>]]></content>
+      
+      <categories>
+          
+          <category> 日常记录 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 日常记录 </tag>
+            
+            <tag> MySql </tag>
+            
+            <tag> Sql </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>【Java学习之从头开始】Java多线程-3——synchronized是如何工作的</title>
       <link href="/2018/10/03/java-thread-03-synchronized/"/>
       <url>/2018/10/03/java-thread-03-synchronized/</url>
@@ -949,13 +974,6 @@
   
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
-      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>我是耒(lěi)耒耒耒耒（张未）。欢迎来到我的个人技术博客。目前主要做Java后端开发，同时兼顾一些Vue页面的开发，对领域驱动较为感兴趣。</p><h1 id="专业技能"><a href="#专业技能" class="headerlink" title="专业技能"></a>专业技能</h1><pre style="font-size:1.1rem">Mysql：★★★★★★☆☆☆☆Java：★★★★★★★★☆☆Vue：★★★★★★☆☆☆☆PS：★★★☆☆☆☆☆☆☆</pre><h1 id="附加技能"><a href="#附加技能" class="headerlink" title="附加技能"></a>附加技能</h1><pre style="font-size:1.1rem">手工达人：★★★★★★★★★★健   身：★★★★★★☆☆☆☆摄   影：★★★★☆☆☆☆☆☆</pre><h1 id="意见反馈"><a href="#意见反馈" class="headerlink" title="意见反馈"></a>意见反馈</h1><p>若本站内容有做得不到位的地方（如：涉及版权等问题），请联系我进行整改。</p><h1 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h1><ul><li>邮箱：<a href="mailto:zhangwei_sc@foxmail.com" rel="external nofollow noopener noreferrer" target="_blank">zhangwei_sc@foxmail.com</a></li><li>微信：zw591961493</li><li>QQ：591961493</li></ul>]]></content>
-    </entry>
-    
-    <entry>
       <title>工具库</title>
       <link href="/tools/index.html"/>
       <url>/tools/index.html</url>
@@ -963,10 +981,10 @@
     </entry>
     
     <entry>
-      <title>AxonFramework-内容汇总</title>
-      <link href="/topic/AxonFramework-%E5%86%85%E5%AE%B9%E6%B1%87%E6%80%BB/index.html"/>
-      <url>/topic/AxonFramework-%E5%86%85%E5%AE%B9%E6%B1%87%E6%80%BB/index.html</url>
-      <content type="html"><![CDATA[<blockquote><p>该系列文章为AxonFrameWork内容汇总，主要用于汇总AxonFrameWork方面的内容，会不定时更新。</p></blockquote><a id="more"></a><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul><li><a href="/2018/08/17/AxonFramework简介/">AxonFramework简介</a></li></ul><h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><ul><li><a href="/2018/08/17/AxonFramework架构概述/">AxonFramework架构概述</a></li><li><a href="/2018/08/17/AxonFramework消息、命令和事件/">AxonFramework消息、命令和事件</a></li><li><a href="/2018/08/20/AxonFramework工作单元/">AxonFramework工作单元</a></li></ul>]]></content>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>我是耒(lěi)耒耒耒耒（张未）。欢迎来到我的个人技术博客。目前主要做Java后端开发，同时兼顾一些Vue页面的开发，对领域驱动较为感兴趣。</p><h1 id="专业技能"><a href="#专业技能" class="headerlink" title="专业技能"></a>专业技能</h1><pre style="font-size:1.1rem">Mysql：★★★★★★☆☆☆☆Java：★★★★★★★★☆☆Vue：★★★★★★☆☆☆☆PS：★★★☆☆☆☆☆☆☆</pre><h1 id="附加技能"><a href="#附加技能" class="headerlink" title="附加技能"></a>附加技能</h1><pre style="font-size:1.1rem">手工达人：★★★★★★★★★★健   身：★★★★★★☆☆☆☆摄   影：★★★★☆☆☆☆☆☆</pre><h1 id="意见反馈"><a href="#意见反馈" class="headerlink" title="意见反馈"></a>意见反馈</h1><p>若本站内容有做得不到位的地方（如：涉及版权等问题），请联系我进行整改。</p><h1 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h1><ul><li>邮箱：<a href="mailto:zhangwei_sc@foxmail.com" rel="external nofollow noopener noreferrer" target="_blank">zhangwei_sc@foxmail.com</a></li><li>微信：zw591961493</li><li>QQ：591961493</li></ul>]]></content>
     </entry>
     
     <entry>
@@ -974,6 +992,13 @@
       <link href="/topic/Hexo%E5%8D%9A%E5%AE%A2/index.html"/>
       <url>/topic/Hexo%E5%8D%9A%E5%AE%A2/index.html</url>
       <content type="html"><![CDATA[<blockquote><p>用过了较多博客系统，如CSDN，开源中国，博客园等，一直不太满意。CSDN的巨慢，而且现在开始要求绑定各种信息，感觉有些无力吐槽吧。开源中国一直还不错，动弹挺好的，但是大家都在上面划水了，博客流量确实很一般。博客园呢，个人感觉目前还比较纯粹吧。但是还是有点丑，界面有些跟不上时代的步伐了。<br>所以思来想去为了装逼，还是要搞一个自己的博客系统（其实还是为了装逼，没有个自己的博客系统，总感觉逼格不够）。于是开始选择用hexo + github方式搞自己的博客系统。开此专题，和大家一起分享一下自己搞博客的心得与遇到的坑。</p></blockquote><a id="more"></a><h2 id="Hexo系列"><a href="#Hexo系列" class="headerlink" title="Hexo系列"></a>Hexo系列</h2><ul><li><p><a href="/2018/09/19/六元一个的私有博客系统，了解一下？/">六元一个的私有博客系统，了解一下？</a></p></li><li><p><a href="/2018/09/28/为你的博客添加版权/">为你的博客添加版权</a></p></li><li><p><a href="/2018/09/29/hexo-plugins/">说一说我所用到的hexo插件</a></p></li></ul><h2 id="SEO系列"><a href="#SEO系列" class="headerlink" title="SEO系列"></a>SEO系列</h2>]]></content>
+    </entry>
+    
+    <entry>
+      <title>AxonFramework-内容汇总</title>
+      <link href="/topic/AxonFramework-%E5%86%85%E5%AE%B9%E6%B1%87%E6%80%BB/index.html"/>
+      <url>/topic/AxonFramework-%E5%86%85%E5%AE%B9%E6%B1%87%E6%80%BB/index.html</url>
+      <content type="html"><![CDATA[<blockquote><p>该系列文章为AxonFrameWork内容汇总，主要用于汇总AxonFrameWork方面的内容，会不定时更新。</p></blockquote><a id="more"></a><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul><li><a href="/2018/08/17/AxonFramework简介/">AxonFramework简介</a></li></ul><h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><ul><li><a href="/2018/08/17/AxonFramework架构概述/">AxonFramework架构概述</a></li><li><a href="/2018/08/17/AxonFramework消息、命令和事件/">AxonFramework消息、命令和事件</a></li><li><a href="/2018/08/20/AxonFramework工作单元/">AxonFramework工作单元</a></li></ul>]]></content>
     </entry>
     
     <entry>

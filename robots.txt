@@ -1,0 +1,6 @@
+User-agent: Baiduspider
+Disallow:
+Sitemap: https://blog.weechang.xyz/baidusitemap.xml
+User-agent: *
+Disallow:
+Sitemap: https://blog.weechang.xyz/sitemap.xml
