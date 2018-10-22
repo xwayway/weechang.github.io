@@ -314,4 +314,6 @@ OK,至此，为师已将毕生功力传授给你了，你出去就说是三年�
 
 等我密码生成器出来了，会继续更新。欢迎持续关注。。。
 
+**PS：本文代码已托管到github，若有兴趣，欢迎浏览[https://github.com/weechang/wifi-connector](https://github.com/weechang/wifi-connector)**
+
 **严正申明：** 文中所有行为均为杜撰，请广大网友切勿利用本博文内容做出任何危害网络安全的行为。若有违法行为，均与本人无关。
