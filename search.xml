@@ -995,13 +995,6 @@
   
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
-      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>我是耒(lěi)耒耒耒耒（张未）。欢迎来到我的个人技术博客。目前主要做Java后端开发，同时兼顾一些Vue页面的开发，对领域驱动较为感兴趣。</p><h1 id="专业技能"><a href="#专业技能" class="headerlink" title="专业技能"></a>专业技能</h1><pre style="font-size:1.1rem">Mysql：★★★★★★☆☆☆☆Java：★★★★★★★★☆☆Vue：★★★★★★☆☆☆☆PS：★★★☆☆☆☆☆☆☆</pre><h1 id="附加技能"><a href="#附加技能" class="headerlink" title="附加技能"></a>附加技能</h1><pre style="font-size:1.1rem">手工达人：★★★★★★★★★★健   身：★★★★★★☆☆☆☆摄   影：★★★★☆☆☆☆☆☆</pre><h1 id="意见反馈"><a href="#意见反馈" class="headerlink" title="意见反馈"></a>意见反馈</h1><p>若本站内容有做得不到位的地方（如：涉及版权等问题），请联系我进行整改。</p><h1 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h1><ul><li>邮箱：<a href="mailto:zhangwei_sc@foxmail.com" rel="external nofollow noopener noreferrer" target="_blank">zhangwei_sc@foxmail.com</a></li><li>微信：zw591961493</li><li>QQ：591961493</li></ul>]]></content>
-    </entry>
-    
-    <entry>
       <title>工具库</title>
       <link href="/tools/index.html"/>
       <url>/tools/index.html</url>
@@ -1009,10 +1002,10 @@
     </entry>
     
     <entry>
-      <title>Java学习之从头开始</title>
-      <link href="/topic/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/index.html"/>
-      <url>/topic/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/index.html</url>
-      <content type="html"><![CDATA[<blockquote><p>毕业两年了，一直做Java相关的开发工作。感觉自己做过的项目也不少，大的、小的都有，传统的，互联网的都不缺。同时也看过不少博客文章，订阅了不少公众号。但是始终感觉自己提升有限，于是决定从基础开始，进行一遍系统的学习。通过博客的方式记录自己的学习计划、进度及心得总结。希望能够提升自己。</p></blockquote><a id="more"></a><h2 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h2><ul><li><a href="/2018/06/07/java基础-0——Object类/">java基础-0——Object类</a></li><li><a href="/2018/06/08/java基础-1——String类/">java基础-1——String类</a></li></ul><h2 id="Java集合"><a href="#Java集合" class="headerlink" title="Java集合"></a>Java集合</h2><ul><li><a href="/2018/07/30/Java集合-0——HashMap类/">Java集合-0——HashMap类</a></li><li><a href="/2018/07/31/Java集合-1——HashTable类/">Java集合-1——HashTable类</a></li></ul><h2 id="Java多线程"><a href="#Java多线程" class="headerlink" title="Java多线程"></a>Java多线程</h2><ul><li><a href="/2018/09/30/java-thread-00-base/">Java多线程-0——基础概念</a></li><li><a href="/2018/10/01/java-thread-01-implements-thread/">Java多线程-1——Java中如何实现多线程</a></li><li><a href="/2018/10/02/java-thread-02-run-start/">Java多线程-2——Thread中run()和start()的区别</a></li></ul>]]></content>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>我是耒(lěi)耒耒耒耒（张未）。欢迎来到我的个人技术博客。目前主要做Java后端开发，同时兼顾一些Vue页面的开发，对领域驱动较为感兴趣。</p><h1 id="专业技能"><a href="#专业技能" class="headerlink" title="专业技能"></a>专业技能</h1><pre style="font-size:1.1rem">Mysql：★★★★★★☆☆☆☆Java：★★★★★★★★☆☆Vue：★★★★★★☆☆☆☆PS：★★★☆☆☆☆☆☆☆</pre><h1 id="附加技能"><a href="#附加技能" class="headerlink" title="附加技能"></a>附加技能</h1><pre style="font-size:1.1rem">手工达人：★★★★★★★★★★健   身：★★★★★★☆☆☆☆摄   影：★★★★☆☆☆☆☆☆</pre><h1 id="意见反馈"><a href="#意见反馈" class="headerlink" title="意见反馈"></a>意见反馈</h1><p>若本站内容有做得不到位的地方（如：涉及版权等问题），请联系我进行整改。</p><h1 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h1><ul><li>邮箱：<a href="mailto:zhangwei_sc@foxmail.com" rel="external nofollow noopener noreferrer" target="_blank">zhangwei_sc@foxmail.com</a></li><li>微信：zw591961493</li><li>QQ：591961493</li></ul>]]></content>
     </entry>
     
     <entry>
@@ -1027,6 +1020,13 @@
       <link href="/topic/AxonFramework-%E5%86%85%E5%AE%B9%E6%B1%87%E6%80%BB/index.html"/>
       <url>/topic/AxonFramework-%E5%86%85%E5%AE%B9%E6%B1%87%E6%80%BB/index.html</url>
       <content type="html"><![CDATA[<blockquote><p>该系列文章为AxonFrameWork内容汇总，主要用于汇总AxonFrameWork方面的内容，会不定时更新。</p></blockquote><a id="more"></a><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul><li><a href="/2018/08/17/AxonFramework简介/">AxonFramework简介</a></li></ul><h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><ul><li><a href="/2018/08/17/AxonFramework架构概述/">AxonFramework架构概述</a></li><li><a href="/2018/08/17/AxonFramework消息、命令和事件/">AxonFramework消息、命令和事件</a></li><li><a href="/2018/08/20/AxonFramework工作单元/">AxonFramework工作单元</a></li></ul>]]></content>
+    </entry>
+    
+    <entry>
+      <title>Java学习之从头开始</title>
+      <link href="/topic/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/index.html"/>
+      <url>/topic/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/index.html</url>
+      <content type="html"><![CDATA[<blockquote><p>毕业两年了，一直做Java相关的开发工作。感觉自己做过的项目也不少，大的、小的都有，传统的，互联网的都不缺。同时也看过不少博客文章，订阅了不少公众号。但是始终感觉自己提升有限，于是决定从基础开始，进行一遍系统的学习。通过博客的方式记录自己的学习计划、进度及心得总结。希望能够提升自己。</p></blockquote><a id="more"></a><h2 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h2><ul><li><a href="/2018/06/07/java基础-0——Object类/">java基础-0——Object类</a></li><li><a href="/2018/06/08/java基础-1——String类/">java基础-1——String类</a></li></ul><h2 id="Java集合"><a href="#Java集合" class="headerlink" title="Java集合"></a>Java集合</h2><ul><li><a href="/2018/07/30/Java集合-0——HashMap类/">Java集合-0——HashMap类</a></li><li><a href="/2018/07/31/Java集合-1——HashTable类/">Java集合-1——HashTable类</a></li></ul><h2 id="Java多线程"><a href="#Java多线程" class="headerlink" title="Java多线程"></a>Java多线程</h2><ul><li><a href="/2018/09/30/java-thread-00-base/">Java多线程-0——基础概念</a></li><li><a href="/2018/10/01/java-thread-01-implements-thread/">Java多线程-1——Java中如何实现多线程</a></li><li><a href="/2018/10/02/java-thread-02-run-start/">Java多线程-2——Thread中run()和start()的区别</a></li></ul>]]></content>
     </entry>
     
   
