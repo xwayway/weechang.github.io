@@ -1,13 +1,32 @@
-<form class="search-form" method="GET" action="https://www.baidu.com/s?">
-    <input name="wd" type="text" class="search-form-input" placeholder="<%= __('index.search') %>" />
-    <button type="submit" class="search-form-submit"></button>
-</form>
+<div class="search-form">
+    <input id="bdcsMain" name="wd" type="text" class="search-form-input" placeholder="<%= __('index.search') %>"
+           onkeyUp="searchKey()"/>
+    <button type="submit" class="search-form-submit" onclick="search()"></button>
+</div>
+
 <script>
-(function ($) {
-    $('.search-form').on('submit', function (e) {
-        var keyword = $('.search-form-input[name="wd"]').val();
-        window.location = 'https://www.baidu.com/s?wd=site:<%= config.url.replace(/http(s)*:\/\//, "") %> ' + keyword;
-        return false;
-    });
-})(jQuery);
+    function search() {
+        var wd = $("#bdcsMain").val();
+        var url = "http://zhannei.baidu.com/cse/search?s=2965823544571484326&entry=1&q=" + wd;
+        window.open(url);
+    }
+
+    function searchKey() {
+        if (event.keyCode == 13) {
+            search();
+        }
+    }
+</script>
+
+
+<script type="text/javascript">
+    (function () {
+        document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));
+        var bdcs = document.createElement('script');
+        bdcs.type = 'text/javascript';
+        bdcs.async = true;
+        bdcs.src = '//znsv.baidu.com/customer_search/api/js?sid=2965823544571484326&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date() / 3600000);
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(bdcs, s);
+    })();
 </script>
