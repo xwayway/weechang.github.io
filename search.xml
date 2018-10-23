@@ -995,13 +995,6 @@
   
     
     <entry>
-      <title>工具库</title>
-      <link href="/tools/index.html"/>
-      <url>/tools/index.html</url>
-      <content type="html"><![CDATA[<blockquote><p>该页面乃我浪迹网络多年，搜集整理而出的，感觉比较有用的一些工具集合。留给自己，也献给需要用到的朋友，希望能够对各位有所帮助。另外有任何好的网站或工具，也可以在评论区下方留言，供其他朋友使用。</p></blockquote>]]></content>
-    </entry>
-    
-    <entry>
       <title>关于</title>
       <link href="/about/index.html"/>
       <url>/about/index.html</url>
@@ -1009,10 +1002,10 @@
     </entry>
     
     <entry>
-      <title>AxonFramework-内容汇总</title>
-      <link href="/topic/AxonFramework-%E5%86%85%E5%AE%B9%E6%B1%87%E6%80%BB/index.html"/>
-      <url>/topic/AxonFramework-%E5%86%85%E5%AE%B9%E6%B1%87%E6%80%BB/index.html</url>
-      <content type="html"><![CDATA[<blockquote><p>该系列文章为AxonFrameWork内容汇总，主要用于汇总AxonFrameWork方面的内容，会不定时更新。</p></blockquote><a id="more"></a><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul><li><a href="/2018/08/17/AxonFramework简介/">AxonFramework简介</a></li></ul><h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><ul><li><a href="/2018/08/17/AxonFramework架构概述/">AxonFramework架构概述</a></li><li><a href="/2018/08/17/AxonFramework消息、命令和事件/">AxonFramework消息、命令和事件</a></li><li><a href="/2018/08/20/AxonFramework工作单元/">AxonFramework工作单元</a></li></ul>]]></content>
+      <title>工具库</title>
+      <link href="/tools/index.html"/>
+      <url>/tools/index.html</url>
+      <content type="html"><![CDATA[<blockquote><p>该页面乃我浪迹网络多年，搜集整理而出的，感觉比较有用的一些工具集合。留给自己，也献给需要用到的朋友，希望能够对各位有所帮助。另外有任何好的网站或工具，也可以在评论区下方留言，供其他朋友使用。</p></blockquote>]]></content>
     </entry>
     
     <entry>
@@ -1027,6 +1020,13 @@
       <link href="/topic/Hexo%E5%8D%9A%E5%AE%A2/index.html"/>
       <url>/topic/Hexo%E5%8D%9A%E5%AE%A2/index.html</url>
       <content type="html"><![CDATA[<blockquote><p>用过了较多博客系统，如CSDN，开源中国，博客园等，一直不太满意。CSDN的巨慢，而且现在开始要求绑定各种信息，感觉有些无力吐槽吧。开源中国一直还不错，动弹挺好的，但是大家都在上面划水了，博客流量确实很一般。博客园呢，个人感觉目前还比较纯粹吧。但是还是有点丑，界面有些跟不上时代的步伐了。<br>所以思来想去为了装逼，还是要搞一个自己的博客系统（其实还是为了装逼，没有个自己的博客系统，总感觉逼格不够）。于是开始选择用hexo + github方式搞自己的博客系统。开此专题，和大家一起分享一下自己搞博客的心得与遇到的坑。</p></blockquote><a id="more"></a><h2 id="Hexo系列"><a href="#Hexo系列" class="headerlink" title="Hexo系列"></a>Hexo系列</h2><ul><li><p><a href="/2018/09/19/六元一个的私有博客系统，了解一下？/">六元一个的私有博客系统，了解一下？</a></p></li><li><p><a href="/2018/09/28/为你的博客添加版权/">为你的博客添加版权</a></p></li><li><p><a href="/2018/09/29/hexo-plugins/">说一说我所用到的hexo插件</a></p></li></ul><h2 id="SEO系列"><a href="#SEO系列" class="headerlink" title="SEO系列"></a>SEO系列</h2>]]></content>
+    </entry>
+    
+    <entry>
+      <title>AxonFramework-内容汇总</title>
+      <link href="/topic/AxonFramework-%E5%86%85%E5%AE%B9%E6%B1%87%E6%80%BB/index.html"/>
+      <url>/topic/AxonFramework-%E5%86%85%E5%AE%B9%E6%B1%87%E6%80%BB/index.html</url>
+      <content type="html"><![CDATA[<blockquote><p>该系列文章为AxonFrameWork内容汇总，主要用于汇总AxonFrameWork方面的内容，会不定时更新。</p></blockquote><a id="more"></a><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul><li><a href="/2018/08/17/AxonFramework简介/">AxonFramework简介</a></li></ul><h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><ul><li><a href="/2018/08/17/AxonFramework架构概述/">AxonFramework架构概述</a></li><li><a href="/2018/08/17/AxonFramework消息、命令和事件/">AxonFramework消息、命令和事件</a></li><li><a href="/2018/08/20/AxonFramework工作单元/">AxonFramework工作单元</a></li></ul>]]></content>
     </entry>
     
   
