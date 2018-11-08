@@ -26,21 +26,49 @@ tags: [手把手教学, maven中央仓库]
 选择对应的OS版本进行下载安装即可，下载地址传送门：<a href="https://www.gnupg.org/download/index.html" targe="_blank">https://www.gnupg.org/download/index.html</a>
 
 ## 2.2 生成key
-首先查看安装成功没有 ```gpg --version``` （MAC 和 Linux系统需要 gpg2 --version）
-通过 ```gpg --gen-key``` 生成key，也可以通过UI界面生成和管理key
+首先查看安装成功没有 
+
+```cmd
+gpg --version
+``` 
+
+（MAC 和 Linux系统需要 gpg2 --version）
+通过
+ 
+ ```cmd
+ gpg --gen-key
+ ``` 
+ 
+ 生成key，也可以通过UI界面生成和管理key
+ 
 {% asset_img 生成key.png 手把手教学，教你把你的个人项目推送到maven中央仓库 %}
+
 运行后gpg要求你选择加密算法，过期时间等等，这些直接选择默认值即可。通过对比发现，gpg 2.0以上的版本运行gpg --gen-key命令 会跳过这些步骤。
 之后gpg要求你输入姓名，邮箱以及关键的Passphrase，依次输入即可。然后gpg为你生成了一对秘钥。
-通过```gpg --list-keys```查看生成的key列表
+
+通过
+
+```
+gpg --list-keys
+```
+
+查看生成的key列表
+
 {% asset_img 秘钥列表.png 手把手教学，教你把你的个人项目推送到maven中央仓库 %}
+
 这里可以看到我的公钥是：34754DFE562C10E1A09907B7F4797C9A95E36DB6，记住这个key，下面我们需要用到。
 
 ## 2.3 上传公钥
-生成秘钥后，我们需要把公钥上传到服务器上。运行以下命令：```gpg2 --keyserver hkp://pool.sks-keyservers.net --send-keys 34754DFE562C10E1A09907B7F4797C9A95E36DB6（刚才生成的公钥）```
+生成秘钥后，我们需要把公钥上传到服务器上。运行以下命令：
+
+```
+gpg2 --keyserver hkp://pool.sks-keyservers.net --send-keys 34754DFE562C10E1A09907B7F4797C9A95E36DB6（刚才生成的公钥）
+```
 
 # 3 配置Maven
 ## 3.1 配置maven setting.xml
 需要在本地的maven配置server 和 profile 两个地方，啰嗦的话就不多少了，直接上配置：
+
 ```
     <server>
         <id>ossrh</id>
@@ -48,6 +76,7 @@ tags: [手把手教学, maven中央仓库]
         <password>第一步注册的密码</password>
     </server>
 ```
+
 ```
      <profile>
          <id>ossrh</id>
