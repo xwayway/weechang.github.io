@@ -7,14 +7,21 @@ title: 关于
 
 # 开源项目
 
-## [weechang/wifi-connector](https://github.com/weechang/wifi-connector)
+## [weechang/moreco](https://github.com/weechang/moreco)
 
-wifi-connector是由Java编写的，适用于windows平台下的一款wifi密码暴力破解工具。
+moreco 是一个能够为小、中、大型项目提供最合适架构的一条龙生态系统。满足项目从小型到中型至大型的衍变过程。从编码到监控至运维都满足、且各种功能都插件化，支持插件间的切换。支持Spring Boot、Spring Cloud、Axon 无缝升级。
 
 ## [weechang/JUtil](https://github.com/weechang/JUtil)
 
 Java的常用工具类包括Excel导入导出、正则表达式验证、图片处理、Http请求等，现已加入nexus仓库豪华套餐，无需下载源码，添加maven依赖即可使用。
 
+## [weechang/wifi-connector](https://github.com/weechang/wifi-connector)
+
+wifi-connector是由Java编写的，适用于windows平台下的一款wifi密码暴力破解工具。
+
+## [weechang/ReadingCrawler](https://github.com/weechang/ReadingCrawler)
+
+使用Java爬虫Jsoup写的爬取各大小说网站内容。支持多网站小说来源，程序猿划水利器。
 
 # 专业技能
 

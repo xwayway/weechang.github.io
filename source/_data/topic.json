@@ -8,6 +8,10 @@
     "name":"Java学习之从头开始"
   },
   {
+    "href":"/topic/java-design-patterns",
+    "name":"Java设计模式"
+  },
+  {
     "href":"/topic/Hexo博客",
     "name":"Hexo博客"
   }
