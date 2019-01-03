@@ -1,1 +1,1 @@
-https://blog.weechang.xyz/2018/11/30/spring-data-jpa-query/
+https://blog.weechang.xyz/2019/01/03/java-compouter-info-oshi/
