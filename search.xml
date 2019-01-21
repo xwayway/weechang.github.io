@@ -3,6 +3,29 @@
   
     
     <entry>
+      <title>使用cloudflare为你的博客加速-突破对百度爬虫的限制</title>
+      <link href="/2019/01/21/githubpages-cloudflare-cdn/"/>
+      <url>/2019/01/21/githubpages-cloudflare-cdn/</url>
+      <content type="html"><![CDATA[<blockquote><p>写博客也有一段时间了，但是一直钟情于github pages，对coding pages 没有啥感觉。但是前段时间 github pages 访问巨慢，再加上github将百度爬虫屏蔽了。就想要解决这个问题。</p></blockquote><a id="more"></a><p>对于访问慢和百度爬虫的问题，看网上好多人都说的用cdn，因为最开始接触的云平台是七牛云，所以想要用七牛云来做CDN。但是看了一下国内的云平台，貌似国内的云平台开通CDN都需要备案。<br>那就备案吧，但是照相，签名这些都不想搞，于是就一直拖着。后来终于下定决心使用备案了。在备案过程中，由于某些特殊原因，好生了解了一番 cloudflare 。于是就决定使用 cloudflare 来做CDN缓存，下面就说一说具体做法及踩过的坑吧。</p><h1 id="一、添加域名"><a href="#一、添加域名" class="headerlink" title="一、添加域名"></a>一、添加域名</h1><p>cloudflare 其实本身是一个DNS服务商，只是在DNS之外提供了一大堆的附加服务。所以得先设置你的域名DNS服务器为 cloudflare 的DNS服务器。首先在 cloudflare 添加域名</p><img src="/2019/01/21/githubpages-cloudflare-cdn/add_site.png" title="添加域名"><h1 id="二、修改DNS服务器"><a href="#二、修改DNS服务器" class="headerlink" title="二、修改DNS服务器"></a>二、修改DNS服务器</h1><p>选中刚才添加的域名，然后选择DNS，</p><img src="/2019/01/21/githubpages-cloudflare-cdn/dns.png" title="DNS"><p>查看为你分派的DNS服务器地址</p><img src="/2019/01/21/githubpages-cloudflare-cdn/dns_name.png" title="DNS服务器"><p>然后打开你的域名注册商，修改你的DNS服务器。我的是阿里云，下面就以阿里云为例进行说明（其他的域名注册商可以参考网上的对应文档）。</p><ul><li>首先打开域名列表</li></ul><img src="/2019/01/21/githubpages-cloudflare-cdn/domains.png" title="域名列表"><ul><li>然后选中你的域名</li></ul><img src="/2019/01/21/githubpages-cloudflare-cdn/domain_select.png" title="域名选中"><ul><li>然后点击修改DNS，将DNS修改为 cloudflare 为你提供的DNS服务器</li></ul><h1 id="三、域名解析"><a href="#三、域名解析" class="headerlink" title="三、域名解析"></a>三、域名解析</h1><p>做完这一切，就可以回到你的 cloudflare 控制台，选中DNS，进行域名解析了。具体的解析细节就不多说了。</p><ul><li>在域名解析的地方，点击云图标 黄色云，代表使用DNS服务+CDN服务，灰色云，表示只是用DNS服务。</li></ul><h1 id="四、策略设置"><a href="#四、策略设置" class="headerlink" title="四、策略设置"></a>四、策略设置</h1><p>完成域名解析后，就可以设置相应的策略了，比如说静态资源压缩、缓存等。</p><h1 id="五、采坑事项"><a href="#五、采坑事项" class="headerlink" title="五、采坑事项"></a>五、采坑事项</h1><ul><li><p>以上的设置策略不会及时生效，需要经过一定的时间，反正我用的时候一般都是5分钟内就生效了，听说新域名会慢一些。</p></li><li><p>关于百度爬虫访问，这个时候我去测试了一下百度爬虫抓取，还是抓取失败，看了一下还是访问的未CDN之前的地址，估计是因为爬虫系统DNS缓存缘故。具体缓存多久，我就没关注了。</p></li><li><p>如果采用CNAME解析模式的话，同时采用DNS+CDN服务，且源站使用了https的话，会出现重定向次数过多的问题。</p></li></ul><p>比如我的解析，就出现了重定向次数过多的问题</p><img src="/2019/01/21/githubpages-cloudflare-cdn/setting.png" title="解析配置"> <img src="/2019/01/21/githubpages-cloudflare-cdn/https.png" title="源站设置"><p>解决这一问题，其实也很简单。选中域名面板下的 crypto 面板，将 ssl选项改为full就行了。</p><img src="/2019/01/21/githubpages-cloudflare-cdn/full.png" title="全站HTTPS"><p>具体的各项参数代表的意思分别为：</p><p>1.Flexible SSL：您的网站访问者和Cloudflare之间有加密连接，但是从Cloudflare到您的服务器没有加密。即半程加密。优点在于：你的网站不需要SSL证书，用户也能实现SSL加密访问。</p><p>2.Full SSL：全程加密，即从你的网站到CDN服务器再到用户，全程都是SSL加密的。优点在于：只要你的服务器有SSL证书（不管是自签名证书还是购买的SSL），就可以实现SSL加密访问。</p><p>3.Full SSL (strict)：全程加密，它与Full SSL的区别在于你的服务器必须是安装了那些已经受信任的SSL证书（即购买的SSL证书），否则无法开启SSL加密访问。</p><p>4.Strict (SSL-Only Origin Pull)：企业模式。自动将所有的Http转化为Https加密访问，要求你的服务器安装了受信任的有效的SSL证书。</p><h1 id="六、完成"><a href="#六、完成" class="headerlink" title="六、完成"></a>六、完成</h1><p>当CDN设置完成后，就可以网速了，虽然服务器在美国，但是访问速度也是杠杠的。祖国大部分地区都绿了。</p><img src="/2019/01/21/githubpages-cloudflare-cdn/test.png" title="网站测速"><p>OK，各位有兴趣的话，可以搞一搞</p>]]></content>
+      
+      <categories>
+          
+          <category> cloudflare </category>
+          
+          <category> CDN </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 开源之路 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>Java监控系统——使用oshi获取主机信息</title>
       <link href="/2019/01/03/java-compouter-info-oshi/"/>
       <url>/2019/01/03/java-compouter-info-oshi/</url>
@@ -1043,13 +1066,6 @@
   
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
-      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>我是耒(lěi)耒耒耒耒（张未）。欢迎来到我的个人技术博客。目前主要做Java后端开发，同时兼顾一些Vue页面的开发，对领域驱动较为感兴趣。</p><h1 id="开源项目"><a href="#开源项目" class="headerlink" title="开源项目"></a>开源项目</h1><h2 id="weechang-moreco"><a href="#weechang-moreco" class="headerlink" title="weechang/moreco"></a><a href="https://github.com/weechang/moreco" rel="external nofollow noopener noreferrer" target="_blank">weechang/moreco</a></h2><p>moreco 是一个能够为小、中、大型项目提供最合适架构的一条龙生态系统。满足项目从小型到中型至大型的衍变过程。从编码到监控至运维都满足、且各种功能都插件化，支持插件间的切换。支持Spring Boot、Spring Cloud、Axon 无缝升级。</p><h2 id="weechang-JUtil"><a href="#weechang-JUtil" class="headerlink" title="weechang/JUtil"></a><a href="https://github.com/weechang/JUtil" rel="external nofollow noopener noreferrer" target="_blank">weechang/JUtil</a></h2><p>Java的常用工具类包括Excel导入导出、正则表达式验证、图片处理、Http请求等，现已加入nexus仓库豪华套餐，无需下载源码，添加maven依赖即可使用。</p><h2 id="weechang-wifi-connector"><a href="#weechang-wifi-connector" class="headerlink" title="weechang/wifi-connector"></a><a href="https://github.com/weechang/wifi-connector" rel="external nofollow noopener noreferrer" target="_blank">weechang/wifi-connector</a></h2><p>wifi-connector是由Java编写的，适用于windows平台下的一款wifi密码暴力破解工具。</p><h2 id="weechang-ReadingCrawler"><a href="#weechang-ReadingCrawler" class="headerlink" title="weechang/ReadingCrawler"></a><a href="https://github.com/weechang/ReadingCrawler" rel="external nofollow noopener noreferrer" target="_blank">weechang/ReadingCrawler</a></h2><p>使用Java爬虫Jsoup写的爬取各大小说网站内容。支持多网站小说来源，程序猿划水利器。</p><h1 id="专业技能"><a href="#专业技能" class="headerlink" title="专业技能"></a>专业技能</h1><pre style="font-size:1.1rem">Mysql：★★★★★★☆☆☆☆Java：★★★★★★★★☆☆Vue：★★★★★★☆☆☆☆PS：★★★☆☆☆☆☆☆☆</pre><h1 id="附加技能"><a href="#附加技能" class="headerlink" title="附加技能"></a>附加技能</h1><pre style="font-size:1.1rem">手工达人：★★★★★★★★★★健   身：★★★★★★☆☆☆☆摄   影：★★★★☆☆☆☆☆☆</pre><h1 id="意见反馈"><a href="#意见反馈" class="headerlink" title="意见反馈"></a>意见反馈</h1><p>若本站内容有做得不到位的地方（如：涉及版权等问题），请联系我进行整改。</p><h1 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h1><ul><li>邮箱：<a href="mailto:zhangwei_sc@foxmail.com" rel="external nofollow noopener noreferrer" target="_blank">zhangwei_sc@foxmail.com</a></li><li>微信：zw591961493</li><li>QQ：591961493</li></ul>]]></content>
-    </entry>
-    
-    <entry>
       <title>工具库</title>
       <link href="/tools/index.html"/>
       <url>/tools/index.html</url>
@@ -1057,10 +1073,10 @@
     </entry>
     
     <entry>
-      <title>Java设计模式</title>
-      <link href="/topic/java-design-patterns/index.html"/>
-      <url>/topic/java-design-patterns/index.html</url>
-      <content type="html"><![CDATA[<blockquote><p>设计模式一直以来就是一个比较热门的话题，尤其是在java这样的oo语言里面。如今，设计模式已成为架构师和程序员之间交流的必要语言，也是普通程序员成长为高级程序员的必要基础之一。只有掌握设计模式，我们才能更好地掌握OO分析和设计方法，如DDD域驱动设计，并更加熟练地学习和使用新兴语言。</p></blockquote><a id="more"></a><p>Java种常见设计模式总共有23种，共分为三大类。目前我主要先整理主流的23种设计模式，其他的以后有时间再添加吧。该博客主要是个人搜集整理所用，起到一个简单入门的介绍，并不负责详细介绍。想要了解详细情况的同学，可以网上找找其他的文章。</p><h2 id="设计模式六大原则"><a href="#设计模式六大原则" class="headerlink" title="设计模式六大原则"></a>设计模式六大原则</h2><ul><li><a href="">Java设计模式——六大原则</a></li></ul><h2 id="创建模式"><a href="#创建模式" class="headerlink" title="创建模式"></a>创建模式</h2><ul><li><p><a href="">Java设计模式——工厂方法模式</a></p></li><li><p><a href="">Java设计模式——抽象工厂模式</a></p></li><li><p><a href="">Java设计模式——单例模式</a></p></li><li><p><a href="">Java设计模式——建造者模式</a></p></li><li><p><a href="">Java设计模式——原型模式</a></p></li></ul><h2 id="结构模式"><a href="#结构模式" class="headerlink" title="结构模式"></a>结构模式</h2><ul><li><p><a href="">Java设计模式——适配器模式</a></p></li><li><p><a href="">Java设计模式——装饰器模式</a></p></li><li><p><a href="">Java设计模式——代理模式</a></p></li><li><p><a href="">Java设计模式——外观模式</a></p></li><li><p><a href="">Java设计模式——桥接模式</a></p></li><li><p><a href="">Java设计模式——组合模式</a></p></li><li><p><a href="">Java设计模式——享元模式</a></p></li></ul><h2 id="行为模式"><a href="#行为模式" class="headerlink" title="行为模式"></a>行为模式</h2><ul><li><p><a href="">Java设计模式——策略模式</a></p></li><li><p><a href="">Java设计模式——模板方法模式</a></p></li><li><p><a href="">Java设计模式——观察者模式</a></p></li><li><p><a href="">Java设计模式——迭代子模式</a></p></li><li><p><a href="">Java设计模式——责任链模式</a></p></li><li><p><a href="">Java设计模式——命令模式</a></p></li><li><p><a href="">Java设计模式——备忘录模式</a></p></li><li><p><a href="">Java设计模式——状态模式</a></p></li><li><p><a href="">Java设计模式——访问者模式</a></p></li><li><p><a href="">Java设计模式——中介者模式</a></p></li><li><p><a href="">Java设计模式——解释器模式</a></p></li></ul>]]></content>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
+      <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>我是耒(lěi)耒耒耒耒（张未）。欢迎来到我的个人技术博客。目前主要做Java后端开发，同时兼顾一些Vue页面的开发，对领域驱动较为感兴趣。</p><h1 id="开源项目"><a href="#开源项目" class="headerlink" title="开源项目"></a>开源项目</h1><h2 id="weechang-moreco"><a href="#weechang-moreco" class="headerlink" title="weechang/moreco"></a><a href="https://github.com/weechang/moreco" rel="external nofollow noopener noreferrer" target="_blank">weechang/moreco</a></h2><p>moreco 是一个能够为小、中、大型项目提供最合适架构的一条龙生态系统。满足项目从小型到中型至大型的衍变过程。从编码到监控至运维都满足、且各种功能都插件化，支持插件间的切换。支持Spring Boot、Spring Cloud、Axon 无缝升级。</p><h2 id="weechang-JUtil"><a href="#weechang-JUtil" class="headerlink" title="weechang/JUtil"></a><a href="https://github.com/weechang/JUtil" rel="external nofollow noopener noreferrer" target="_blank">weechang/JUtil</a></h2><p>Java的常用工具类包括Excel导入导出、正则表达式验证、图片处理、Http请求等，现已加入nexus仓库豪华套餐，无需下载源码，添加maven依赖即可使用。</p><h2 id="weechang-wifi-connector"><a href="#weechang-wifi-connector" class="headerlink" title="weechang/wifi-connector"></a><a href="https://github.com/weechang/wifi-connector" rel="external nofollow noopener noreferrer" target="_blank">weechang/wifi-connector</a></h2><p>wifi-connector是由Java编写的，适用于windows平台下的一款wifi密码暴力破解工具。</p><h2 id="weechang-ReadingCrawler"><a href="#weechang-ReadingCrawler" class="headerlink" title="weechang/ReadingCrawler"></a><a href="https://github.com/weechang/ReadingCrawler" rel="external nofollow noopener noreferrer" target="_blank">weechang/ReadingCrawler</a></h2><p>使用Java爬虫Jsoup写的爬取各大小说网站内容。支持多网站小说来源，程序猿划水利器。</p><h1 id="专业技能"><a href="#专业技能" class="headerlink" title="专业技能"></a>专业技能</h1><pre style="font-size:1.1rem">Mysql：★★★★★★☆☆☆☆Java：★★★★★★★★☆☆Vue：★★★★★★☆☆☆☆PS：★★★☆☆☆☆☆☆☆</pre><h1 id="附加技能"><a href="#附加技能" class="headerlink" title="附加技能"></a>附加技能</h1><pre style="font-size:1.1rem">手工达人：★★★★★★★★★★健   身：★★★★★★☆☆☆☆摄   影：★★★★☆☆☆☆☆☆</pre><h1 id="意见反馈"><a href="#意见反馈" class="headerlink" title="意见反馈"></a>意见反馈</h1><p>若本站内容有做得不到位的地方（如：涉及版权等问题），请联系我进行整改。</p><h1 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h1><ul><li>邮箱：<a href="mailto:zhangwei_sc@foxmail.com" rel="external nofollow noopener noreferrer" target="_blank">zhangwei_sc@foxmail.com</a></li><li>微信：zw591961493</li><li>QQ：591961493</li></ul>]]></content>
     </entry>
     
     <entry>
@@ -1071,6 +1087,13 @@
     </entry>
     
     <entry>
+      <title>Java学习之从头开始</title>
+      <link href="/topic/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/index.html"/>
+      <url>/topic/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/index.html</url>
+      <content type="html"><![CDATA[<blockquote><p>毕业两年了，一直做Java相关的开发工作。感觉自己做过的项目也不少，大的、小的都有，传统的，互联网的都不缺。同时也看过不少博客文章，订阅了不少公众号。但是始终感觉自己提升有限，于是决定从基础开始，进行一遍系统的学习。通过博客的方式记录自己的学习计划、进度及心得总结。希望能够提升自己。</p></blockquote><a id="more"></a><h2 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h2><ul><li><a href="/2018/06/07/java基础-0——Object类/">java基础-0——Object类</a></li><li><a href="/2018/06/08/java基础-1——String类/">java基础-1——String类</a></li></ul><h2 id="Java集合"><a href="#Java集合" class="headerlink" title="Java集合"></a>Java集合</h2><ul><li><a href="/2018/07/30/Java集合-0——HashMap类/">Java集合-0——HashMap类</a></li><li><a href="/2018/07/31/Java集合-1——HashTable类/">Java集合-1——HashTable类</a></li></ul><h2 id="Java多线程"><a href="#Java多线程" class="headerlink" title="Java多线程"></a>Java多线程</h2><ul><li><a href="/2018/09/30/java-thread-00-base/">Java多线程-0——基础概念</a></li><li><a href="/2018/10/01/java-thread-01-implements-thread/">Java多线程-1——Java中如何实现多线程</a></li><li><a href="/2018/10/02/java-thread-02-run-start/">Java多线程-2——Thread中run()和start()的区别</a></li></ul>]]></content>
+    </entry>
+    
+    <entry>
       <title>Hexo博客</title>
       <link href="/topic/Hexo%E5%8D%9A%E5%AE%A2/index.html"/>
       <url>/topic/Hexo%E5%8D%9A%E5%AE%A2/index.html</url>
@@ -1078,10 +1101,10 @@
     </entry>
     
     <entry>
-      <title>Java学习之从头开始</title>
-      <link href="/topic/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/index.html"/>
-      <url>/topic/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B/index.html</url>
-      <content type="html"><![CDATA[<blockquote><p>毕业两年了，一直做Java相关的开发工作。感觉自己做过的项目也不少，大的、小的都有，传统的，互联网的都不缺。同时也看过不少博客文章，订阅了不少公众号。但是始终感觉自己提升有限，于是决定从基础开始，进行一遍系统的学习。通过博客的方式记录自己的学习计划、进度及心得总结。希望能够提升自己。</p></blockquote><a id="more"></a><h2 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h2><ul><li><a href="/2018/06/07/java基础-0——Object类/">java基础-0——Object类</a></li><li><a href="/2018/06/08/java基础-1——String类/">java基础-1——String类</a></li></ul><h2 id="Java集合"><a href="#Java集合" class="headerlink" title="Java集合"></a>Java集合</h2><ul><li><a href="/2018/07/30/Java集合-0——HashMap类/">Java集合-0——HashMap类</a></li><li><a href="/2018/07/31/Java集合-1——HashTable类/">Java集合-1——HashTable类</a></li></ul><h2 id="Java多线程"><a href="#Java多线程" class="headerlink" title="Java多线程"></a>Java多线程</h2><ul><li><a href="/2018/09/30/java-thread-00-base/">Java多线程-0——基础概念</a></li><li><a href="/2018/10/01/java-thread-01-implements-thread/">Java多线程-1——Java中如何实现多线程</a></li><li><a href="/2018/10/02/java-thread-02-run-start/">Java多线程-2——Thread中run()和start()的区别</a></li></ul>]]></content>
+      <title>Java设计模式</title>
+      <link href="/topic/java-design-patterns/index.html"/>
+      <url>/topic/java-design-patterns/index.html</url>
+      <content type="html"><![CDATA[<blockquote><p>设计模式一直以来就是一个比较热门的话题，尤其是在java这样的oo语言里面。如今，设计模式已成为架构师和程序员之间交流的必要语言，也是普通程序员成长为高级程序员的必要基础之一。只有掌握设计模式，我们才能更好地掌握OO分析和设计方法，如DDD域驱动设计，并更加熟练地学习和使用新兴语言。</p></blockquote><a id="more"></a><p>Java种常见设计模式总共有23种，共分为三大类。目前我主要先整理主流的23种设计模式，其他的以后有时间再添加吧。该博客主要是个人搜集整理所用，起到一个简单入门的介绍，并不负责详细介绍。想要了解详细情况的同学，可以网上找找其他的文章。</p><h2 id="设计模式六大原则"><a href="#设计模式六大原则" class="headerlink" title="设计模式六大原则"></a>设计模式六大原则</h2><ul><li><a href="">Java设计模式——六大原则</a></li></ul><h2 id="创建模式"><a href="#创建模式" class="headerlink" title="创建模式"></a>创建模式</h2><ul><li><p><a href="">Java设计模式——工厂方法模式</a></p></li><li><p><a href="">Java设计模式——抽象工厂模式</a></p></li><li><p><a href="">Java设计模式——单例模式</a></p></li><li><p><a href="">Java设计模式——建造者模式</a></p></li><li><p><a href="">Java设计模式——原型模式</a></p></li></ul><h2 id="结构模式"><a href="#结构模式" class="headerlink" title="结构模式"></a>结构模式</h2><ul><li><p><a href="">Java设计模式——适配器模式</a></p></li><li><p><a href="">Java设计模式——装饰器模式</a></p></li><li><p><a href="">Java设计模式——代理模式</a></p></li><li><p><a href="">Java设计模式——外观模式</a></p></li><li><p><a href="">Java设计模式——桥接模式</a></p></li><li><p><a href="">Java设计模式——组合模式</a></p></li><li><p><a href="">Java设计模式——享元模式</a></p></li></ul><h2 id="行为模式"><a href="#行为模式" class="headerlink" title="行为模式"></a>行为模式</h2><ul><li><p><a href="">Java设计模式——策略模式</a></p></li><li><p><a href="">Java设计模式——模板方法模式</a></p></li><li><p><a href="">Java设计模式——观察者模式</a></p></li><li><p><a href="">Java设计模式——迭代子模式</a></p></li><li><p><a href="">Java设计模式——责任链模式</a></p></li><li><p><a href="">Java设计模式——命令模式</a></p></li><li><p><a href="">Java设计模式——备忘录模式</a></p></li><li><p><a href="">Java设计模式——状态模式</a></p></li><li><p><a href="">Java设计模式——访问者模式</a></p></li><li><p><a href="">Java设计模式——中介者模式</a></p></li><li><p><a href="">Java设计模式——解释器模式</a></p></li></ul>]]></content>
     </entry>
     
   
