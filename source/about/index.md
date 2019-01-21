@@ -3,25 +3,25 @@ title: 关于
 
 # 简介
 
-我是耒(lěi)耒耒耒耒（张未）。欢迎来到我的个人技术博客。目前主要做Java后端开发，同时兼顾一些Vue页面的开发，对领域驱动较为感兴趣。
+张未（耒耒耒耒耒），多点DMall Java工程师一枚，伪全栈工程师一枚，习惯性太监开源项目开发人员一枚。
+
+主力语言是Java + Vue.js。另外会用 html5 做点移动端应用。还会点基础运维工作。
+
+目前主要从事Java Web开发工作，写代码主要是为了维持生活，如果不是生活所迫的话，我想我会当一个厨子吧。
+
+我承认我并不热爱写代码，但是我会把写代码这件事做好。写过一些开源项目，但是大部分的都太监了，随心更新。
 
 # 开源项目
 
-## [weechang/moreco](https://github.com/weechang/moreco)
+{% githubCard user:weechang repo:moreco width:100% client_id:295b369cd27d90dc5cfc client_secret:23a308db213cd99742ff3e07da9021b9c5909b68 %}
 
-moreco 是一个能够为小、中、大型项目提供最合适架构的一条龙生态系统。满足项目从小型到中型至大型的衍变过程。从编码到监控至运维都满足、且各种功能都插件化，支持插件间的切换。支持Spring Boot、Spring Cloud、Axon 无缝升级。
+{% githubCard user:weechang repo:mcm width:100% client_id:295b369cd27d90dc5cfc client_secret:23a308db213cd99742ff3e07da9021b9c5909b68 %}
 
-## [weechang/JUtil](https://github.com/weechang/JUtil)
+{% githubCard user:weechang repo:JUtil width:100% client_id:295b369cd27d90dc5cfc client_secret:23a308db213cd99742ff3e07da9021b9c5909b68 %}
 
-Java的常用工具类包括Excel导入导出、正则表达式验证、图片处理、Http请求等，现已加入nexus仓库豪华套餐，无需下载源码，添加maven依赖即可使用。
+{% githubCard user:weechang repo:wifi-connector width:100% client_id:295b369cd27d90dc5cfc client_secret:23a308db213cd99742ff3e07da9021b9c5909b68 %}
 
-## [weechang/wifi-connector](https://github.com/weechang/wifi-connector)
-
-wifi-connector是由Java编写的，适用于windows平台下的一款wifi密码暴力破解工具。
-
-## [weechang/ReadingCrawler](https://github.com/weechang/ReadingCrawler)
-
-使用Java爬虫Jsoup写的爬取各大小说网站内容。支持多网站小说来源，程序猿划水利器。
+{% githubCard user:weechang repo:ReadingCrawler width:100% client_id:295b369cd27d90dc5cfc client_secret:23a308db213cd99742ff3e07da9021b9c5909b68 %}
 
 # 专业技能
 
