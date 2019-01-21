@@ -2,7 +2,7 @@
 title: 使用cloudflare为你的博客加速-突破对百度爬虫的限制
 tags: [开源之路]
 date: 2019-01-21 15:19:18
-categories: [cloudflare,CDN]
+categories: [cloudflare, CDN]
 ---
 
 >写博客也有一段时间了，但是一直钟情于github pages，对coding pages 没有啥感觉。但是前段时间 github pages 访问巨慢，再加上github将百度爬虫屏蔽了。就想要解决这个问题。
