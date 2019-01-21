@@ -22,3 +22,4 @@ title: Java学习之从头开始
 * [Java多线程-0——基础概念](/2018/09/30/java-thread-00-base/)
 * [Java多线程-1——Java中如何实现多线程](/2018/10/01/java-thread-01-implements-thread/)
 * [Java多线程-2——Thread中run()和start()的区别](/2018/10/02/java-thread-02-run-start/)
+* [Java多线程-3——synchronized是如何工作的](/2018/10/03/java-thread-03-synchronized/)
