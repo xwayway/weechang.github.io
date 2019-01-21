@@ -89,7 +89,7 @@ deploy:
   type: git
   branch: master
   repo:
-    coding: https://git.coding.net/weechang93/weechang93.coding.me.git
+#    coding: https://git.coding.net/weechang93/weechang93.coding.me.git
     github: https://github.com/weechang/weechang.github.io.git
   bucket: blog.weechang.xyz
 
