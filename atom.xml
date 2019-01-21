@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.weechang.xyz/"/>
-  <updated>2019-01-21T08:15:44.765Z</updated>
+  <updated>2019-01-21T08:23:29.670Z</updated>
   <id>https://blog.weechang.xyz/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://blog.weechang.xyz/2019/01/21/githubpages-cloudflare-cdn/"/>
     <id>https://blog.weechang.xyz/2019/01/21/githubpages-cloudflare-cdn/</id>
     <published>2019-01-21T07:19:18.000Z</published>
-    <updated>2019-01-21T08:15:44.765Z</updated>
+    <updated>2019-01-21T08:23:29.670Z</updated>
     
     <content type="html"><![CDATA[<blockquote><p>写博客也有一段时间了，但是一直钟情于github pages，对coding pages 没有啥感觉。但是前段时间 github pages 访问巨慢，再加上github将百度爬虫屏蔽了。就想要解决这个问题。</p></blockquote><a id="more"></a><p>对于访问慢和百度爬虫的问题，看网上好多人都说的用cdn，因为最开始接触的云平台是七牛云，所以想要用七牛云来做CDN。但是看了一下国内的云平台，貌似国内的云平台开通CDN都需要备案。<br>那就备案吧，但是照相，签名这些都不想搞，于是就一直拖着。后来终于下定决心使用备案了。在备案过程中，由于某些特殊原因，好生了解了一番 cloudflare 。于是就决定使用 cloudflare 来做CDN缓存，下面就说一说具体做法及踩过的坑吧。</p><h1 id="一、添加域名"><a href="#一、添加域名" class="headerlink" title="一、添加域名"></a>一、添加域名</h1><p>cloudflare 其实本身是一个DNS服务商，只是在DNS之外提供了一大堆的附加服务。所以得先设置你的域名DNS服务器为 cloudflare 的DNS服务器。首先在 cloudflare 添加域名</p><img src="/2019/01/21/githubpages-cloudflare-cdn/add_site.png" title="添加域名"><h1 id="二、修改DNS服务器"><a href="#二、修改DNS服务器" class="headerlink" title="二、修改DNS服务器"></a>二、修改DNS服务器</h1><p>选中刚才添加的域名，然后选择DNS，</p><img src="/2019/01/21/githubpages-cloudflare-cdn/dns.png" title="DNS"><p>查看为你分派的DNS服务器地址</p><img src="/2019/01/21/githubpages-cloudflare-cdn/dns_name.png" title="DNS服务器"><p>然后打开你的域名注册商，修改你的DNS服务器。我的是阿里云，下面就以阿里云为例进行说明（其他的域名注册商可以参考网上的对应文档）。</p><ul><li>首先打开域名列表</li></ul><img src="/2019/01/21/githubpages-cloudflare-cdn/domains.png" title="域名列表"><ul><li>然后选中你的域名</li></ul><img src="/2019/01/21/githubpages-cloudflare-cdn/domain_select.png" title="域名选中"><ul><li>然后点击修改DNS，将DNS修改为 cloudflare 为你提供的DNS服务器</li></ul><h1 id="三、域名解析"><a href="#三、域名解析" class="headerlink" title="三、域名解析"></a>三、域名解析</h1><p>做完这一切，就可以回到你的 cloudflare 控制台，选中DNS，进行域名解析了。具体的解析细节就不多说了。</p><ul><li>在域名解析的地方，点击云图标 黄色云，代表使用DNS服务+CDN服务，灰色云，表示只是用DNS服务。</li></ul><h1 id="四、策略设置"><a href="#四、策略设置" class="headerlink" title="四、策略设置"></a>四、策略设置</h1><p>完成域名解析后，就可以设置相应的策略了，比如说静态资源压缩、缓存等。</p><h1 id="五、采坑事项"><a href="#五、采坑事项" class="headerlink" title="五、采坑事项"></a>五、采坑事项</h1><ul><li><p>以上的设置策略不会及时生效，需要经过一定的时间，反正我用的时候一般都是5分钟内就生效了，听说新域名会慢一些。</p></li><li><p>关于百度爬虫访问，这个时候我去测试了一下百度爬虫抓取，还是抓取失败，看了一下还是访问的未CDN之前的地址，估计是因为爬虫系统DNS缓存缘故。具体缓存多久，我就没关注了。</p></li><li><p>如果采用CNAME解析模式的话，同时采用DNS+CDN服务，且源站使用了https的话，会出现重定向次数过多的问题。</p></li></ul><p>比如我的解析，就出现了重定向次数过多的问题</p><img src="/2019/01/21/githubpages-cloudflare-cdn/setting.png" title="解析配置"> <img src="/2019/01/21/githubpages-cloudflare-cdn/https.png" title="源站设置"><p>解决这一问题，其实也很简单。选中域名面板下的 crypto 面板，将 ssl选项改为full就行了。</p><img src="/2019/01/21/githubpages-cloudflare-cdn/full.png" title="全站HTTPS"><p>具体的各项参数代表的意思分别为：</p><p>1.Flexible SSL：您的网站访问者和Cloudflare之间有加密连接，但是从Cloudflare到您的服务器没有加密。即半程加密。优点在于：你的网站不需要SSL证书，用户也能实现SSL加密访问。</p><p>2.Full SSL：全程加密，即从你的网站到CDN服务器再到用户，全程都是SSL加密的。优点在于：只要你的服务器有SSL证书（不管是自签名证书还是购买的SSL），就可以实现SSL加密访问。</p><p>3.Full SSL (strict)：全程加密，它与Full SSL的区别在于你的服务器必须是安装了那些已经受信任的SSL证书（即购买的SSL证书），否则无法开启SSL加密访问。</p><p>4.Strict (SSL-Only Origin Pull)：企业模式。自动将所有的Http转化为Https加密访问，要求你的服务器安装了受信任的有效的SSL证书。</p><h1 id="六、完成"><a href="#六、完成" class="headerlink" title="六、完成"></a>六、完成</h1><p>当CDN设置完成后，就可以网速了，虽然服务器在美国，但是访问速度也是杠杠的。祖国大部分地区都绿了。</p><img src="/2019/01/21/githubpages-cloudflare-cdn/test.png" title="网站测速"><p>OK，各位有兴趣的话，可以搞一搞</p>]]></content>
     
@@ -31,12 +31,12 @@
     
     </summary>
     
-      <category term="cloudflare" scheme="https://blog.weechang.xyz/categories/cloudflare/"/>
-    
-      <category term="CDN" scheme="https://blog.weechang.xyz/categories/cloudflare/CDN/"/>
+      <category term="开源之路" scheme="https://blog.weechang.xyz/categories/%E5%BC%80%E6%BA%90%E4%B9%8B%E8%B7%AF/"/>
     
     
-      <category term="开源之路" scheme="https://blog.weechang.xyz/tags/%E5%BC%80%E6%BA%90%E4%B9%8B%E8%B7%AF/"/>
+      <category term="CDN" scheme="https://blog.weechang.xyz/tags/CDN/"/>
+    
+      <category term="cloudflare" scheme="https://blog.weechang.xyz/tags/cloudflare/"/>
     
   </entry>
   
