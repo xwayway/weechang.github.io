@@ -1081,17 +1081,17 @@
   
     
     <entry>
-      <title>工具库</title>
-      <link href="/tools/index.html"/>
-      <url>/tools/index.html</url>
-      <content type="html"><![CDATA[<blockquote><p>该页面乃我浪迹网络多年，搜集整理而出的，感觉比较有用的一些工具集合。留给自己，也献给需要用到的朋友，希望能够对各位有所帮助。另外有任何好的网站或工具，也可以在评论区下方留言，供其他朋友使用。</p></blockquote>]]></content>
-    </entry>
-    
-    <entry>
       <title>关于</title>
       <link href="/about/index.html"/>
       <url>/about/index.html</url>
       <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>张未（耒耒耒耒耒），多点DMall Java工程师一枚，伪全栈工程师一枚，习惯性太监开源项目开发人员一枚。</p><p>主力语言是Java + Vue.js。另外会用 html5 做点移动端应用。还会点基础运维工作。</p><p>目前主要从事Java Web开发工作，写代码主要是为了维持生活，如果不是生活所迫的话，我想我会当一个厨子吧。</p><p>我承认我并不热爱写代码，但是我会把写代码这件事做好。写过一些开源项目，但是大部分的都太监了，随心更新。</p><h1 id="开源项目"><a href="#开源项目" class="headerlink" title="开源项目"></a>开源项目</h1><div style="text-align:center"><div class="github-card" data-user="weechang" data-repo="moreco" data-width="100%" data-theme="default" data-target="" data-client-id="295b369cd27d90dc5cfc" data-client-secret="23a308db213cd99742ff3e07da9021b9c5909b68"></div></div><script src="/github-card-lib/githubcard.js"></script><div style="text-align:center"><div class="github-card" data-user="weechang" data-repo="mcm" data-width="100%" data-theme="default" data-target="" data-client-id="295b369cd27d90dc5cfc" data-client-secret="23a308db213cd99742ff3e07da9021b9c5909b68"></div></div><script src="/github-card-lib/githubcard.js"></script><div style="text-align:center"><div class="github-card" data-user="weechang" data-repo="JUtil" data-width="100%" data-theme="default" data-target="" data-client-id="295b369cd27d90dc5cfc" data-client-secret="23a308db213cd99742ff3e07da9021b9c5909b68"></div></div><script src="/github-card-lib/githubcard.js"></script><div style="text-align:center"><div class="github-card" data-user="weechang" data-repo="wifi-connector" data-width="100%" data-theme="default" data-target="" data-client-id="295b369cd27d90dc5cfc" data-client-secret="23a308db213cd99742ff3e07da9021b9c5909b68"></div></div><script src="/github-card-lib/githubcard.js"></script><div style="text-align:center"><div class="github-card" data-user="weechang" data-repo="ReadingCrawler" data-width="100%" data-theme="default" data-target="" data-client-id="295b369cd27d90dc5cfc" data-client-secret="23a308db213cd99742ff3e07da9021b9c5909b68"></div></div><script src="/github-card-lib/githubcard.js"></script><h1 id="专业技能"><a href="#专业技能" class="headerlink" title="专业技能"></a>专业技能</h1><pre style="font-size:1.1rem">Mysql：★★★★★★☆☆☆☆Java：★★★★★★★★☆☆Vue：★★★★★★☆☆☆☆PS：★★★☆☆☆☆☆☆☆</pre><h1 id="附加技能"><a href="#附加技能" class="headerlink" title="附加技能"></a>附加技能</h1><pre style="font-size:1.1rem">手工达人：★★★★★★★★★★健   身：★★★★★★☆☆☆☆摄   影：★★★★☆☆☆☆☆☆</pre><h1 id="意见反馈"><a href="#意见反馈" class="headerlink" title="意见反馈"></a>意见反馈</h1><p>若本站内容有做得不到位的地方（如：涉及版权等问题），请联系我进行整改。</p><h1 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h1><ul><li>邮箱：<a href="mailto:zhangwei_sc@foxmail.com" rel="external nofollow noopener noreferrer" target="_blank">zhangwei_sc@foxmail.com</a></li><li>微信：zw591961493</li><li>QQ：591961493</li></ul>]]></content>
+    </entry>
+    
+    <entry>
+      <title>工具库</title>
+      <link href="/tools/index.html"/>
+      <url>/tools/index.html</url>
+      <content type="html"><![CDATA[<blockquote><p>该页面乃我浪迹网络多年，搜集整理而出的，感觉比较有用的一些工具集合。留给自己，也献给需要用到的朋友，希望能够对各位有所帮助。另外有任何好的网站或工具，也可以在评论区下方留言，供其他朋友使用。</p></blockquote>]]></content>
     </entry>
     
     <entry>
@@ -1102,10 +1102,10 @@
     </entry>
     
     <entry>
-      <title>Hexo博客</title>
-      <link href="/topic/Hexo%E5%8D%9A%E5%AE%A2/index.html"/>
-      <url>/topic/Hexo%E5%8D%9A%E5%AE%A2/index.html</url>
-      <content type="html"><![CDATA[<blockquote><p>用过了较多博客系统，如CSDN，开源中国，博客园等，一直不太满意。CSDN的巨慢，而且现在开始要求绑定各种信息，感觉有些无力吐槽吧。开源中国一直还不错，动弹挺好的，但是大家都在上面划水了，博客流量确实很一般。博客园呢，个人感觉目前还比较纯粹吧。但是还是有点丑，界面有些跟不上时代的步伐了。<br>所以思来想去为了装逼，还是要搞一个自己的博客系统（其实还是为了装逼，没有个自己的博客系统，总感觉逼格不够）。于是开始选择用hexo + github方式搞自己的博客系统。开此专题，和大家一起分享一下自己搞博客的心得与遇到的坑。</p></blockquote><a id="more"></a><h2 id="Hexo系列"><a href="#Hexo系列" class="headerlink" title="Hexo系列"></a>Hexo系列</h2><ul><li><p><a href="/2018/09/19/六元一个的私有博客系统，了解一下？/">六元一个的私有博客系统，了解一下？</a></p></li><li><p><a href="/2018/09/28/为你的博客添加版权/">为你的博客添加版权</a></p></li><li><p><a href="/2018/09/29/hexo-plugins/">说一说我所用到的hexo插件</a></p></li></ul><h2 id="SEO系列"><a href="#SEO系列" class="headerlink" title="SEO系列"></a>SEO系列</h2>]]></content>
+      <title>Java设计模式</title>
+      <link href="/topic/java-design-patterns/index.html"/>
+      <url>/topic/java-design-patterns/index.html</url>
+      <content type="html"><![CDATA[<blockquote><p>设计模式一直以来就是一个比较热门的话题，尤其是在java这样的oo语言里面。如今，设计模式已成为架构师和程序员之间交流的必要语言，也是普通程序员成长为高级程序员的必要基础之一。只有掌握设计模式，我们才能更好地掌握OO分析和设计方法，如DDD域驱动设计，并更加熟练地学习和使用新兴语言。</p></blockquote><a id="more"></a><p>Java种常见设计模式总共有23种，共分为三大类。目前我主要先整理主流的23种设计模式，其他的以后有时间再添加吧。该博客主要是个人搜集整理所用，起到一个简单入门的介绍，并不负责详细介绍。想要了解详细情况的同学，可以网上找找其他的文章。</p><h2 id="设计模式六大原则"><a href="#设计模式六大原则" class="headerlink" title="设计模式六大原则"></a>设计模式六大原则</h2><ul><li><a href="">Java设计模式——六大原则</a></li></ul><h2 id="创建模式"><a href="#创建模式" class="headerlink" title="创建模式"></a>创建模式</h2><ul><li><p><a href="">Java设计模式——工厂方法模式</a></p></li><li><p><a href="">Java设计模式——抽象工厂模式</a></p></li><li><p><a href="">Java设计模式——单例模式</a></p></li><li><p><a href="">Java设计模式——建造者模式</a></p></li><li><p><a href="">Java设计模式——原型模式</a></p></li></ul><h2 id="结构模式"><a href="#结构模式" class="headerlink" title="结构模式"></a>结构模式</h2><ul><li><p><a href="">Java设计模式——适配器模式</a></p></li><li><p><a href="">Java设计模式——装饰器模式</a></p></li><li><p><a href="">Java设计模式——代理模式</a></p></li><li><p><a href="">Java设计模式——外观模式</a></p></li><li><p><a href="">Java设计模式——桥接模式</a></p></li><li><p><a href="">Java设计模式——组合模式</a></p></li><li><p><a href="">Java设计模式——享元模式</a></p></li></ul><h2 id="行为模式"><a href="#行为模式" class="headerlink" title="行为模式"></a>行为模式</h2><ul><li><p><a href="">Java设计模式——策略模式</a></p></li><li><p><a href="">Java设计模式——模板方法模式</a></p></li><li><p><a href="">Java设计模式——观察者模式</a></p></li><li><p><a href="">Java设计模式——迭代子模式</a></p></li><li><p><a href="">Java设计模式——责任链模式</a></p></li><li><p><a href="">Java设计模式——命令模式</a></p></li><li><p><a href="">Java设计模式——备忘录模式</a></p></li><li><p><a href="">Java设计模式——状态模式</a></p></li><li><p><a href="">Java设计模式——访问者模式</a></p></li><li><p><a href="">Java设计模式——中介者模式</a></p></li><li><p><a href="">Java设计模式——解释器模式</a></p></li></ul>]]></content>
     </entry>
     
     <entry>
@@ -1116,10 +1116,10 @@
     </entry>
     
     <entry>
-      <title>Java设计模式</title>
-      <link href="/topic/java-design-patterns/index.html"/>
-      <url>/topic/java-design-patterns/index.html</url>
-      <content type="html"><![CDATA[<blockquote><p>设计模式一直以来就是一个比较热门的话题，尤其是在java这样的oo语言里面。如今，设计模式已成为架构师和程序员之间交流的必要语言，也是普通程序员成长为高级程序员的必要基础之一。只有掌握设计模式，我们才能更好地掌握OO分析和设计方法，如DDD域驱动设计，并更加熟练地学习和使用新兴语言。</p></blockquote><a id="more"></a><p>Java种常见设计模式总共有23种，共分为三大类。目前我主要先整理主流的23种设计模式，其他的以后有时间再添加吧。该博客主要是个人搜集整理所用，起到一个简单入门的介绍，并不负责详细介绍。想要了解详细情况的同学，可以网上找找其他的文章。</p><h2 id="设计模式六大原则"><a href="#设计模式六大原则" class="headerlink" title="设计模式六大原则"></a>设计模式六大原则</h2><ul><li><a href="">Java设计模式——六大原则</a></li></ul><h2 id="创建模式"><a href="#创建模式" class="headerlink" title="创建模式"></a>创建模式</h2><ul><li><p><a href="">Java设计模式——工厂方法模式</a></p></li><li><p><a href="">Java设计模式——抽象工厂模式</a></p></li><li><p><a href="">Java设计模式——单例模式</a></p></li><li><p><a href="">Java设计模式——建造者模式</a></p></li><li><p><a href="">Java设计模式——原型模式</a></p></li></ul><h2 id="结构模式"><a href="#结构模式" class="headerlink" title="结构模式"></a>结构模式</h2><ul><li><p><a href="">Java设计模式——适配器模式</a></p></li><li><p><a href="">Java设计模式——装饰器模式</a></p></li><li><p><a href="">Java设计模式——代理模式</a></p></li><li><p><a href="">Java设计模式——外观模式</a></p></li><li><p><a href="">Java设计模式——桥接模式</a></p></li><li><p><a href="">Java设计模式——组合模式</a></p></li><li><p><a href="">Java设计模式——享元模式</a></p></li></ul><h2 id="行为模式"><a href="#行为模式" class="headerlink" title="行为模式"></a>行为模式</h2><ul><li><p><a href="">Java设计模式——策略模式</a></p></li><li><p><a href="">Java设计模式——模板方法模式</a></p></li><li><p><a href="">Java设计模式——观察者模式</a></p></li><li><p><a href="">Java设计模式——迭代子模式</a></p></li><li><p><a href="">Java设计模式——责任链模式</a></p></li><li><p><a href="">Java设计模式——命令模式</a></p></li><li><p><a href="">Java设计模式——备忘录模式</a></p></li><li><p><a href="">Java设计模式——状态模式</a></p></li><li><p><a href="">Java设计模式——访问者模式</a></p></li><li><p><a href="">Java设计模式——中介者模式</a></p></li><li><p><a href="">Java设计模式——解释器模式</a></p></li></ul>]]></content>
+      <title>Hexo博客</title>
+      <link href="/topic/Hexo%E5%8D%9A%E5%AE%A2/index.html"/>
+      <url>/topic/Hexo%E5%8D%9A%E5%AE%A2/index.html</url>
+      <content type="html"><![CDATA[<blockquote><p>用过了较多博客系统，如CSDN，开源中国，博客园等，一直不太满意。CSDN的巨慢，而且现在开始要求绑定各种信息，感觉有些无力吐槽吧。开源中国一直还不错，动弹挺好的，但是大家都在上面划水了，博客流量确实很一般。博客园呢，个人感觉目前还比较纯粹吧。但是还是有点丑，界面有些跟不上时代的步伐了。<br>所以思来想去为了装逼，还是要搞一个自己的博客系统（其实还是为了装逼，没有个自己的博客系统，总感觉逼格不够）。于是开始选择用hexo + github方式搞自己的博客系统。开此专题，和大家一起分享一下自己搞博客的心得与遇到的坑。</p></blockquote><a id="more"></a><h2 id="Hexo系列"><a href="#Hexo系列" class="headerlink" title="Hexo系列"></a>Hexo系列</h2><ul><li><p><a href="/2018/09/19/六元一个的私有博客系统，了解一下？/">六元一个的私有博客系统，了解一下？</a></p></li><li><p><a href="/2018/09/28/为你的博客添加版权/">为你的博客添加版权</a></p></li><li><p><a href="/2018/09/29/hexo-plugins/">说一说我所用到的hexo插件</a></p></li></ul><h2 id="SEO系列"><a href="#SEO系列" class="headerlink" title="SEO系列"></a>SEO系列</h2>]]></content>
     </entry>
     
   
