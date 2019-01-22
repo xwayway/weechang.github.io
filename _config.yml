@@ -133,6 +133,6 @@ post_copyright:
 # 打赏
 donate:
   enable: true
-  donate_message: 赞赏此文
+  donate_message: 赏
   alipay:  /static/donate/alipay_qr.png
   wechat:  /static/donate/wechat_qr.png
