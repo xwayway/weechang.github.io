@@ -129,3 +129,10 @@ post_copyright:
   enable: true
   author: 张未
   copyright_text: 作者拥有版权，请注明出处转载。
+
+# 打赏
+donate:
+  enable: true
+  donate_message: 赞赏此文
+  alipay:  /static/donate/alipay_qr.png
+  wechat:  /static/donate/wechat_qr.png
