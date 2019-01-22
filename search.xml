@@ -1095,13 +1095,6 @@
     </entry>
     
     <entry>
-      <title>AxonFramework-内容汇总</title>
-      <link href="/topic/AxonFramework-%E5%86%85%E5%AE%B9%E6%B1%87%E6%80%BB/index.html"/>
-      <url>/topic/AxonFramework-%E5%86%85%E5%AE%B9%E6%B1%87%E6%80%BB/index.html</url>
-      <content type="html"><![CDATA[<blockquote><p>该系列文章为AxonFrameWork内容汇总，主要用于汇总AxonFrameWork方面的内容，会不定时更新。</p></blockquote><a id="more"></a><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul><li><a href="/2018/08/17/AxonFramework简介/">AxonFramework简介</a></li></ul><h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><ul><li><a href="/2018/08/17/AxonFramework架构概述/">AxonFramework架构概述</a></li><li><a href="/2018/08/17/AxonFramework消息、命令和事件/">AxonFramework消息、命令和事件</a></li><li><a href="/2018/08/20/AxonFramework工作单元/">AxonFramework工作单元</a></li></ul>]]></content>
-    </entry>
-    
-    <entry>
       <title>Hexo博客</title>
       <link href="/topic/Hexo%E5%8D%9A%E5%AE%A2/index.html"/>
       <url>/topic/Hexo%E5%8D%9A%E5%AE%A2/index.html</url>
@@ -1120,6 +1113,13 @@
       <link href="/topic/java-design-patterns/index.html"/>
       <url>/topic/java-design-patterns/index.html</url>
       <content type="html"><![CDATA[<blockquote><p>设计模式一直以来就是一个比较热门的话题，尤其是在java这样的oo语言里面。如今，设计模式已成为架构师和程序员之间交流的必要语言，也是普通程序员成长为高级程序员的必要基础之一。只有掌握设计模式，我们才能更好地掌握OO分析和设计方法，如DDD域驱动设计，并更加熟练地学习和使用新兴语言。</p></blockquote><a id="more"></a><p>Java种常见设计模式总共有23种，共分为三大类。目前我主要先整理主流的23种设计模式，其他的以后有时间再添加吧。该博客主要是个人搜集整理所用，起到一个简单入门的介绍，并不负责详细介绍。想要了解详细情况的同学，可以网上找找其他的文章。</p><h2 id="设计模式六大原则"><a href="#设计模式六大原则" class="headerlink" title="设计模式六大原则"></a>设计模式六大原则</h2><ul><li><a href="">Java设计模式——六大原则</a></li></ul><h2 id="创建模式"><a href="#创建模式" class="headerlink" title="创建模式"></a>创建模式</h2><ul><li><p><a href="">Java设计模式——工厂方法模式</a></p></li><li><p><a href="">Java设计模式——抽象工厂模式</a></p></li><li><p><a href="">Java设计模式——单例模式</a></p></li><li><p><a href="">Java设计模式——建造者模式</a></p></li><li><p><a href="">Java设计模式——原型模式</a></p></li></ul><h2 id="结构模式"><a href="#结构模式" class="headerlink" title="结构模式"></a>结构模式</h2><ul><li><p><a href="">Java设计模式——适配器模式</a></p></li><li><p><a href="">Java设计模式——装饰器模式</a></p></li><li><p><a href="">Java设计模式——代理模式</a></p></li><li><p><a href="">Java设计模式——外观模式</a></p></li><li><p><a href="">Java设计模式——桥接模式</a></p></li><li><p><a href="">Java设计模式——组合模式</a></p></li><li><p><a href="">Java设计模式——享元模式</a></p></li></ul><h2 id="行为模式"><a href="#行为模式" class="headerlink" title="行为模式"></a>行为模式</h2><ul><li><p><a href="">Java设计模式——策略模式</a></p></li><li><p><a href="">Java设计模式——模板方法模式</a></p></li><li><p><a href="">Java设计模式——观察者模式</a></p></li><li><p><a href="">Java设计模式——迭代子模式</a></p></li><li><p><a href="">Java设计模式——责任链模式</a></p></li><li><p><a href="">Java设计模式——命令模式</a></p></li><li><p><a href="">Java设计模式——备忘录模式</a></p></li><li><p><a href="">Java设计模式——状态模式</a></p></li><li><p><a href="">Java设计模式——访问者模式</a></p></li><li><p><a href="">Java设计模式——中介者模式</a></p></li><li><p><a href="">Java设计模式——解释器模式</a></p></li></ul>]]></content>
+    </entry>
+    
+    <entry>
+      <title>AxonFramework-内容汇总</title>
+      <link href="/topic/AxonFramework-%E5%86%85%E5%AE%B9%E6%B1%87%E6%80%BB/index.html"/>
+      <url>/topic/AxonFramework-%E5%86%85%E5%AE%B9%E6%B1%87%E6%80%BB/index.html</url>
+      <content type="html"><![CDATA[<blockquote><p>该系列文章为AxonFrameWork内容汇总，主要用于汇总AxonFrameWork方面的内容，会不定时更新。</p></blockquote><a id="more"></a><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul><li><a href="/2018/08/17/AxonFramework简介/">AxonFramework简介</a></li></ul><h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><ul><li><a href="/2018/08/17/AxonFramework架构概述/">AxonFramework架构概述</a></li><li><a href="/2018/08/17/AxonFramework消息、命令和事件/">AxonFramework消息、命令和事件</a></li><li><a href="/2018/08/20/AxonFramework工作单元/">AxonFramework工作单元</a></li></ul>]]></content>
     </entry>
     
   
