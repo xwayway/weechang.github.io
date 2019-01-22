@@ -14,8 +14,8 @@ customize:
         url: images/logo.png
     profile:
         enabled: true # Whether to show profile bar
-        fixed: true
-        avatar: css/images/avatar.png
+        fixed: false
+        avatar: css/images/logo.png
         gravatar: # Gravatar email address, if you enable Gravatar, your avatar config will be overriden
         author: 张未
         author_title: 大道五十,天衍四九,人遁其一
@@ -28,7 +28,7 @@ customize:
     social_links:
         github: https://github.com/weechang/
         envelope: mailto:zhangwei_sc@foxmail.com
-        weixin: /css/images/avatar.png
+        weixin: /css/images/wechat.png
         rss: /atom.xml
     social_link_tooltip: true # enable the social link tooltip, options: true, false
 
@@ -69,7 +69,7 @@ comment:
         notify: # enter true to enable <Mail notifier> https://github.com/xCss/Valine/wiki/Valine-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%82%AE%E4%BB%B6%E6%8F%90%E9%86%92%E8%AE%BE%E7%BD%AE
         verify: # enter true to enable <Validation code>
         placeholder: Just Do It # enter the comment box placeholder
-    
+
 
 # Share
 share: bdshare # options: jiathis, bdshare, addtoany, default
