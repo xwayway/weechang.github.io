@@ -5,25 +5,25 @@
       {
         "name": "JSON编辑器",
         "desc": "JSON 编辑器，支持 JOSN 的导入导出、校验、压缩、格式化以及转 XML。",
-        "logo": "/static/images/tools/json.png",
+        "logo": "/static/tools/json.png",
         "link": "https://www.json.cn"
       },
       {
         "name": "在线图片压缩",
         "desc": "支持GIF动图压缩，PNG压缩，JPG压缩。无需下载，在线体验，压缩后图片仍保持清晰。",
-        "logo": "/static/images/tools/tuhaokuai.png",
+        "logo": "/static/tools/tuhaokuai.png",
         "link": "https://www.tuhaokuai.com"
       },
       {
         "name": "Banner制作",
         "desc": "从单词或文本生成ASCII图形。 超过130种字体。适合Banner制作。",
-        "logo": "/static/images/tools/asciibanner.png",
+        "logo": "/static/tools/asciibanner.png",
         "link": "http://www.network-science.de/ascii"
       },
       {
         "name": "二维码制作",
         "desc": "联图二维码提供一百多套二维码美化模板，同时提供二维码生成接口。",
-        "logo": "/static/images/tools/liantu.png",
+        "logo": "/static/tools/liantu.png",
         "link": "http://www.liantu.com"
       }
     ]
@@ -34,13 +34,13 @@
       {
         "name": "在线作图",
         "desc": "免费在线作图工具,在线思维导图,流程图,UML作图,UI界面原型设计,BPMN,多人协作绘图。",
-        "logo": "/static/images/tools/processon.png",
+        "logo": "/static/tools/processon.png",
         "link": "https://processon.com"
       },
       {
         "name": "云端应用",
         "desc": "免安装软件,在线PS、OFFICE、AI、CorelDraw、matlab,在线协作。",
-        "logo": "/static/images/tools/uzerme.png",
+        "logo": "/static/tools/uzerme.png",
         "link": "https://uzer.me"
       }
     ]
@@ -51,25 +51,25 @@
       {
         "name": "jQuery插件库",
         "desc": "该站致力于收集jQuery插件和提供各种jQuery特效的详细使用方法,jQuery插件下载及教程。",
-        "logo": "/static/images/tools/jq22.png",
+        "logo": "/static/tools/jq22.png",
         "link": "http://www.jq22.com"
       },
       {
         "name": "开源项目CND",
         "desc": "致力于为优秀的开源项目提供稳定、快速、免费的 CDN 加速服务。",
-        "logo": "/static/images/tools/bootcdn.png",
+        "logo": "/static/tools/bootcdn.png",
         "link": "https://www.bootcdn.cn"
       },
       {
         "name": "I Tell You",
         "desc": "I Tell You,收录常用软件下载地址。",
-        "logo": "/static/images/tools/tellyou.png",
+        "logo": "/static/tools/tellyou.png",
         "link": "https://msdn.itellyou.cn"
       },
       {
         "name": "MAC萌新网",
         "desc": "Mac萌新网|最全的Mac/Win/Linux软件,科学软件,化学软件下载,软件首发站。",
-        "logo": "/static/images/tools/macxin.png",
+        "logo": "/static/tools/macxin.png",
         "link": "https://www.macxin.com"
       }
     ]
