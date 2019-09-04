@@ -3,6 +3,27 @@
   
     
     <entry>
+      <title>学习计划记录</title>
+      <link href="/2019/09/04/study-plan-main/"/>
+      <url>/2019/09/04/study-plan-main/</url>
+      <content type="html"><![CDATA[<blockquote><p>一篇简单的学习计划记录档案。</p></blockquote><a id="more"></a><p>算一算从15年4月开始工作至今，已经有四年多。从大学到现在一直都是浑浑噩噩地在写代码。虽然也折腾了不少东西，但是远不是我想要的。于是制定了以为为期五个月的晋级计划，期待自己能够在明年工作满五年之际有一个好的交代。特此记录！</p><p>具体计划如下</p><ul><li><strong>2019/09/04~2019/09/10</strong> 数据结构</li><li><strong>2019/09/11~2019/09/17</strong> 算法</li><li><strong>2019/09/18~2019/09/24</strong> 计算机原理</li><li><strong>2019/09/25~2019/10/01</strong> Linux</li><li><strong>2019/10/02~2019/10/08</strong> 计算机网络</li><li><strong>2019/10/09~2019/10/15</strong> Netty、IO、Nginx</li><li><strong>2019/10/16~2019/10/22</strong> Java基础</li><li><strong>2019/10/23~2019/10/29</strong> Java并发</li><li><strong>2019/10/30~2019/11/05</strong> Java多线程</li><li><strong>2019/11/06~2019/11/12</strong> Spring</li><li><strong>2019/11/13~2019/11/19</strong> Sql</li><li><strong>2019/11/20~2019/11/26</strong> NoSql</li><li><strong>2019/11/27~2019/12/03</strong> MQ（Kafka、RocketMQ）</li><li><strong>2019/12/04~2019/12/10</strong> 分布式</li><li><strong>2019/12/11~2019/12/17</strong> Dubbo生态</li><li><strong>2019/12/18~2019/12/24</strong> Spring Cloud</li><li><strong>2019/12/25~2019/12/31</strong> JVM</li><li><strong>2020/01/01~2020/01/07</strong> 设计模式</li><li><strong>2020/01/08~2020/01/14</strong> 经验整理</li><li><strong>2020/01/15~2020/01/21</strong> 项目难点整理</li><li><strong>2020/01/22~2020/01/28</strong> 亮点巩固</li></ul><p>以上只是一个大致的学习计划，基于自己已有基础进行进一步的加深与巩固。不具有普遍参考意义，主要以深入理论为主，刷面试题为辅。计划每天早上六点起床，六点半至八点学习。晚上花一个小时时间分析、整理、记录学习成果。</p>]]></content>
+      
+      <categories>
+          
+          <category> 晋级之路 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java，学习计划 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>Base64在Java中的应用</title>
       <link href="/2019/04/25/base64InJava/"/>
       <url>/2019/04/25/base64InJava/</url>
@@ -174,9 +195,9 @@
       
         <tags>
             
-            <tag> Java </tag>
-            
             <tag> Java多线程 </tag>
+            
+            <tag> Java </tag>
             
         </tags>
       
@@ -197,9 +218,9 @@
       
         <tags>
             
-            <tag> Java </tag>
-            
             <tag> Java多线程 </tag>
+            
+            <tag> Java </tag>
             
         </tags>
       
@@ -220,9 +241,9 @@
       
         <tags>
             
-            <tag> Java </tag>
-            
             <tag> Java多线程 </tag>
+            
+            <tag> Java </tag>
             
         </tags>
       
@@ -243,9 +264,9 @@
       
         <tags>
             
-            <tag> Java </tag>
-            
             <tag> Java多线程 </tag>
+            
+            <tag> Java </tag>
             
         </tags>
       
