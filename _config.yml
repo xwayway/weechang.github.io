@@ -3,9 +3,9 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 耒耒耒耒耒
+title: 千刀
 subtitle: 张未的技术博客
-description: 本站是Java程序猿耒耒耒耒耒（张未）的个人技术博客。内容涵盖Java后端技术、AxonFrameWork、领域驱动、DDD、CQRS、微服务架构、系统监控等相关的研究与知识分享。
+description: 本站是Java程序猿千刀（张未）的个人技术博客。内容涵盖Java后端技术、AxonFrameWork、领域驱动、DDD、CQRS、微服务架构、系统监控等相关的研究与知识分享。
 keywords: Java, AxonFrameWork, 领域驱动, DDD, 微服务, hexo, 程序猿
 author: 张未
 language: zh-CN

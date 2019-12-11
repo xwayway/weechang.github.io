@@ -29,7 +29,7 @@ https://abc.com/?payUrl=https://open.alipay.com/gateway.do?sing=xxxxx&bizContent
 ```java
 final BASE64Encoder encoder = new BASE64Encoder();
 final BASE64Decoder decoder = newBASE64Decoder();
-final String text ="weechang耒耒耒耒耒";
+final String text ="weechang千刀";
 final byte[] textByte = text.getBytes("UTF-8");
 //编码
 final String encodedText = encoder.encode(textByte);
@@ -38,7 +38,7 @@ System.out.println(encodedText);
 System.out.println(new String(decoder.decodeBuffer(encodedText),"UTF-8"));
 final BASE64Encoder encoder = new BASE64Encoder();
 final BASE64Decoder decoder = new BASE64Decoder();
-final String text ="weechang耒耒耒耒耒";
+final String text ="weechang千刀";
 final byte[] textByte = text.getBytes("UTF-8");
 //编码
 final String encodedText =encoder.encode(textByte);
@@ -55,14 +55,14 @@ Apache Commons Codec有提供Base64的编码与解码功能，使用org.apache.c
    
 ```java 
 final Base64 base64 = new Base64();
-final String text = "weechang耒耒耒耒耒";
+final String text = "weechang千刀";
 final byte[] textByte = text.getBytes("UTF-8");
 //编码
 final String encodedText = base64.encodeToString(textByte);System.out.println(encodedText);
 //解码
 System.out.println(new String(base64.decode(encodedText),"UTF-8"));
 final Base64 base64 = new Base64();
-final String text = "weechang耒耒耒耒耒";
+final String text = "weechang千刀";
 final byte[] textByte = text.getBytes("UTF-8");
 //编码
 final String encodedText = base64.encodeToString(textByte);System.out.println(encodedText);
@@ -78,7 +78,7 @@ Java 8的java.util套件中，新增了Base64的类别，可以用来处理Base6
 ```java
 final Base64.Decoder decoder = Base64.getDecoder();
 final Base64.Encoder encoder = Base64.getEncoder();
-final String text = "weechang耒耒耒耒耒";
+final String text = "weechang千刀";
 final byte[] textByte = text.getBytes("UTF-8");
 //编码
 final String encodedText = encoder.encodeToString(textByte);
@@ -87,7 +87,7 @@ System.out.println(encodedText);
 System.out.println(new String(decoder.decode(encodedText), "UTF-8"));
 finalBase64.Decoder decoder = Base64.getDecoder();
 final Base64.Encoder encoder = Base64.getEncoder();
-final String text = "weechang耒耒耒耒耒";
+final String text = "weechang千刀";
 final byte[] textByte = text.getBytes("UTF-8");
 //编码
 final String encodedText = encoder.encodeToString(textByte);
@@ -107,7 +107,7 @@ Java8 针对需要在URL中传输的Base64提供了另外一套解决方法，�
 ```java 
 final Base64.Decoder decoder = Base64.getUrlDecoder();
 final Base64.Encoder encoder = Base64.getUrlEncoder();
-final String text = "weechang耒耒耒耒耒";
+final String text = "weechang千刀";
 final byte[] textByte = text.getBytes("UTF-8");
 //编码
 final String encodedText = encoder.encodeToString(textByte);
@@ -116,7 +116,7 @@ System.out.println(encodedText);
 System.out.println(new String(decoder.decode(encodedText), "UTF-8"));
 finalBase64.Decoder decoder = Base64.getDecoder();
 final Base64.Encoder encoder = Base64.getEncoder();
-final String text = "weechang耒耒耒耒耒";
+final String text = "weechang千刀";
 final byte[] textByte = text.getBytes("UTF-8");
 //编码
 final String encodedText = encoder.encodeToString(textByte);
